@@ -1,1 +1,1 @@
-# StructorVerba_LitteraAcutaF
+# StructorVerba.RETE
