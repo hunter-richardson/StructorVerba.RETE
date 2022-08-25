@@ -1,1 +1,1 @@
-# StructorVerba.RETE
+# StructorVerba.RETE  [![CodeFactor](https://www.codefactor.io/repository/github/hunter-richardson/structorverba.rete/badge/princeps)](https://www.codefactor.io/repository/github/hunter-richardson/structorverba.rete/overview/princeps)
