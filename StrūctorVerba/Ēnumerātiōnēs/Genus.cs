@@ -3,12 +3,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Genus
   {
-    NEUTRUM, MASCULĪNUM, FEMINĪNUM, NŪLLUM
+    Neutrum, Masculīnum, Feminīnum, Nūllum
   }
 
   public static sealed class Genera
   {
-    public static readonly Func<Genus, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Genus> iactor = valor => valor.cast(Genus, NŪLLUM);
+    public static readonly Func<Genus, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Enum, Genus> Iactor = valor => valor.Cast(Genus, NŪLLUM);
   }
 }

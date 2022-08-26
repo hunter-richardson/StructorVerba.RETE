@@ -3,12 +3,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Persōna
   {
-    PRĪMA, SECUNDA, TERTIA, NŪLLA
+    Prīma, Secunda, Tertia, Nūlla
   }
 
   public static sealed class Persōnae
   {
-    public static readonly Func<Persōna, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Persōna> iactor = valor => valor.cast(Persōna, NŪLLA);
+    public static readonly Func<Persōna, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Enum, Persōna> Iactor = valor => valor.Cast(Persōna, NŪLLA);
   }
 }

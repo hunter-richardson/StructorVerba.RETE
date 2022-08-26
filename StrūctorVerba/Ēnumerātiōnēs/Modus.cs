@@ -3,12 +3,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Modus
   {
-    INDICĀTĪVUS, SUBIŪNCTĪVUS, ĪNFĪNĪTĪVUS, IMPERĀTĪVUS, PARTICIPĀLIS, NŪLLUS
+    Indicātīvus, Subiūnctīvus, Īnfīnītīvus, Imperātīvus, Participālis, Nūllus
   }
 
   public static sealed class Modī
   {
-    public static readonly Func<Modus, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Modus> iactor = valor => valor.cast(Modus, NŪLLUS);
+    public static readonly Func<Modus, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Enum, Modus> Iactor = valor => valor.Cast(Modus, NŪLLUS);
   }
 }

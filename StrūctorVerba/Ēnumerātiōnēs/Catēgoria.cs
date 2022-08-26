@@ -3,27 +3,27 @@ namespace Ēnumerātiōnēs
 {
   public enum Catēgoria
   {
-    ĀCTUS, ADIECTĪVUM, ADVERBIUM, CONIŪNCTIŌ, INTERIECTIŌ, NŌMEN, NUMERĀMEN, NUMERUS, PRAEPOSITIŌ, PRŌNŌMEN
+    Āctus, Adiectīvum, Adverbium, Coniūnctiō, Interiectiō, Nōmen, Numerāmen, Numerus, Praepositiō, Prōnōmen
   }
 
   public static sealed class Catēgoriae
   {
-    public static readonly Func<Catēgoria, string> scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Catēgoria, string> Scrīptor = valor => valor.ToString().ToLower();
 
     public static string NōmenTabulae([NotNull] this in Catēgoria catēgoria, Enum? versiō = null)
     {
       const string scrīptum = catēgoria switch
       {
-        ĀCTUS => "actus",
-        ADIECTĪVUM => "adiectiva",
-        ADVERBIA => "adverbia",
-        CONIŪNCTIŌ => "coniunctiones",
+        ĀCTUS       => "actus",
+        ADIECTĪVUM  => "adiectiva",
+        ADVERBIA    => "adverbia",
+        CONIŪNCTIŌ  => "coniunctiones",
         INTERIECTIŌ => "interiectio",
-        NŌMEN => "nomnia",
-        NUMERĀMEN => "numeramina",
-        NUMERUS => "numeri",
+        NŌMEN       => "nomnia",
+        NUMERĀMEN   => "numeramina",
+        NUMERUS     => "numeri",
         PRAEPOSITIŌ => "praepositiones",
-        PRŌNŌMEN => "pronomnia"
+        PRŌNŌMEN    => "pronomnia"
       };
 
       return (versiō is not null).Choose(scrīptum.Concat(versiō.ToString()), scrīptum);

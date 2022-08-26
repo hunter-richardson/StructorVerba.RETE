@@ -3,12 +3,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Numerālis
   {
-    SINGULĀRIS, PLŪRĀLIS, NŪLLUS
+    Singulāris, Plūrālis, Nūllus
   }
 
   public static sealed class Numerālēs
   {
-    public static readonly Func<Numerālis, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Numerālis> iactor = valor => valor.cast(Numerālis, NŪLLUS);
+    public static readonly Func<Numerālis, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Enum, Numerālis> Iactor = valor => valor.Cast(Numerālis, NŪLLUS);
   }
 }

@@ -3,12 +3,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Gradus
   {
-    POSITĪVUS, COMPARĀTĪVUS, SUPERLĀTĪVUS, NŪLLUS
+    Positīvus, Comparātīvus, Superlātīvus, Nūllus
   }
 
   public static sealed class Gradūs
   {
-    public static readonly Func<Gradus, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Gradus> iactor = valor => valor.cast(Gradus, NŪLLUS);
+    public static readonly Func<Gradus, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static readonly Func<Enum, Gradus> Iactor = valor => valor.Cast(Gradus, NŪLLUS);
   }
 }

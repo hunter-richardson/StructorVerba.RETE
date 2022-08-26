@@ -3,12 +3,14 @@ namespace Ēnumerātiōnēs
 {
   public enum Tempus
   {
-    PRAESĒNS, ĪNFECTUM, FUTŪRUM, PERFECTUM, PLŪSQUAMPERFECTUM, FUTŪRUM_EXĀCTUM, INTERMPORĀLE,
+    Praesēns, Īnfectum, Futūrum, Perfectum, Plūsquamperfectum, FutūrumExāctum, Intemporāle,
   }
 
   public static sealed class Tempora
   {
-    public static readonly Func<Tempus, string> scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Tempus> iactor = valor => valor.Cast(Tempus, INTEMPORĀLE);
+    public static readonly Func<Tempus, string> Scrīptor =
+     valor => FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
+
+    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast(Tempus, INTEMPORĀLE);
   }
 }
