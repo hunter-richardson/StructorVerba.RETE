@@ -98,7 +98,7 @@ namespace Miscella {
                                       [NotNull] in string replacement) {
       const int place = source.IndexOf(toReplace);
       return (place < 0).Choose(source, source.Substring(0, place).Concat(replacement)
-                                              .Concat(source.Substring(place.Add(replacement.Length))));
+                                .Concat(source.Substring(place + replacement.Length)));
     }
 
     public static string Capitalize([NotNull] this in string source) {
