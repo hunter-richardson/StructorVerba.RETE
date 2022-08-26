@@ -78,7 +78,7 @@ namespace Miscella {
     }
 
     public static R ApplyOr<T, R>([NotNull] this in Func<T, R> function,
-                                  in T? obj, in R? or = null) {
+                                  in T? obj, in R? or = default) {
       return (obj is not null).Choose(function.Invoke(obj), or);
     }
 
@@ -120,6 +120,18 @@ namespace Miscella {
 
     public static Boolean Xor([NotNull] this in Boolean first, [NotNull] in Boolean second) {
       return first ^ second;
+    }
+
+    public static Boolean All([NotNull] this in IEnumerable<Boolean> enumerable) {
+      return enumerable.All(item => item);
+    }
+
+    public static Boolean Any([NotNull] this in IEnumerable<Boolean> enumerable) {
+      return enumerable.Any(item => item);
+    }
+
+    public static Boolean None([NotNull] this in IEnumerable<Boolean> enumerable) {
+      return enumerable.All(item => !item);
     }
 
     public static T Cast<T>([NotNull] this in object obj, [NotNull] in Type<T> type, in T? or = default) {
