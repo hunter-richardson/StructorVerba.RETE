@@ -1,0 +1,17 @@
+{
+    "gitlens.codeLens.scopes": [
+        "document",
+        "containers",
+        "blocks"
+    ],
+    "gitlens.views.repositories.includeWorkingTree": true,
+    "gitlens.views.repositories.showUpstreamStatus": false,
+    "gitlens.autolinks": [
+        {
+            "prefix": null
+        }
+    ],
+    "gitlens.defaultDateFormat": "DD MMMM YYYY @ HH:mm",
+    "gitlens.defaultDateShortFormat": "DD MMM YYYY",
+    "gitlens.defaultTimeFormat": "HH:mm"
+}
