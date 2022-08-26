@@ -1,4 +1,3 @@
-using System;
 namespace Miscella {
   public static sealed class Extensions {
     private static readonly Random random => new Random();
