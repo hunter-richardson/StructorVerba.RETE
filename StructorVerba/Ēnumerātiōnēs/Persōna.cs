@@ -9,6 +9,6 @@ namespace Ēnumerātiōnēs
   public static sealed class Persōnae
   {
     public static readonly Func<Persōna, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Persōna> Iactor = valor => valor.Cast(Persōna, NŪLLA);
+    public static readonly Func<Enum, Persōna> Iactor = valor => valor.Cast<Persōna>(NŪLLA);
   }
 }

@@ -11,6 +11,6 @@ namespace Ēnumerātiōnēs
     public static readonly Func<Tempus, string> Scrīptor =
      valor => FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
 
-    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast(Tempus, INTEMPORĀLE);
+    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(INTEMPORĀLE);
   }
 }

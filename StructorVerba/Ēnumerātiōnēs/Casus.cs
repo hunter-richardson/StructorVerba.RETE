@@ -6,6 +6,6 @@ namespace Ēnumerātiōnēs {
 
   public static sealed class Casūs {
     public static readonly Func<Casus, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Casus> Iactor = valor => valor.Cast(Casus, DĒRĒCTUS);
+    public static readonly Func<Enum, Casus> Iactor = valor => valor.Cast<Casus>(DĒRĒCTUS);
   }
 }

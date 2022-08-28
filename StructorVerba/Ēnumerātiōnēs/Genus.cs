@@ -9,6 +9,6 @@ namespace Ēnumerātiōnēs
   public static sealed class Genera
   {
     public static readonly Func<Genus, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Genus> Iactor = valor => valor.Cast(Genus, NŪLLUM);
+    public static readonly Func<Enum, Genus> Iactor = valor => valor.Cast<Genus>(NŪLLUM);
   }
 }

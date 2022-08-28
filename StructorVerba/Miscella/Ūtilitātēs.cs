@@ -19,9 +19,6 @@ namespace Miscella
        return scriptum;
      };
 
-    public static IEnumerable<T> Seriēs<T>([NotNull] in params T seriēs)
-    {
-      return seriēs;
-    }
+    public static IEnumerable<T> Seriēs<T>(in params T seriēs) => seriēs;
   }
 }
