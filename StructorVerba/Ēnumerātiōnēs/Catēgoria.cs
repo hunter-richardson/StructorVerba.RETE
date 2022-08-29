@@ -1,4 +1,8 @@
+using System;
+using System.Text.Json.JsonElement;
+
 using Miscella.Ūtilitātēs;
+
 namespace Ēnumerātiōnēs
 {
   public enum Catēgoria

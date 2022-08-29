@@ -1,4 +1,7 @@
+using System;
+
 using Miscella.Extensions;
+
 namespace Ēnumerātiōnēs
 {
   public enum Tempus
@@ -9,8 +12,8 @@ namespace Ēnumerātiōnēs
   public static sealed class Tempora
   {
     public static readonly Func<Tempus, string> Scrīptor =
-     valor => FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
+              valor => Tempus.FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
 
-    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(INTEMPORĀLE);
+    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(Tempus.Intemporāle);
   }
 }

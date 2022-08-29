@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic.IEnumerable;
+using System.Linq;
 namespace Miscella
 {
   public static sealed class Extensions
@@ -19,7 +22,8 @@ namespace Miscella
 
     private static IEnumerable<T> Enumerate<T>(in params T items) => items;
 
-    public static T? Random<T>(this in IEnumerable<T> enumerable, in T? or = default) {
+    public static T? Random<T>(this in IEnumerable<T> enumerable, in T? or = default)
+    {
       const IEnumerable<T> filtered = (from item in enumerable
                                        where item is not null
                                        select item).Distinct();

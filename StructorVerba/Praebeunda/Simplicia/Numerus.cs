@@ -1,18 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+
+using Ēnumerātiōnēs;
+
+using RomanNumerals;
+
 namespace Praebeunda.Simplicia
 {
+  [GenerateBuilder]
   public sealed class Numerus : Verbum<Numerus>
   {
-    public static readonly Supplier<Strūctor> Strūctor => () => new Strūctor();
+    public static readonly (int, string) MinValue = (1, "I");
+    public static readonly (int, string) MaxValue = (3999, "MMMCMXCIX");
 
-    private Numerus([Range(RomanNumeral.MinValue, RomanNumeral.MaxValue)] in int nmrs)
+    private Numerus([Range(MinValue.Item1, MaxValue.Item1)] in int nmrs)
                    : base(nmrs, Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(nmrs)) { }
-    private Numerus([StringLength(15, MinimumLength = 2)] in string scrīptum)
+    private Numerus([StringLength(15, MinimumLength = 1)] in string scrīptum)
                    : base(0, Catēgoria.Numerus, scrīptum)
     {
       if (!RomanNumeral.TryParse(scrīptum, out Minūtal))
       {
         throw new ArgumentationOutOfRangeException(nameof(scrīptum), scrīptum,
-                                                   $"Parametrum {nameof(scrīptum)} tractum exspectātum nōn īnest. Valōribus classis {typeof(Numerus)} interiacendu'st valōrēs I et MMMCMXCIX.");
+                                                   $"Parametrum {nameof(scrīptum)} tractum exspectātum nōn īnest. Valōribus classis {typeof(Numerus)} interiacendu'st valōrēs {MinValue.Item1} et {MaxValue.Item1}.");
       }
     }
 
@@ -28,8 +36,5 @@ namespace Praebeunda.Simplicia
               => new Numerus(prīmus.Minūtal % secundus.Minūtal);
     public static Numerus operator ++(in Nunerus numerus) => new Numerus(++numerus.Minūtal);
     public static Numerus operator --(in Nunerus numerus) => new Numerus(--numerus.Minūtal);
-
-    [BuilderFor(typeof(Numerus))]
-    private sealed partial class Strūctor { }
   }
 }

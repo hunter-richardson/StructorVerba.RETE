@@ -1,4 +1,7 @@
-using Miscella.Extensions;
+using System;
+
+using Praebeunda.Simplicia.Numerus;
+
 namespace Ēnumerātiōnēs
 {
   public enum Operātor
@@ -12,11 +15,31 @@ namespace Ēnumerātiōnēs
     public static readonly Func<Operātor, char> Litterator =
              operātor => operātor switch
              {
-               Additor       => '+',
-               Subtractor    => '-',
-               Multiplicātor => '*',
-               Dīvīsor       => '/',
-               Mānsor        => '%',
+               Operātor.Additor       => '+',
+               Operātor.Subtractor    => '-',
+               Operātor.Multiplicātor => '*',
+               Operātor.Dīvīsor       => '/',
+               Operātor.Mānsor        => '%',
              };
+
+    public static readonly Func<Operātor, Func<int, int, int>> Anglicus =
+            operātor => operātor switch
+            {
+              Operātor.Additor       => (prīmus, secundus) => prīmus + secundus,
+              Operātor.Subtractor    => (prīmus, secundus) => prīmus - secundus,
+              Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+              Operātor.Dīvīsor       => (prīmus, secundus) => prīmus / secundus,
+              Operātor.Mānsor        => (prīmus, secundus) => prīmus % secundus,
+            };
+
+    public static readonly Func<Operātor, Func<Numerus, Numerus, Numerus>> Anglicus =
+            operātor => operātor switch
+            {
+              Operātor.Additor       => (prīmus, secundus) => prīmus + secundus,
+              Operātor.Subtractor    => (prīmus, secundus) => prīmus - secundus,
+              Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+              Operātor.Dīvīsor       => (prīmus, secundus) => prīmus / secundus,
+              Operātor.Mānsor        => (prīmus, secundus) => prīmus % secundus,
+            };
   }
 }

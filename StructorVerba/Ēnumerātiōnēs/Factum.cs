@@ -1,3 +1,4 @@
+using System;
 using Miscella.Extensions;
 namespace Ēnumerātiōnēs
 {
@@ -9,6 +10,6 @@ namespace Ēnumerātiōnēs
   public static sealed class Facta
   {
     public static readonly Func<Factum, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Factum> Iactor = valor => valor.Cast<Factum>(NŪLLUM);
+    public static readonly Func<Enum, Factum> Iactor = valor => valor.Cast<Factum>(Factum.Nūllum);
   }
 }
