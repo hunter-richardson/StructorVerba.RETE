@@ -2,6 +2,8 @@ using System.Security.AccessControl;
 using System;
 using System.ComponentModel.DataAnnotations.StringLength;
 using System.Text.Json.JsonElement;
+
+using Ēnumerātiōnēs.Catēgoria;
 namespace Praebeunda.Simplicia {
   public sealed class Interiectiō : Verbum<Interiectiō>
   {

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-using Ēnumerātiōnēs;
+using Ēnumerātiōnēs.Catēgoria;
 
-using RomanNumerals;
+using RomanNumerals.RomanNumeral;
 
 namespace Praebeunda.Simplicia
 {

@@ -2,9 +2,9 @@ using System;
 using System.Reflection;
 using System.Text.Json.JsonElement;
 
-using Ēnumerātiōnēs;
+using Ēnumerātiōnēs.Catēgoriae;
 
-using Lombok.AllArgsConstructor;
+using Lombok.NET.ConstructorGenerators.AllArgsConstructorGenerator;
 
 namespace Praebeunda.Simplicia
 {

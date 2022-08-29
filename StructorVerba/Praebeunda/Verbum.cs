@@ -4,10 +4,10 @@ using System.Reflection;
 using System.Text.Json.JsonElement;
 
 using Ēnumerātiōnēs.Catēgoria;
-using Praebeunda.Intefecta.Pēnsābile;
+using Praebeunda.Interfecta.Pēnsābile;
 using Miscella.Ūtilitātēs;
 
-using Lombok.AllArgsConstructor;
+using Lombok.NET.ConstructorGenerators.AllArgsConstructorGenerator;
 
 namespace Praebeunda
 {

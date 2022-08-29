@@ -6,6 +6,7 @@ using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Miscella.Extensions;
+using Praebeunda.Interfecta.Pēnsābile;
 
 using Amazon.RegionEndpoint;
 using Amazon.DynamoDBv2.AmazonDynamoDB;

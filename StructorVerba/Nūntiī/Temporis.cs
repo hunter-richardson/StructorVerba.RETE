@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic.IEnumerable;
 
-using Lombok.NoArgsConstructor;
+using Lombok.NET.ConstructorGenerators.NoArgsConstructorGenerator;
 
 namespace Nūntiī
 {
-  [NoArgsConstructor]
-  internal sealed class Temporis : SimpleDateFormatter
+  [NoArgsConstructor(Access.Private)]
+  internal sealed partial class Temporis : SimpleDateFormatter
   {
     public Func<Temporis> Faciendum = () => new Temporis();
 
