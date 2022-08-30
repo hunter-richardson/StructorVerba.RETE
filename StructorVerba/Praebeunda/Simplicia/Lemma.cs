@@ -2,22 +2,24 @@ using System;
 using System.Reflection;
 using System.Text.Json.JsonElement;
 
-using Ēnumerātiōnēs.Catēgoriae;
+using Pēnsōrēs;
 
-using Lombok.NET.ConstructorGenerators.AllArgsConstructorGenerator;
+using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 
 namespace Praebeunda.Simplicia
 {
   [AllArgsConstructor(MemberTypes.Property, AccessType.Private)]
-  public sealed partial class Lemma : Verbum<Lemma>
+  public sealed partial class Lemma : Verbum<Lemma>, Pēnsābile<Lemma>
   {
+    private readonly Func<Īnflectendum> Relātor = () => PēnsorĪnflectendīs.Relātor.Invoke(Catēgoria, Versiō);
+
     public readonly Enum? Versiō { get; }
 
     // TODO: convert Versiō from JsonElement
     public static readonly Func<JsonElement, Lemma> Lēctor = legendum =>
-       new Lemma(legendum.GetProperty("minūtal").GetInt32(),
-                 Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty("catēgoria")),
-                 legendum.GetProperty("scrīptum").GetString(),
-                 legendum.GetProperty("versiō"));
+       new Lemma(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                 Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
+                 legendum.GetProperty(nameof(Scrīpum).ToLower()).GetString(),
+                 legendum.GetProperty(nameof(Versiō).ToLower()));
   }
 }

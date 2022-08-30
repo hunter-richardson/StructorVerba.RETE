@@ -1,4 +1,4 @@
 namespace Praebeunda.Interfecta
 {
-  public interface Īnflexum {  }
+  public interface Īnflexum<Hoc> {  }
 }

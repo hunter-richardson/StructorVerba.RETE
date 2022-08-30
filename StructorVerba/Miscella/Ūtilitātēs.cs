@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using System;
 using System.Collections.Generic;
@@ -5,6 +6,9 @@ namespace Miscella
 {
   public static sealed class Ūtilitātēs
   {
+    //TODO: Register CultureInfo; https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureandregioninfobuilder
+    //public static Func<CultureInfo> Cultūra = CultureInfo.CreateSpecificCulture("la-US");
+
     private static Dictionary<char, char> Apicēs = new Dictionary<char, char>() {
                                                           { 'ā', 'a' }, { 'ē', 'e' }, { 'ī', 'i' }, { 'ō', 'o' },
                                                           { 'ū', 'u' }, { 'ȳ', 'y' }, { 'Ā', 'A' }, { 'Ē', 'E' },
@@ -36,9 +40,9 @@ namespace Miscella
 
     public static IEnumerable<Enum[]> Combīnō(in ISet<Enum> prīma, in ISet<Enum> secunda,
                                               in ISet<Enum> tertia) => (from prīmum in prīma
-                                                                       from secundum in secunda
-                                                                       from tertium in tertia
-                                                                       select new[] { prīmum, secundum, tertium });
+                                                                        from secundum in secunda
+                                                                        from tertium in tertia
+                                                                        select new[] { prīmum, secundum, tertium });
 
     public static IEnumerable<Enum[]> Combīnō(in ISet<Enum> prīma, in ISet<Enum> secunda, in ISet<Enum> tertia,
                                               in ISet<Enum> quārta) => from prīmum in prīma

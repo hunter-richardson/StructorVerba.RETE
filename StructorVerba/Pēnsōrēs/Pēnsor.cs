@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations.StringLength;
+using System.Collections.Generic.KeyNotFoundException;
 using System.Linq;
 using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Miscella.Extensions;
+using Pēnsōrēs.Simplicibus;
 using Praebeunda.Interfecta.Pēnsābile;
 
 using Amazon.RegionEndpoint;
@@ -23,10 +25,9 @@ namespace Pēnsōrēs
       Lemmae, Verba, Adiectīva_Aut_Prīma_Aut_Secunda
     }
 
-    //TODO: public static Tabula? Tabula(in Catēgoria catēgoria, in Enum versiō);
-    public static Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();
+    public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();
 
-    public static Func<AmazonDynamoDBClient> Cliēns = () =>
+    public static readonly Func<AmazonDynamoDBClient> Cliēns = () =>
     {
       const AmazonDynamoDBClient cliēns = new AmazonDynamoDBClient();
       cliens.BufferSize = 4096;
@@ -41,24 +42,30 @@ namespace Pēnsōrēs
       return cliēns;
     };
 
-    private Func<Task<Enumerable<JsonElement>>> Tabulātor = async () => Contextus.GetTable<JsonElement>();
-    public Func<Task<Enumerable<Hoc>>> Omnēs = async () => (from linea in Tabulātor.Invoke()
-                                                            select Lēctor.Invoke(linea)).Where(hoc => hoc is not null);
-    public Func<Task<Hoc?>> ForsPēnset = async () => Omnēs.Invoke().Random();
+    private readonly Func<Task<Enumerable<JsonElement>>> Tabulātor = async () =>
+    {
+      Nūntius.Garriō("Tabulam aperiō");
+      return Contextus.GetTable<JsonElement>();
+    };
+
+    public readonly Func<Task<Enumerable<Hoc>>> Omnēs = async () => (from linea in Tabulātor.Invoke()
+                                                                     select await Legam(linea))
+                                                                        .Where(hoc => hoc is not null);
+    public readonly Func<Task<Hoc?>> FortisPēnsor = async () => Omnēs.Invoke().Random();
 
     protected readonly string Nōmen { get; }
     protected readonly DataContext Contextus { get; }
     protected readonly Nūntius<Pēnsor<Hoc>> Nūntius { get; }
-    protected readonly Func<JsonElement, Task<Hoc?>> Lēctor { get; }
+    protected readonly Func<JsonElement, Task<Hoc>> Lēctor { get; }
 
     [StringLength(15, MinimumLength = 4)]
-    protected readonly string VersiculumPrīmum { get; }
+    protected readonly string Quaerendī { get; }
 
-    protected Pēnsor(in string versiculumPrīmum, in Tabula tabula,
+    protected Pēnsor(in string quaerendī, in Tabula tabula,
                      in Func<Nūntius<Pēnsor<Hoc>>> nūntius,
-                     in Func<JsonElement, Task<Hoc?>> lēctor)
+                     in Func<JsonElement, Task<Hoc>> lēctor)
     {
-      VersiculumPrīmum = versiculumPrīmum;
+      Quaerendī = quaerendī.ToLower();
       Nōmen = Nōminātor.Invoke(Tabula);
       Nūntius = nūntius.Invoke();
       Lēctor = lēctor;
@@ -66,13 +73,67 @@ namespace Pēnsōrēs
       Contextus = new DataContext(Cliēns.Invoke(), Nōmen);
     }
 
-    [Async]
-    public Hoc? Pēnsem(in int minūtal) => (from linea in Tabulātor.Invoke()
-                                           where minūtal.Equals(linea.GetInt32(nameof(minūtal)))
-                                           select Lēctor.Invoke(linea)).FirstOrDefault(null);
-    [Async]
-    public Hoc? Pēnsem(in string scrīptum) => (from linea in Tabulātor.Invoke()
-                                               where scrīptum.Equals(linea.GetString(versiculumPrīmum))
-                                               select Lēctor.Invoke(linea)).FirstOrDefault(null);
+    public readonly Func<int, Task<Hoc?>> PēnsorNumerius = minūtal =>
+    {
+      try
+      {
+        const Hoc? hoc = (from linea in Tabulātor.Invoke()
+                          where minūtal.Equals(linea.GetProperty(nameof(minūtal)).GetInt32())
+                          select await Legam(linea)).FirstOrDefault(null);
+        if (hoc == null)
+        {
+          Nūntius.MoneōAsync("Nīl advenī");
+        }
+        else
+        {
+          Nūntius.GarriōAsync("Advenī hoc:", hoc);
+        }
+
+        return hoc;
+      }
+      catch (SystemException error) when (error is InvalidOperationException || error is KeyNotFoundException)
+      {
+        Nūntius.TerreōAsync(error);
+        return null;
+      }
+    };
+
+    public readonly Func<int, Task<Hoc?>> PēnsorVerbālis = scrīptum =>
+    {
+      try
+      {
+        const Hoc? hoc = (from linea in Tabulātor.Invoke()
+                          where scrīptum.Equals(linea.GetProperty(Quaerendī).GetString())
+                          select await Legam(linea)).FirstOrDefault(null);
+        if (hoc == null)
+        {
+          Nūntius.MoneōAsync("Nīl advenī");
+        }
+        else
+        {
+          Nūntius.GarriōAsync("Advenī hoc:", hoc);
+        }
+
+        return hoc;
+      }
+      catch (SystemException error) when (error is InvalidOperationException || error is KeyNotFoundException)
+      {
+        Nūntius.TerreōAsync(error);
+        return null;
+      }
+    };
+
+    private Task<Hoc?> Legam(in JsonElement legendum)
+    {
+      try
+      {
+        return Lēctor.Invoke(legendum);
+      }
+      catch (SystemException error) when (error is InvalidOperationException || error is KeyNotFoundException)
+      {
+        Nūntius.TerreōAsync(error);
+        return null;
+      }
+    }
   }
 }

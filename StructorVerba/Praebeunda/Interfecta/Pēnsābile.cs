@@ -1,4 +1,4 @@
 namespace Praebeunda.Interfecta
 {
-  public interface Pensābile {  }
+  public interface Pensābile<Hoc> {  }
 }

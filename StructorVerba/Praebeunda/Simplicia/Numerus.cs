@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 
-using Ēnumerātiōnēs.Catēgoria;
-
 using RomanNumerals.RomanNumeral;
 
 namespace Praebeunda.Simplicia
@@ -13,9 +11,9 @@ namespace Praebeunda.Simplicia
     public static readonly (int, string) MaxValue = (3999, "MMMCMXCIX");
 
     private Numerus([Range(MinValue.Item1, MaxValue.Item1)] in int nmrs)
-                   : base(nmrs, Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(nmrs)) { }
+                   : base(nmrs, Ēnumerātiōnēs.Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(nmrs)) { }
     private Numerus([StringLength(15, MinimumLength = 1)] in string scrīptum)
-                   : base(0, Catēgoria.Numerus, scrīptum)
+                   : base(0, Ēnumerātiōnēs.Catēgoria.Numerus, scrīptum)
     {
       if (!RomanNumeral.TryParse(scrīptum, out Minūtal))
       {
@@ -24,17 +22,19 @@ namespace Praebeunda.Simplicia
       }
     }
 
-    public static Numerus operator +(in Nunerus prīmus, in Numerus secundus)
+    public static Numerus operator +(in Numerus prīmus, in Numerus secundus)
               => new Numerus(prīmus.Minūtal + secundus.Minūtal);
-    public static Numerus operator -(in Nunerus prīmus, in Numerus secundus)
+    public static Numerus operator -(in Numerus prīmus, in Numerus secundus)
               => new Numerus(prīmus.Minūtal - secundus.Minūtal);
-    public static Numerus operator /(in Nunerus prīmus, in Numerus secundus)
+    public static Numerus operator /(in Numerus prīmus, in Numerus secundus)
               => new Numerus(prīmus.Minūtal / secundus.Minūtal);
-    public static Numerus operator *(in Nunerus prīmus, in Numerus secundus)
+    public static Numerus operator *(in Numerus prīmus, in Numerus secundus)
               => new Numerus(prīmus.Minūtal * secundus.Minūtal);
-    public static Numerus operator %(in Nunerus prīmus, in Numerus secundus)
+    public static Numerus operator %(in Numerus prīmus, in Numerus secundus)
               => new Numerus(prīmus.Minūtal % secundus.Minūtal);
-    public static Numerus operator ++(in Nunerus numerus) => new Numerus(++numerus.Minūtal);
-    public static Numerus operator --(in Nunerus numerus) => new Numerus(--numerus.Minūtal);
+    public static Numerus operator ++(in Numerus numerus) => new Numerus(++numerus.Minūtal);
+    public static Numerus operator --(in Numerus numerus) => new Numerus(--numerus.Minūtal);
+    public sealed int CompareTo(Numerus aliud) => Minūtal.CompareTo(aliud.Minūtal);
+
   }
 }

@@ -48,9 +48,9 @@ namespace Nūntiī
 
     [Async] public sealed void Terreō(in Exception error) => Nuntiō(Level.Error, error);
 
-    [Async] private sealed void Nūntiō(in LoggingEvent factum) => Praecō.DoAppend(factum);
+    private sealed void Nūntiō(in LoggingEvent factum) => Praecō.DoAppend(factum);
 
-    [Async] private sealed void Nūntiō(in Level gradus, in string nūnium)
+    private sealed void Nūntiō(in Level gradus, in string nūnium)
               => Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
                                                       {
                                                         DateTime = DateTime.Now,
@@ -61,7 +61,7 @@ namespace Nūntiī
                                                         Message = nūntium
                                                       }));
 
-    [Async] private sealed void Nūntiō(in Level gradus, in Exception error)
+    private sealed void Nūntiō(in Level gradus, in Exception error)
               => Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
                                                       {
                                                         DateTime = DateTime.Now,
@@ -72,7 +72,7 @@ namespace Nūntiī
                                                         LocationInfo = new LocationInfo(typeof(Hoc)),
                                                       }));
 
-    [Async] private sealed void Nūntiō(in Level gradus, in params object nūntia)
+    private sealed void Nūntiō(in Level gradus, in params object nūntia)
     {
       (from nūntium in nūntia
        where nūntium is Exception

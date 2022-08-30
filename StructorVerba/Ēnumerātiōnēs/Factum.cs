@@ -4,12 +4,12 @@ namespace Ēnumerātiōnēs
 {
   public enum Factum
   {
-    Īnfīnītīvum, Gerundīvum, Supīnum, Nūllum
+    Nūllum, Īnfīnītīvum, Gerundīvum, Supīnum
   }
 
   public static sealed class Facta
   {
     public static readonly Func<Factum, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Factum> Iactor = valor => valor.Cast<Factum>(Factum.Nūllum);
+    public static readonly Func<Enum, Factum> Iactor = valor => valor.Cast<Factum>(default);
   }
 }

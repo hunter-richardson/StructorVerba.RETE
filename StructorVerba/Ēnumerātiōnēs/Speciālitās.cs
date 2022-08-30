@@ -6,7 +6,7 @@ namespace Ēnumerātiōnēs
 {
   public enum Speciālitās
   {
-    Propria, Commūnis, Nūlla
+    Nūlla, Propria, Commūnis
   }
 
   public static sealed class Speciālitātēs

@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.JsonElement;
 
-using Miscella.Ūtilitātēs;
+using Miscella;
 
 namespace Ēnumerātiōnēs
 {
@@ -22,19 +22,25 @@ namespace Ēnumerātiōnēs
     {
       const string scrīptum = catēgoria switch
       {
-        ĀCTUS       => "actus",
-        ADIECTĪVUM  => "adiectiva",
-        ADVERBIA    => "adverbia",
-        CONIŪNCTIŌ  => "coniunctiones",
-        INTERIECTIŌ => "interiectio",
-        NŌMEN       => "nomnia",
-        NUMERĀMEN   => "numeramina",
-        NUMERUS     => "numeri",
-        PRAEPOSITIŌ => "praepositiones",
-        PRŌNŌMEN    => "pronomnia"
+        Catēgoria.Āctus       => "actus",
+        Catēgoria.Adiectīvum  => "adiectiva",
+        Catēgoria.Adverbium   => "adverbia",
+        Catēgoria.Coniūnctiō  => "coniunctiones",
+        Catēgoria.Interiectiō => "interiectio",
+        Catēgoria.Nōmen       => "nomnia",
+        Catēgoria.Numerāmen   => "numeramina",
+        Catēgoria.Numerus     => "numeri",
+        Catēgoria.Praepositiō => "praepositiones",
+        Catēgoria.Prōnōmen    => "pronomnia"
       };
 
       return (versiō is not null).Choose(scrīptum.Concat(versiō.ToString()), scrīptum);
     }
+
+    public static Boolean Īnflexa(this in Catēgoria catēgoria)
+              => !catēgoria.IsAmong(Catēgoria.Coniūnctiō, Catēgoria.Interiectiō, Catēgoria.Numerus, Catēgoria.Praepositiō);
+
+    public static Boolean Pensābilis(this in Catēgoria catēgoria)
+              => !Catēgoria.Numerus.Equals(catēgoria);
   }
 }

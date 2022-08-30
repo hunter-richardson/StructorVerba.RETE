@@ -6,7 +6,7 @@ namespace Ēnumerātiōnēs
 {
   public enum Tempus
   {
-    Praesēns, Īnfectum, Futūrum, Perfectum, Plūsquamperfectum, FutūrumExāctum, Intemporāle,
+    Intemporāle, Praesēns, Īnfectum, Futūrum, Perfectum, Plūsquamperfectum, FutūrumExāctum
   }
 
   public static sealed class Tempora
@@ -14,6 +14,6 @@ namespace Ēnumerātiōnēs
     public static readonly Func<Tempus, string> Scrīptor =
               valor => Tempus.FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
 
-    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(Tempus.Intemporāle);
+    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(default);
   }
 }
