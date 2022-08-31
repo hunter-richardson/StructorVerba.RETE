@@ -15,12 +15,12 @@ namespace Īnflexōrēs.Incertī
     private readonly ĪnflexorIncertus<Hoc> Relātus { get; }
     private readonly string Prefixum { get; }
     protected ĪnflexorPrefixus(in Ēnumerātiōnēs.Catēgoria catēgoria,
-                               in Lazy<Nūntius<ĪnflexorPrefixus>> nūntius, in Lazy<ĪnflexorIncertus> relātus,
-                               in string prefixum = string.Empty, in params IEnumerable<Enum[]> illa)
+                               in Lazy<Nūntius<ĪnflexorPrefixus<Hoc>>> nūntius, in Lazy<ĪnflexorIncertus<Hoc>> relātus,
+                               in string? prefixum, in params IEnumerable<Enum[]> illa)
                                                    : base(catēgoria, nūntius, illa)
     {
       Relātus = relātus.Value;
-      Prefixum = prefixum;
+      Prefixum = prefixum ?? string.Empty;
     }
 
     public virtual string Scrībam(in Enum[] illa)

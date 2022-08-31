@@ -1,14 +1,16 @@
-using System.Collections.Immutable;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
-using Miscella.Extensions;
+using Miscella;
 using Praebeunda.Interfecta;
 using Praebeunda.Multiplex;
 using Ēnumerātiōnēs;
 using Ēnumerātiōnēs.Comparātōrēs;
+using Īnflexōrēs.Adverbia;
+using Īnflexōrēs.Numerāmina;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using BuilderCommon.BuilderException;
@@ -20,29 +22,34 @@ namespace Īnflexōrēs
             where Hoc : Īnflexibilis<Hoc, Illud>
             where Illud : Īnflexum<Illud>
   {
-    public static readonly Func<Catēgoria, Enum, Īnflexor> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<Īnflexor?>> Relātor =
             (catēgoria, versiō) => catēgoria switch
             {
               Ēnumerātiōnēs.Catēgoria.Āctus => null,
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum => null,
+              Ēnumerātiōnēs.Catēgoria.Adiectīvum => ĪnflexorAdverbiīs.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Adverbium => null,
               Ēnumerātiōnēs.Catēgoria.Nōmen => null,
-              Ēnumerātiōnēs.Catēgoria.Numerāmen => null,
-              Ēnumerātiōnēs.Catēgoria.Prōnōmen => null,
-              _ => null
+              Ēnumerātiōnēs.Catēgoria.Numerāmen => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
+              _ => new Lazy(null)
             };
 
-    public readonly Func<ImmutableSortedSet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
+    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Seriēs(ĪnflexorAdverbiīs.Versiō.GetValues(),
+                                                                                                        ĪnflexorNumerāminibus.Versiō.GetValues())
+                                                                        where valor.ToString().Equals(legendum.GetString())
+                                                                        select valor).FirstNonNull(null);
+
+    public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
     protected readonly SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
     private readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
     public readonly Func<Hoc, Task<Illud?>> FortisĪnflexor => hoc => ĪnflectemAsync(hoc, await Tabula.Random());
 
     protected readonly Nūntius<Īnflexor<Hoc>> Nūntius { get; }
-    protected readonly Catēgoria Catēgoria { get; }
+    protected readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
     public String prīmum = string.Empty;
 
-    protected Īnflexor(in Catēgoria catēgoria, in Lazy<Nūntius<Īnflexor<Hoc>>> nūntius,
+    protected Īnflexor(in Ēnumerātiōnēs.Catēgoria catēgoria,
+                       in Lazy<Nūntius<Īnflexor<Hoc, Illud>>> nūntius,
                        in params Enum illa)
     {
       Catēgoria = catēgoria;
@@ -52,7 +59,8 @@ namespace Īnflexōrēs
       illa.ForEach(illud => Tabula.Add(new[] { illud }));
     }
 
-    protected Īnflexor(in Catēgoria catēgoria, in Lazy<Nūntius<Īnflexor<Hoc>>> nūntius,
+    protected Īnflexor(in Ēnumerātiōnēs.Catēgoria catēgoria,
+                       in Lazy<Nūntius<Īnflexor<Hoc, Illud>>> nūntius,
                        in params IEnumerable<Enum> illa)
     {
       Catēgoria = catēgoria;
@@ -65,7 +73,8 @@ namespace Īnflexōrēs
       const string scrīpum = await ScrībamAsync(hoc, illa);
       try
       {
-        return string.IsNullOrWhitespace(scrīptum).Choose(null, await Cōnstrūctor?.Invoke(illa, scrīptum));
+        return string.IsNullOrWhitespace(scrīptum)
+                     .Choose(null, await Cōnstrūctor?.Invoke(illa, scrīptum));
       }
       catch (BuilderException error)
       {

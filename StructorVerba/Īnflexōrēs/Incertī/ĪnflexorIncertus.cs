@@ -22,10 +22,11 @@ namespace Īnflexōrēs.Incertī
     public readonly Func<IDictionary<Enum[], string>> Fōrmātor = () => Fōrmae.ToImmutableSortedDictionary();
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
     private readonly SortedSet<Enum[]> Tabula = new SortedSet<Enum[]>(ComparātorSeriērum);
-    public readonly Func<IEnumerable<Enum[]>> Tabulātor = () => Tabula.ToImmutableSortedSet();
+    public readonly Func<ISet<Enum[]>> Tabulātor = () => Tabula.ToImmutableSortedSet();
     private readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
     protected readonly Nūntius<ĪnflexorIncertus> Nūntius { get; }
-    protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorIncertus>> nūntius,
+    protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
+                               in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params IEnumerable<Enum[]> illa)
     {
       Catēgoria = catēgoria;
@@ -46,7 +47,7 @@ namespace Īnflexōrēs.Incertī
       }
     }
 
-    public virtual string? Scrībam(in params Enum illa)
+    public virtual string Scrībam(in params Enum illa)
               => await Ūtilitātēs.Seriēs((from linea in Fōrmae
                                           where ComparātorSeriērum.Equals(linea.Key, illa.Sort(ComparātorValōrum))
                                           select linea.Value).First(),
@@ -54,7 +55,7 @@ namespace Īnflexōrēs.Incertī
                                          where illa.ContainsAll(linea.Key)
                                          select linea.Value).Single(),
                                         Fōrmae.Item[illa])
-                                 .FirstNonNull();
+                                 .FirstNonNull(string.Empty);
 
     private Hoc? Cōnstruam(in Enum[] illa)
     {

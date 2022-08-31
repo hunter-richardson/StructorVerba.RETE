@@ -4,6 +4,8 @@ using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
 using Praebeunda;
+using Pēnsōrēs.Adverbia;
+using Pēnsōrēs.Numerāmina;
 using Ēnumerātiōnēs.Catēgoria;
 using Nūntiī.Nūntius;
 
@@ -13,30 +15,26 @@ namespace Pēnsōrēs
            where Hoc : Īnflectendum<Hoc, Illud> where Illud : Īnflexum<Hoc>
   {
     // TODO: convert Pensor from Categoria and Versio
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<PēnsorĪnflectendīs>> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<PēnsorĪnflectendīs?>> Relātor =
             (catēgoria, versiō) => catēgoria switch
             {
               Ēnumerātiōnēs.Catēgoria.Āctus       => null,
               Ēnumerātiōnēs.Catēgoria.Adiectīvum  => null,
-              Ēnumerātiōnēs.Catēgoria.Adverbium   => null,
+              Ēnumerātiōnēs.Catēgoria.Adverbium   => PēnsorAdverbiīs.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Nōmen       => null,
-              Ēnumerātiōnēs.Catēgoria.Numerāmen   => null,
+              Ēnumerātiōnēs.Catēgoria.Numerāmen   => PēnsorNumerāminibus.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Prōnōmen    => null,
-              _ => null
+              _ => new Lazy(null)
             };
 
-    // TODO: convert Table from Categoria and Versio
-    public static Tabula Tabula(in Ēnumerātiōnēs.Catēgoria catēgoria, in Enum versiō) => null;
-
     public readonly Enum Versiō { get; }
-    public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
-    protected PēnsorĪnflectendīs(in Enum versiō, in Ēnumerātiōnēs.Catēgoria catēgoria, in string quaerendī,
-                                 in Lazy<Nūntius<PēnsorĪnflectendīs>> nūntius, in Func<JsonElement, Enum, Task<Hoc>> lēctor)
-                                    : base(quaerendī, Tabula(catēgoria, versiō), nūntius,
-                                          async legendum => lēctor.Invoke(legendum, versiō))
+    protected PēnsorĪnflectendīs(in Enum versiō, in string quaerendī, in Tabula tabula,
+                                 in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
+                                 in Func<JsonElement, Task<Hoc>> lēctor)
+                                    : base(quaerendī, tabula, nūntius,
+                                           async legendum => lēctor.Invoke(legendum, versiō))
     {
       Versiō = versiō;
-      Catēgoria = catēgoria;
       Nūntius.PlūsGarriōAsync("Fīō");
     }
   }

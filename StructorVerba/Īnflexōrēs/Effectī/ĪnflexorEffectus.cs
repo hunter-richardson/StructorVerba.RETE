@@ -13,8 +13,15 @@ namespace Īnflexōrēs.Effectī
   public abstract partial class ĪnflexorEffectus<Hoc, Illud> : Īnflexor<Hoc, Illud>
   {
     public readonly Func<Hoc, Enum[], Task<string>> Rādīcātor { get; }
-    protected ĪnflexorEffectus(in Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorEffectus>> nūntius,
+    protected ĪnflexorEffectus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorEffectus<Hoc>>> nūntius,
                                in Func<Hoc, Enum[], Task<string>> rādīcātor, in params IEnumerable<Enum[]> illa)
+                                     : base(catēgoria, nūntius, illa)
+    {
+      Rādīcātor = rādīcātor;
+    }
+
+    protected ĪnflexorEffectus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorEffectus<Hoc>>> nūntius,
+                               in Func<Hoc, Enum[], Task<string>> rādīcātor, in params Enum illa)
                                      : base(catēgoria, nūntius, illa)
     {
       Rādīcātor = rādīcātor;
