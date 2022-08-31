@@ -6,6 +6,7 @@ using System;
 using Nūntiī.Nūntius;
 using Miscella.Extensions;
 using Praebeunda.Interfecta;
+using Praebeunda.Multiplex;
 using Ēnumerātiōnēs;
 using Ēnumerātiōnēs.Comparātōrēs;
 
@@ -32,28 +33,9 @@ namespace Īnflexōrēs
 
     public readonly Func<ImmutableSortedSet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
     protected readonly SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
-    protected readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
-    protected readonly Func<Enum[], string, Task>? Cōnstrūctor = Catēgoria switch
-    {
-      Catēgoria.Āctus => Multiplex.Āctus.Cōnstrūctor,
-      Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Cōnstrūctor,
-      Catēgoria.Adverbium => Multiplex.Adverbium.Cōnstrūctor,
-      Catēgoria.Nōmen => Multiplex.Nōmen.Cōnstrūctor,
-      Catēgoria.Numerāmen => Multiplex.Numerāmen.Cōnstrūctor,
-      Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Cōnstrūctor,
-      _ => null
-    };
-
-    protected readonly Func<Enum[], string, Task<Illud>>? Restitūtor = Catēgoria switch
-    {
-      Catēgoria.Āctus => Multiplex.Āctus.Restitūtor,
-      Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Restitūtor,
-      Catēgoria.Adverbium => Multiplex.Adverbium.Restitūtor,
-      Catēgoria.Nōmen => Multiplex.Nōmen.Restitūtor,
-      Catēgoria.Numerāmen => Multiplex.Numerāmen.Restitūtor,
-      Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Restitūtor,
-      _ => null
-    };
+    private readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
+    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
+    private readonly Task? Restitūtor = Muliplex.Restitūtor.Invoke(Catēgoria);
 
     public readonly Func<Hoc, Task<Illud?>> FortisĪnflexor => hoc => ĪnflectemAsync(hoc, await Tabula.Random());
 

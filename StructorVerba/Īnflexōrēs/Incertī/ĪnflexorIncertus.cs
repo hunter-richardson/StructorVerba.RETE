@@ -4,6 +4,7 @@ using System.Threading.Tasks.Task;
 
 using Miscella;
 using Ēnumerātiōnēs.Comparātōrēs;
+using Praebeunda.Multiplex;
 using Nūntiī.Nūntius;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
@@ -19,27 +20,8 @@ namespace Īnflexōrēs.Incertī
                                                                                                          Tabula.Contains, "Ēnumerātiō scīta'stō",
                                                                                                          string.IsNullOrWhiteSpace, "Fōrma invacua'stō");
     public readonly Func<IDictionary<Enum[], string>> Fōrmātor = () => Fōrmae.ToImmutableSortedDictionary();
-    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Catēgoria switch
-    {
-      Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Cōnstrūctor,
-      Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Cōnstrūctor,
-      Ēnumerātiōnēs.Catēgoria.Adverbium => Multiplex.Adverbium.Cōnstrūctor,
-      Ēnumerātiōnēs.Catēgoria.Nōmen => Multiplex.Nōmen.Cōnstrūctor,
-      Ēnumerātiōnēs.Catēgoria.Numerāmen => Multiplex.Numerāmen.Cōnstrūctor,
-      Ēnumerātiōnēs.Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Cōnstrūctor,
-      _ => null
-    };
-
-    private readonly Task? Restitūtor = Catēgoria switch
-    {
-      Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Adverbium => Multiplex.Adverbium.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Nōmen => Multiplex.Nōmen.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Numerāmen => Multiplex.Numerāmen.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Restitūtor,
-      _ => null
-    };
+    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
+    private readonly Task? Restitūtor = Muliplex.Restitūtor.Invoke(Catēgoria);
 
     private readonly SortedSet<Enum[]> Tabula = new SortedSet<Enum[]>(ComparātorSeriērum);
     public readonly Func<IEnumerable<Enum[]>> Tabulātor = () => Tabula.ToImmutableSortedSet();

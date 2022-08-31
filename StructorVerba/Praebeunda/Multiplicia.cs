@@ -14,6 +14,28 @@ namespace Praebeunda
   public abstract class Multiplex<Hoc> : Verbum<Hoc> where Hoc : Īnflexum<Hoc>
       where Hoc : Īnflexum<Hoc>
   {
+    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Catēgoria switch
+    {
+      Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Cōnstrūctor,
+      Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Cōnstrūctor,
+      Ēnumerātiōnēs.Catēgoria.Adverbium => Multiplex.Adverbium.Cōnstrūctor,
+      Ēnumerātiōnēs.Catēgoria.Nōmen => Multiplex.Nōmen.Cōnstrūctor,
+      Ēnumerātiōnēs.Catēgoria.Numerāmen => Multiplex.Numerāmen.Cōnstrūctor,
+      Ēnumerātiōnēs.Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Cōnstrūctor,
+      _ => null
+    };
+
+    private readonly Task? Restitūtor = Catēgoria switch
+    {
+      Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Restitūtor,
+      Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Restitūtor,
+      Ēnumerātiōnēs.Catēgoria.Adverbium => Multiplex.Adverbium.Restitūtor,
+      Ēnumerātiōnēs.Catēgoria.Nōmen => Multiplex.Nōmen.Restitūtor,
+      Ēnumerātiōnēs.Catēgoria.Numerāmen => Multiplex.Numerāmen.Restitūtor,
+      Ēnumerātiōnēs.Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Restitūtor,
+      _ => null
+    };
+
     public Ēnumerātiōnēs.Encliticum Encliticum { get; } => Ēnumerātiōnēs.Encliticum.Nōlēns;
 
     public sealed void allegam(in Ēnumerātiōnēs.Encliticum ntlcm)
