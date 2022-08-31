@@ -4,7 +4,7 @@ using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Praebeunda;
-using Praebeunda.Simplicia;
+using Praebeunda.Simplicibus;
 
 namespace Pēnsōrēs
 {

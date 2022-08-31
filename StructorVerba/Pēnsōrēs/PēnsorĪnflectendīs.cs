@@ -21,7 +21,8 @@ namespace Pēnsōrēs
               Ēnumerātiōnēs.Catēgoria.Adverbium   => null,
               Ēnumerātiōnēs.Catēgoria.Nōmen       => null,
               Ēnumerātiōnēs.Catēgoria.Numerāmen   => null,
-              Ēnumerātiōnēs.Catēgoria.Prōnōmen    => null
+              Ēnumerātiōnēs.Catēgoria.Prōnōmen    => null,
+              _ => null
             };
 
     // TODO: convert Table from Categoria and Versio

@@ -28,7 +28,8 @@ namespace Īnflexōrēs
               Ēnumerātiōnēs.Catēgoria.Adverbium => null,
               Ēnumerātiōnēs.Catēgoria.Nōmen => null,
               Ēnumerātiōnēs.Catēgoria.Numerāmen => null,
-              Ēnumerātiōnēs.Catēgoria.Prōnōmen => null
+              Ēnumerātiōnēs.Catēgoria.Prōnōmen => null,
+              _ => null
             };
 
     public readonly Func<ImmutableSortedSet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
