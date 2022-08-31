@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Nōminibus
 
     private PēnsorNōminibusFactīsPrōnīs(in Enum versiō)
                                          : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen,
-                                                NūntiusPēnsōrīNōminibusFactīsPrōnīs.Instance,
+                                                NūntiusPēnsōrīNōminibusFactīsPrōnīs.Faciendum,
                                                 nameof(Īnflectendum.NōmenFactumPrōnum.Īnfīnītīvum),
                                                 Īnflectendum.NōmenFactumPrōnum.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīNōminibusFactīsPrōnīs : Nūntius<PēnsōrNōminibusFactīsPrōnīs> {  }
+    private sealed partial class NūntiusPēnsōrīNōminibusFactīsPrōnīs : Nūntius<PēnsōrNōminibusFactīsPrōnīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīNōminibusFactīsPrōnīs> Faciendum = new Lazy<NūntiusPēnsōrīNōminibusFactīsPrōnīs>(() => Instance);
+    }
   }
 }

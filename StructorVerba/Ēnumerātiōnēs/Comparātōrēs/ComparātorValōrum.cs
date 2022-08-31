@@ -9,7 +9,8 @@ namespace Ēnumerātiōnēs.Comparātōrēs
   [Singleton]
   public sealed partial class ComparātorValōrum : Comparer<Enum>
   {
-    public readonly ComparātorClassium Relātum = ComparātorClassium.Instance;
+    public static readonly Lazy<ComparātorValōrum> Faciendum = new Lazy<ComparātorValōrum>(() => Instance);
+    public readonly ComparātorClassium Relātum = ComparātorClassium.Faciendum.Value;
 
     public Boolean Equals(in Type prīma, in Type secunda) => Compare(prīma, secunda).Equals(0);
     public int Compare(in Enum prīma, in Enum secunda)

@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Āctibus
 
     private PēnsorĀctibusImperfectīs(in Enum versiō)
                                       : base(versiō, Ēnumerātiōnēs.Catēgoria.Āctus,
-                                             NūntiusPēnsōrīĀctibusImperfectīs.Instance,
+                                             NūntiusPēnsōrīĀctibusImperfectīs.Faciendum,
                                              nameof(Īnflectendum.ĀctusImperfectus.Īnfīnītīvum),
                                              Īnflectendum.ĀctusImperfectus.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīĀctibusImperfectīs : Nūntius<PēnsōrĀctibusImperfectīs> {  }
+    private sealed partial class NūntiusPēnsōrīĀctibusImperfectīs : Nūntius<PēnsōrĀctibusImperfectīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīĀctibusImperfectīs> Faciendum = new Lazy<NūntiusPēnsōrīĀctibusImperfectīs>(() => Instance);
+    }
   }
 }

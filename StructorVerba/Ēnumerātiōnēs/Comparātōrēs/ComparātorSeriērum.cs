@@ -3,7 +3,8 @@ namespace Ēnumerātiōnēs.Comparātōrēs
 {
   public sealed class ComparātorSeriērum : Comparer<Enum[]>
   {
-    public readonly ComparātorValōrum Relātum = ComparātorValōrum.Instance;
+    public static readonly Lazy<ComparātorSeriērum> Faciendum = new Lazy<ComparātorSeriērum>(() => Instance);
+    public readonly ComparātorValōrum Relātum = ComparātorValōrum.Faciendum.Value;
 
     public Boolean Equals(in Enum[] prīma, in Enum[] secunda) => Compare(prīma, secunda).Equals(0);
     public int Compare(in Enum[] prīma, in Enum[] secunda)

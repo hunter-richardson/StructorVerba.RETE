@@ -27,12 +27,16 @@ namespace Pēnsōrēs.Numerāminibus
 
     private PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum(in Enum versiō)
                                                                        : base(versiō, Ēnumerātiōnēs.Catēgoria.Numerāmen,
-                                                                              NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Instance,
+                                                                              NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Faciendum,
                                                                               nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Numerus),
                                                                               Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
-                : Nūntius<PēnsōrNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> {  }
+                : Nūntius<PēnsōrNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
+                         new Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);
+    }
   }
 }

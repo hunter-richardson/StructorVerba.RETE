@@ -30,7 +30,7 @@ namespace Pēnsōrēs
     public readonly Enum Versiō { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
     protected PēnsorĪnflectendīs(in Enum versiō, in Ēnumerātiōnēs.Catēgoria catēgoria, in string quaerendī,
-                                 in Func<Nūntius<PēnsorĪnflectendīs>> nūntius, in Func<JsonElement, Enum, Task<Hoc>> lēctor)
+                                 in Lazy<Nūntius<PēnsorĪnflectendīs>> nūntius, in Func<JsonElement, Enum, Task<Hoc>> lēctor)
                                     : base(quaerendī, Tabula(catēgoria, versiō), nūntius,
                                           async legendum => lēctor.Invoke(legendum, versiō))
     {

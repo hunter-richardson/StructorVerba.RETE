@@ -26,12 +26,16 @@ namespace Pēnsōrēs.Adiectivīs
 
     private PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs(in Enum versiō)
                                                                           : base(versiō, Ēnumerātiōnēs.Catēgoria.Adiectīvum,
-                                                                                 NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs.Instance,
+                                                                                 NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs.Faciendum,
                                                                                  nameof(Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium.Neutrum),
                                                                                  Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs
-               : Nūntius<PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs> {  }
+               : Nūntius<PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs> Faciendum =
+                         new Lazy<NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs>(() => Instance);
+    }
   }
 }

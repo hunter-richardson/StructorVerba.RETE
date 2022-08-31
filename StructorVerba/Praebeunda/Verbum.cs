@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.StringLength;
 using System.Reflection;
 using System.Text.Json.JsonElement;
+using System.Threading.Tasks.Task;
 
 using Praebeunda.Interfecta.Pēnsābile;
 using Miscella.Ūtilitātēs;
@@ -14,7 +15,7 @@ namespace Praebeunda
   public abstract partial class Verbum<Hoc> : Pēnsābile<Hoc>, IComparable<Verbum>, IEquatable<Verbum>
       where Hoc : Verbum<Hoc>
   {
-    public static readonly Func<JsonElement, Verbum> Lēctor = legendum
+    public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
               => Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower()).GetString()) switch
               {
                 Cōniūnctiō  => Coniūnctiō.Lēctor.Invoke(legendum),
@@ -31,7 +32,7 @@ namespace Praebeunda
 
     public virtual string ToString() => Scrīptum;
 
-    public sealed int CompareTo(Verbum aliud)
+    public virtual int CompareTo(Verbum aliud)
               => (this is Simplicia.Numerus).And(aliud is Simplicia.Numerus)
                                             .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
                                                     (from comparātiō in Ūtilitātēs.Seriēs(Scrīpum.CompareTo(aliud.Scrīptum),

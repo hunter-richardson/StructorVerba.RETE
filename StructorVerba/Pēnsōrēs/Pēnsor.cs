@@ -14,10 +14,11 @@ using Amazon.RegionEndpoint;
 using Amazon.DynamoDBv2.AmazonDynamoDB;
 using Amazon.Runtime;
 using Linq2DynamoDb.DataContext;
-using Lombok.NET.MethodGenerators.AsyncGenerator;
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
 namespace Pēnsōrēs
 {
+  [AsyncOverloads]
   public abstract class Pēnsor<Hoc> where Hoc : Pēnsābile<Hoc>
   {
     public enum Tabula
@@ -27,7 +28,7 @@ namespace Pēnsōrēs
 
     public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();
 
-    public static readonly Func<AmazonDynamoDBClient> Cliēns = () =>
+    public static readonly Lazy<AmazonDynamoDBClient> Cliēns = new Lazy<AmazonDynamoDbClient>(() =>
     {
       const AmazonDynamoDBClient cliēns = new AmazonDynamoDBClient();
       cliens.BufferSize = 4096;
@@ -40,7 +41,7 @@ namespace Pēnsōrēs
       cliens.UserAgent = "structor";
       cliens.UseSecureStringForAwsSecretKey = true;
       return cliēns;
-    };
+    });
 
     private readonly Func<Task<Enumerable<JsonElement>>> Tabulātor = async () =>
     {
@@ -49,7 +50,7 @@ namespace Pēnsōrēs
     };
 
     public readonly Func<Task<Enumerable<Hoc>>> Omnēs = async () => (from linea in Tabulātor.Invoke()
-                                                                     select await Legam(linea))
+                                                                     select await LegamAsync(linea))
                                                                         .Where(hoc => hoc is not null);
     public readonly Func<Task<Hoc?>> FortisPēnsor = async () => Omnēs.Invoke().Random();
 
@@ -62,15 +63,15 @@ namespace Pēnsōrēs
     protected readonly string Quaerendī { get; }
 
     protected Pēnsor(in string quaerendī, in Tabula tabula,
-                     in Func<Nūntius<Pēnsor<Hoc>>> nūntius,
+                     in Lazy<Nūntius<Pēnsor<Hoc>>> nūntius,
                      in Func<JsonElement, Task<Hoc>> lēctor)
     {
       Quaerendī = quaerendī.ToLower();
       Nōmen = Nōminātor.Invoke(Tabula);
-      Nūntius = nūntius.Invoke();
+      Nūntius = nūntius.Value;
       Lēctor = lēctor;
 
-      Contextus = new DataContext(Cliēns.Invoke(), Nōmen);
+      Contextus = new DataContext(Cliēns.Value, Nōmen);
     }
 
     public readonly Func<int, Task<Hoc?>> PēnsorNumerius = minūtal =>
@@ -79,7 +80,7 @@ namespace Pēnsōrēs
       {
         const Hoc? hoc = (from linea in Tabulātor.Invoke()
                           where minūtal.Equals(linea.GetProperty(nameof(minūtal)).GetInt32())
-                          select await Legam(linea)).FirstOrDefault(null);
+                          select await LegamAsync(linea)).FirstOrDefault(null);
         if (hoc == null)
         {
           Nūntius.MoneōAsync("Nīl advenī");
@@ -104,7 +105,7 @@ namespace Pēnsōrēs
       {
         const Hoc? hoc = (from linea in Tabulātor.Invoke()
                           where scrīptum.Equals(linea.GetProperty(Quaerendī).GetString())
-                          select await Legam(linea)).FirstOrDefault(null);
+                          select await LegamAsync(linea)).FirstOrDefault(null);
         if (hoc == null)
         {
           Nūntius.MoneōAsync("Nīl advenī");
@@ -123,11 +124,11 @@ namespace Pēnsōrēs
       }
     };
 
-    private Task<Hoc?> Legam(in JsonElement legendum)
+    private Hoc? Legam(in JsonElement legendum)
     {
       try
       {
-        return Lēctor.Invoke(legendum);
+        return await Lēctor.Invoke(legendum);
       }
       catch (SystemException error) when (error is InvalidOperationException || error is KeyNotFoundException)
       {

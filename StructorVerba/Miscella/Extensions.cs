@@ -12,17 +12,17 @@ namespace Miscella
       return item => !predicate.Invoke(item);
     }
 
-    public static void ForEach<T>(this in IEnumerable<T> enumerable, in Action<T> action)
+    public static async void ForEach<T>(this in IEnumerable<T> enumerable, in Action<T> action)
     {
       foreach (T item in enumerable)
       {
-        action(item);
+        await action.Invoke(item);
       }
     }
 
     private static IEnumerable<T> Enumerate<T>(in params T items) => items;
 
-    public static T? Random<T>(this in IEnumerable<T> enumerable, in T? or = default)
+    public async static T? Random<T>(this in IEnumerable<T> enumerable, in T? or = default)
     {
       const IEnumerable<T> filtered = (from item in enumerable
                                        where item is not null
@@ -49,44 +49,44 @@ namespace Miscella
 
     public static T? Choose<T, U>(this in Predicate<U> predicate,
                                   in U param, in T? first, in T? second)
-            => predicate.Invoke(param).Choose(first, second);
+                => predicate.Invoke(param).Choose(first, second);
 
     public static R? Choose<T, U, R>(this in Predicate<T, U> predicate,
                                      in T param1, in T param2,
                                      in R? first, in R? second)
-            => predicate.Invoke(param1, param2).Choose(first, second);
+                => predicate.Invoke(param1, param2).Choose(first, second);
 
-    public static Boolean ContainsAll<T>(this in IEnumerable<T> enumerable, in params T subarray)
-            => subarray.All(item => enumerable.Contains(item));
+    public static async Boolean ContainsAll<T>(this in IEnumerable<T> enumerable, in params T subarray)
+                => subarray.All(item => enumerable.Contains(item));
 
-    public static Boolean ContainsAny<T>(this in IEnumerable<T> enumerable, in params T subarray)
-            => subarray.Any(item => enumerable.Contains(item));
+    public static async Boolean ContainsAny<T>(this in IEnumerable<T> enumerable, in params T subarray)
+                => subarray.Any(item => enumerable.Contains(item));
 
-    public static Boolean NoneNull<T>(this in IEnumerable<T> enumerable)
-            => enumerable.All(item => item is not null);
+    public static async Boolean NoneNull<T>(this in IEnumerable<T> enumerable)
+                => enumerable.All(item => item is not null);
 
-    public static Boolean SomeNotNull<T>(this in IEnumerable<T> enumerable)
-            => enumerable.Any(item => item is not null);
+    public static async Boolean SomeNotNull<T>(this in IEnumerable<T> enumerable)
+                => enumerable.Any(item => item is not null);
 
-    public static T FirstNonNull<T>(this in IEnumerable<T> enumerable, in T? or = default)
+    public static async T FirstNonNull<T>(this in IEnumerable<T> enumerable, in T? or = default)
             => enumerable.NoneNull().choose((from item in enumerable
                                              where item is not null
                                              select item).First(), or);
 
-    public static IEnumerable<T> Except<T>(this in IEnumerable<T> enumerable, in Predicate<T> predicate)
-            => from item in enumerable
-               where predicate.Negate().Invoke(item)
-               select item;
+    public static async IEnumerable<T> Except<T>(this in IEnumerable<T> enumerable, in Predicate<T> predicate)
+                => from item in enumerable
+                   where predicate.Negate().Invoke(item)
+                   select item;
 
-    public static Boolean isAmong<T>(this in T obj, in params T array)
+    public static async Boolean isAmong<T>(this in T obj, in params T array)
             => array.Contains(obj);
 
-    public static R ApplyOr<T, R>(this in Func<T, R> function,
-                                  in T? obj, in R? or = default)
+    public static async R ApplyOr<T, R>(this in Func<T, R> function,
+                                        in T? obj, in R? or = default)
             => (obj is not null).Choose(function.Invoke(obj), or);
 
-    public static R ApplyOr<T, U, R>(this in Func<T, U, R> function,
-                                     in T? obj1, in U? obj2, in R? or = default)
+    public static async R ApplyOr<T, U, R>(this in Func<T, U, R> function,
+                                           in T? obj1, in U? obj2, in R? or = default)
             => Enumerate(obj1, obj2).AllNotNull().choose(function.Invoke(obj1, obj2), or);
 
     public static string Capitalize(this in string source)

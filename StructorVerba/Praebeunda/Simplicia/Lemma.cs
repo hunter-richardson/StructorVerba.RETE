@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Text.Json.JsonElement;
+using System.Threading.Tasks.Task;
 
 using Pēnsōrēs;
 
@@ -11,7 +12,7 @@ namespace Praebeunda.Simplicia
   [AllArgsConstructor(MemberTypes.Property, AccessType.Private)]
   public sealed partial class Lemma : Verbum<Lemma>, Pēnsābile<Lemma>
   {
-    private readonly Func<Īnflectendum> Relātor = () => PēnsorĪnflectendīs.Relātor.Invoke(Catēgoria, Versiō);
+    private readonly Func<Task<Īnflectendum>> Relātor = async () => PēnsorĪnflectendīs.Relātor.Invoke(Catēgoria, Versiō);
 
     public readonly Enum? Versiō { get; }
 

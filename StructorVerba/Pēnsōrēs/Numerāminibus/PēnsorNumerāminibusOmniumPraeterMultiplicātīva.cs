@@ -25,11 +25,15 @@ namespace Pēnsōrēs.Numerāminibus
 
     private PēnsorNumerāminibusOmniumPraeterMultiplicātīva(in Enum versiō)
                                                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Numerāmen,
-                                                                   NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva.Instance,
+                                                                   NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva.Faciendum,
                                                                    nameof(Īnflectendum.NumerāmenOmniumPraeterMultiplicātīva.Numerus),
                                                                    Īnflectendum.NumerāmenOmniumPraeterMultiplicātīva.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva : Nūntius<PēnsōrNumerāminibusOmniumPraeterMultiplicātīva> {  }
+    private sealed partial class NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva : Nūntius<PēnsōrNumerāminibusOmniumPraeterMultiplicātīva>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva> Faciendum =
+                         new Lazy<NūntiusPēnsōrīNumerāminibusOmniumPraeterMultiplicātīva>(() => Instance);
+    }
   }
 }

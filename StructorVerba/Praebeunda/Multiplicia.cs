@@ -7,7 +7,7 @@ using Ēnumerātiōnēs;
 using Miscella;
 using Praebeunda.Interfecta;
 
-using BuilderGenerator;
+using BuilderGenerator.GenerateBuilderAttribute;
 
 namespace Praebeunda
 {

@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Adverbiīs
 
     private PēnsorAdverbiīsEffectīs(in Enum versiō)
                                      : base(versiō, Ēnumerātiōnēs.Catēgoria.Adverbium,
-                                            NūntiusPēnsōrīAdverbiīsEffectīs.Instance,
+                                            NūntiusPēnsōrīAdverbiīsEffectīs.Faciendum,
                                             nameof(Īnflectendum.AdverbiumEffectum.Positīvum),
                                             Īnflectendum.AdverbiumEffectum.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīAdverbiīsEffectīs : Nūntius<PēnsorAdverbiīsEffectīs> {  }
+    private sealed partial class NūntiusPēnsōrīAdverbiīsEffectīs : Nūntius<PēnsorAdverbiīsEffectīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīAdverbiīsEffectīs> Faciendum = new Lazy<NūntiusPēnsōrīAdverbiīsEffectīs>(() => Instance);
+    }
   }
 }

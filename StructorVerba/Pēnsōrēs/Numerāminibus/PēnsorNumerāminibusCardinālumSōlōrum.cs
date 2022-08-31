@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Numerāminibus
 
     private PēnsorNumerāminibusCardinālumSōlōrum(in Enum versiō)
                                                   : base(versiō, Ēnumerātiōnēs.Catēgoria.Numerāmen,
-                                                         NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum.Instance,
+                                                         NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum.Faciendum,
                                                          nameof(Īnflectendum.NumerāmenCardinālumSōlōrum.Numerus),
                                                          Īnflectendum.NumerāmenCardinālumSōlōrum.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum : Nūntius<PēnsōrNumerāminibusCardinālumSōlōrum> {  }
+    private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum : Nūntius<PēnsōrNumerāminibusCardinālumSōlōrum>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum> Faciendum = new Lazy<NūntiusPēnsōrīNumerāminibusCardinālumSōlōrum>(() => Instance);
+    }
   }
 }

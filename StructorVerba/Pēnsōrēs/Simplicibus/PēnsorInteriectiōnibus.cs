@@ -10,9 +10,13 @@ namespace Pēnsōrēs.Simplicibus
   [Singleton]
   public sealed partial class PēnsorInteriectiōnibus : PēnsorVerbīs<Interiectiō>
   {
-    private PēnsorInteriectiōnibus() : base(() => NūntiusPēnsōrīInteriectiōnum.Instance, Interiectiō.Lēctor) {  }
+    private PēnsorInteriectiōnibus()
+        : base(NūntiusPēnsōrīInteriectiōnum.Faciendum, Interiectiō.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīInteriectiōnum : Nūntius<PēnsorInteriectiōnibus> {  }
+    private sealed partial class NūntiusPēnsōrīInteriectiōnum : Nūntius<PēnsorInteriectiōnibus>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīInteriectiōnum> Faciendum = new Lazy<NūntiusPēnsōrīInteriectiōnum>(() => Instance);
+    }
   }
 }

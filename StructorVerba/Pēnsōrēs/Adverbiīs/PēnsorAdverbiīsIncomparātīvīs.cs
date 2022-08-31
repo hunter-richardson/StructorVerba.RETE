@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Adverbiīs
 
     private PēnsorAdverbiīsIncomparātīvīs(in Enum versiō)
                                            : base(versiō, Ēnumerātiōnēs.Catēgoria.Adverbium,
-                                                  NūntiusPēnsōrīAdverbiīsIncomparātīvīs.Instance,
+                                                  NūntiusPēnsōrīAdverbiīsIncomparātīvīs.Faciendum,
                                                   nameof(Īnflectendum.AdverbiumIncomparātīvum.Scrīptum),
                                                   Īnflectendum.AdverbiumIncomparātīvum.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīAdverbiīsIncomparātīvīs : Nūntius<PēnsorAdverbiīsIncomparātīvīs> {  }
+    private sealed partial class NūntiusPēnsōrīAdverbiīsIncomparātīvīs : Nūntius<PēnsorAdverbiīsIncomparātīvīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīAdverbiīsIncomparātīvīs> Faciendum = new Lazy<NūntiusPēnsōrīAdverbiīsIncomparātīvīs>(() => Instance);
+    }
   }
 }

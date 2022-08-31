@@ -3,6 +3,8 @@ using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
 
+using Lombok.NET.PropertyGenerators.SingletonAttribute;
+
 namespace Pēnsōrēs.Āctibus
 {
   public sealed class PēnsorĀctibusPrōnīsImperfectīs : PēnsorĪnflectendīs<Īnflectendum.ĀctusPrōnusImperfectus, Multiplex.Āctus>
@@ -25,11 +27,14 @@ namespace Pēnsōrēs.Āctibus
 
     private PēnsorĀctibusPrōnīsImperfectīs(in Enum versiō)
                                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Āctus,
-                                                   NūntiusPēnsōrīĀctibusPrōnīsImperfectīs.Instance,
+                                                   NūntiusPēnsōrīĀctibusPrōnīsImperfectīs.Faciendum,
                                                    nameof(Īnflectendum.ĀctusPrōnusImperfectus.Īnfīnītīvum),
                                                    Īnflectendum.ĀctusPrōnusImperfectus.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīĀctibusPrōnīsImperfectīs : Nūntius<PēnsōrĀctibusPrōnīsImperfectīs> {  }
+    private sealed partial class NūntiusPēnsōrīĀctibusPrōnīsImperfectīs : Nūntius<PēnsōrĀctibusPrōnīsImperfectīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīĀctibusPrōnīsImperfectīs> Faciendum = new Lazy<NūntiusPēnsōrīĀctibusPrōnīsImperfectīs>(() => Instance);
+    }
   }
 }

@@ -6,12 +6,17 @@ namespace Pēnsōrēs.Simplicibus
 {
   public sealed class PēnsorLemmīs : Pēnsor<Lemma>
   {
-    private PēnsorLemmīs() : base(nameof(Lemma.Scrīptum), Tabula.Lemmae, NūntiusPēnsōrīLemmīs.Instance, Lemma.Lēctor)
+    private PēnsorLemmīs() : base(nameof(Lemma.Scrīptum), Tabula.Lemmae,
+                                  NūntiusPēnsōrīLemmīs.Faciendum,
+                                  Lemma.Lēctor)
     {
       Nūntius.PlūsGarriōAsync("Fīō");
     }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīLemmīs : Nūntius<PēnsōrLemmīs> {  }
+    private sealed partial class NūntiusPēnsōrīLemmīs : Nūntius<PēnsōrLemmīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīLemmīs> Faciendum = new Lazy<NūntiusPēnsōrīLemmīs>(() => Instance);
+    }
   }
 }

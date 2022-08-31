@@ -25,11 +25,14 @@ namespace Pēnsōrēs.Numerāminibus
 
     private PēnsorNumerāminibusOmnium(in Enum versiō)
                                        : base(versiō, Ēnumerātiōnēs.Catēgoria.Numerāmen,
-                                              NūntiusPēnsōrīNumerāminibusOmnium.Instance,
+                                              NūntiusPēnsōrīNumerāminibusOmnium.Faciendum,
                                               nameof(Īnflectendum.NumerāmenOmnium.Numerus),
                                               Īnflectendum.NumerāmenOmnium.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusOmnium : Nūntius<PēnsōrNumerāminibusOmnium> {  }
+    private sealed partial class NūntiusPēnsōrīNumerāminibusOmnium : Nūntius<PēnsōrNumerāminibusOmnium>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusOmnium> Faciendum = new Lazy<NūntiusPēnsōrīNumerāminibusOmnium>(() => Instance);
+    }
   }
 }
