@@ -7,9 +7,11 @@ using Īnflexōrēs;
 using Praebeunda.Interfecta;
 
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
 namespace Praebeunda
 {
+  [AsyncOverloads]
   [AllArgsConstructor(MemberTypes.Property, Access.Protected)]
   public abstract partial class Īnflectendum<Hoc, Illud> : Pēnsābile<Hoc>, Īnflexiblis<Hoc>
 
@@ -21,7 +23,14 @@ namespace Praebeunda
 
     private readonly Īnflexor<Hoc, Illud> Īnflexor => Īnflexor.Relātor.Invoke(Catēgoria, Versiō);
 
-    public sealed partial class AdverbiumEffectum : Īnflectendum<AdverbiumEffectum, Multiplex.Adverbium>
+    public readonly Func<Īnflectendum<Task<Illud?>>> FortisĪnflexor = async () => Īnflexor.FortisĪnflexor.Invoke(this);
+
+    public sealed Illud? Īnflectem(in params Enum illa)
+    {
+      return Īnflexor.Īnflectem(this, illa);
+    }
+
+    public sealed class AdverbiumEffectum : Īnflectendum<AdverbiumEffectum, Multiplex.Adverbium>
     {
       public static readonly Func<JsonElement, Enum, Task<AdverbiumEffectum>> Lēctor =
                 async (legendum, valor) => new AdverbiumEffectum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -44,7 +53,7 @@ namespace Praebeunda
       public string ToString() => Positīvum;
     }
 
-    public sealed partial class AdverbiumIncomparātīvum : Īnflectendum<AdverbiumIncomparātīvum, Multiplex.Adverbium>
+    public sealed class AdverbiumIncomparātīvum : Īnflectendum<AdverbiumIncomparātīvum, Multiplex.Adverbium>
     {
       public static readonly Func<JsonElement, Enum, Task<AdverbiumIncomparātīvum>> Lēctor =
                 async (legendum, valor) => new AdverbiumIncomparātīvum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -61,7 +70,7 @@ namespace Praebeunda
     }
 
     [AllArgsConstructor(MemberTypes.Property, Access.Private)]
-    public sealed partial class ĀctusEffectus : Īnflectendum<ĀctusEffectus, Multiplex.Āctus>
+    public sealed class ĀctusEffectus : Īnflectendum<ĀctusEffectus, Multiplex.Āctus>
     {
       public static readonly Func<JsonElement, Enum, Task<ĀctusEffectus>> Lēctor =
                 async (legendum, valor) => new ĀctusEffectus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -84,7 +93,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class ĀctusPrōnus : Īnflectendum<ĀctusPrōnus, Multiplex.Āctus>
+    public sealed class ĀctusPrōnus : Īnflectendum<ĀctusPrōnus, Multiplex.Āctus>
     {
       public static readonly Func<JsonElement, Enum, Task<ĀctusPrōnus>> Lēctor =
                 async (legendum, valor) => new ĀctusPrōnus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -103,7 +112,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class ĀctusImperfectus : Īnflectendum<ĀctusImperfectus, Multiplex.Āctus>
+    public sealed class ĀctusImperfectus : Īnflectendum<ĀctusImperfectus, Multiplex.Āctus>
     {
       public static readonly Func<JsonElement, Enum, Task<ĀctusImperfectus>> Lēctor =
                 async (legendum, valor) => new ĀctusImperfectus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -122,7 +131,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class ĀctusPrōnusImperfectus : Īnflectendum<ĀctusPrōnusImperfectus, Multiplex.Āctus>
+    public sealed class ĀctusPrōnusImperfectus : Īnflectendum<ĀctusPrōnusImperfectus, Multiplex.Āctus>
     {
       public static readonly Func<JsonElement, Enum, Task<ĀctusPrōnusImperfectus>> Lēctor =
                 async (legendum, valor) => new ĀctusPrōnusImperfectus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -138,7 +147,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class Nōmen : Īnflectendum<Nōmen, Multiplex.Nōmen>
+    public sealed class Nōmen : Īnflectendum<Nōmen, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<Nōmen>> Lēctor =
                 async (legendum, valor) => new Nōmen(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -157,7 +166,7 @@ namespace Praebeunda
       public string ToString() => Nominātīvum;
     }
 
-    public sealed partial class NōmenIndēclīnābile : Īnflectendum<NōmenIndēclīnābile, Multiplex.Nōmen>
+    public sealed class NōmenIndēclīnābile : Īnflectendum<NōmenIndēclīnābile, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NōmenIndēclīnābile>> Lēctor =
                 async (legendum, valor) => new NōmenIndēclīnābile(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -172,7 +181,7 @@ namespace Praebeunda
       public readonly string Scrīptum { get; }
     }
 
-    public sealed partial class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>
+    public sealed class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NōmenFactum>> Lēctor =
                 async (legendum, valor) => new NōmenFactum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -191,7 +200,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class NōmenFactumPrōnum : Īnflectendum<NōmenFactumPrōnum, Multiplex.Nōmen>
+    public sealed class NōmenFactumPrōnum : Īnflectendum<NōmenFactumPrōnum, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NōmenFactumPrōnum>> Lēctor =
                 async (legendum, valor) => new NōmenFactumPrōnum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -207,7 +216,7 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed partial class AdiectīvumAutPrīmumAutSecundumAutTertium : Īnflectendum<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+    public sealed class AdiectīvumAutPrīmumAutSecundumAutTertium : Īnflectendum<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumAutPrīmumAutSecundumAutTertium>> Lēctor =
                 async (legendum, valor) => new AdiectīvumAutPrīmumAutSecundumAutTertium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -229,7 +238,7 @@ namespace Praebeunda
       public string ToString() => Positīvum;
     }
 
-    public sealed partial class AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium
+    public sealed class AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium
               : Īnflectendum<AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium>> Lēctor =
@@ -252,7 +261,7 @@ namespace Praebeunda
       public string ToString() => Neutrum;
     }
 
-    public sealed partial class AdiectīvumTertiumAutPrīmumAutSecundum : Īnflectendum<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>
+    public sealed class AdiectīvumTertiumAutPrīmumAutSecundum : Īnflectendum<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Lēctor =
                 async (legendum, valor) => new AdiectīvumTertiumAutPrīmumAutSecundum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -271,7 +280,7 @@ namespace Praebeunda
       public string ToString() => Nominātīvum;
     }
 
-    public sealed partial class NumerāmenOmnium : Īnflectendum<NumerāmenOmnium, Multiplex.Numerāmen>
+    public sealed class NumerāmenOmnium : Īnflectendum<NumerāmenOmnium, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmnium>> Lēctor =
                 async (legendum, valor) => new NumerāmenOmnium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -305,7 +314,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenCardinālumSōlōrum : Īnflectendum<NumerāmenCardinālumSōlōrum, Multiplex.Numerāmen>
+    public sealed class NumerāmenCardinālumSōlōrum : Īnflectendum<NumerāmenCardinālumSōlōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumSōlōrum>> Lēctor =
                 async (legendum, valor) => new NumerāmenCardinālumSōlōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -323,7 +332,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenCardinālumŌrdinālumque : Īnflectendum<NumerāmenCardinālumŌrdinālumque, Multiplex.Numerāmen>
+    public sealed class NumerāmenCardinālumŌrdinālumque : Īnflectendum<NumerāmenCardinālumŌrdinālumque, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumŌrdinālumque>> Lēctor =
                 async (legendum, valor) => new NumerāmenCardinālumŌrdinālumque(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -344,7 +353,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum, Multiplex.Numerāmen>
+    public sealed class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum>> Lēctor =
                 async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -368,7 +377,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum
+    public sealed class NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum
               : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>> Lēctor =
@@ -393,7 +402,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum
+    public sealed class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum
               : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>> Lēctor =
@@ -422,7 +431,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenOmniumPraeterMultiplicātīva : Īnflectendum<NumerāmenOmniumPraeterMultiplicātīva, Multiplex.Numerāmen>
+    public sealed class NumerāmenOmniumPraeterMultiplicātīva : Īnflectendum<NumerāmenOmniumPraeterMultiplicātīva, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterMultiplicātīva>> Lēctor =
                 async (legendum, valor) => new NumerāmenOmniumPraeterMultiplicātīva(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
@@ -453,7 +462,7 @@ namespace Praebeunda
       public string ToString() => Numerus;
     }
 
-    public sealed partial class NumerāmenOmniumPraeterFrāctiōnēs : Īnflectendum<NumerāmenOmniumPraeterFrāctiōnēs, Multiplex.Numerāmen>
+    public sealed class NumerāmenOmniumPraeterFrāctiōnēs : Īnflectendum<NumerāmenOmniumPraeterFrāctiōnēs, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterFrāctiōnēs>> Lēctor =
                 async (legendum, valor) => new NumerāmenOmniumPraeterFrāctiōnēs(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,

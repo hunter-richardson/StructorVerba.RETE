@@ -16,7 +16,7 @@ using BuilderCommon.BuilderException;
 namespace Īnflexōrēs
 {
   [AsyncOverloads]
-  public abstract class Īnflexor<Hoc, Illud>
+  public abstract partial class Īnflexor<Hoc, Illud>
             where Hoc : Īnflexibilis<Hoc, Illud>
             where Illud : Īnflexum<Illud>
   {

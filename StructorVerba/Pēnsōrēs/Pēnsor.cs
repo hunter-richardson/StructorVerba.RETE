@@ -19,7 +19,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Pēnsōrēs
 {
   [AsyncOverloads]
-  public abstract class Pēnsor<Hoc> where Hoc : Pēnsābile<Hoc>
+  public abstract partial class Pēnsor<Hoc> where Hoc : Pēnsābile<Hoc>
   {
     public enum Tabula
     {
