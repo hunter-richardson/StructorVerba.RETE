@@ -25,17 +25,6 @@ namespace Praebeunda
       _ => null
     };
 
-    private readonly Task? Restitūtor = Catēgoria switch
-    {
-      Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Adverbium => Multiplex.Adverbium.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Nōmen => Multiplex.Nōmen.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Numerāmen => Multiplex.Numerāmen.Restitūtor,
-      Ēnumerātiōnēs.Catēgoria.Prōnōmen => Multiplex.Prōnōmen.Restitūtor,
-      _ => null
-    };
-
     public Ēnumerātiōnēs.Encliticum Encliticum { get; } => Ēnumerātiōnēs.Encliticum.Nōlēns;
 
     public sealed void allegam(in Ēnumerātiōnēs.Encliticum ntlcm)

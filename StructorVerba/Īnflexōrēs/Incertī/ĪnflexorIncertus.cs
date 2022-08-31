@@ -21,8 +21,6 @@ namespace Īnflexōrēs.Incertī
                                                                                                          string.IsNullOrWhiteSpace, "Fōrma invacua'stō");
     public readonly Func<IDictionary<Enum[], string>> Fōrmātor = () => Fōrmae.ToImmutableSortedDictionary();
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
-    private readonly Task? Restitūtor = Muliplex.Restitūtor.Invoke(Catēgoria);
-
     private readonly SortedSet<Enum[]> Tabula = new SortedSet<Enum[]>(ComparātorSeriērum);
     public readonly Func<IEnumerable<Enum[]>> Tabulātor = () => Tabula.ToImmutableSortedSet();
     private readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
@@ -87,7 +85,6 @@ namespace Īnflexōrēs.Incertī
           Nūntius.NōtōAsync("Verbum īnflexu'st ut", illud);
         }
 
-        await Restitūtor?.Invoke();
         return illud;
       }
       else

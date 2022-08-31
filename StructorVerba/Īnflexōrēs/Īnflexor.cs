@@ -36,8 +36,6 @@ namespace Īnflexōrēs
     protected readonly SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
     private readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
-    private readonly Task? Restitūtor = Muliplex.Restitūtor.Invoke(Catēgoria);
-
     public readonly Func<Hoc, Task<Illud?>> FortisĪnflexor => hoc => ĪnflectemAsync(hoc, await Tabula.Random());
 
     protected readonly Nūntius<Īnflexor<Hoc>> Nūntius { get; }
@@ -90,7 +88,6 @@ namespace Īnflexōrēs
           Nūntius.Nōtō("Verbum īnflexu'st ut", illud);
         }
 
-        Restitūtor?.Invoke();
         return illud;
       }
       else
