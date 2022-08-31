@@ -13,7 +13,7 @@ namespace Pēnsōrēs
            where Hoc : Īnflectendum<Hoc, Illud> where Illud : Īnflexum<Hoc>
   {
     // TODO: convert Pensor from Categoria and Versio
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, PēnsorĪnflectendīs> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<PēnsorĪnflectendīs>> Relātor =
             (catēgoria, versiō) => catēgoria switch
             {
               Ēnumerātiōnēs.Catēgoria.Āctus       => null,

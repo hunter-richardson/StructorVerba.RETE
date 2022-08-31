@@ -10,13 +10,13 @@ namespace Pēnsōrēs
 {
   public abstract partial class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
   {
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, PēnsorVerbīs> RelātorSimplicibus =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
             catēgoria => catēgoria switch
             {
-              Ēnumerātiōnēs.Catēgoria.Coniūnctiō => PēnsorConiūnctiōnibus.Instance,
-              Ēnumerātiōnēs.Catēgoria.Interiectiō => PēnsorInteriectiōnibus.Instance,
-              Ēnumerātiōnēs.Catēgoria.Praepositiō => PēnsorPraepositiōnibus.Instance,
-              _ => PēnsorLemmīs.Instance
+              Ēnumerātiōnēs.Catēgoria.Coniūnctiō => PēnsorConiūnctiōnibus.Faciendum,
+              Ēnumerātiōnēs.Catēgoria.Interiectiō => PēnsorInteriectiōnibus.Faciendum,
+              Ēnumerātiōnēs.Catēgoria.Praepositiō => PēnsorPraepositiōnibus.Faciendum,
+              _ => PēnsorLemmīs.Faciendum
             };
 
     protected PēnsorVerbīs(in Lazy<Nūntius<Pēnsor<Hoc>>> nūntius, in Func<JsonElement, Task<Hoc>> lēctor)

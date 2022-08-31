@@ -6,6 +6,7 @@ namespace Pēnsōrēs.Simplicibus
 {
   public sealed class PēnsorLemmīs : Pēnsor<Lemma>
   {
+    public static readonly Lazy<PēnsorLemmīs> Faciendum = new Lazy<PēnsorLemmīs>(() => Instance);
     private PēnsorLemmīs() : base(nameof(Lemma.Scrīptum), Tabula.Lemmae,
                                   NūntiusPēnsōrīLemmīs.Faciendum,
                                   Lemma.Lēctor)
