@@ -17,8 +17,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
   {
     public enum Versiō
     {
-      Nōmen_Prīmus, Nōmen_Secundus_Masculīnus, Nōmen_Secundus_Neuter, Nōmen_Secundus_Varius_Cum_Litterā_Ē,
-      Nōmen_Secundus_Varius_Sine_Litterā_Ē,  Nōmen_Tertius, Nōmen_Tertius_Neuter,
+      Nōmen_Prīmus, Nōmen_Secundus_Masculīnus, Nōmen_Secundus_Neuter, Nōmen_Secundus_Varius_Cum_Litterā_E,
+      Nōmen_Secundus_Varius_Sine_Litterā_E,  Nōmen_Tertius, Nōmen_Tertius_Neuter,
       Nōmen_Tertius_Cum_Genitīvō_Variō, Nōmen_Tertius_Cum_Ablātīvō_Variō, Nōmen_Tertius_Cum_Genitīvō_Ablātīvōque_Variō,
       Nōmen_Tertius_Neuter_Cum_Genitīvō_Variō, Nōmen_Tertius_Neuter_Cum_Ablātīvō_Variō, Nōmen_Tertius_Neuter_Cum_Genitīvō_Ablātīvōque_Variō,
       Nōmen_Quārtus, Nōmen_Quārtus_Varius, Nōmen_Quīntus, Nōmen_Graecus_Prīmus, Nōmen_Graecus_Prīmus_Cum_Litterā_Ē,
@@ -31,8 +31,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
       Versiō.Nōmen_Prīmus => null,
       Versiō.Nōmen_Secundus_Masculīnus => null,
       Versiō.Nōmen_Secundus_Neuter => null,
-      Versiō.Nōmen_Secundus_Varius_Cum_Litterā_Ē => null,
-      Versiō.Nōmen_Secundus_Varius_Sine_Litterā_Ē => null,
+      Versiō.Nōmen_Secundus_Varius_Cum_Litterā_E => null,
+      Versiō.Nōmen_Secundus_Varius_Sine_Litterā_E => null,
       Versiō.Nōmen_Tertius => null,
       Versiō.Nōmen_Tertius_Neuter => null,
       Versio.Nōmen_Tertius_Cum_Genitīvō_Variō => null,
