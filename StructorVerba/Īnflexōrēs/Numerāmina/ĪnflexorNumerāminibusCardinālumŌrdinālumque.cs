@@ -12,7 +12,8 @@ namespace Īnflexōrēs.Numerāmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorNumerāminibusCardinālumŌrdinālumque : ĪnflexorNumerāminibus<NumerāminibusCardinālumŌrdinālumque>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque> Faciendum = new Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque>(() => Instance);
+    public static readonly Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque> Faciendum
+                     = new Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque>(() => Instance);
 
     protected ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
           : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, NūntiusĪnflexōrīNumerāminibusCardinālumSōlōrum.Faciendum,

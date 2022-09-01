@@ -13,7 +13,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Effectī.Adiectīva
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexōrēsEffectusAdiectīvīs<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Adiectīvum>
+  public abstract partial class ĪnflexorEffectusAdiectīvīs<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Adiectīvum>
   {
     public enum Versiō
     {
@@ -22,7 +22,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
       Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
     }
 
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexōrēsEffectusAdiectīvīs?>>> Relātor = async versiō => versiō switch
+    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor = async versiō => versiō switch
     {
       Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia => null,
       Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē => null,
@@ -34,15 +34,15 @@ namespace Īnflexōrēs.Effectī.Adiectīva
        _ => new Lazy(null)
     };
 
-    protected ĪnflexōrēsEffectusAdiectīvīs(in Versiō versiō,
-                                           in Lazy<Nūntius<ĪnflexōrēsEffectīAdiectīvīs<Hoc>>> nūntius,
-                                           in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
-                                           in params IEnumerable<Enum[]> illa)
+    protected ĪnflexorEffectusAdiectīvīs(in Versiō versiō,
+                                         in Lazy<Nūntius<ĪnflexōrēsEffectīAdiectīvīs<Hoc>>> nūntius,
+                                         in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
+                                         in params IEnumerable<Enum[]> illa)
                                             : base(versiō, nūntius, quaerendī, rādīcātor, illa) { }
 
-    protected ĪnflexōrēsEffectusAdiectīvīs(in Versiō versiō,
-                                           in Lazy<Nūntius<ĪnflexōrēsEffectīAdiectīvīs<Hoc>>> nūntius,
-                                           in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor)
+    protected ĪnflexorEffectusAdiectīvīs(in Versiō versiō,
+                                         in Lazy<Nūntius<ĪnflexōrēsEffectīAdiectīvīs<Hoc>>> nūntius,
+                                         in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor)
                                             : this(versiō, nūntius, quaerendī, rādīcātor,
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
                                                                       Genus.GetValues().Except(default(Genus)).ToHashSet(),

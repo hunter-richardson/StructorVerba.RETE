@@ -8,9 +8,10 @@ namespace Pēnsōrēs.Adiectiva
   public sealed class PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs
             : PēnsorAdiectīvīs<Īnflectendum.AdiectīvumTertiumAutPrīmumAutSecundum>
   {
-    private static Dictionary<Enum, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs> Reservātī = new Dictionary<Enum, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs>();
+    private static Dictionary<ĪnflexorEffectusĀctibus.Versiō, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs> Reservātī
+             = new Dictionary<ĪnflexorEffectusĀctibus.Versiō, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs>();
 
-    public static Func<Enum, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs> Faciendum = valor =>
+    public static Func<ĪnflexorEffectusĀctibus.Versiō, PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -24,11 +25,11 @@ namespace Pēnsōrēs.Adiectiva
       }
     };
 
-    private PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs(in ĪnflexōrēsEffectusĀctibus.Versiō versiō)
-                                                                                        : base(versiō,
-                                                                                               nameof(Īnflectendum.AdiectīvumTertiumAutPrīmumAutSecundum.Nominātīvum),
-                                                                                               NūntiusPēnsōrīAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs.Faciendum,
-                                                                                               Īnflectendum.AdiectīvumTertiumAutPrīmumAutSecundum.Lēctor) {  }
+    private PēnsorAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs(in ĪnflexorEffectusĀctibus.Versiō versiō)
+                                                                                      : base(versiō,
+                                                                                             nameof(Īnflectendum.AdiectīvumTertiumAutPrīmumAutSecundum.Nominātīvum),
+                                                                                             NūntiusPēnsōrīAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs.Faciendum,
+                                                                                             Īnflectendum.AdiectīvumTertiumAutPrīmumAutSecundum.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīAdiectīvīsAutTertiīsAutPrīmīsAutSecundīs

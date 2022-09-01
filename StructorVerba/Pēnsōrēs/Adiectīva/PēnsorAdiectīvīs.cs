@@ -9,7 +9,7 @@ namespace Pēnsōrēs.Adiectiva
 {
   public abstract class PēnsorAdiectīvīs<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Adiectīvum>
   {
-    private static readonly Func<ĪnflexōrēsEffectusĀctibus.Versiō, Tabula?> Tabulātor =
+    private static readonly Func<ĪnflexorEffectusĀctibus.Versiō, Tabula?> Tabulātor =
               versiō => versiō switch
             {
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia ||
@@ -25,7 +25,7 @@ namespace Pēnsōrēs.Adiectiva
               _ => null
             };
 
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, ĪnflexōrēsEffectusĀctibus.Versiō, Lazy<PēnsorAdiectīvīs?>> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, ĪnflexorEffectusĀctibus.Versiō, Lazy<PēnsorAdiectīvīs?>> Relātor =
               versiō => versiō switch
             {
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia => null,
@@ -40,7 +40,7 @@ namespace Pēnsōrēs.Adiectiva
               _ => new Lazy(null)
             };
 
-    protected PēnsorAdiectīvīs(in ĪnflexōrēsEffectusĀctibus.Versiō versiō, in string quaerendī,
+    protected PēnsorAdiectīvīs(in ĪnflexorEffectusĀctibus.Versiō versiō, in string quaerendī,
                                   in Lazy<Nūntius<PēnsorAdiectīvīs<Hoc>>> nūntius,
                                   in Func<JsonElement, Task<Hoc>> lēctor)
                                      : base(versiō, quaerendī, Tabulātor.Invoke(versiō), nūntius, lēctor) { }

@@ -28,7 +28,8 @@ namespace Īnflexōrēs.Numerāmina
             };
 
     [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum : Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>
+    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum
+                : Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>
     {
       public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum> Faciendum =
                          new Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>(() => Instance);

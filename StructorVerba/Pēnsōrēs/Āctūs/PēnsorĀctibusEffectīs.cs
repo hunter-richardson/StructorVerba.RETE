@@ -8,9 +8,10 @@ namespace Pēnsōrēs.Āctūs
 {
   public sealed class PēnsorĀctibusEffectīs : PēnsorĀctibus<Īnflectendum.ĀctusEffectus>
   {
-    private static Dictionary<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Reservātī = new Dictionary<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs>();
+    private static Dictionary<ĪnflexorEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Reservātī
+             = new Dictionary<ĪnflexorEffectusĀctibus.Versio, PēnsorĀctibusEffectīs>();
 
-    public static Func<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Faciendum = valor =>
+    public static Func<ĪnflexorEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -24,13 +25,13 @@ namespace Pēnsōrēs.Āctūs
       }
     };
 
-    private PēnsorĀctibusEffectīs(in ĪnflexōrēsEffectusĀctibus.Versio versiō)
-                                                               : base(versiō, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum),
-                                                                      Tabula.Āctūs_Effectī, NūntiusPēnsōrīĀctibusEffectīs.Faciendum,
-                                                                      Īnflectendum.ĀctusEffectus.Lēctor) {  }
+    private PēnsorĀctibusEffectīs(in ĪnflexorEffectusĀctibus.Versio versiō)
+                                                             : base(versiō, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum),
+                                                                    Tabula.Āctūs_Effectī, NūntiusPēnsōrīĀctibusEffectīs.Faciendum,
+                                                                    Īnflectendum.ĀctusEffectus.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīĀctibusEffectīs : Nūntius<PēnsōrĀctibusEffectīs>
+    private sealed partial class NūntiusPēnsōrīĀctibusEffectīs : Nūntius<PēnsorĀctibusEffectīs>
     {
       public static readonly Lazy<NūntiusPēnsōrīĀctibusEffectīs> Faciendum = new Lazy<NūntiusPēnsōrīĀctibusEffectīs>(() => Instance);
     }

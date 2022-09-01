@@ -31,7 +31,7 @@ namespace Pēnsōrēs.Āctibus
                                              Īnflectendum.ĀctusPrōnusImperfectusfectus.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīĀctibusPrōnīsImperfectīs : Nūntius<PēnsōrĀctibusPrōnīsImperfectīs>
+    private sealed partial class NūntiusPēnsōrīĀctibusPrōnīsImperfectīs : Nūntius<PēnsorĀctibusPrōnīsImperfectīs>
     {
       public static readonly Lazy<NūntiusPēnsōrīĀctibusPrōnīsImperfectīs> Faciendum = new Lazy<NūntiusPēnsōrīĀctibusPrōnīsImperfectīs>(() => Instance);
     }

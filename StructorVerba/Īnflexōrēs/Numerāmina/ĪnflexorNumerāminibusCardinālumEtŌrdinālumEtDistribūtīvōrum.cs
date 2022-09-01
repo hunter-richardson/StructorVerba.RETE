@@ -9,7 +9,8 @@ namespace Īnflexōrēs.Numerāmina
 {
   [Singleton]
   [AsyncOverloads]
-  public sealed partial class ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum : ĪnflexorNumerāminibus<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>
+  public sealed partial class ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
+            : ĪnflexorNumerāminibus<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>
   {
     public static readonly Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
                        new Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);
@@ -29,7 +30,8 @@ namespace Īnflexōrēs.Numerāmina
             };
 
     [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum : Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>
+    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
+                : Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>
     {
       public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
                          new Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);

@@ -18,7 +18,7 @@ namespace Pēnsōrēs
                       NūntiusPēnsōrīVerbīs.Faciendum, Verbum.Lēctor) {  }
 
     [Singleton]
-    private sealed partial class NūntiusPēnsōrīVerbīs : Nūntius<PēnsōrVerbīs>
+    private sealed partial class NūntiusPēnsōrīVerbīs : Nūntius<PēnsorVerbīs>
     {
       public static readonly Lazy<NūntiusPēnsōrīVerbīs> Faciendum = new Lazy<NūntiusPēnsōrīVerbīs>(() => Instance);
     }

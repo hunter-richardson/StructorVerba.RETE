@@ -11,7 +11,8 @@ namespace Īnflexōrēs.Numerāmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs : ĪnflexorNumerāminibus<NumerāmenOmniumPraeterFrāctiōnēs>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum = new Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
+    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum =
+                       new Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
     protected ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs()
           : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
                   Numerium.GetValues().Except(Numerium.Frāctiōnāle)) { }
