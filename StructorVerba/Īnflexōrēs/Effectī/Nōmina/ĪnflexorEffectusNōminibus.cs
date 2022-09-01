@@ -61,8 +61,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
                                                   Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToSortedSet(),
                                                                      Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet())) { }
 
-    public abstract string? Singulāre(in Casus casus);
-    public abstract string? Plūrāle(in Casus casus);
+    public abstract string Singulāre(in Casus casus);
+    public abstract string Plūrāle(in Casus casus);
     public sealed string? Suffixum(in Enum[] illa)
     {
       const Casus casus = Casūs.Iactor.Invoke((from illud in illa
