@@ -6,25 +6,29 @@ using Nūntiī.Nūntius;
 using Miscella;
 using Praebeunda.Īnflectendum;
 using Ēnumerātiōnēs;
+using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
-namespace Īnfexōrēs.Nōmina.NōminaFacta
+namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
 {
   [AsyncOverloads]
   public abstract partial class ĪnflexorEffectusNōminibusFactīs : ĪnflexorEffectusNōminibus<Īnflectendum.NōmenFactum>
   {
     public enum Versiō
     {
-      Prīmus, Secundus, Tertius, Quārtus
+      Nōmen_Prīmus = ĪnflexōrēsEffectusĀctibus.Versiō.Prīmus,
+      Nōmen_Secundus = ĪnflexōrēsEffectusĀctibus.Versiō.Secundus,
+      Nōmen_Tertius = ĪnflexōrēsEffectusĀctibus.Versiō.Tertius,
+      Nōmen_Quārtus = ĪnflexōrēsEffectusĀctibus.Versiō.Quārtus
     }
 
     public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Versor = async versiō => versiō switch
       {
-        Versiō.Prīmus => null,
-        Versiō.Secundus => null,
-        Versiō.Tertius => null,
-        Versiō.Quārtus => null,
+        Versiō.Nōmen_Prīmus => null,
+        Versiō.Nōmen_Secundus => null,
+        Versiō.Nōmen_Tertius => null,
+        Versiō.Nōmen_Quārtus => null,
         _ => new Lazy(null),
       };
 

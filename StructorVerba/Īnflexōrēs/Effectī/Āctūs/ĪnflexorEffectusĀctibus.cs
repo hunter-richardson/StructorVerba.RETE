@@ -10,14 +10,14 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Effectī.Āctūs
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexōrēsEffectusĀctibus<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Āctus>
+  public abstract partial class ĪnflexorEffectusĀctibus<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Āctus>
   {
     public enum Versiō
     {
       Prīmus, Prīmus_Varius, Secundus, Tertius, Tertius_Varius, Tertius_Cum_Imperātīvō_Brevī, Quārtus
     }
 
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexōrēsEffectusĀctibus?>>> Relātor = async versiō => versiō switch
+    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusĀctibus?>>> Relātor = async versiō => versiō switch
     {
       Versiō.Prīmus => null,
       Versiō.Prīmus_Varius => null,
@@ -49,10 +49,10 @@ namespace Īnflexōrēs.Effectī.Āctūs
                                               .Except(illa => Ūtilitātēs.Ūlla(illa.ContainsAll(Modus.Subiūnctīvus, Tempus.Futūrum),
                                                                               illa.ContainsAll(Modus.Subiūnctīvus, Tempus.FutūrumExāctum))));
 
-    protected ĪnflexōrēsEffectusĀctibus(in Versiō versiō,
-                                        in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius,
-                                        in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
-                                        in params IEnumerable<Enum[]> illa)
+    protected ĪnflexorEffectusĀctibus(in Versiō versiō,
+                                      in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius,
+                                      in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
+                                      in params IEnumerable<Enum[]> illa)
                                          : base(versiō, nūntius, quaerendī, rādīcātor, Praegenerāta) { }
 
     public abstract string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna);

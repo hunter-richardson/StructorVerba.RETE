@@ -14,7 +14,8 @@ namespace Pēnsōrēs.Adiectiva
             {
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia ||
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē ||
-              Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē
+              Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē ||
+              Versiō.Prōnōminālis || Versiō.Prōnōminālis_Varius
                         => Tabula.Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia,
               Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda ||
               Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Variō ||
@@ -24,12 +25,14 @@ namespace Pēnsōrēs.Adiectiva
               _ => null
             };
 
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, ĪnflexōrēsEffectusĀctibus.Versiō, Lazy<PēnsorNumerāminibus?>> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, ĪnflexōrēsEffectusĀctibus.Versiō, Lazy<PēnsorAdiectīvīs?>> Relātor =
               versiō => versiō switch
             {
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia => null,
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē => null,
               Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē => null,
+              Versiō.Prōnōminālis => null,
+              Versiō.Prōnōminālis_Varius => null,
               Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda => null,
               Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Variō => null,
               Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Ablātīvō_Variō => null,

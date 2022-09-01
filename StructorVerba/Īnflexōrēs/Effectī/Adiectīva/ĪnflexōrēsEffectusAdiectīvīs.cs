@@ -19,7 +19,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
     {
       Aut_Prīma_Aut_Secunda_Aut_Tertia, Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē, Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē,
       Aut_Tertia_Aut_Prīma_Aut_Secunda, Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Variō, Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Ablātīvō_Variō,
-      Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Ablātīvōque_Variō
+      Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
     }
 
     public static readonly Func<Versiō, Task<Lazy<ĪnflexōrēsEffectusAdiectīvīs?>>> Relātor = async versiō => versiō switch
