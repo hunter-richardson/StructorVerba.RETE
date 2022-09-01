@@ -6,7 +6,7 @@ using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus.Versio;
 
 namespace Pēnsōrēs.Nōmina
 {
-  public abstract class PēnsorNōminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Nōmen>
+  public abstract partial class PēnsorNōminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Nōmen>
   {
     private PēnsorNōminibus(in Enum versiō, in string quaerendī,
                             in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
@@ -14,7 +14,7 @@ namespace Pēnsōrēs.Nōmina
                              : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen, quaerendī, nūntius, lēctor) { }
   }
 
-  public sealed class PēnsorNōminibus : PēnsorNōminibus<Īnflectendum.Nōmen>
+  public sealed partial class PēnsorNōminibus : PēnsorNōminibus<Īnflectendum.Nōmen>
   {
     private static Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus> Reservātī
              = new Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus>();

@@ -8,7 +8,7 @@ using Praebeunda.Simplicibus;
 
 namespace Pēnsōrēs
 {
-  public abstract class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
+  public abstract partial class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
   {
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
             catēgoria => catēgoria switch
@@ -26,7 +26,7 @@ namespace Pēnsōrēs
     }
   }
 
-  public sealed class PēnsorVerbīs : PēnsorVerbīs<Verbum>
+  public sealed partial class PēnsorVerbīs : PēnsorVerbīs<Verbum>
   {
     private PēnsorVerbīs()
         : base(nameof(Verbum.Scrīptum), Tabula.Verba,
