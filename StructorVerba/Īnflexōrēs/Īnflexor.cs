@@ -33,9 +33,10 @@ namespace Īnflexōrēs
               _ => new Lazy(null)
             };
 
-    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Seriēs(ĪnflexorAdverbiīs.Versiō.GetValues(),
-                                                                                                        ĪnflexorNumerāminibus.Versiō.GetValues())
-                                                                        where valor.ToString().Equals(legendum.GetString())
+    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor, 
+                                                                                                          ĪnflexorAdverbiīs.Versiō.GetValues(),
+                                                                                                          ĪnflexorNumerāminibus.Versiō.GetValues())
+                                                                        where valor.ToString().ToLower().Equals(versiō)
                                                                         select valor).FirstNonNull(null);
 
     public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
