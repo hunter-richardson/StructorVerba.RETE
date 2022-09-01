@@ -9,8 +9,10 @@ using Praebeunda.Interfecta;
 using Praebeunda.Multiplex;
 using Ēnumerātiōnēs;
 using Ēnumerātiōnēs.Comparātōrēs;
-using Īnflexōrēs.Adverbia;
-using Īnflexōrēs.Numerāmina;
+using Īnflexōrēs.Effectī.Āctūs;
+using Īnflexōrēs.Effectī.Adiectīva;
+using Īnflexōrēs.Effectī.Nōmina;
+using Īnflexōrēs.Effectī.Numerāmina;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using BuilderCommon.BuilderException;
@@ -23,18 +25,21 @@ namespace Īnflexōrēs
             where Illud : Īnflexum<Illud>
   {
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<Īnflexor?>> Relātor =
-            (catēgoria, versiō) => catēgoria switch
+            (catēgoria, versiō) => await catēgoria switch
             {
-              Ēnumerātiōnēs.Catēgoria.Āctus => null,
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum => ĪnflexorAdverbiīs.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Adverbium => null,
-              Ēnumerātiōnēs.Catēgoria.Nōmen => null,
+              Ēnumerātiōnēs.Catēgoria.Adverbium => ĪnflexorAdverbiīs.Faciendum,
+              Ēnumerātiōnēs.Catēgoria.Āctus => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Adiectīvum => ĪnflexorAdiectīvīs.Relātor.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Nōmen => ĪnflexorEffectusNōminibus.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Numerāmen => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
 
-    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor, 
+    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor,
                                                                                                           ĪnflexorAdverbiīs.Versiō.GetValues(),
+                                                                                                          ĪnflexorEffectusĀctibus.Versiō.GetValues(),
+                                                                                                          ĪnflexorEffectusAdiectīvīs.Versiō.GetValues(),
+                                                                                                          ĪnflexorEffectusNōminibus.Versiō.GetValues(),
                                                                                                           ĪnflexorNumerāminibus.Versiō.GetValues())
                                                                         where valor.ToString().ToLower().Equals(versiō)
                                                                         select valor).FirstNonNull(null);

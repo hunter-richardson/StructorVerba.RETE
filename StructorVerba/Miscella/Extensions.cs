@@ -69,52 +69,60 @@ namespace Miscella
                 => enumerable.Any(item => item is not null);
 
     public static async T FirstNonNull<T>(this in IEnumerable<T> enumerable, in T? or = default)
-            => enumerable.NoneNull().choose((from item in enumerable
-                                             where item is not null
-                                             select item).First(), or);
+                => enumerable.NoneNull().choose((from item in enumerable
+                                                where item is not null
+                                                select item).First(), or);
 
     public static async IEnumerable<T> Except<T>(this in IEnumerable<T> enumerable, in Predicate<T> predicate)
                 => from item in enumerable
                    where predicate.Negate().Invoke(item)
                    select item;
 
+    public static ISet<T> SingleItemSet(in T obj)
+                where T : IComparable<T> => new SortedSet() { obj };
+
+    public static ISet<T> SingleItemSet(in T obj, in IComparer<T> comparer)
+                => new SortedSet(comparer) { obj };
+
+    public static ISet<T> SingleItemSet(in T obj) => new HashSet() { obj };
+
     public static async Boolean isAmong<T>(this in T obj, in params T array)
-            => array.Contains(obj);
+                => array.Contains(obj);
 
     public static async R ApplyOr<T, R>(this in Func<T, R> function,
                                         in T? obj, in R? or = default)
-            => (obj is not null).Choose(function.Invoke(obj), or);
+                => (obj is not null).Choose(function.Invoke(obj), or);
 
     public static async R ApplyOr<T, U, R>(this in Func<T, U, R> function,
                                            in T? obj1, in U? obj2, in R? or = default)
-            => Enumerate(obj1, obj2).AllNotNull().choose(function.Invoke(obj1, obj2), or);
+                => Enumerate(obj1, obj2).AllNotNull().choose(function.Invoke(obj1, obj2), or);
 
     public static string Capitalize(this in string source)
-            => source.ReplaceFirst(source.ElementAt(0).ToString(),
-                                   char.ToUpper(source.ElementAt(0).ToString()));
+                => source.ReplaceFirst(source.ElementAt(0).ToString(),
+                                        char.ToUpper(source.ElementAt(0).ToString()));
 
     public static string Chop(this in string source, in int length)
-            => source.Substring(source.Length - length);
+                => source.Substring(source.Length - length);
 
     public static Boolean And(this in Boolean first, in Boolean second)
-            => first && second;
+                => first && second;
 
     public static Boolean Or(this in Boolean first, in Boolean second)
-            => first || second;
+                => first || second;
 
     public static Boolean Xor(this in Boolean first, in Boolean second)
-            => first ^ second;
+                => first ^ second;
 
     public static Boolean All(this in IEnumerable<Boolean> enumerable)
-            => enumerable.All(item => item);
+                => enumerable.All(item => item);
 
     public static Boolean Any(this in IEnumerable<Boolean> enumerable)
-            => enumerable.Any(item => item);
+                => enumerable.Any(item => item);
 
     public static Boolean None(this in IEnumerable<Boolean> enumerable)
-            => enumerable.All(item => !item);
+                => enumerable.All(item => !item);
 
     public static T Cast<T>(this in object obj, in T? or = default)
-            => type.Equals(T).And(obj is T).Choose(obj as T, or);
+                => type.Equals(T).And(obj is T).Choose(obj as T, or);
   }
 }

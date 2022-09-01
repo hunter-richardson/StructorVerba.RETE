@@ -7,7 +7,7 @@ using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
 namespace Pēnsōrēs.Āctibus
 {
-  public sealed class PēnsorĀctibusPrōnīsImperfectīs : PēnsorĪnflectendīs<Īnflectendum.ĀctusPrōnusImperfectus, Multiplex.Āctus>
+  public sealed class PēnsorĀctibusPrōnīsImperfectīs : PēnsorĀctibus<Īnflectendum.ĀctusPrōnusImperfectus>
   {
     private static Dictionary<Enum, PēnsorĀctibusPrōnīsImperfectīs> Reservātī = new Dictionary<Enum, PēnsorĀctibusPrōnīsImperfectīs>();
 
@@ -26,10 +26,9 @@ namespace Pēnsōrēs.Āctibus
     };
 
     private PēnsorĀctibusPrōnīsImperfectīs(in Enum versiō)
-                                            : base(versiō, Ēnumerātiōnēs.Catēgoria.Āctus,
-                                                   NūntiusPēnsōrīĀctibusPrōnīsImperfectīs.Faciendum,
-                                                   nameof(Īnflectendum.ĀctusPrōnusImperfectus.Īnfīnītīvum),
-                                                   Īnflectendum.ĀctusPrōnusImperfectus.Lēctor) {  }
+                                            : base(versiō, nameof(Īnflectendum.ĀctusPrōnusImperfectus.Īnfīnītīvum),
+                                             Tabula.Āctūs_Prōnī_Imperfectī, NūntiusPēnsōrīĀctibusPrōnīsImperfectīs.Faciendum,
+                                             Īnflectendum.ĀctusPrōnusImperfectusfectus.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīĀctibusPrōnīsImperfectīs : Nūntius<PēnsōrĀctibusPrōnīsImperfectīs>

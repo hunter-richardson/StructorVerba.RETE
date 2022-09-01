@@ -2,14 +2,24 @@ using System;
 using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
+using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus.Versio;
 
 namespace Pēnsōrēs.Nōmina
 {
-  public sealed class PēnsorNōminibus : PēnsorĪnflectendīs<Īnflectendum.Nōmen, Multiplex.Nōmen>
+  public abstract class PēnsorNōminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Nōmen>
   {
-    private static Dictionary<Enum, PēnsorNōminibus> Reservātī = new Dictionary<Enum, PēnsorNōminibus>();
+    private PēnsorNōminibus(in Enum versiō, in string quaerendī,
+                            in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
+                            in Func<JsonElement, Task<Hoc>> lēctor)
+                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen, quaerendī, nūntius, lēctor) { }
+  }
 
-    public static Func<Enum, PēnsorNōminibus> Faciendum = valor =>
+  public sealed class PēnsorNōminibus : PēnsorNōminibus<Īnflectendum.Nōmen>
+  {
+    private static Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus> Reservātī
+             = new Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus>();
+
+    public static Func<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -23,11 +33,10 @@ namespace Pēnsōrēs.Nōmina
       }
     };
 
-    private PēnsorNōminibus(in Enum versiō)
-                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen,
-                                    NūntiusPēnsōrīNōminibus.Faciendum,
-                                    nameof(Īnflectendum.Nōmen.Nominātīvum),
-                                    Īnflectendum.Nōmen.Lēctor) {  }
+    private PēnsorNōminibus(in ĪnflexorEffectusNōminibus.Versio versiō)
+                                                         : base(versiō, nameof(Īnflectendum.Nōmen.Nominātīvum),
+                                                                Tabula.Nōmina, NūntiusPēnsōrīNōminibus.Faciendum,
+                                                                Īnflectendum.Nōmen.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNōminibus : Nūntius<PēnsōrNōminibus>

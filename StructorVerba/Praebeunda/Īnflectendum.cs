@@ -28,13 +28,13 @@ namespace Praebeunda
       return Īnflexor?.ĪnflectemAsync(this, illa);
     }
 
-    public sealed class AdverbiumExāctum : Īnflectendum<AdverbiumExāctum, Multiplex.Adverbium>
+    public sealed class Adverbium : Īnflectendum<Adverbium, Multiplex.Adverbium>
     {
-      public static readonly Func<JsonElement, Enum, Task<AdverbiumExāctum>> Lēctor =
-                async (legendum, valor) => new AdverbiumExāctum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
-                                                                legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
-                                                                legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString(),
-                                                                legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString());
+      public static readonly Func<JsonElement, Enum, Task<Adverbium>> Lēctor =
+                async (legendum, valor) => new Adverbium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
+                                                         legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
+                                                         legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString(),
+                                                         legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString());
 
       private AdverbiumExāctum(in int minūtal, in string positīvum,
                                in string comparātīvum, in string superlātīvum)
@@ -49,21 +49,6 @@ namespace Praebeunda
       public readonly string Comparātīvum { get; }
       public readonly string Superlātīvum { get; }
       public string ToString() => Positīvum;
-    }
-
-    public sealed class AdverbiumIncomparātīvum : Īnflectendum<AdverbiumIncomparātīvum, Multiplex.Adverbium>
-    {
-      public static readonly Func<JsonElement, Enum, Task<AdverbiumIncomparātīvum>> Lēctor =
-                async (legendum, valor) => new AdverbiumIncomparātīvum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
-                                                                       legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
-      private AdverbiumIncomparātīvum(in int minūtal, in string scrīptum)
-                                      : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium)
-      {
-        Scrīptum = scrīptum;
-      }
-
-      public readonly string Scrīptum { get; }
-      public string ToString() => Scrīptum;
     }
 
     [AllArgsConstructor(MemberTypes.Property, Access.Private)]
@@ -156,20 +141,6 @@ namespace Praebeunda
       public readonly string Nominātīvum { get; }
       public readonly string Genitīvum { get; }
       public string ToString() => Nominātīvum;
-    }
-
-    public sealed class NōmenIndēclīnābile : Īnflectendum<NōmenIndēclīnābile, Multiplex.Nōmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NōmenIndēclīnābile>> Lēctor =
-                async (legendum, valor) => new NōmenIndēclīnābile(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
-                                                                  legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
-      private NōmenIndēclīnābile(in int minūtal, in string scrīptum)
-                                 : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen)
-      {
-        Scrīptum = scrīptum;
-      }
-
-      public readonly string Scrīptum { get; }
     }
 
     public sealed class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>

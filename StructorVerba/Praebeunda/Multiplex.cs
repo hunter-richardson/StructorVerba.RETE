@@ -56,9 +56,9 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Numerium numerium = Gradūs.Iactor.Invoke((from illud in illa
-                                                        where illud is Ēnumerātiōnēs.Numerium
-                                                        select illud).First());
+        const Numerium numerium = (from illud in illa
+                                   where illud is Ēnumerātiōnēs.Numerium
+                                   select illud).First();
         return Builder.WithNumerium(numerium).WithScrīpum(scrīpum).Build();
       };
 
@@ -79,21 +79,21 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Enum modus = Modī.Iactor.Invoke((from illud in illa
-                                               where illud is Ēnumerātiōnēs.Modus
-                                               select illud).First()),
-                   vōx = Vōcēs.Iactor.Invoke((from illud in illa
-                                              where illud is Ēnumerātiōnēs.Vōx
-                                              select illud).First()),
-                   tempus = Tempora.Iactor.Invoke((from illud in illa
-                                                   where illud is Ēnumerātiōnēs.Tempus
-                                                   select illud).First()),
-                   numerālis = Numerālēs.Iactor.Invoke((from illud in illa
-                                                        where Ēnumerātiōnēs.Numerālis
-                                                        select illud).First()),
-                   persōna = Numerālēs.Iactor.Invoke((from illud in illa
-                                                      where Ēnumerātiōnēs.Persōna
-                                                      select illud).First());
+        const Enum modus = (from illud in illa
+                            where illud is Ēnumerātiōnēs.Modus
+                            select illud).First(),
+                   vōx = (from illud in illa
+                          where illud is Ēnumerātiōnēs.Vōx
+                          select illud).First(),
+                   tempus = (from illud in illa
+                             where illud is Ēnumerātiōnēs.Tempus
+                             select illud).First(),
+                   numerālis = (from illud in illa
+                                where Ēnumerātiōnēs.Numerālis
+                                select illud).First(),
+                   persōna = (from illud in illa
+                              where Ēnumerātiōnēs.Persōna
+                              select illud).First();
         return Builder.WithModus(modus).WithVōx(vōx).WithTempus(tempus)
                       .WithNumerālis(numerālis).WithPersōna(persōna)
                       .WithScrīpum(scrīpum).Build();
@@ -125,9 +125,9 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Gradus gradus = Gradūs.Iactor.Invoke((from illud in illa
-                                                    where illud is Ēnumerātiōnēs.Gradus
-                                                    select illud).First());
+        const Gradus gradus = (from illud in illa
+                               where illud is Ēnumerātiōnēs.Gradus
+                               select illud).First();
         return Builder.WithGradus(gradus).WithScrīpum(scrīpum).Build();
       };
 
@@ -149,18 +149,18 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Enum gradus = Gradūs.Iactor.Invoke((from illud in illa
-                                                  where illud is Ēnumerātiōnēs.Gradus
-                                                  select illud).First()),
-                   genus = Genera.Iactor.Invoke((from illud in illa
-                                                 where illud is Ēnumerātiōnēs.Genus
-                                                 select illud).First()),
-                   numerālis = Numerālēs.Iactor.Invoke((from illud in illa
-                                                        where Ēnumerātiōnēs.Numerālis
-                                                        select illud).First()),
-                   casus = Casūs.Iactor.Invoke((from illud in illa
-                                                where Ēnumerātiōnēs.Casus
-                                                select illud).First());
+        const Enum gradus = (from illud in illa
+                             where illud is Ēnumerātiōnēs.Gradus
+                             select illud).First(),
+                   genus = (from illud in illa
+                            where illud is Ēnumerātiōnēs.Genus
+                            select illud).First(),
+                   numerālis = (from illud in illa
+                                where Ēnumerātiōnēs.Numerālis
+                                select illud).First(),
+                   casus = (from illud in illa
+                            where Ēnumerātiōnēs.Casus
+                            select illud).First();
         return Builder.WithGradus(gradus).WithGenus(genus)
                       .WithNumerālis(numerālis).WithCasus(casus)
                       .WithScrīpum(scrīpum).Build();
@@ -198,15 +198,15 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Nōmen>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Enum factum = Facta.Iactor.Invoke((from illud in illa
-                                                 where illud is Ēnumerātiōnēs.Factum
-                                                 select illud).First()),
-                   numerālis = Numerālēs.Iactor.Invoke((from illud in illa
-                                                        where Ēnumerātiōnēs.Numerālis
-                                                        select illud).First()),
-                   casus = Casūs.Iactor.Invoke((from illud in illa
-                                                where Ēnumerātiōnēs.Casus
-                                                select illud).First());
+        const Enum factum = (from illud in illa
+                             where illud is Ēnumerātiōnēs.Factum
+                             select illud).First(),
+                   numerālis = (from illud in illa
+                                where Ēnumerātiōnēs.Numerālis
+                                select illud).First(),
+                   casus = (from illud in illa
+                            where Ēnumerātiōnēs.Casus
+                            select illud).First();
         return Builder.WithFactum(factum).WithCasus(casus)
                       .WithNumerālis(numerālis)
                       .WithScrīpum(scrīpum).Build();
@@ -234,15 +234,15 @@ namespace Praebeunda
 
       public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor = async (illa, scrīpum) =>
       {
-        const Enum genus = Genera.Iactor.Invoke((from illud in illa
-                                                 where illud is Ēnumerātiōnēs.Genus
-                                                 select illud).First()),
-                   numerālis = Numerālēs.Iactor.Invoke((from illud in illa
-                                                        where Ēnumerātiōnēs.Numerālis
-                                                        select illud).First()),
-                   casus = Casūs.Iactor.Invoke((from illud in illa
-                                                where Ēnumerātiōnēs.Casus
-                                                select illud).First());
+        const Enum genus = (from illud in illa
+                            where illud is Ēnumerātiōnēs.Genus
+                            select illud).First(),
+                   numerālis = (from illud in illa
+                                where Ēnumerātiōnēs.Numerālis
+                                select illud).First(),
+                   casus = (from illud in illa
+                            where Ēnumerātiōnēs.Casus
+                            select illud).First();
         return Builder.WithGenus(genus).WithCasus(casus)
                       .WithNumerālis(numerālis)
                       .WithScrīpum(scrīpum).Build();

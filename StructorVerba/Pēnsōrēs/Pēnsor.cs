@@ -23,12 +23,15 @@ namespace Pēnsōrēs
   {
     public enum Tabula
     {
-      Lemmae, Verba, Adiectīva_Aut_Prīma_Aut_Secunda, Adverbia_Exācta, Adverbia_Incomparātīvum,
+      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Nōmina_Facta_Prōna,
       Numerāmina_Cardinālium_Solōrum, Numerāmina_Cardinālium_Ōrdināliumque,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
-      Numerāmina_Omnium_Praeter_Multiplicātīva, Numerāmina_Omnium_Praeter_Frāctiōnēs, Numerāmina_Omnium
+      Numerāmina_Omnium_Praeter_Multiplicātīva, Numerāmina_Omnium_Praeter_Frāctiōnēs, Numerāmina_Omnium,
+      Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
+      Adiectīva_Incomparātīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Incomparātīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
+      Āctūs_Effectī, Āctūs_Imperfectī, Āctūs_Prōnī, Āctūs_Prōnī_Imperfectī
     }
 
     public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();

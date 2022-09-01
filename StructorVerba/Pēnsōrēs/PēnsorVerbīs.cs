@@ -19,10 +19,23 @@ namespace Pēnsōrēs
               _ => PēnsorLemmīs.Faciendum
             };
 
-    protected PēnsorVerbīs(in Lazy<Nūntius<Pēnsor<Hoc>>> nūntius, in Func<JsonElement, Task<Hoc>> lēctor)
+    protected PēnsorVerbīs(in Lazy<Nūntius<PēnsorVerbīs<Hoc>>> nūntius, in Func<JsonElement, Task<Hoc>> lēctor)
                            : base(nameof(Verbum.Scrīptum), Tabula.Verba, nūntius, lēctor)
     {
       Nūntius.PlūsGarriōAsync("Fīō");
+    }
+  }
+
+  public sealed class PēnsorVerbīs : PēnsorVerbīs<Verbum>
+  {
+    private PēnsorVerbīs()
+        : base(nameof(Verbum.Scrīptum), Tabula.Verba,
+                      NūntiusPēnsōrīVerbīs.Faciendum, Verbum.Lēctor) {  }
+
+    [Singleton]
+    private sealed partial class NūntiusPēnsōrīVerbīs : Nūntius<PēnsōrVerbīs>
+    {
+      public static readonly Lazy<NūntiusPēnsōrīVerbīs> Faciendum = new Lazy<NūntiusPēnsōrīVerbīs>(() => Instance);
     }
   }
 }

@@ -12,17 +12,22 @@ using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 namespace Praebeunda
 {
   [AllArgsConstructor(MemberTypes.Property, AccessType.Protected)]
-  public abstract partial class Verbum<Hoc> : Pēnsābile<Hoc>, IComparable<Verbum>, IEquatable<Verbum>
+  public partial class Verbum<Hoc> : Pēnsābile<Hoc>, IComparable<Verbum>, IEquatable<Verbum>
       where Hoc : Verbum<Hoc>
   {
-    public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
+    public static readonly Func<JsonElement, Task<Verbum>> LēctorSimplicibus = async legendum
               => Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower()).GetString()) switch
               {
                 Cōniūnctiō  => Coniūnctiō.Lēctor.Invoke(legendum),
                 Interiectiō => Interiectiō.Lēctor.Invoke(legendum),
                 Praepositiō => Praepositiō.Lēctor.Invoke(legendum),
-                _           => Lemma.Lēctor.Invoke(legendum)
+                _ => Lemma.Lēctor.Invoke(legendum)
               };
+
+    public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
+              => new Verbum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                           Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
+                           legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
 
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }

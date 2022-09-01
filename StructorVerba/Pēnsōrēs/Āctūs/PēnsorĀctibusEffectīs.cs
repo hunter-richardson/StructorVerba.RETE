@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
+using Īnflexōrēs.Effectī.Āctūs.ĪnflexorEffectusĀctibus.Versio;
 
 namespace Pēnsōrēs.Āctūs
 {
-  public sealed class PēnsorĀctibusEffectīs : PēnsorĪnflectendīs<Īnflectendum.ĀctusEffectus, Multiplex.Āctus>
+  public sealed class PēnsorĀctibusEffectīs : PēnsorĀctibus<Īnflectendum.ĀctusEffectus>
   {
-    private static Dictionary<Enum, PēnsorĀctibusEffectīs> Reservātī = new Dictionary<Enum, PēnsorĀctibusEffectīs>();
+    private static Dictionary<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Reservātī = new Dictionary<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs>();
 
-    public static Func<Enum, PēnsorĀctibusEffectīs> Faciendum = valor =>
+    public static Func<ĪnflexōrēsEffectusĀctibus.Versio, PēnsorĀctibusEffectīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -23,11 +24,10 @@ namespace Pēnsōrēs.Āctūs
       }
     };
 
-    private PēnsorĀctibusEffectīs(in Enum versiō)
-                                   : base(versiō, Ēnumerātiōnēs.Catēgoria.Āctus,
-                                          NūntiusPēnsōrīĀctibusEffectīs.Faciendum,
-                                          nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum),
-                                          Īnflectendum.ĀctusEffectus.Lēctor) {  }
+    private PēnsorĀctibusEffectīs(in ĪnflexōrēsEffectusĀctibus.Versio versiō)
+                                                               : base(versiō, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum),
+                                                                      Tabula.Āctūs_Effectī, NūntiusPēnsōrīĀctibusEffectīs.Faciendum,
+                                                                      Īnflectendum.ĀctusEffectus.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīĀctibusEffectīs : Nūntius<PēnsōrĀctibusEffectīs>

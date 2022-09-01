@@ -20,7 +20,7 @@ namespace Pēnsōrēs
             {
               Ēnumerātiōnēs.Catēgoria.Āctus       => null,
               Ēnumerātiōnēs.Catēgoria.Adiectīvum  => null,
-              Ēnumerātiōnēs.Catēgoria.Adverbium   => PēnsorAdverbiīs.Relātor.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Adverbium   => PēnsorAdverbiīs.Faciendum,
               Ēnumerātiōnēs.Catēgoria.Nōmen       => null,
               Ēnumerātiōnēs.Catēgoria.Numerāmen   => PēnsorNumerāminibus.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Prōnōmen    => null,

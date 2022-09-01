@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
+using Īnflexōrēs.Effectī.Nōmina.NōminaFacta.ĪnflexorEffectusNōminibusFactīs.Versio;
 
 namespace Pēnsōrēs.Nōmina
 {
-  public sealed class PēnsorNōminibusFactīs : PēnsorĪnflectendīs<Īnflectendum.NōmenFactum, Multiplex.Nōmen>
+  public sealed class PēnsorNōminibusFactīs : PēnsorNōminibus<Īnflectendum.NōmenFactum>
   {
-    private static Dictionary<Enum, PēnsorNōminibusFactīs> Reservātī = new Dictionary<Enum, PēnsorNōminibusFactīs>();
+    private static Dictionary<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs> Reservātī
+             = new Dictionary<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs>();
 
-    public static Func<Enum, PēnsorNōminibusFactīs> Faciendum = valor =>
+    public static Func<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -23,11 +25,10 @@ namespace Pēnsōrēs.Nōmina
       }
     };
 
-    private PēnsorNōminibusFactīs(in Enum versiō)
-                                   : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen,
-                                          NūntiusPēnsōrīNōminibusFactīs.Faciendum,
-                                          nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
-                                          Īnflectendum.NōmenFactum.Lēctor) {  }
+    private PēnsorNōminibusFactīs(in ĪnflexorEffectusNōminibusFactīs.Versio versiō)
+                                                                     : base(versiō, nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
+                                                                            Tabula.Nōmina_Facta, NūntiusPēnsōrīNōminibusFactīs.Faciendum,
+                                                                            Īnflectendum.NōmenFactum.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNōminibusFactīs : Nūntius<PēnsōrNōminibusFactīs>

@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
+using Īnflexōrēs.Effectī.Nōmina.NōminaFacta.ĪnflexorEffectusNōminibusFactīsPrōnīs.Versio;
 
 namespace Pēnsōrēs.Nōmina
 {
-  public sealed class PēnsorNōminibusFactīsPrōnīs : PēnsorĪnflectendīs<Īnflectendum.NōmenFactumPrōnum, Multiplex.Nōmen>
+  public sealed class PēnsorNōminibusFactīsPrōnīs : PēnsorNōminibus<Īnflectendum.NōmenFactumPrōnum>
   {
-    private static Dictionary<Enum, PēnsorNōminibusFactīsPrōnīs> Reservātī = new Dictionary<Enum, PēnsorNōminibusFactīsPrōnīs>();
+    private static Dictionary<ĪnflexorEffectusNōminibusFactīsPrōnīs.Versio, PēnsorNōminibusFactīsPrōnīs> Reservātī
+             = new Dictionary<ĪnflexorEffectusNōminibusFactīsPrōnīs.Versio, PēnsorNōminibusFactīsPrōnīs>();
 
-    public static Func<Enum, PēnsorNōminibusFactīsPrōnīs> Faciendum = valor =>
+    public static Func<ĪnflexorEffectusNōminibusFactīsPrōnīs.Versio, PēnsorNōminibusFactīsPrōnīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -23,11 +25,10 @@ namespace Pēnsōrēs.Nōmina
       }
     };
 
-    private PēnsorNōminibusFactīsPrōnīs(in Enum versiō)
-                                         : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen,
-                                                NūntiusPēnsōrīNōminibusFactīsPrōnīs.Faciendum,
-                                                nameof(Īnflectendum.NōmenFactumPrōnum.Īnfīnītīvum),
-                                                Īnflectendum.NōmenFactumPrōnum.Lēctor) {  }
+    private PēnsorNōminibusFactīsPrōnīs(in ĪnflexorEffectusNōminibusFactīsPrōnīs.Versio versiō)
+                                                                                 : base(versiō, nameof(Īnflectendum.NōmenFactumPrōnum.Īnfīnītīvum),
+                                                                                        Tabula.Nōmina_Facta_Prōna, NūntiusPēnsōrīNōminibusFactīsPrōnīs.Faciendum,
+                                                                                        Īnflectendum.NōmenFactumPrōnum.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNōminibusFactīsPrōnīs : Nūntius<PēnsōrNōminibusFactīsPrōnīs>

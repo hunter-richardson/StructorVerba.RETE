@@ -36,7 +36,8 @@ namespace Miscella
                                                                                       from illud in illa
                                                                                       select illud;
 
-    public static async IEnumerable<Hoc> Complānō(in IComparer<Hoc> comparātor, in params IEnumerable<Hoc> haec) => Complānō(haec).OrderBy(hoc => hoc, comparātor);
+    public static async IEnumerable<Hoc> Complānō(in IComparer<Hoc> comparātor, in params IEnumerable<Hoc> haec)
+                => Complānō(haec).OrderBy(hoc => hoc, comparātor);
 
     public static async IEnumerable<Enum[]> Colligō(in ISet<Enum> seriēs) => IEnumerable.Repeat(seriēs, 1);
 

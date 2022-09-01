@@ -7,9 +7,9 @@ using Īnflexōrēs.ĪnflexorNumerāmibus.Versiō;
 
 namespace Pēnsōrēs.Numerāmina
 {
-  public abstract partial class PēnsorNumerāminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Numerāmen>
+  public abstract class PēnsorNumerāminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Numerāmen>
   {
-    private static readonly Func<Versiō, Tabula?> Tabulātor =
+    private static readonly Func<ĪnflexorNumerāmibus.Versiō, Tabula?> Tabulātor =
               versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
@@ -30,7 +30,7 @@ namespace Pēnsōrēs.Numerāmina
               _ => null
             };
 
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Versiō, Lazy<PēnsorNumerāminibus?>> Relātor =
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, ĪnflexorNumerāmibus.Versiō, Lazy<PēnsorNumerāminibus?>> Relātor =
               versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
@@ -51,7 +51,7 @@ namespace Pēnsōrēs.Numerāmina
               _ => new Lazy(null)
             };
 
-    protected PēnsorNumerāminibus(in Versiō versiō, in string quaerendī,
+    protected PēnsorNumerāminibus(in ĪnflexorNumerāmibus.Versiō versiō, in string quaerendī,
                                   in Lazy<Nūntius<PēnsorNumerāminibus<Hoc>>> nūntius,
                                   in Func<JsonElement, Task<Hoc>> lēctor)
                                      : base(versiō, quaerendī, Tabulātor.Invoke(versiō), nūntius, lēctor) { }

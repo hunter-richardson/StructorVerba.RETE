@@ -5,7 +5,7 @@ using Praebeunda;
 
 namespace Pēnsōrēs.Āctūs
 {
-  public sealed class PēnsorĀctibusImperfectīs : PēnsorĪnflectendīs<Īnflectendum.ĀctusImperfectus, Multiplex.Āctus>
+  public sealed class PēnsorĀctibusImperfectīs : PēnsorĀctibus<Īnflectendum.ĀctusImperfectus>
   {
     private static Dictionary<Enum, PēnsorĀctibusImperfectīs> Reservātī = new Dictionary<Enum, PēnsorĀctibusImperfectīs>();
 
@@ -24,9 +24,8 @@ namespace Pēnsōrēs.Āctūs
     };
 
     private PēnsorĀctibusImperfectīs(in Enum versiō)
-                                      : base(versiō, Ēnumerātiōnēs.Catēgoria.Āctus,
-                                             NūntiusPēnsōrīĀctibusImperfectīs.Faciendum,
-                                             nameof(Īnflectendum.ĀctusImperfectus.Īnfīnītīvum),
+                                      : base(versiō, nameof(Īnflectendum.ĀctusImperfectus.Īnfīnītīvum),
+                                             Tabula.Āctūs_Imperfectī, NūntiusPēnsōrīĀctibusImperfectīs.Faciendum,
                                              Īnflectendum.ĀctusImperfectus.Lēctor) {  }
 
     [Singleton]

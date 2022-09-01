@@ -6,7 +6,7 @@ using Praebeunda;
 namespace Pēnsōrēs.Adiectiva
 {
   public sealed class PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs
-            : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+            : PēnsorAdiectīvīs<Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium>
   {
     private static Dictionary<Enum, PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs> Reservātī = new Dictionary<Enum, PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs>();
 
@@ -25,9 +25,9 @@ namespace Pēnsōrēs.Adiectiva
     };
 
     private PēnsorAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs(in Enum versiō)
-                                                                          : base(versiō, Ēnumerātiōnēs.Catēgoria.Adiectīvum,
-                                                                                 NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs.Faciendum,
+                                                                          : base(versiō,
                                                                                  nameof(Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium.Neutrum),
+                                                                                 NūntiusPēnsōrīAdiectīvīsIncomparātīvīsAutPrīmīsAutSecundīsAutTertiīs.Faciendum,
                                                                                  Īnflectendum.AdiectīvumIncomparātīvumAutPrīmumAutSecundumAutTertium.Lēctor) {  }
 
     [Singleton]

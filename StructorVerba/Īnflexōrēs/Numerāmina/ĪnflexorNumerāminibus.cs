@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks.Task;
+
 using Praebeunda.Multiplex.Numerāmen;
 using Ēnumerātiōnēs;
 using Nūntiī.Nūntius;
@@ -18,8 +20,8 @@ namespace Īnflexōrēs.Numerāmina
       Omnium_Praeter_Multiplicātīva, Omnium_Praeter_Frāctiōnēs, Omnium
     }
 
-    public static readonly Func<Versiō, Lazy<ĪnflexorNumerāminibus>> Relātor
-            = versiō => versiō switch
+    public static readonly Func<Versiō, Task<Lazy<ĪnflexorNumerāminibus>>> Relātor
+            = async versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
                                ĪnflexorNumerāminibusCardinālumSōlōrum.Faciendum,
@@ -46,10 +48,9 @@ namespace Īnflexōrēs.Numerāmina
     public abstract string Scrībam(in Hoc hoc, in Numerium numerium);
     public string Scrībam(in Hoc hoc, in Enum[] illa)
     {
-      const Numerium numerium = Numeria.Iactor.Invoke(from illud in illa
-                                                      where illud is Numerium
-                                                      select illud).First();
-      return await ScrībamAsync(hoc, numerium);
+      return await ScrībamAsync(hoc, Numeria.Iactor.Invoke(from illud in illa
+                                                           where illud is Numerium
+                                                           select illud).First());
     }
   }
 }

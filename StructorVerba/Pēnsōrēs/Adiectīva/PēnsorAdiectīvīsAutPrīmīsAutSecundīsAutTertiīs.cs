@@ -6,7 +6,7 @@ using Praebeunda;
 namespace Pēnsōrēs.Adiectiva
 {
   public sealed class PēnsorAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs
-            : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+            : PēnsorAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
   {
     private static Dictionary<Enum, PēnsorAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs> Reservātī = new Dictionary<Enum, PēnsorAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs>();
 
@@ -24,11 +24,11 @@ namespace Pēnsōrēs.Adiectiva
       }
     };
 
-    private PēnsorAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs(in Enum versiō)
-                                                            : base(versiō, Ēnumerātiōnēs.Catēgoria.Adiectīvum,
-                                                                   NūntiusPēnsōrīAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs.Faciendum,
-                                                                   nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
-                                                                   Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor) {  }
+    private PēnsorAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs(in ĪnflexōrēsEffectusĀctibus.Versiō versiō)
+                                                                                        : base(versiō,
+                                                                                               nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
+                                                                                               NūntiusPēnsōrīAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs.Faciendum,
+                                                                                               Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīAdiectīvīsAutPrīmīsAutSecundīsAutTertiīs
