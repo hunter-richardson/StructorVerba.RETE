@@ -1,20 +1,13 @@
 using System;
 using System.Collections.Generic.Dictionary;
 
+using Nūntiī.Nūntius;
 using Praebeunda;
 using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus.Versio;
 
 namespace Pēnsōrēs.Nōmina
 {
-  public abstract partial class PēnsorNōminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Nōmen>
-  {
-    private PēnsorNōminibus(in Enum versiō, in string quaerendī,
-                            in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
-                            in Func<JsonElement, Task<Hoc>> lēctor)
-                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen, quaerendī, nūntius, lēctor) { }
-  }
-
-  public sealed partial class PēnsorNōminibus : PēnsorNōminibus<Īnflectendum.Nōmen>
+  public sealed class PēnsorNōminibus : PēnsorNōminibus<Īnflectendum.Nōmen>
   {
     private static Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus> Reservātī
              = new Dictionary<ĪnflexorEffectusNōminibus.Versio, PēnsorNōminibus>();
