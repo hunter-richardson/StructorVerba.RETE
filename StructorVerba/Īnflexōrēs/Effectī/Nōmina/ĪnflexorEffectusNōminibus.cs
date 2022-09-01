@@ -21,9 +21,9 @@ namespace Īnflexōrēs.Effectī.Nōmina
       Nōmen_Secundus_Varius_Sine_Litterā_E,  Nōmen_Tertius, Nōmen_Tertius_Neuter,
       Nōmen_Tertius_Cum_Genitīvō_Variō, Nōmen_Tertius_Cum_Ablātīvō_Variō, Nōmen_Tertius_Cum_Genitīvō_Ablātīvōque_Variō,
       Nōmen_Tertius_Neuter_Cum_Genitīvō_Variō, Nōmen_Tertius_Neuter_Cum_Ablātīvō_Variō, Nōmen_Tertius_Neuter_Cum_Genitīvō_Ablātīvōque_Variō,
-      Nōmen_Quārtus, Nōmen_Quārtus_Varius, Nōmen_Quīntus, Nōmen_Graecus_Prīmus, Nōmen_Graecus_Prīmus_Cum_Litterā_Ē,
-      Nōmen_Graecus_Prīmus_Cum_Litterīs_ĒS, Nōmen_Graecus_Prīmus_Cum_Litterīs_ĀS, Nōmen_Graecus_Secundus, Nōmen_Graecus_Tertius,
-      Nōmen_Graecus_Tertius_Varius, Nōmen_Graecus_Quārtus
+      Nōmen_Quārtus, Nōmen_Quārtus_Varius, Nōmen_Quīntus, Graecus_Prīmus, Graecus_Prīmus_Cum_Litterā_Ē,
+      Graecus_Prīmus_Cum_Litterīs_ĒS, Graecus_Prīmus_Cum_Litterīs_ĀS, Graecus_Secundus, Graecus_Tertius,
+      Graecus_Tertius_Varius, Graecus_Quārtus
     }
 
     public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibus?>>> Relātor = async versiō => versiō switch
@@ -44,14 +44,14 @@ namespace Īnflexōrēs.Effectī.Nōmina
       Versiō.Nōmen_Quārtus => null,
       Versiō.Nōmen_Quārtus_Varius => null,
       Versiō.Nōmen_Quīntus => null,
-      Versiō.Nōmen_Graecus_Prīmus => null,
-      Versiō.Nōmen_Graecus_Prīmus_Cum_Litterā_Ē => null,
-      Versiō.Nōmen_Graecus_Prīmus_Cum_Litterīs_ĒS => null,
-      Versiō.Nōmen_Graecus_Prīmus_Cum_Litterīs_ĀS => null,
-      Versiō.Nōmen_Graecus_Secundus => null,
-      Versiō.Nōmen_Graecus_Tertius => null,
-      Versiō.Nōmen_Graecus_Tertius_Varius => null,
-      Versiō.Nōmen_Graecus_Quārtus => null,
+      Versiō.Graecus_Prīmus => null,
+      Versiō.Graecus_Prīmus_Cum_Litterā_Ē => null,
+      Versiō.Graecus_Prīmus_Cum_Litterīs_ĒS => null,
+      Versiō.Graecus_Prīmus_Cum_Litterīs_ĀS => null,
+      Versiō.Graecus_Secundus => null,
+      Versiō.Graecus_Tertius => null,
+      Versiō.Graecus_Tertius_Varius => null,
+      Versiō.Graecus_Quārtus => null,
       _ => new Lazy(null),
     };
 
