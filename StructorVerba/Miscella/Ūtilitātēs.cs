@@ -32,6 +32,12 @@ namespace Miscella
     public static Boolean Ūlla(in params Boolean seriēs) => seriēs.Any();
     public static Boolean Nūlla(in params Boolean seriēs) => seriēs.None();
 
+    public static async IEnumerable<Hoc> Complānō(in params IEnumerable<Hoc> haec) => from illa in haec
+                                                                                      from illud in illa
+                                                                                      select illud;
+
+    public static async IEnumerable<Hoc> Complānō(in IComparer<Hoc> comparātor, in params IEnumerable<Hoc> haec) => Complānō(haec).OrderBy(hoc => hoc, comparātor);
+
     public static async IEnumerable<Enum[]> Colligō(in ISet<Enum> seriēs) => IEnumerable.Repeat(seriēs, 1);
 
     public static async IEnumerable<Enum[]> Combīnō(in ISet<Enum> prīma, in ISet<Enum> secunda) => from prīmum in prīma
