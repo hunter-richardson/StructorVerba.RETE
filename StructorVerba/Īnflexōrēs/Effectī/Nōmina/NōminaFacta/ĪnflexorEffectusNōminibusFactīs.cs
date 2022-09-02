@@ -58,14 +58,6 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
       ĪnfixumGerundīvum = gerundīvum;
     }
 
-    protected abstract string? Gerundīvum(in Casus casus);
-    protected sealed string? Supīnum(in Casus casus)
-                 => casus switch
-                    {
-                      Casus.Accusātīvus => "um",
-                      Casus.Ablātīvus => "ū"
-                    };
-
     public sealed string? Suffixum(in Enum[] illa)
     {
       const Factum factum = Facta.Iactor.Invoke((from illud in illa
