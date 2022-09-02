@@ -32,7 +32,11 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
         _ => new Lazy(null),
       };
 
-    protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius)
+    private readonly string SuffixumĪnfīnītīvum { get; }
+    private readonly string ĪnfixumGerundīvum { get; }
+
+    protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
+                                              in strin īnfīnītīvum, in string gerundīvum)
                                                  : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
                                                         (nōmen, illa) =>
                                                         {
@@ -48,8 +52,12 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
                                                            Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
                                                                               new SortedSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
                                                            Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
-                                                                              new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }))) { }
-    protected abstract string Īnfīnītīvum();
+                                                                              new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus })))
+    {
+      SuffixumĪnfīntītīvum = īnfīnītīvum;
+      ĪnfixumGerundīvum = gerundīvum;
+    }
+
     protected abstract string? Gerundīvum(in Casus casus);
     protected sealed string? Supīnum(in Casus casus)
                  => casus switch
@@ -68,11 +76,16 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
                                                select illud).First());
       return await (factum, casus) switch
       {
-        var īnscītum when default(Factum).Equals(factum).Or(default(Casus).Equals(casus))
-                                => Task.CompletedTask,
-        (Factum.Īnfīnītīvum, _) => ĪnfīnfītīvumAsync(),
-        (Factum.Gerundīvum, _) => GerundīvumAsync(casus),
-        (Factum.Supīnum, _) => SupīnumAsync(casus)
+        (_, default(Casus)) => Task.CompletedTask,
+        (Factum.Īnfīnītīvum, _) => SuffixumĪnfīnfītīvum,
+        (Factum.Gerundīvum, _) => ĪnfixumGerundīvum.Concat(casus switch
+        {
+          Casus.Genitīvus => "ī",
+          Casus.Accusātīvus => "um",
+          Casus.Datīvus or Casus.Ablātīvus => "ō"
+        }),
+        (Factum.Supīnum, Casus.Accusātīvus) => "um",
+        (Factum.Supīnum, Casus.Ablātīvus) => "ū"
       };
     }
   }
