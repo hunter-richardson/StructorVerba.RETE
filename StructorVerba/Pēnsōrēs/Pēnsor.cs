@@ -87,7 +87,7 @@ namespace Pēnsōrēs
       try
       {
         const Hoc? hoc = (from linea in Tabulātor.Invoke()
-                          where minūtal.Equals(linea.GetProperty(nameof(minūtal)).GetInt32())
+                          where minūtal == linea.GetProperty(nameof(minūtal)).GetInt32()
                           select await LegamAsync(linea)).FirstOrDefault(null);
         if (hoc == null)
         {

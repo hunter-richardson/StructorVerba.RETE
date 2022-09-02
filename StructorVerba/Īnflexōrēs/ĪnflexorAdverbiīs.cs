@@ -22,18 +22,14 @@ namespace Īnflexōrēs
                  NūntiusĪnflexōrīAdverbiīsAdverbium.Faciendum,
                  Gradus.GetValues().Except(Gradus.Nūllus)) { }
 
-    public string? Scrībam(in Īnflectendum.Adverbium adverbium, in Enum[] illa)
-    {
-      return Gradūs.Iactor.Invoke(from illud in illa
-                                  where illud is Gradus
-                                  select illud).First() switch
-      {
-        Positīvus => adverbium.Positīvus,
-        Comparātīvus => adverbium.Comparātīvus,
-        Superlātīvus => adverbium.Superlātīvus,
-        _ => null
-      };
-    }
+    public sealed string? Scrībam(in Īnflectendum.Adverbium adverbium, in Enum[] illa)
+              => illa.FirstOf<Gradus>() switch
+                  {
+                    Positīvus => adverbium.Positīvus,
+                    Comparātīvus => adverbium.Comparātīvus,
+                    Superlātīvus => adverbium.Superlātīvus,
+                    _ => null
+                  };
 
     [Singleton]
     private sealed partial class NūntiusĪnflexōrīAdverbiīsAdverbium : Nūntius<ĪnflexorAdverbiīs>

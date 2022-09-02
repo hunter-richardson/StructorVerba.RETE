@@ -11,7 +11,6 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Gradūs
   {
-    public static readonly Func<Gradus, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Gradus> Iactor = valor => valor.Cast<Gradus>(default);
+    public static string ToString(this Gradus valor) => Enum.GetName<Gradus>(valor).ToLower();
   }
 }

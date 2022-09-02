@@ -30,19 +30,20 @@ namespace Īnflexōrēs
               Ēnumerātiōnēs.Catēgoria.Adverbium => ĪnflexorAdverbiīs.Faciendum,
               Ēnumerātiōnēs.Catēgoria.Āctus => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Adiectīvum => ĪnflexorAdiectīvīs.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Nōmen => ĪnflexorEffectusNōminibus.Relātor.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Nōmen => ĪnflexorEffectusNōminibus.Versor.Invoke(versiō),
               Ēnumerātiōnēs.Catēgoria.Numerāmen => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
 
-    public readonly Func<string, Task<Enum?>> Versor = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor,
-                                                                                                          ĪnflexorAdverbiīs.Versiō.GetValues(),
-                                                                                                          ĪnflexorEffectusĀctibus.Versiō.GetValues(),
-                                                                                                          ĪnflexorEffectusAdiectīvīs.Versiō.GetValues(),
-                                                                                                          ĪnflexorEffectusNōminibus.Versiō.GetValues(),
-                                                                                                          ĪnflexorNumerāminibus.Versiō.GetValues())
-                                                                        where valor.ToString().ToLower().Equals(versiō)
-                                                                        select valor).FirstNonNull(null);
+    public readonly Func<string, Task<Enum?>> Versor
+              = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor,
+                                                                   ĪnflexorAdverbiīs.Versiō.GetValues(),
+                                                                   ĪnflexorEffectusĀctibus.Versiō.GetValues(),
+                                                                   ĪnflexorEffectusAdiectīvīs.Versiō.GetValues(),
+                                                                   ĪnflexorEffectusNōminibus.Versiō.GetValues(),
+                                                                   ĪnflexorNumerāminibus.Versiō.GetValues())
+                                 where valor.ToString().Equals(versiō, StringComparison.OrdinalIgnoreCase)
+                                 select valor).FirstNonNull(null);
 
     public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
     protected readonly SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);

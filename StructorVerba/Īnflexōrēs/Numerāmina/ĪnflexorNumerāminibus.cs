@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks.Task;
 
+using Miscella.Extensions;
 using Praebeunda.Multiplex.Numerāmen;
 using Ēnumerātiōnēs;
 using Nūntiī.Nūntius;
@@ -46,11 +47,6 @@ namespace Īnflexōrēs.Numerāmina
                                        : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, nūntius, illa) { }
 
     public abstract string Scrībam(in Hoc hoc, in Numerium numerium);
-    public string Scrībam(in Hoc hoc, in Enum[] illa)
-    {
-      return await ScrībamAsync(hoc, Numeria.Iactor.Invoke(from illud in illa
-                                                           where illud is Numerium
-                                                           select illud).First());
-    }
+    public string Scrībam(in Hoc hoc, in Enum[] illa) => await ScrībamAsync(hoc, illa.FirstOf<Numerium>());
   }
 }

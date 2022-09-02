@@ -6,14 +6,11 @@ namespace Ēnumerātiōnēs
 {
   public enum Tempus
   {
-    Intemporāle, Praesēns, Īnfectum, Futūrum, Perfectum, Plūsquamperfectum, FutūrumExāctum
+    Intemporāle, Praesēns, Īnfectum, Futūrum, Perfectum, Plūsquamperfectum, Futūrum_Exāctum
   }
 
   public static sealed class Tempora
   {
-    public static readonly Func<Tempus, string> Scrīptor =
-              valor => Tempus.FutūrumExāctum.equals(valor).choose("futūrum exāctum", valor.ToString().ToLower());
-
-    public static readonly Func<Enum, Tempus> Iactor = valor => valor.Cast<Tempus>(default);
+    public static string ToString(this Tempus valor) => Enum.GetName<Tempus>(valor).ToLower().Replace('_', ' ');
   }
 }

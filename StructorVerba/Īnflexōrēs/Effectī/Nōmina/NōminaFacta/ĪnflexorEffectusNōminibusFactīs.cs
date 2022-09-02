@@ -17,18 +17,18 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
   {
     public enum Versiō
     {
-      Nōmen_Prīmus = ĪnflexōrēsEffectusĀctibus.Versiō.Prīmus,
-      Nōmen_Secundus = ĪnflexōrēsEffectusĀctibus.Versiō.Secundus,
-      Nōmen_Tertius = ĪnflexōrēsEffectusĀctibus.Versiō.Tertius,
-      Nōmen_Quārtus = ĪnflexōrēsEffectusĀctibus.Versiō.Quārtus
+      Nōmen_Factum_Prīmum = ĪnflexōrēsEffectusĀctibus.Versiō.Prīmus,
+      Nōmen_Factum_Secundum = ĪnflexōrēsEffectusĀctibus.Versiō.Secundus,
+      Nōmen_Factum_Tertium = ĪnflexōrēsEffectusĀctibus.Versiō.Tertius,
+      Nōmen_Factum_Quārtum = ĪnflexōrēsEffectusĀctibus.Versiō.Quārtus
     }
 
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Versor = async versiō => versiō switch
+    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Relātor = async versiō => versiō switch
       {
-        Versiō.Nōmen_Prīmus => null,
-        Versiō.Nōmen_Secundus => null,
-        Versiō.Nōmen_Tertius => null,
-        Versiō.Nōmen_Quārtus => null,
+        Versiō.Nōmen_Factum_Prīmum => ĪnflexorEffectusPrīmusNōminibusFactīs.Faciendum,
+        Versiō.Nōmen_Factum_Secundum => ĪnflexorEffectusSecundusNōminibusFactīs.Faciendum,
+        Versiō.Nōmen_Factum_Tertium => ĪnflexorEffectusTertiusNōminibusFactīs.Faciendum,
+        Versiō.Nōmen_Factum_Quārtum => ĪnflexorEffectusQuārtusNōminibusFactīs.Faciendum,
         _ => new Lazy(null),
       };
 
@@ -36,23 +36,15 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
     private readonly string ĪnfixumGerundīvum { get; }
 
     protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
-                                              in strin īnfīnītīvum, in string gerundīvum)
+                                              in string īnfīnītīvum, in string gerundīvum)
                                                  : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
-                                                        (nōmen, illa) =>
-                                                        {
-                                                          const Factum factum = Facta.Iactor.Invoke((from illud in illa
-                                                                                                     where illud is Factum
-                                                                                                     select illud).First());
-                                                          const Casus casus = Casūs.Iactor.Invoke((from illud in illa
-                                                                                                   where illud is Casus
-                                                                                                   select illud).First());
-                                                          return Factum.Supīnum.Equals(factum)
-                                                                               .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3));
-                                                        }, Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet(),
-                                                           Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
-                                                                              new SortedSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
-                                                           Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
-                                                                              new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus })))
+                                                        (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
+                                                                                        .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
+                                                        Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),
+                                                        Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
+                                                                           new SortedSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
+                                                        Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
+                                                                           new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }))
     {
       SuffixumĪnfīntītīvum = īnfīnītīvum;
       ĪnfixumGerundīvum = gerundīvum;
@@ -60,24 +52,16 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
 
     public sealed string? Suffixum(in Enum[] illa)
     {
-      const Factum factum = Facta.Iactor.Invoke((from illud in illa
-                                                 where illud is Factum
-                                                 select illud).First());
-      const Casus casus = Casūs.Iactor.Invoke((from illud in illa
-                                               where illud is Casus
-                                               select illud).First());
-      return await (factum, casus) switch
+      return (illa.FirstOf<Factum>(), illa.FirstOf<Casus>()) switch
       {
-        (_, default(Casus)) => Task.CompletedTask,
         (Factum.Īnfīnītīvum, _) => SuffixumĪnfīnfītīvum,
-        (Factum.Gerundīvum, _) => ĪnfixumGerundīvum.Concat(casus switch
-        {
-          Casus.Genitīvus => "ī",
-          Casus.Accusātīvus => "um",
-          Casus.Datīvus or Casus.Ablātīvus => "ō"
-        }),
+        (_, Casus.Genitīvus) => ĪnfixumGerundīvum.Concat("ī"),
+        (_, Casus.Datīvus) => ĪnfixumGerundīvum.Concat("ō"),
+        (Factum.Gerundīvum, Casus.Accusātīvus) => ĪnfixumGerundīvum.Concat("um"),
+        (Factum.Gerundīvum, Casus.Ablātīvus) => ĪnfixumGerundīvum.Concat("ō"),
         (Factum.Supīnum, Casus.Accusātīvus) => "um",
-        (Factum.Supīnum, Casus.Ablātīvus) => "ū"
+        (Factum.Supīnum, Casus.Ablātīvus) => "ū",
+        _ => null
       };
     }
   }

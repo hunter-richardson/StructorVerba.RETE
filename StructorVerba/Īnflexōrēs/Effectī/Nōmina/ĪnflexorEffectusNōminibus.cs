@@ -7,6 +7,7 @@ using Miscella;
 using Praebeunda.Multiplex;
 using Praebeunda.Īnflectendum;
 using Ēnumerātiōnēs;
+using Īnflexōrēs.Effectī.Nōmina.NōminaGraeca;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
@@ -17,41 +18,31 @@ namespace Īnflexōrēs.Effectī.Nōmina
   {
     public enum Versiō
     {
-      Nōmen_Prīmus, Nōmen_Secundus_Masculīnus, Nōmen_Secundus_Neuter, Nōmen_Secundus_Varius_Cum_Litterā_E,
-      Nōmen_Secundus_Varius_Sine_Litterā_E,  Nōmen_Tertius, Nōmen_Tertius_Neuter,
-      Nōmen_Tertius_Cum_Genitīvō_Variō, Nōmen_Tertius_Cum_Ablātīvō_Variō, Nōmen_Tertius_Cum_Genitīvō_Ablātīvōque_Variō,
-      Nōmen_Tertius_Neuter_Cum_Genitīvō_Variō, Nōmen_Tertius_Neuter_Cum_Ablātīvō_Variō, Nōmen_Tertius_Neuter_Cum_Genitīvō_Ablātīvōque_Variō,
-      Nōmen_Quārtus, Nōmen_Quārtus_Varius, Nōmen_Quīntus, Graecus_Prīmus, Graecus_Prīmus_Cum_Litterā_Ē,
-      Graecus_Prīmus_Cum_Litterīs_ĒS, Graecus_Prīmus_Cum_Litterīs_ĀS, Graecus_Secundus, Graecus_Tertius,
-      Graecus_Tertius_Varius, Graecus_Quārtus
+      Nōmen_Prīmum, Nōmen_Secundum_Masculīnum, Nōmen_Secundum_Neutrum, Nōmen_Secundum_Varium_Cum_Litterā_E,
+      Nōmen_Secundum_Varium_Sine_Litterā_E, Nōmen_Tertium, Nōmen_Tertium_Neutrum,
+      Nōmen_Tertium_Cum_Genitīvō_Variō, Nōmen_Tertium_Cum_Ablātīvō_Variō, Nōmen_Tertium_Cum_Genitīvō_Ablātīvōque_Variō,
+      Nōmen_Tertium_Neutrum_Cum_Genitīvō_Variō, Nōmen_Tertium_Neutrum_Cum_Ablātīvō_Variō, Nōmen_Tertium_Neutrum_Cum_Genitīvō_Ablātīvōque_Variō,
+      Nōmen_Quārtum, Nōmen_Quārtum_Varium, Nōmen_Quīntum
     }
 
     public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibus?>>> Relātor = async versiō => versiō switch
     {
-      Versiō.Nōmen_Prīmus => null,
-      Versiō.Nōmen_Secundus_Masculīnus => null,
-      Versiō.Nōmen_Secundus_Neuter => null,
-      Versiō.Nōmen_Secundus_Varius_Cum_Litterā_E => null,
-      Versiō.Nōmen_Secundus_Varius_Sine_Litterā_E => null,
-      Versiō.Nōmen_Tertius => null,
-      Versiō.Nōmen_Tertius_Neuter => null,
-      Versio.Nōmen_Tertius_Cum_Genitīvō_Variō => null,
-      Versiō.Nōmen_Tertius_Cum_Ablātīvō_Variō => null,
-      Versiō.Nōmen_Tertius_Cum_Genitīvō_Ablātīvōque_Variō => null,
-      Versiō.Nōmen_Tertius_Neuter_Cum_Genitīvō_Variō => null,
-      Versiō.Nōmen_Tertius_Neuter_Cum_Ablātīvō_Variō => null,
-      Versiō.Nōmen_Tertius_Neuter_Cum_Genitīvō_Ablātīvōque_Variō => null,
-      Versiō.Nōmen_Quārtus => null,
-      Versiō.Nōmen_Quārtus_Varius => null,
-      Versiō.Nōmen_Quīntus => null,
-      Versiō.Graecus_Prīmus => null,
-      Versiō.Graecus_Prīmus_Cum_Litterā_Ē => null,
-      Versiō.Graecus_Prīmus_Cum_Litterīs_ĒS => null,
-      Versiō.Graecus_Prīmus_Cum_Litterīs_ĀS => null,
-      Versiō.Graecus_Secundus => null,
-      Versiō.Graecus_Tertius => null,
-      Versiō.Graecus_Tertius_Varius => null,
-      Versiō.Graecus_Quārtus => null,
+      Versiō.Nōmen_Prīmum => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
+      Versiō.Nōmen_Secundum_Masculīnum => ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum,
+      Versiō.Nōmen_Secundum_Neutrum => ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum,
+      Versiō.Nōmen_Secundum_Varium_Cum_Litterā_E => ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE.Faciendum,
+      Versiō.Nōmen_Secundum_Varium_Sine_Litterā_E => ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE.Faciendum,
+      Versiō.Nōmen_Tertium => ĪnflexorEffectusTertiusNōminibus.Faciendum,
+      Versiō.Nōmen_Tertium_Neutrum => ĪnflexorEffectusTertiusNeuterNōminibus.Faciendum,
+      Versiō.Nōmen_Tertium_Cum_Genitīvō_Variō => ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō.Faciendum,
+      Versiō.Nōmen_Tertium_Cum_Ablātīvō_Variō => ĪnflexorEffectusTertiusNōminibusCumAblātīvōVariō.Faciendum,
+      Versiō.Nōmen_Tertium_Cum_Genitīvō_Ablātīvōque_Variō => ĪnflexorEffectusTertiusNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
+      Versiō.Nōmen_Tertium_Neutrum_Cum_Genitīvō_Variō => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō.Faciendum,
+      Versiō.Nōmen_Tertium_Neutrum_Cum_Ablātīvō_Variō => ĪnflexorEffectusTertiusNeuterNōminibusCumAblātīvōVariō.Faciendum,
+      Versiō.Nōmen_Tertium_Neutrum_Cum_Genitīvō_Ablātīvōque_Variō => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
+      Versiō.Nōmen_Quārtum => ĪnflexorEffectusQuārtusNōminibus.Faciendum,
+      Versiō.Nōmen_Quārtum_Varium => ĪnflexorEffectusQuārtusVariusNōminibus.Faciendum,
+      Versiō.Nōmen_Quīntum => ĪnflexorEffectusQuīntusNōminibus.Faciendum,
       _ => new Lazy(null),
     };
 
@@ -59,24 +50,18 @@ namespace Īnflexōrēs.Effectī.Nōmina
                                         in Func<Īnflectendum.Nōmen, Enum[], string> rādīcātor)
                                            : base(versiō, nūntius, nameof(Īnflectendum.Nōmen.Nominātīvum), rādīcātor,
                                                   Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToSortedSet(),
-                                                                     Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet())) { }
+                                                                     Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet()))
+    { }
 
     public abstract string Singulāre(in Casus casus);
     public abstract string Plūrāle(in Casus casus);
     public sealed string? Suffixum(in Enum[] illa)
-    {
-      const Casus casus = Casūs.Iactor.Invoke((from illud in illa
-                                               where illud is Casus
-                                               select illud).First());
-      const Numerālis numerālis = Numerālēs.Iactor.Invoke((from illud in illla
-                                                           where illud is Numerālis
-                                                           select illud).First());
-      return await (numerālis, casus) switch
-      {
-        var īnscītum when default(Numerālis).Equals(numerālis).Or(default(Casus).Equals(casus))
-                                => Task.CompletedTask,
-        (Numerālis.Singulāris, _) => SingulāreAsync(casus),
-        (Numerālis.Plūrālis, _) => PlūrāleAsync(casus)
-      };
-    }
+              => await(illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
+              {
+                var īnscītum when default(Numerālis).Equals(numerālis).Or(default(Casus).Equals(casus))
+                                        => Task.FromResult<string?>(null),
+                (Numerālis.Singulāris, _) => SingulāreAsync(casus),
+                (Numerālis.Plūrālis, _) => PlūrāleAsync(casus)
+              };
   }
+}

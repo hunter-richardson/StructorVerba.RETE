@@ -48,47 +48,47 @@ namespace Nūntiī
 
     [Async] public sealed void Terreō(in Exception error) => Nuntiō(Level.Error, error);
 
-    private sealed void Nūntiō(in LoggingEvent factum) => Praecō.DoAppend(factum);
+    private sealed async void Nūntiō(in LoggingEvent factum) => await Praecō.DoAppend(factum);
 
-    private sealed void Nūntiō(in Level gradus, in string nūnium)
-              => Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
-                                                      {
-                                                        DateTime = DateTime.Now,
-                                                        Domain = AppDomain.Name,
-                                                        LoggerName = Praecō.Name,
-                                                        Level = gradus,
-                                                        LocationInfo = new LocationInfo(typeof(Hoc)),
-                                                        Message = nūntium
-                                                      }));
+    private sealed async void Nūntiō(in Level gradus, in string nūnium)
+              => await Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
+                                                        {
+                                                          DateTime = DateTime.Now,
+                                                          Domain = AppDomain.Name,
+                                                          LoggerName = Praecō.Name,
+                                                          Level = gradus,
+                                                          LocationInfo = new LocationInfo(typeof(Hoc)),
+                                                          Message = nūntium
+                                                        }));
 
-    private sealed void Nūntiō(in Level gradus, in Exception error)
-              => Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
-                                                      {
-                                                        DateTime = DateTime.Now,
-                                                        Domain = AppDomain.CurrentDomain.FriendlyName,
-                                                        ExceptionString = error.GetBaseException().Message,
-                                                        LoggerName = Praecō.Name,
-                                                        Level = gradus,
-                                                        LocationInfo = new LocationInfo(typeof(Hoc)),
-                                                      }));
+    private sealed async void Nūntiō(in Level gradus, in Exception error)
+              => await Praecō.DoAppend(new LoggingEvent(new LoggingEventData()
+                                                        {
+                                                          DateTime = DateTime.Now,
+                                                          Domain = AppDomain.CurrentDomain.FriendlyName,
+                                                          ExceptionString = error.GetBaseException().Message,
+                                                          LoggerName = Praecō.Name,
+                                                          Level = gradus,
+                                                          LocationInfo = new LocationInfo(typeof(Hoc)),
+                                                        }));
 
-    private sealed void Nūntiō(in Level gradus, in params object nūntia)
+    private sealed async void Nūntiō(in Level gradus, in params object nūntia)
     {
       (from nūntium in nūntia
        where nūntium is Exception
        select nūntium.Cast<Exception>())
-            .ForEach(error => Nūntiō(Ūtilitātēs.Seriēs(level, Level.Error).Min(), error));
-      Nūntiō(level, string.Join(' ', $"{typeof(Hoc).FullName}: [{Tempors.FormatDate(DateTime.Now)}] <{gradus}>",
-                                     string.Join(' ', from nūntium in nūntia
-                                                      where nūntium is not Exception
-                                                      select nūntium.ToString())));
+            .ForEach(error => await Nūntiō(Ūtilitātēs.Seriēs(level, Level.Error).Min(), error));
+      await Nūntiō(level, string.Join(' ', $"{typeof(Hoc).FullName}: [{Tempors.FormatDate(DateTime.Now)}] <{gradus}>",
+                                           string.Join(' ', from nūntium in nūntia
+                                                            where nūntium is not Exception
+                                                            select nūntium.ToString())));
     }
 
-    [Async] public sealed void Nōtō(in params object nūntia) => Nūntiō(Level.Notice, nūntia);
-    [Async] public sealed void Moneō(in params object nūntia) => Nūntiō(Level.Warn, nūntia);
-    [Async] public sealed void Certiōrō(in params object nūntia) => Nūntiō(Level.Info, nūntia);
-    [Async] public sealed void Garriō(in params object nūntia) => Nūntiō(Level.Debug, nūntia);
-    [Async] public sealed void PlūsGarriō(in params object nūntia) => Nūntiō(Level.Trace, nūntia);
-    [Async] public sealed void PlūrimumGarriō(in params object nūntia) => Nūntiō(Level.Verbose, nūntia);
+    [Async] public sealed void Nōtō(in params object nūntia) => await Nūntiō(Level.Notice, nūntia);
+    [Async] public sealed void Moneō(in params object nūntia) => await Nūntiō(Level.Warn, nūntia);
+    [Async] public sealed void Certiōrō(in params object nūntia) => await Nūntiō(Level.Info, nūntia);
+    [Async] public sealed void Garriō(in params object nūntia) => await Nūntiō(Level.Debug, nūntia);
+    [Async] public sealed void PlūsGarriō(in params object nūntia) => await Nūntiō(Level.Trace, nūntia);
+    [Async] public sealed void PlūrimumGarriō(in params object nūntia) => await Nūntiō(Level.Verbose, nūntia);
   }
 }

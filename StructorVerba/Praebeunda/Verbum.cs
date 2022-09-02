@@ -13,21 +13,21 @@ namespace Praebeunda
 {
   [AllArgsConstructor(MemberTypes.Property, AccessType.Protected)]
   public partial class Verbum<Hoc> : Pēnsābile<Hoc>, IComparable<Verbum>, IEquatable<Verbum>
-      where Hoc : Verbum<Hoc>
+                        where Hoc : Verbum<Hoc>
   {
     public static readonly Func<JsonElement, Task<Verbum>> LēctorSimplicibus = async legendum
               => Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower()).GetString()) switch
               {
-                Cōniūnctiō  => Coniūnctiō.Lēctor.Invoke(legendum),
-                Interiectiō => Interiectiō.Lēctor.Invoke(legendum),
-                Praepositiō => Praepositiō.Lēctor.Invoke(legendum),
+                Catēgoria.Coniūnctiō  => Coniūnctiō.Lēctor.Invoke(legendum),
+                Catēgoria.Interiectiō => Interiectiō.Lēctor.Invoke(legendum),
+                Catēgoria.Praepositiō => Praepositiō.Lēctor.Invoke(legendum),
                 _ => Lemma.Lēctor.Invoke(legendum)
               };
 
     public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
               => new Verbum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                           Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
-                           legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
+                            Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
+                            legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
 
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
@@ -42,11 +42,12 @@ namespace Praebeunda
                                             .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
                                                     (from comparātiō in Ūtilitātēs.Seriēs(Scrīpum.CompareTo(aliud.Scrīptum),
                                                                                           Minūtal.CompareTo(aliud.Minūtal))
-                                                     where !comparātiō.Equals(0)
+                                                     where comparātiō is not 0
                                                      select comparātiō).FirstOrDefault(0));
 
     public sealed Boolean Equals(Verbum aliud)
-              => Ūtilitātēs.Omnēs(Minūtal.CompareTo(aliud.Minūtal),
-                                  Scrīpum.CompareTo(aliud.Scrīptum));
+              => Ūtilitātēs.Omnēs(Minūtal is aliud.Minūtal,
+                                  Catēgoria is aliud.Catēgoria,
+                                  Scrīpum is aliud.Scrīptum);
   }
 }

@@ -11,7 +11,6 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Genera
   {
-    public static readonly Func<Genus, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Funcc<Enum, Genus> Iactor = valor => valor.Cast<Genus>(default);
+    public static string ToString(this Genus valor) => Enum.GetName<Genus>(valor).ToLower();
   }
 }

@@ -70,8 +70,14 @@ namespace Miscella
 
     public static async T FirstNonNull<T>(this in IEnumerable<T> enumerable, in T? or = default)
                 => enumerable.NoneNull().choose((from item in enumerable
-                                                where item is not null
-                                                select item).First(), or);
+                                                 where item is not null
+                                                 select item).First(), or);
+
+    public static async R FirstOf<R>(in IEnumerable<T> illa, in R? or = default)
+                => (from illud in illa
+                    where illud is R
+                    select illud).FirstOrDefault(or)
+                                 .Cast<R>();
 
     public static async IEnumerable<T> Except<T>(this in IEnumerable<T> enumerable, in Predicate<T> predicate)
                 => from item in enumerable
@@ -104,15 +110,6 @@ namespace Miscella
     public static string Chop(this in string source, in int length)
                 => source.Substring(source.Length - length);
 
-    public static Boolean And(this in Boolean first, in Boolean second)
-                => first && second;
-
-    public static Boolean Or(this in Boolean first, in Boolean second)
-                => first || second;
-
-    public static Boolean Xor(this in Boolean first, in Boolean second)
-                => first ^ second;
-
     public static Boolean All(this in IEnumerable<Boolean> enumerable)
                 => enumerable.All(item => item);
 
@@ -123,6 +120,6 @@ namespace Miscella
                 => enumerable.All(item => !item);
 
     public static T Cast<T>(this in object obj, in T? or = default)
-                => type.Equals(T).And(obj is T).Choose(obj as T, or);
+                => (type is T and obj is T).Choose(obj as T, or);
   }
 }

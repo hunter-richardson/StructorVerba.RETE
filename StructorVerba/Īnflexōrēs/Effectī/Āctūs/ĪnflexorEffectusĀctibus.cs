@@ -1,5 +1,6 @@
-using System.Collections.Immutable;
 using System;
+using System.Collections.Immutable;
+using System.Threading.Tasks.Task;
 
 using Miscella.Ūtilitātēs;
 using Praebeunda.Multiplex;
@@ -63,46 +64,30 @@ namespace Īnflexōrēs.Effectī.Āctūs
     public abstract string? Īnfīnītīvum(in Vōx vōx, in Tempus tempus);
     public abstract string? Participāle(in Vōx vōx, in Tempus tempus);
     public sealed string? Suffixum(in Enum[] illa)
-    {
-      const Modus modus = Modī.Iactor.Invoke((from illud in illa
-                                              where illud is Modus
-                                              select illud).First());
-      const Vōx vōx = Vōcēs.Iactor.Invoke((from illud in illa
-                                           where illud is Vōx
-                                           select illud).First());
-      const Tempus tempus = Tempora.Iactor.Invoke((from illud in illa
-                                                   where illud is Tempus
-                                                   select illud).First());
-      const Numerālis numerālis = Numerālēs.Iactor.Invoke((from illud in illa
-                                                           where Numerālis
-                                                           select illud).First());
-      const Persōna persōna = Persōnae.Iactor.Invoke((from illud in illa
-                                                      where Persōna
-                                                      select illud).First());
-      return await (modus, vōx, tempus, numerālis, persōna) switch
-      {
-        var īnscītum when default(Modus).Equals(modus).Or(default(Tempus).Equals(tempus)).Or(default(Vōx).Equals(vōx))
-                                                      => Task.CompletedTask,
-        var īnscītum when default(Numerālis).Equals(numerālis).And(modus.IsAmong(Modus.Indicātīvus, Modus.Subiūnctīvus, Modus.Imperātīvus))
-                                                      => Task.CompletedTask,
-        var īnscītum when default(Persōna).Equals(persōna).And(modus.IsAmong(Modus.Indicātīvus, Modus.Subiūnctīvus))
-                                                      => Task.CompletedTask,
-        var īnscītum when Modus.Participālis.Equals(modus).And(tempus.IsAmong(Tempus.Praesēns, Tempus.Futūrum, Tempus.Perfectum))
-                                                      => ParticipāleAsync(vōx, tempus),
-        var īnscītum when Modus.Imperātīvus.Equals(modus).And(tempus.IsAmong(Tempus.Praesēns, Tempus.Futūrum))
-                                                      => ImperātīvumAsync(vōx, tempus, numerālis),
-        var īnscītum when Modus.Īnfīnītīvus.Equals(modus).And(tempus.IsAmong(Tempus.Praesēns, Tempus.Perfectum))
-                                                      => ĪnfīnītīvumAsync(vōx, tempus),
-        var īnscītum when Modus.Indicātīvus.Equals(modus).And(Vōx.Āctīva.Equals(vōx))
-                                                      => IndicātīvumĀctīvumAsync(tempus, numerālis, persōna),
-        var īnscītum when Modus.Indicātīvus.Equals(modus).And(Vōx.Passīva.Equals(vōx))
-                                                      => IndicātīvumPassīvumAsync(tempus, numerālis, persōna),
-        var īnscītum when Modus.Subiūnctīvus.Equals(modus).And(Vōx.Āctīva.Equals(vōx))
-                                                      => SubiūnctīvumĀctīvumAsync(tempus, numerālis, persōna),
-        var īnscītum when Modus.Subiūnctīvus.Equals(modus).And(Vōx.Passīva.Equals(vōx))
-                                                      => SubiūnctīvumPassīvumAsync(tempus, numerālis, persōna),
-        _ => null
-      };
-    }
+              => await(illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>(),
+                       illa.FirstOf<Numerālis>(), illa.FirstOf<Persōna>()) switch
+              {
+                var īnscītum when (modus is default(Modus)) || (tempus is default(Tempus)) || (vōx is default(Vōx))
+                                                              => Task.FromResult<string?>(null),
+                var īnscītum when (numerālis is default(Numerālis)) && (modus is Modus.Indicātīvus or Modus.Subiūnctīvus or Modus.Imperātīvus)
+                                                              => Task.FromResult<string?>(null),
+                var īnscītum when (persōna is default(Persōna)) && (modus is Modus.Indicātīvus or Modus.Subiūnctīvus)
+                                                              => Task.FromResult<string?>(null),
+                var īnscītum when (modus is Modus.Participālis) && (tempus is Tempus.Praesēns or Tempus.Futūrum or Tempus.Perfectum)
+                                                              => ParticipāleAsync(vōx, tempus),
+                var īnscītum when (modus is Modus.Imperātīvus) && (tempus is Tempus.Praesēns or Tempus.Futūrum)
+                                                              => ImperātīvumAsync(vōx, tempus, numerālis),
+                var īnscītum when (modus is Modus.Īnfīnītīvus) && (tempus is Tempus.Praesēns or Tempus.Perfectum)
+                                                              => ĪnfīnītīvumAsync(vōx, tempus),
+                var īnscītum when (modus is Modus.Indicātīvus) && (vōx is Vōx.Āctīva)
+                                                              => IndicātīvumĀctīvumAsync(tempus, numerālis, persōna),
+                var īnscītum when (modus is Modus.Indicātīvus) && (vōx is Vōx.Passīva)
+                                                              => IndicātīvumPassīvumAsync(tempus, numerālis, persōna),
+                var īnscītum when (modus is Modus.Subiūnctīvus) && (vōx is Vōx.Āctīva)
+                                                              => SubiūnctīvumĀctīvumAsync(tempus, numerālis, persōna),
+                var īnscītum when (modus is Modus.Subiūnctīvus) && (vōx is Vōx.Passīva)
+                                                              => SubiūnctīvumPassīvumAsync(tempus, numerālis, persōna),
+                _ => null
+              };
   }
 }

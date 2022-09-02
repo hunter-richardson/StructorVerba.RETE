@@ -28,8 +28,8 @@ namespace Praebeunda
     public Ēnumerātiōnēs.Encliticum Encliticum { get; } => Ēnumerātiōnēs.Encliticum.Nōlēns;
 
     public sealed void allegam(in Ēnumerātiōnēs.Encliticum ntlcm)
-            => Enum.GetValues<Encliticum>().Any(valor => scrīptum.EndsWith(Enclitica.Suffixor.Invoke(valor))
-                                           .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
+            => Encliticum = Enum.GetValues<Encliticum>().Any(valor => scrīptum.EndsWith(Enclitica.Suffixor.Invoke(valor))
+                                                        .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
 
     public virtual override string ToString()
             => base.ToString().concat(Enclitica.Suffixor.Invoke(encliticum));
@@ -52,15 +52,9 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Numerāmen : Multiplex<Numerāmen>, Īnflexum<Numerāmen>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithNumerium(default).WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Numerium numerium = (from illud in illa
-                                   where illud is Ēnumerātiōnēs.Numerium
-                                   select illud).First();
-        return Builder.WithNumerium(numerium).WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor
+                = async (illa, scrīpum) => Builder.WithNumerium(illa.FirstOf<Numerium>())
+                                                  .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Numerium Numerium { get; }
 
@@ -74,30 +68,13 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Āctus : Multiplex<Āctus>, Īnflexum<Āctus>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithModus(default).WithVōx(default).WithTempus(default)
-                                                                        .WithNumerālis(default).WithPersōna(default).WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Enum modus = (from illud in illa
-                            where illud is Ēnumerātiōnēs.Modus
-                            select illud).First(),
-                   vōx = (from illud in illa
-                          where illud is Ēnumerātiōnēs.Vōx
-                          select illud).First(),
-                   tempus = (from illud in illa
-                             where illud is Ēnumerātiōnēs.Tempus
-                             select illud).First(),
-                   numerālis = (from illud in illa
-                                where Ēnumerātiōnēs.Numerālis
-                                select illud).First(),
-                   persōna = (from illud in illa
-                              where Ēnumerātiōnēs.Persōna
-                              select illud).First();
-        return Builder.WithModus(modus).WithVōx(vōx).WithTempus(tempus)
-                      .WithNumerālis(numerālis).WithPersōna(persōna)
-                      .WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor
+                = async (illa, scrīpum) => Builder.WithModus(illa.FirstOf<Modus>())
+                                                  .WithVōx(illa.FirstOf<Vōx>())
+                                                  .WithTempus(illa.FirstOf<Tempus>())
+                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
+                                                  .WithPersōna(illa.FirstOf<Persōna>())
+                                                  .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Modus Modus { get; }
       [Required] public readonly Vōx Vōx { get; }
@@ -121,15 +98,9 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Adverbium : Speciāle<Adverbium>, Īnflexum<Adverbium>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithGradus(default).WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Gradus gradus = (from illud in illa
-                               where illud is Ēnumerātiōnēs.Gradus
-                               select illud).First();
-        return Builder.WithGradus(gradus).WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor
+                = async (illa, scrīpum) =>  Builder.WithGradus(illa.FirstOf<Gradus>())
+                                                   .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Gradus Gradus { get; }
 
@@ -143,28 +114,12 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Adiectīvum : Speciāle<Adiectīvum>, Īnflexum<Adiectīvum>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithGradus(default).WithGenus(default)
-                                                              .WithNumerālis(default).WithCasus(default)
-                                                              .WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Enum gradus = (from illud in illa
-                             where illud is Ēnumerātiōnēs.Gradus
-                             select illud).First(),
-                   genus = (from illud in illa
-                            where illud is Ēnumerātiōnēs.Genus
-                            select illud).First(),
-                   numerālis = (from illud in illa
-                                where Ēnumerātiōnēs.Numerālis
-                                select illud).First(),
-                   casus = (from illud in illa
-                            where Ēnumerātiōnēs.Casus
-                            select illud).First();
-        return Builder.WithGradus(gradus).WithGenus(genus)
-                      .WithNumerālis(numerālis).WithCasus(casus)
-                      .WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor
+                = async (illa, scrīpum) => Builder.WithGradus(illa.FirstOf<Gradus>())
+                                                  .WithGenus(illa.FirstOf<Genus>())
+                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
+                                                  .WithCasus(illa.FirstOf<Casus>())
+                                                  .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Gradus Gradus { get; }
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }
@@ -192,25 +147,11 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Nōmen : Speciāle<Nōmen>, Īnflexum<Nōmen>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithFactum(default).WithGenus(default)
-                                                                        .WithNumerālis(default).WithCasus(default)
-                                                                        .WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Nōmen>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Enum factum = (from illud in illa
-                             where illud is Ēnumerātiōnēs.Factum
-                             select illud).First(),
-                   numerālis = (from illud in illa
-                                where Ēnumerātiōnēs.Numerālis
-                                select illud).First(),
-                   casus = (from illud in illa
-                            where Ēnumerātiōnēs.Casus
-                            select illud).First();
-        return Builder.WithFactum(factum).WithCasus(casus)
-                      .WithNumerālis(numerālis)
-                      .WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Nōmen>> Cōnstrūctor
+                = async (illa, scrīpum) => Builder.WithFactum(illa.FirstOf<Factum>())
+                                                  .WithCasus(illa.FirstOf<Casus>())
+                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
+                                                  .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Factum Factum { get; }
       [Required] public readonly Numerālis Numerālis { get; }
@@ -229,24 +170,11 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Prōnōmen : Multiplex<Prōnōmen>, Īnflexum<Prōnōmen>
     {
-      public static readonly Func<Task> Restitūtor = async () => Builder.WithGenus(default).WithCasus(default)
-                                                                        .WithNumerālis(default).WithScrīpum(string.Empty);
-
-      public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor = async (illa, scrīpum) =>
-      {
-        const Enum genus = (from illud in illa
-                            where illud is Ēnumerātiōnēs.Genus
-                            select illud).First(),
-                   numerālis = (from illud in illa
-                                where Ēnumerātiōnēs.Numerālis
-                                select illud).First(),
-                   casus = (from illud in illa
-                            where Ēnumerātiōnēs.Casus
-                            select illud).First();
-        return Builder.WithGenus(genus).WithCasus(casus)
-                      .WithNumerālis(numerālis)
-                      .WithScrīpum(scrīpum).Build();
-      };
+      public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor
+                = async (illa, scrīpum) => Builder.WithGenus(illa.FirstOf<Genus>())
+                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
+                                                  .WithCasus(illa.FirstOf<Casus>())
+                                                  .WithScrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }
       [Required] public readonly Ēnumerātiōnēs.Numerālis Numerālis { get; }

@@ -16,6 +16,6 @@ namespace Nūntiī
                                                   select mēnsa.ToString();
 
     public string FormatDate(in DateTime tempus)
-              => $"{Diēs.ElementAt(tempus.DayOfWeek)} {Mēnsae.ElementAt(tempus.Month)} {RomanNumeral.ToRomanNumeral(tempus.Day)} @ {RomanNumeral.ToRomanNumeral(tempus.Hour)}:{RomanNumeral.ToRomanNumeral(tempus.Minute)}:{RomanNumeral.ToRomanNumeral(tempus.Second)} {TimeZoneInfo.Utc.ToString()}";
+              => $"{Diēs.ElementAt(tempus.DayOfWeek - 1)} {Mēnsae.ElementAt(tempus.Month - 1)} {RomanNumeral.ToRomanNumeral(tempus.Day)} @ {RomanNumeral.ToRomanNumeral(tempus.Hour)}:{RomanNumeral.ToRomanNumeral(tempus.Minute)}:{RomanNumeral.ToRomanNumeral(tempus.Second)} {TimeZoneInfo.Utc.ToString()}";
   }
 }

@@ -11,7 +11,6 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Enclitica
   {
-    public static readonly Func<Encliticum, string> Scrīptor = valor => valor.ToString().ToLower();
-    public static readonly Func<Enum, Encliticum> Iactor = valor => valor.Cast<Encliticum>(default);
+    public static string ToString(this Encliticum valor) => Enum.GetName<Encliticum>(valor).ToLower();
   }
 }

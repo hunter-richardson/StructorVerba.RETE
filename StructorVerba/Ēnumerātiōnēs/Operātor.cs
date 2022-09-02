@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 
 using Praebeunda.Simplicia.Numerus;
@@ -11,7 +12,7 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Operātōrēs
   {
-    public static readonly Func<Operātor, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static string ToString(this Operātor valor) => Enum.GetName<Operātor>(valor).ToLower();
     public static readonly Func<Operātor, char> Litterator =
              operātor => operātor switch
              {

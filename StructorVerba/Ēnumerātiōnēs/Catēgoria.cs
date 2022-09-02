@@ -12,10 +12,10 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Catēgoriae
   {
-    public static readonly Func<Catēgoria, string> Scrīptor = valor => valor.ToString().ToLower();
+    public static string ToString(this Catēgoria valor) => Enum.GetName<Catēgoria>(valor).ToLower();
     public static readonly Func<JsonElement, Catēgoria> Dēfīnītor = lēctum =>
              (from valor in Enum.GetValues(Catēgoria)
-              where Scrīptor.Invoke(valor).Equals(lēctum.GetString())
+              where valor.ToString().Equals(lēctum.GetString(), StringComparison.OrdinalIgnoreCase)
               select valor).First().Cast<Catēgoria>();
 
     public static string NōmenTabulae(this in Catēgoria catēgoria, Enum? versiō = null)
@@ -41,6 +41,6 @@ namespace Ēnumerātiōnēs
               => !catēgoria.IsAmong(Catēgoria.Coniūnctiō, Catēgoria.Interiectiō, Catēgoria.Numerus, Catēgoria.Praepositiō);
 
     public static Boolean Pensābilis(this in Catēgoria catēgoria)
-              => !Catēgoria.Numerus.Equals(catēgoria);
+              => !Catēgoria.Numerus is catēgoria;
   }
 }
