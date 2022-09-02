@@ -32,8 +32,7 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
         _ => new Lazy(null),
       };
 
-    protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
-                                              in Func<Īnflectendum.NōmenFactum, Enum[], string> rādīcātor)
+    protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius)
                                                  : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
                                                         (nōmen, illa) =>
                                                         {
