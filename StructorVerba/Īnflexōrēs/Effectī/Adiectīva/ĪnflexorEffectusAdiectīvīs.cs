@@ -18,20 +18,27 @@ namespace Īnflexōrēs.Effectī.Adiectīva
   {
     public enum Versiō
     {
-      Aut_Prīma_Aut_Secunda_Aut_Tertia, Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē, Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē,
-      Aut_Tertia_Aut_Prīma_Aut_Secunda, Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Variō, Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Ablātīvō_Variō,
-      Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
+      Aut_Prīmus_Aut_Secundus_Aut_Tertius, Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē, Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē,
+      Aut_Tertius_Aut_Prīmus_Aut_Secundus, Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō, Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō,
+      Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
     }
 
     public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor = async versiō => versiō switch
     {
-      Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia => null,
-      Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Cum_Litterā_Ē => null,
-      Versiō.Aut_Prīma_Aut_Secunda_Aut_Tertia_Sine_Litterā_Ē => null,
-      Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda => null,
-      Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Variō => null,
-      Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Ablātīvō_Variō => null,
-      Versiō.Aut_Tertia_Aut_Prīma_Aut_Secunda_Cum_Genitīvō_Ablātīvōque_Variō => null,
+      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius
+                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum,
+      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē
+                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum,
+      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē
+                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum,
+      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus
+                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum,
+      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō
+                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum,
+      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō
+                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
+                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
       _ => new Lazy(null)
     };
 
@@ -51,8 +58,16 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                                                       new SortedSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
                                                                       Numerālis.Singulāris.SingleItemSet())) { }
 
-    public abstract ĪnflexorEffectusNōminibus? Relātum(in Gradus gradus, in Genus genus);
-    public abstract string? Īnfixum(in Gradus gradus, in Genus genus, in Numerālis numerālis, in Casus casus);
+    public abstract Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus);
+
+    public virtual string Īnfīxum(in Gradus gradus, in Genus genus, in Numerālis numerālis, in Casus casus)
+              => (gradus, genus, numerālis, casus) switch
+                  {
+                    (Gradus.Comparātīvus, Genus.Neutrum, Numerālis.Singulāris, Casus.Nominātīvus or Casus.Accusātīvus or Casus.Vocātīvus) => "ius",
+                    (Gradus.Comparātīvus, _, Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => "ior",
+                    (Gradus.Comparātīvus, _, _, _) => "iōr",
+                    (_, _, _, _) => string.Empty
+                  };
 
     public sealed async string? Suffixum(in Enum[] illa)
     {
@@ -67,10 +82,12 @@ namespace Īnflexōrēs.Effectī.Adiectīva
       }
       else
       {
-        const ĪnflexorEffectusNōminibus? relātum = await RelātumAsync(gradus, genus);
+        const ĪnflexorEffectusNōminibus? relātum = (await RelātumAsync(gradus, genus))?.Value;
         if(relātum is not null)
         {
-          return (await ĪnfixumAsync(gradus, genus, numerālis, casus))?.Concat(await relātum.Suffixum(numerālis, casus));
+          const string īnfixum = await ĪnfīxumAsync(gradus, genus, numerālis, casus),
+                       suffixum = await relātum.SuffixumAsync(numerālis, casus);
+          return (suffixum is not null).Choose((īnfixum)?.Concat(suffixum), null);
         }
         else
         {

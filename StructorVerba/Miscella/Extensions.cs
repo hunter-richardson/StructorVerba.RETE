@@ -103,12 +103,27 @@ namespace Miscella
                                            in T? obj1, in U? obj2, in R? or = default)
                 => Enumerate(obj1, obj2).AllNotNull().choose(function.Invoke(obj1, obj2), or);
 
+    public static string ReplaceFirst(this in string source, in string toReplace, in string replacement)
+    {
+      const int index = source.IndexOf(toReplace);
+      return (index > 0).Choose(source.Substring(0, index)
+                                      .Concat(replacement)
+                                      .Concat(source.Substring(index + toReplace.Length)),
+                                source);
+    }
+
     public static string Capitalize(this in string source)
                 => source.ReplaceFirst(source.ElementAt(0).ToString(),
-                                        char.ToUpper(source.ElementAt(0).ToString()));
+                                       char.ToUpper(source.ElementAt(0).ToString()));
 
     public static string Chop(this in string source, in int length)
                 => source.Substring(source.Length - length);
+
+    public static string RemoveStart(this in string source, in string toRemove)
+    {
+      const int index = source.IndexOf(toRemove);
+      return (index > 0).Choose(source.Remove(index, toRemove.Length), source);
+    }
 
     public static Boolean All(this in IEnumerable<Boolean> enumerable)
                 => enumerable.All(item => item);
