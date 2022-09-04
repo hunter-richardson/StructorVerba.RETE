@@ -7,7 +7,7 @@ using Īnflexōrēs.Effectī.Adiectīva;
 
 namespace Īnflexōrēs.Dēfectī.Āctūs
 {
-  public abstract partial class ĪnflexorDēfectusĀctibus : ĪnflexorDēfectus<Hoc, Multiplex.Āctus>
+  public abstract class ĪnflexorDēfectusĀctibus : ĪnflexorDēfectus<Hoc, Multiplex.Āctus>
   {
     protected ĪnflexorDēfectusĀctibus(in Lazy<Nūntius<ĪnflexorDēfectusĀctibus<Hoc>>> nūntius,
                                       in Lazy<ĪnflexorEffectusĀctibus<Hoc>> relātus, in params IEnumerable<Enum[]> illa)
