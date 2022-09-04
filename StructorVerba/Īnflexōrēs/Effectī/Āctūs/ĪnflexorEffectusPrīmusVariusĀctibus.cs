@@ -21,8 +21,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
 
     private ĪnflexorEffectusPrīmusVariusĀctibus()
         : base(Versiō.Prīmus_Varius,
-               NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus.Faciendum,
-               Relātum.Rādīcātor) { }
+               NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus.Faciendum) { }
 
     public override sealed string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
               => (await Relātum.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))
