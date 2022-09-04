@@ -7,7 +7,7 @@ using Īnflexōrēs.Effectī.Nōmina;
 
 namespace Īnflexōrēs.Dēfectī.Nōmina
 {
-  public abstract partial class ĪnflexorDēfectusNōminibus : ĪnflexorDēfectus<Hoc, Multiplex.Nōmen>
+  public abstract class ĪnflexorDēfectusNōminibus : ĪnflexorDēfectus<Hoc, Multiplex.Nōmen>
   {
     protected ĪnflexorDēfectusNōminibus(in Lazy<Nūntius<ĪnflexorDēfectusNōminibus<Hoc>>> nūntius,
                                         in Lazy<ĪnflexorEffectusNōminibus<Hoc>> relātus, in params IEnumerable<Enum[]> illa)
