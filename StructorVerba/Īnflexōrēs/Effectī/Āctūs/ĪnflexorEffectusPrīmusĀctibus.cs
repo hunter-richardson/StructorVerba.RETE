@@ -18,14 +18,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                      = new Lazy<ĪnflexorEffectusPrīmusĀctibus>(() => Instance);
 
     private ĪnflexorEffectusPrīmusĀctibus()
-        : base(Versiō.Prīmus, NūntiusĪnflexōrīEffectōPrīmōĀctibus.Faciendum,
-               (āctus, illa) => (illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>()) switch
-                                  {
-                                    var īnscītum when (modus is default(Modus)) ||
-                                                      (tempus is default(Tempus)) ||
-                                                      (vōx is default(Vōx)) => string.Empty,
-                                    _ => āctus.Īnfīnītīvum.Chop(3),
-                                  }) { }
+        : base(Versiō.Prīmus, NūntiusĪnflexōrīEffectōPrīmōĀctibus.Faciendum) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {
