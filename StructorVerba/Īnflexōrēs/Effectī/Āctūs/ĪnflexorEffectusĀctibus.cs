@@ -65,22 +65,6 @@ namespace Īnflexōrēs.Effectī.Āctūs
                                                                               illa.ContainsAll(Modus.Subiūnctīvus, Tempus.FutūrumExāctum))));
 
     protected ĪnflexorEffectusĀctibus(in Versiō versiō,
-                                      in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius,
-                                      in Func<Īnflectendum.ĀctusEffectus, Enum[], string> rādīcātor,
-                                      in params IEnumerable<Enum[]> illa)
-                                         : base(versiō, nūntius, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum), rādīcātor, illa) { }
-
-    protected ĪnflexorEffectusĀctibus(in Versiō versiō,
-                                      in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius,
-                                      in params IEnumerable<Enum[]> illa)
-                                         : base(versiō, nūntius, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum), RādīcātorAlternus, illa) { }
-
-    protected ĪnflexorEffectusĀctibus(in Versiō versiō,
-                                      in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius,
-                                      in Func<Īnflectendum.ĀctusEffectus, Enum[], string> rādīcātor)
-                                         : base(versiō, nūntius, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum), rādīcātor, Praegenerāta) { }
-
-    protected ĪnflexorEffectusĀctibus(in Versiō versiō,
                                       in Lazy<Nūntius<ĪnflexōrēsEffectusĀctibus<Hoc>>> nūntius)
                                          : base(versiō, nūntius, nameof(Īnflectendum.ĀctusEffectus.Īnfīnītīvum), RādīcātorAlternus, Praegenerāta) { }
 
