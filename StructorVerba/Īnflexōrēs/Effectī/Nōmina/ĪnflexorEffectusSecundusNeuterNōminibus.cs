@@ -17,7 +17,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public static readonly Lazy<ĪnflexorEffectusSecundusNeuterNōminibus> Faciendum
                      = new Lazy<ĪnflexorEffectusSecundusNeuterNōminibus>(() => Instance);
     private ĪnflexorEffectusSecundusNeuterNōminibus()
-        : base(Versiō.Nōmen_Secundum_Neutrum, NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus.Faciendum,
                (nōmen, illa) => nōmen.Nominātīvum.Chop(2)) { }
 
     public sealed string Singulāre(in Casus casus) => casus switch

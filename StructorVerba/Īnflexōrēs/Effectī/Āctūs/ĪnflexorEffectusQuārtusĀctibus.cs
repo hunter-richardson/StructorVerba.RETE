@@ -18,7 +18,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                      = new Lazy<ĪnflexorEffectusQuārtusĀctibus>(() => Instance);
 
     private ĪnflexorEffectusQuārtusĀctibus()
-        : base(Versiō.Quārtus, NūntiusĪnflexōrīEffectōQuārtōĀctibus.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōQuārtōĀctibus.Faciendum,
                (āctus, illa) => (illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>()) switch
                                   {
                                     var īnscītum when (modus is default(Modus)) ||

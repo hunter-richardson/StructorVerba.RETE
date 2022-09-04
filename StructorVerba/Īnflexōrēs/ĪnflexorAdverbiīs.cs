@@ -12,9 +12,6 @@ namespace Īnflexōrēs
   [AsyncOverloads]
   public sealed partial class ĪnflexorAdverbiīs : Īnflexor<Īnflectendum.Adverbium, Multiplex.Adverbium>
   {
-    public enum Versiō
-    { Exāctum }
-
     public static readonly Lazy<ĪnflexorAdverbiīs> Faciendum = new Lazy<ĪnflexorAdverbiīs>(() => Instance);
 
     protected ĪnflexorAdverbiīs()

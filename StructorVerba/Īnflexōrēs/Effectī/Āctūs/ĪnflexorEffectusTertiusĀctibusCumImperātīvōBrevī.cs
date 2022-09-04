@@ -20,7 +20,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī()
-        : base(Versiō.Tertius, NūntiusĪnflexōrīEffectōTertiōĀctibusCumImperātīvōBrevī.Faciendum) { }
+        : base(NūntiusĪnflexōrīEffectōTertiōĀctibusCumImperātīvōBrevī.Faciendum) { }
 
 
     public sealed async string? Imperātīvum(in Vōx vōx, in Tempus tempus, in Numerālis numerālis)
@@ -29,15 +29,16 @@ namespace Īnflexōrēs.Effectī.Āctūs
                 (Vōx.Āctīva, Tempus.Praesēns, Numerālis.Singulāris) => string.Empty,
                 _ => await Relātum.ImperātīvumAsync(vōx, tempus, numerālis),
               };
-    public virtual string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
-              => await (modus, vōx, tempus, numerālis, persōna) switch
-                  {
-                    var īnscītum when (modus is Modus.Imperātīvus) &&
-                                      (vōx is Vōx.Āctīva or Vōx.Passīva) &&
-                                      (tempus is Tempus.Praesēns or Tempus.Futūrum)
-                                          => ImperātīvumAsync(vōx, tempus, numerālis),
-                    _ => Relātum.SuffixumAsync(illa)
-                  };
+
+    protected virtual string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
+                  => await (modus, vōx, tempus, numerālis, persōna) switch
+                      {
+                        var īnscītum when (modus is Modus.Imperātīvus) &&
+                                          (vōx is Vōx.Āctīva or Vōx.Passīva) &&
+                                          (tempus is Tempus.Praesēns or Tempus.Futūrum)
+                                              => ImperātīvumAsync(vōx, tempus, numerālis),
+                        _ => Relātum.SuffixumAsync(illa)
+                      };
 
     [Singleton]
     private sealed partial class NūntiusĪnflexōrīEffectōTertiōĀctibusCumImperātīvōBrevī

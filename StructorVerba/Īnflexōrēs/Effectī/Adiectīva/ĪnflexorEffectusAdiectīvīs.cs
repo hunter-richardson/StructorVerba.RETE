@@ -6,6 +6,7 @@ using Miscella;
 using Nūntiī.Nūntius;
 using Praebeunda.Multiplex.Adiectīvum;
 using Praebeunda.Īnflectendum.AdiectīvaAutPrīmaAutSecundaAutTertia;
+using Pēnsōrēs.Īnflectenda.PēnsorAdiectīvīs.Versiō;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina;
 
@@ -23,27 +24,27 @@ namespace Īnflexōrēs.Effectī.Adiectīva
       Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
     }
 
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor = async versiō => versiō switch
-    {
-      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius
-                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum,
-      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē
-                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum,
-      Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē
-                => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum,
-      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus
-                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum,
-      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō
-                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum,
-      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō
-                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
-      Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
-                => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
-      _ => new Lazy(null)
-    };
+    public static readonly Func<PēnsorAdiectīvīs.Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor
+              = async versiō => versiō switch
+                                {
+                                  Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum,
+                                  Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum,
+                                  Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum,
+                                  Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum,
+                                  Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum,
+                                  Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                                  Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                                  _ => new Lazy(null)
+                                };
 
-    protected ĪnflexorEffectusAdiectīvīs(in Versiō versiō,
-                                         in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
+    protected ĪnflexorEffectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
                                          in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor)
                                             : this(versiō, nūntius, quaerendī, rādīcātor,
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),

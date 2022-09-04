@@ -13,8 +13,7 @@ namespace Īnflexōrēs.Numerāmina
   {
     public static readonly Lazy<ĪnflexorNumerāminibusOmnium> Faciendum = new Lazy<ĪnflexorNumerāminibusOmnium>(() => Instance);
     protected ĪnflexorNumerāminibusOmnium()
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, NūntiusĪnflexōrīNumerāminibusOmnium.Faciendum,
-                  Numerium.GetValues()) { }
+          : base(NūntiusĪnflexōrīNumerāminibusOmnium.Faciendum, Numerium.GetValues()) { }
     public string Scrībam(in NumerāmenOmnium numerāmen, in Numerium numerium)
             => numerium switch
             {

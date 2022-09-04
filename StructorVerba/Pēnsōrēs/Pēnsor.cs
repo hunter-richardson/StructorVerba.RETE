@@ -7,7 +7,8 @@ using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Miscella.Extensions;
-using Pēnsōrēs.Simplicibus;
+using Pēnsōrēs.Simplicia;
+using Pēnsōrēs.Īnflectenda;
 using Praebeunda.Interfecta.Pēnsābile;
 
 using Amazon.RegionEndpoint;
@@ -23,15 +24,13 @@ namespace Pēnsōrēs
   {
     public enum Tabula
     {
-      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Nōmina_Facta_Prōna,
+      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Āctūs_Effectī,
+      Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
       Numerāmina_Cardinālium_Solōrum, Numerāmina_Cardinālium_Ōrdināliumque,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
-      Numerāmina_Omnium_Praeter_Multiplicātīva, Numerāmina_Omnium_Praeter_Frāctiōnēs, Numerāmina_Omnium,
-      Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
-      Adiectīva_Incomparātīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Incomparātīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
-      Āctūs_Effectī, Āctūs_Imperfectī, Āctūs_Prōnī, Āctūs_Prōnī_Imperfectī
+      Numerāmina_Omnium_Praeter_Multiplicātīva, Numerāmina_Omnium_Praeter_Frāctiōnēs, Numerāmina_Omnium
     }
 
     public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();

@@ -15,8 +15,8 @@ namespace Īnflexōrēs.Numerāmina
                        new Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>(() => Instance);
 
     protected ĪnflexorNumerāminibusOmnium()
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, NūntiusĪnflexōrīNumerāminibusOmnium.Faciendum,
-                  Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium) { }
+          : base(NūntiusĪnflexōrīNumerāminibusOmnium.Faciendum,
+                 Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium) { }
 
     public string Scrībam(in NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum numerāmen, in Numerium numerium)
             => numerium switch

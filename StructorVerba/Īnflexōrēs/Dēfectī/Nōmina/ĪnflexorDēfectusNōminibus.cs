@@ -3,14 +3,15 @@ using System.Collections.Generic.IEnumerable;
 
 using Nūntiī.Nūntius;
 using Praebeunda.Multiplex;
-using Īnflexōrēs.Effectī.Nōmina;
+using Ēnumerātiōnēs.Catēgoria;
+using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus;
 
 namespace Īnflexōrēs.Dēfectī.Nōmina
 {
-  public abstract class ĪnflexorDēfectusNōminibus : ĪnflexorDēfectus<Hoc, Multiplex.Nōmen>
+  public abstract class ĪnflexorDēfectusNōminibus : ĪnflexorDēfectus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    protected ĪnflexorDēfectusNōminibus(in Lazy<Nūntius<ĪnflexorDēfectusNōminibus<Hoc>>> nūntius,
-                                        in Lazy<ĪnflexorEffectusNōminibus<Hoc>> relātus, in params IEnumerable<Enum[]> illa)
-                                                   : base(Ēnumerātiōnēs.Catēgoria.Nōmen, nūntius, relātus, illa) {  }
+    protected ĪnflexorDēfectusNōminibus(in Lazy<Nūntius<ĪnflexorDēfectusNōminibus>> nūntius,
+                                        in Lazy<ĪnflexorEffectusNōminibus> relātus)
+                                                   : base(Catēgoria.Nōmen, nūntius, relātus) {  }
   }
 }

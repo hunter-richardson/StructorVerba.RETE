@@ -3,7 +3,8 @@ using System.Threading.Tasks.Task;
 
 using Miscella.Extensions;
 using Praebeunda.Multiplex.Numerāmen;
-using Ēnumerātiōnēs;
+using Pēnsōrēs.Numerāmina.PēnsorNumerāminibus.Versiō;
+using Ēnumerātiōnēs.Numerium;
 using Nūntiī.Nūntius;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
@@ -14,14 +15,7 @@ namespace Īnflexōrēs.Numerāmina
   [AsyncOverloads]
   public abstract partial class ĪnflexorNumerāminibus<Hoc> : Īnflexor<Hoc, Multiplex.Numerāmen>
   {
-    public enum Versiō
-    {
-      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
-      Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
-      Omnium_Praeter_Multiplicātīva, Omnium_Praeter_Frāctiōnēs, Omnium
-    }
-
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexorNumerāminibus>>> Relātor
+    public static readonly Func<PēnsorNumerāminibus.Versiō, Task<Lazy<ĪnflexorNumerāminibus>>> Relātor
             = async versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
@@ -43,7 +37,7 @@ namespace Īnflexōrēs.Numerāmina
             };
 
     protected ĪnflexorNumerāminibus(in Lazy<Nūntius<ĪnflexorNumerāminibus<Hoc>>> nūntius,
-                                    in params Enum illa)
+                                    in params Numerium illa)
                                        : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, nūntius, illa) { }
 
     public abstract string Scrībam(in Hoc hoc, in Numerium numerium);

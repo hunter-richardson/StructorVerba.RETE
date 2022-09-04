@@ -3,15 +3,17 @@ using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
 using Pēnsōrēs.Pēnsor.Tabula;
-using Īnflexōrēs.ĪnflexorAdverbiīs.Versiō;
 
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
-namespace Pēnsōrēs
+namespace Pēnsōrēs.Īnflectenda
 {
   [Singleton]
   public sealed partial class PēnsorAdverbiīs<Hoc> : PēnsorĪnflectendīs<Īnflectendum.Adverbium, Multiplex.Adverbium>
   {
+    public enum Versiō
+    { Exāctum }
+
     public static readonly Lazy<PēnsorAdverbiīs> Faciendum = new Lazy<PēnsorAdverbiīs>(() => Instance);
 
     protected PēnsorAdverbiīs()

@@ -16,8 +16,7 @@ namespace Īnflectōrēs.Effectī.Nōmina.NōminaFacta
     public static readonly Lazy<ĪnflexorEffectusTertiusNōminibusFactīs> Faciendum
                      = new Lazy<ĪnflexorEffectusTertiusNōminibusFactīs>(() => Instance);
     private ĪnflectorEffectusTertiusNōminibusFactīs()
-        : base(Versiō.Nōmen_Factum_Tertium,
-               NūntiusĪnflexōrīEffectōTertiōNōminibusFactīs.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōTertiōNōminibusFactīs.Faciendum,
                "ere", "end") { }
 
     [Singleton]

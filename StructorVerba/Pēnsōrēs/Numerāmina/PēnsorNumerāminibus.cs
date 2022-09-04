@@ -3,13 +3,24 @@ using System.Collections.Generic.Dictionary;
 
 using Praebeunda;
 using Pēnsōrēs.Pēnsor.Tabula;
-using Īnflexōrēs.ĪnflexorNumerāmibus.Versiō;
 
 namespace Pēnsōrēs.Numerāmina
 {
   public abstract class PēnsorNumerāminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Numerāmen>
   {
-    private static readonly Func<ĪnflexorNumerāmibus.Versiō, Tabula?> Tabulātor =
+    public enum Versiō
+    {
+      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
+      Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
+      Omnium_Praeter_Multiplicātīva, Omnium_Praeter_Frāctiōnēs, Omnium
+    }
+
+    public static sealed class Versiōnēs
+    {
+      public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
+    }
+
+    private static readonly Func<Versiō, Tabula?> Tabulātor =
               versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>

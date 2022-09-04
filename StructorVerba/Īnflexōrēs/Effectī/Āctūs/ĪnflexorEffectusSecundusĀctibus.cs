@@ -18,7 +18,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                      = new Lazy<ĪnflexorEffectusSecundusĀctibus>(() => Instance);
 
     private ĪnflexorEffectusSecundusĀctibus()
-        : base(Versiō.Secundus, NūntiusĪnflexōrīEffectōSecundōĀctibus.Faciendum) { }
+        : base(NūntiusĪnflexōrīEffectōSecundōĀctibus.Faciendum) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {

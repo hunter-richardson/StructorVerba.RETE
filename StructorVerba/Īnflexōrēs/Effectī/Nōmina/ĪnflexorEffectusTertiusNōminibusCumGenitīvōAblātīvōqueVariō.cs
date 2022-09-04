@@ -18,8 +18,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
                      = new Lazy<ĪnflexorEffectusTertiusNōminibusCumGenitīvōAblātīvōqueVariō>(() => Instance);
     private readonly ĪnflexorEffectusTertiusNōminibus Relātum = ĪnflexorEffectusTertiusNōminibus.Faciendum.Value;
     private ĪnflexorEffectusTertiusNōminibusCumGenitīvōAblātīvōqueVariō()
-        : base(Versiō.Nōmen_Tertium_Cum_Genitīvō_Ablātīvōque_Variō,
-               NūntiusĪnflexōrīEffectōTertiōNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōTertiōNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
                (nōmen, illa) => (illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
                                 {
                                   (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,

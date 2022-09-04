@@ -20,6 +20,10 @@ namespace Miscella
       }
     }
 
+    public static async IEnumerable<T> ReplaceAll(this in IEnumerable<T> enumerable, in Func<T, T> mapper)
+              => from item in enumerable
+                 select mapper.Invoke(item);
+
     private static IEnumerable<T> Enumerate<T>(in params T items) => items;
 
     public async static T? Random<T>(this in IEnumerable<T> enumerable, in T? or = default)

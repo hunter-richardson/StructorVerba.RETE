@@ -20,8 +20,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
     public static readonly Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE> Faciendum
                      = new Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE>(() => Instance);
     private ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE()
-        : base(Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē,
-               NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōSineLitterāE.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōCumLitterāE.Faciendum,
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => illa.FirstOf<Gradus>() switch
                 {

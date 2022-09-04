@@ -17,7 +17,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public static readonly Lazy<ĪnflexorEffectusTertiusNōminibus> Faciendum
                      = new Lazy<ĪnflexorEffectusTertiusNōminibus>(() => Instance);
     private ĪnflexorEffectusTertiusNōminibus()
-        : base(Versiō.Nōmen_Tertium, NūntiusĪnflexōrīEffectōTertiōNōminibus.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōTertiōNōminibus.Faciendum,
                (nōmen, illa) => (illa.FirstOf<Numerālis>, illa.FirstOf<Casus>()) switch
                                 {
                                   (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,

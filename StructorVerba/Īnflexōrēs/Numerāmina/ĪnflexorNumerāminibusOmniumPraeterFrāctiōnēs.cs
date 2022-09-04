@@ -14,8 +14,8 @@ namespace Īnflexōrēs.Numerāmina
     public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum =
                        new Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
     protected ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs()
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
-                  Numerium.GetValues().Except(Numerium.Frāctiōnāle)) { }
+          : base(NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
+                 Numerium.GetValues().Except(Numerium.Frāctiōnāle)) { }
     public string Scrībam(in NumerāmenOmniumPraeterFrāctiōnēs numerāmen, in Numerium numerium)
             => numerium switch
             {

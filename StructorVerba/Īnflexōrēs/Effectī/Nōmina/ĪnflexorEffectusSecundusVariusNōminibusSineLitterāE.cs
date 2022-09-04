@@ -21,8 +21,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     private readonly ĪnflexorEffectusSecundusMasculīnusNōminibus Relātum = ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum.Value;
 
     private ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE()
-        : base(Versiō.Nōmen_Secundum_Varium_Sine_Litterā_E,
-               NūntiusĪnflexōrīEffectōSecundōVariōNōminibusSineLitterāE.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōSecundōVariōNōminibusSineLitterāE.Faciendum,
                (nōmen, illa) => (illa.FirstOf<Numerālis>, illa.FirstOf<Casus>()) switch
                                 {
                                   (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,

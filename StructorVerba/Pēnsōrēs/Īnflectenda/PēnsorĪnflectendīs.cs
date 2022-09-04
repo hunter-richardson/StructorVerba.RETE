@@ -9,7 +9,7 @@ using Pēnsōrēs.Numerāmina;
 using Ēnumerātiōnēs.Catēgoria;
 using Nūntiī.Nūntius;
 
-namespace Pēnsōrēs
+namespace Pēnsōrēs.Īnflectenda
 {
   public abstract class PēnsorĪnflectendīs<Hoc, Illud> : Pēnsor<Hoc>
            where Hoc : Īnflectendum<Hoc, Illud> where Illud : Īnflexum<Hoc>
@@ -19,7 +19,7 @@ namespace Pēnsōrēs
             (catēgoria, versiō) => catēgoria switch
             {
               Ēnumerātiōnēs.Catēgoria.Āctus       => null,
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum  => null,
+              Ēnumerātiōnēs.Catēgoria.Adiectīvum  => PēnsorAdiectīvīs.Faciendum,
               Ēnumerātiōnēs.Catēgoria.Adverbium   => PēnsorAdverbiīs.Faciendum,
               Ēnumerātiōnēs.Catēgoria.Nōmen       => null,
               Ēnumerātiōnēs.Catēgoria.Numerāmen   => PēnsorNumerāminibus.Relātor.Invoke(versiō),

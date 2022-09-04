@@ -9,10 +9,19 @@ using Praebeunda.Interfecta;
 using Praebeunda.Multiplex;
 using Ēnumerātiōnēs;
 using Ēnumerātiōnēs.Comparātōrēs;
-using Īnflexōrēs.Effectī.Āctūs;
-using Īnflexōrēs.Effectī.Adiectīva;
-using Īnflexōrēs.Effectī.Nōmina;
-using Īnflexōrēs.Effectī.Numerāmina;
+using Pēnsōrēs.Īnflectenda.PēnsorAdiectīvīs;
+using Pēnsōrēs.Īnflectenda.PēnsorAdverbiīs;
+using Pēnsōrēs.Īnflectenda.PēnsorĀctibus;
+using Pēnsōrēs.Nōmina.PēnsorNōminibus;
+using Pēnsōrēs.Nōmina.PēnsorNōminibusFactīs;
+using Pēnsōrēs.Numerāmina.PēnsorNumerāminibus;
+using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus;
+using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīs;
+using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus;
+using Īnflexōrēs.Effectī.Nōmina.NōminaFacta.ĪnflexorEffectusNōminibusFactīs;
+using Īnflexōrēs.Effectī.Numerāmina.ĪnflexorNumerāminibus;
+using Īnflexōrēs.Dēfectī.Adiectīva;
+using Īnflexōrēs.Dēfectī.Nōmina;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using BuilderCommon.BuilderException;
@@ -25,28 +34,41 @@ namespace Īnflexōrēs
             where Illud : Īnflexum<Illud>
   {
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<Īnflexor?>> Relātor =
-            (catēgoria, versiō) => await catēgoria switch
+            (catēgoria, versiō) => await (catēgoria, versiō) switch
             {
-              Ēnumerātiōnēs.Catēgoria.Adverbium => ĪnflexorAdverbiīs.Faciendum,
-              Ēnumerātiōnēs.Catēgoria.Āctus => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum => ĪnflexorAdiectīvīs.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Nōmen => ĪnflexorEffectusNōminibus.Versor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Numerāmen => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Adverbium, _) => ĪnflexorAdverbiīs.Faciendum,
+              (Ēnumerātiōnēs.Catēgoria.Numerāmen, _) => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Adiectīvum, PēnsorAdiectīvīs.Versiō.Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus)
+                                                      => ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus.Faciendum,
+              (Ēnumerātiōnēs.Catēgoria.Nōmen, PēnsorNōminibus.Versiō.Nōmen_Prīmum_Plūrālis)
+                                                      => ĪnflexorPrīmusPlūrālisNōminibus.Faciendum,
+              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Adiectīvum) &&
+                                (versiō.ToString().StartsWith("Incomparābilis_"))
+                                                 => ĪnflexorIncomparābilisAdiectīvīs.Relātor.Invoke(versiō),
+              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen) &&
+                                (versiō.ToString().Contains("_Factum_"))
+                                                 => ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(versiō),
+              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen) &&
+                                (versiō.ToString().EndsWith("_Singulāris"))
+                                                 => ĪnflexorSingulārisNōminibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Adiectīvum, _) => ĪnflexorEffectusAdiectīvīs.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Nōmen, _) => ĪnflexorEffectusNōminibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Āctus, _) => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
 
     public readonly Func<string, Task<Enum?>> Versor
               = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor,
-                                                                   ĪnflexorAdverbiīs.Versiō.GetValues(),
-                                                                   ĪnflexorEffectusĀctibus.Versiō.GetValues(),
-                                                                   ĪnflexorEffectusAdiectīvīs.Versiō.GetValues(),
-                                                                   ĪnflexorEffectusNōminibus.Versiō.GetValues(),
-                                                                   ĪnflexorNumerāminibus.Versiō.GetValues())
+                                                                   PēnsorAdverbiīs.Versiō.GetValues(),
+                                                                   PēnsorAdiectīvīs.Versiō.GetValues(),
+                                                                   PēnsorNōminibus.Versiō.GetValues(),
+                                                                   PēnsorNumerāminibus.Versiō.GetValues(),
+                                                                   PēnsorĀctibus.Versiō.GetValues())
                                  where valor.ToString().Equals(versiō, StringComparison.OrdinalIgnoreCase)
                                  select valor).FirstNonNull(null);
 
     public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
-    protected readonly SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
+    protected SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
     private readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
     public readonly Func<Hoc, Task<Illud?>> FortisĪnflexor => hoc => ĪnflectemAsync(hoc, await Tabula.Random());
@@ -90,7 +112,7 @@ namespace Īnflexōrēs
       }
     }
 
-    public sealed Illud? Īnflectem(in Hoc hoc, in Enum[] illa)
+    public virtual Illud? Īnflectem(in Hoc hoc, in Enum[] illa)
     {
       if (Tabula.Contains(illa))
       {

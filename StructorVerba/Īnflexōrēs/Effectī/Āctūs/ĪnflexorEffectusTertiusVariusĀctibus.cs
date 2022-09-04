@@ -20,7 +20,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusVariusĀctibus()
-        : base(Versiō.Tertius, NūntiusĪnflexōrīEffectōVariōTertiōĀctibus.Faciendum) { }
+        : base(NūntiusĪnflexōrīEffectōVariōTertiōĀctibus.Faciendum) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {

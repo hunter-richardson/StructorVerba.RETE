@@ -15,8 +15,7 @@ namespace Īnflectōrēs.Effectī.Nōmina.NōminaFacta
     public static readonly Lazy<ĪnflexorEffectusPrīmusNōminibusFactīs> Faciendum
                      = new Lazy<ĪnflexorEffectusPrīmusNōminibusFactīs>(() => Instance);
     private ĪnflectorEffectusPrīmusNōminibusFactīs()
-        : base(Versiō.Nōmen_Factum_Prīmum,
-               NūntiusĪnflexōrīEffectōPrīmōNōminibusFactīs.Faciendum,
+        : base(NūntiusĪnflexōrīEffectōPrīmōNōminibusFactīs.Faciendum,
                "āre", "and") { }
 
     [Singleton]

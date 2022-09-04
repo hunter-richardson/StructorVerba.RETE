@@ -5,6 +5,7 @@ using System.Collections.Generic.SortedSet;
 using Nūntiī.Nūntius;
 using Miscella;
 using Praebeunda.Īnflectendum;
+using Pēnsōrēs.Nōmina.PēnsorNōminibusFactīs.Versiō;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 
@@ -15,15 +16,7 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
   [AsyncOverloads]
   public abstract partial class ĪnflexorEffectusNōminibusFactīs : ĪnflexorEffectusNōminibus<Īnflectendum.NōmenFactum>
   {
-    public enum Versiō
-    {
-      Nōmen_Factum_Prīmum = ĪnflexōrēsEffectusĀctibus.Versiō.Prīmus,
-      Nōmen_Factum_Secundum = ĪnflexōrēsEffectusĀctibus.Versiō.Secundus,
-      Nōmen_Factum_Tertium = ĪnflexōrēsEffectusĀctibus.Versiō.Tertius,
-      Nōmen_Factum_Quārtum = ĪnflexōrēsEffectusĀctibus.Versiō.Quārtus
-    }
-
-    public static readonly Func<Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Relātor = async versiō => versiō switch
+    public static readonly Func<PēnsorNōminibusFactīs.Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Relātor = async versiō => versiō switch
       {
         Versiō.Nōmen_Factum_Prīmum => ĪnflexorEffectusPrīmusNōminibusFactīs.Faciendum,
         Versiō.Nōmen_Factum_Secundum => ĪnflexorEffectusSecundusNōminibusFactīs.Faciendum,
@@ -35,16 +28,16 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
     private readonly string SuffixumĪnfīnītīvum { get; }
     private readonly string ĪnfixumGerundīvum { get; }
 
-    protected ĪnflexorEffectusNōminibusFactīs(in Versiō versiō, in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
+    protected ĪnflexorEffectusNōminibusFactīs(in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
                                               in string īnfīnītīvum, in string gerundīvum)
-                                                 : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
-                                                        (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
-                                                                                        .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
-                                                        Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),
-                                                        Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
-                                                                           new SortedSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
-                                                        Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
-                                                                           new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }))
+                                                                       : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
+                                                                              (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
+                                                                                                              .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
+                                                                              Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),
+                                                                              Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
+                                                                                                 new SortedSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
+                                                                              Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
+                                                                                                 new SortedSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }))
     {
       SuffixumĪnfīntītīvum = īnfīnītīvum;
       ĪnfixumGerundīvum = gerundīvum;

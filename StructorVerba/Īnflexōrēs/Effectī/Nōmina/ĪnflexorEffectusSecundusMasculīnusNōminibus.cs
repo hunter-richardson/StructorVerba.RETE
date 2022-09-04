@@ -18,8 +18,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
                      = new Lazy<ĪnflexorEffectusSecundusMasculīnusNōminibus>(() => Instance);
     private readonly ĪnflexorEffectusSecundusNeuterNōminibus Relātum = ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value;
     private ĪnflexorEffectusSecundusMasculīnusNōminibus()
-          : base(Versiō.Nōmen_Secundum_Masculīnum,
-                 NūntiusĪnflexōrīEffectōSecundōMasculīnōNōminibus.Faciendum,
+          : base(NūntiusĪnflexōrīEffectōSecundōMasculīnōNōminibus.Faciendum,
                  (nōmen, illa) => nōmen.Nominātīvum.Chop(2)) { }
 
     public sealed string Singulāre(in Casus casus) => (casus is Casus.Nominātīvus or Casus.Vocātīvus)

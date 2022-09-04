@@ -1,17 +1,32 @@
 using System;
 using System.Collections.Generic.Dictionary;
 
-using Praebeunda;
-using Īnflexōrēs.Effectī.Nōmina.NōminaFacta.ĪnflexorEffectusNōminibusFactīs.Versio;
+using Praebeunda.Īnflectendum;
 
 namespace Pēnsōrēs.Nōmina
 {
   public sealed class PēnsorNōminibusFactīs : PēnsorNōminibus<Īnflectendum.NōmenFactum>
   {
-    private static Dictionary<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs> Reservātī
-             = new Dictionary<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs>();
+    public enum Versiō
+    {
+      Nōmen_Factum_Prīmum = PēnsorĀctibus.Versiō.Prīmus,
+      Nōmen_Factum_Secundum = PēnsorĀctibus.Versiō.Secundus,
+      Nōmen_Factum_Tertium = PēnsorĀctibus.Versiō.Tertius,
+      Nōmen_Factum_Quārtum = PēnsorĀctibus.Versiō.Quārtus,
+      Nōmen_Factum_Prīmum_Prōnum,
+      Nōmen_Factum_Secundum_Prōnum,
+      Nōmen_Factum_Tertium_Prōnum,
+      Nōmen_Factum_Quārtum_Prōnum
+    }
 
-    public static Func<ĪnflexorEffectusNōminibusFactīs.Versio, PēnsorNōminibusFactīs> Faciendum = valor =>
+    public static sealed class Versiōnēs
+    {
+      public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
+    }
+
+    private static Dictionary<Versio, PēnsorNōminibusFactīs> Reservātī = new Dictionary<Versio, PēnsorNōminibusFactīs>();
+
+    public static Func<Versio, PēnsorNōminibusFactīs> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -25,10 +40,10 @@ namespace Pēnsōrēs.Nōmina
       }
     };
 
-    private PēnsorNōminibusFactīs(in ĪnflexorEffectusNōminibusFactīs.Versio versiō)
-                                                                     : base(versiō, nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
-                                                                            Tabula.Nōmina_Facta, NūntiusPēnsōrīNōminibusFactīs.Faciendum,
-                                                                            Īnflectendum.NōmenFactum.Lēctor) {  }
+    private PēnsorNōminibusFactīs(in Versio versiō)
+                                     : base(versiō, nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
+                                            Tabula.Nōmina_Facta, NūntiusPēnsōrīNōminibusFactīs.Faciendum,
+                                            Īnflectendum.NōmenFactum.Lēctor) {  }
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNōminibusFactīs : Nūntius<PēnsorNōminibusFactīs>
