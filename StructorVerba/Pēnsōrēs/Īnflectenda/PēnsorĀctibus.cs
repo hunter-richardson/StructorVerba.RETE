@@ -14,10 +14,11 @@ namespace Pēnsōrēs.Īnflectenda
       Tertius, Tertius_Varius, Tertius_Cum_Imperātīvō_Brevī,
       Prīmus_Dēpōnēns, Secundus_Dēpōnēns, Tertius_Dēpōnēns, Quārtus_Dēpōnēns,
       Prīmus_Semidēpōnēns, Secundus_Semidēpōnēns, Tertius_Semidēpōnēns,
+      Secundus_Impersōnālis, Tertius_Impersōnālis,
       Secundus_Impersōnālis_Semidēpōnēns, Tertius_Impersōnālis_Semidēpōnēns,
-      Prīmus_Impersōnālis_Semidēpōnēns_Imperfecta,
-      Secundus_Impersōnālis_Semidēpōnēns_Imperfecta,
-      Tertius_Impersōnālis_Semidēpōnēns_Imperfecta,
+      Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus,
+      Secundus_Impersōnālis_Semidēpōnēns_Imperfectus,
+      Tertius_Impersōnālis_Semidēpōnēns_Imperfectus,
       Secundus_Impersōnālis_Perfectō, Tertius_Impersōnālis_Perfectō
     }
 

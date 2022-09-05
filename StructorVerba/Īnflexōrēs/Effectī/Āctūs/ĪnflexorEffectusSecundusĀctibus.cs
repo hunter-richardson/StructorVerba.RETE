@@ -156,10 +156,11 @@ namespace Īnflexōrēs.Effectī.Āctūs
               => (vōx, tempus, numerālis) switch
                   {
                     (Vōx.Āctīva, Tempus.Praesēns, Numerālis.Singulāris) => "ē",
-                    (Vōx.Āctīva, Tempus.Futūrum, Numerālis.Singulāris) => "ētō",
                     (Vōx.Passīva, Tempus.Praesēns, Numerālis.Plūrālis) => "ēminī",
                     (Vōx.Passīva, Tempus.Futūrum, Numerālis.Singulāris) => "ētor",
                     (Vōx.Passīva, Tempus.Futūrum, Numerālis.Plūrālis) => "entor",
+                    (Vōx.Āctīva, Tempus.Futūrum, Numerāis.Singulāris)
+                            => (await ImperātīvumAsync(vōx, Tempus.Praesēns, numerāls)).Concat("tō"),
                     (Vōx.Passīva, Tempus.Praesēns, Numerālis.Singulāris)
                             => await ĪnfīnītīvumAsync(Vōx.Āctīva, tempus),
                     (Vōx.Āctīva, Tempus.Praesēns or Tempus.Futūrum, Numerālis.Plūrālis)

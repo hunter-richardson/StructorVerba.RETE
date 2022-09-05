@@ -170,10 +170,11 @@ namespace Īnflexōrēs.Effectī.Āctūs
               => (vōx, tempus, numerālis) switch
                   {
                     (Vōx.Āctīva, Tempus.Praesēns, Numerālis.Singulāris) => "ī",
-                    (Vōx.Āctīva, Tempus.Futūrum, Numerālis.Singulāris) => "ītō",
                     (Vōx.Passīva, Tempus.Praesēns, Numerālis.Plūrālis) => "īminī",
                     (Vōx.Passīva, Tempus.Futūrum, Numerālis.Singulāris) => "ītor",
                     (Vōx.Passīva, Tempus.Futūrum, Numerālis.Plūrālis) => "iuntor",
+                    (Vōx.Āctīva, Tempus.Futūrum, Numerāis.Singulāris)
+                            => (await ImperātīvumAsync(vōx, Tempus.Praesēns, numerāls)).Concat("tō"),
                     (Vōx.Passīva, Tempus.Praesēns, Numerālis.Singulāris)
                             => await ĪnfīnītīvumAsync(Vōx.Āctīva, tempus),
                     (Vōx.Āctīva, Tempus.Praesēns or Tempus.Futūrum, Numerālis.Plūrālis)

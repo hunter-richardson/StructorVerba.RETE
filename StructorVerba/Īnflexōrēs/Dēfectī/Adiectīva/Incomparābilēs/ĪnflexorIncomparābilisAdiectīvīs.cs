@@ -7,7 +7,7 @@ using Pēnsōrēs.Īnflectenda.PēnsorAdiectīvīs.Versiō;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīs;
 using Ēnumerātiōnēs;
 
-namespace Īnflexōrēs.Dēfectī.Adiectīva
+namespace Īnflexōrēs.Dēfectī.Adiectīva.Incomparābilēs
 {
   public abstract class ĪnflexorIncomparābilisAdiectīvīs : ĪnflexorDēfectusAdiectīvīs<Īnflectendum.Adiectīva>
   {

@@ -29,7 +29,7 @@ namespace Īnflexōrēs.Dēfectī
              .ReplaceAll(valōrēs => Referō(valōrēs))
              .ForEach(valōrēs => Tabula.Add(valōrēs));
 
-      return base.Īnflectem(hoc, illa);
+      return await base.ĪnflectemAsync(hoc, illa);
     }
 
     public sealed string Scrībam(in Hoc hoc, in Enum[] illa)
