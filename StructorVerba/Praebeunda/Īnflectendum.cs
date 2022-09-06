@@ -74,6 +74,24 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
+    public sealed class Prōnōmen : Īnflectendum<Prōnōmen, Multiplex.Prōnōmen>
+    {
+      public static readonly Func<JsonElement, Enum, Task<Prōnōmen>> Lēctor =
+                async (legendum, valor) => new Nōmen(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
+                                                     legendum.GetProperty(nameof(Nominātīvum).ToLower()).GetString(),
+                                                     legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString());
+      private Prōnōmen(in int minūtal, in string nōminātīvum, in string genitīvum)
+                       : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen)
+      {
+        Nominātīvum = nōminātīvum;
+        Genitīvum = genitīvum;
+      }
+
+      public readonly string Nominātīvum { get; }
+      public readonly string Genitīvum { get; }
+      public string ToString() => Nominātīvum;
+    }
+
     public sealed class Nōmen : Īnflectendum<Nōmen, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<Nōmen>> Lēctor =
