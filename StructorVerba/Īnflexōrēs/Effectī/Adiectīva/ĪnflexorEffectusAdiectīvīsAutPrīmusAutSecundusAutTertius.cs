@@ -23,12 +23,12 @@ namespace Īnflexōrēs.Effectī.Adiectīva
         : base(NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiō.Faciendum,
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => illa.FirstOf<Gradus>() switch
-                {
-                  Gradus.Positīvus => adiectīvum.Positīvum.Chop(2),
-                  Gradus.Comparātīvus => adiectīvum.Comparātīvum.Chop(3),
-                  Gradus.Superlātīvus => adiectīvum.Superlātīvum.Chop(2),
-                  _ => string.Empty
-                }) { }
+                                      {
+                                        Gradus.Positīvus => adiectīvum.Positīvum.Chop(2),
+                                        Gradus.Comparātīvus => adiectīvum.Comparātīvum.Chop(3),
+                                        Gradus.Superlātīvus => adiectīvum.Superlātīvum.Chop(2),
+                                        _ => string.Empty
+                                      }) { }
 
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch

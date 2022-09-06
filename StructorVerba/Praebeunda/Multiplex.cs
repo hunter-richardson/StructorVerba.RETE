@@ -53,13 +53,13 @@ namespace Praebeunda
     public sealed partial class Numerāmen : Multiplex<Numerāmen>, Īnflexum<Numerāmen>
     {
       public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor
-                = async (illa, scrīpum) => Builder.WithNumerium(illa.FirstOf<Numerium>())
-                                                  .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) => Builder.Numerium(illa.FirstOf<Numerium>())
+                                                  .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Numerium Numerium { get; }
 
       protected Numerāmen(in int minūtal, in Ēnumerātiōnēs.Numerium numerium, in string scrīpum)
-                          : base(minūtal, Ēnumerātiōnēs.Catēgoria.Numerāmen, scrīptum)
+                          : base(minūtal, in Ēnumerātiōnēs.Catēgoria.Numerāmen, scrīptum)
       {
         Numerium = numerium;
       }
@@ -69,12 +69,12 @@ namespace Praebeunda
     public sealed partial class Āctus : Multiplex<Āctus>, Īnflexum<Āctus>
     {
       public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor
-                = async (illa, scrīpum) => Builder.WithModus(illa.FirstOf<Modus>())
-                                                  .WithVōx(illa.FirstOf<Vōx>())
-                                                  .WithTempus(illa.FirstOf<Tempus>())
-                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
-                                                  .WithPersōna(illa.FirstOf<Persōna>())
-                                                  .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) => Builder.Modus(illa.FirstOf<Modus>())
+                                                  .Vōx(illa.FirstOf<Vōx>())
+                                                  .Tempus(illa.FirstOf<Tempus>())
+                                                  .Numerālis(illa.FirstOf<Numerālis>())
+                                                  .Persōna(illa.FirstOf<Persōna>())
+                                                  .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Modus Modus { get; }
       [Required] public readonly Vōx Vōx { get; }
@@ -99,8 +99,8 @@ namespace Praebeunda
     public sealed partial class Adverbium : Speciāle<Adverbium>, Īnflexum<Adverbium>
     {
       public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor
-                = async (illa, scrīpum) =>  Builder.WithGradus(illa.FirstOf<Gradus>())
-                                                   .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) =>  Builder.Gradus(illa.FirstOf<Gradus>())
+                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Gradus Gradus { get; }
 
@@ -115,11 +115,11 @@ namespace Praebeunda
     public sealed partial class Adiectīvum : Speciāle<Adiectīvum>, Īnflexum<Adiectīvum>
     {
       public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor
-                = async (illa, scrīpum) => Builder.WithGradus(illa.FirstOf<Gradus>())
-                                                  .WithGenus(illa.FirstOf<Genus>())
-                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
-                                                  .WithCasus(illa.FirstOf<Casus>())
-                                                  .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) => Builder.Gradus(illa.FirstOf<Gradus>())
+                                                  .Genus(illa.FirstOf<Genus>())
+                                                  .Numerālis(illa.FirstOf<Numerālis>())
+                                                  .Casus(illa.FirstOf<Casus>())
+                                                  .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Gradus Gradus { get; }
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }
@@ -148,10 +148,10 @@ namespace Praebeunda
     public sealed partial class Nōmen : Speciāle<Nōmen>, Īnflexum<Nōmen>
     {
       public static readonly Func<Enum[], string, Task<Nōmen>> Cōnstrūctor
-                = async (illa, scrīpum) => Builder.WithFactum(illa.FirstOf<Factum>())
-                                                  .WithCasus(illa.FirstOf<Casus>())
-                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
-                                                  .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) => Builder.Factum(illa.FirstOf<Factum>())
+                                                  .Casus(illa.FirstOf<Casus>())
+                                                  .Numerālis(illa.FirstOf<Numerālis>())
+                                                  .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Factum Factum { get; }
       [Required] public readonly Numerālis Numerālis { get; }
@@ -171,10 +171,10 @@ namespace Praebeunda
     public sealed partial class Prōnōmen : Multiplex<Prōnōmen>, Īnflexum<Prōnōmen>
     {
       public static readonly Func<Enum[], string, Task<Adiectīvum>> Cōnstrūctor
-                = async (illa, scrīpum) => Builder.WithGenus(illa.FirstOf<Genus>())
-                                                  .WithNumerālis(illa.FirstOf<Numerālis>())
-                                                  .WithCasus(illa.FirstOf<Casus>())
-                                                  .WithScrīpum(scrīpum).Build();
+                = async (illa, scrīpum) => Builder.Genus(illa.FirstOf<Genus>())
+                                                  .Numerālis(illa.FirstOf<Numerālis>())
+                                                  .Casus(illa.FirstOf<Casus>())
+                                                  .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }
       [Required] public readonly Ēnumerātiōnēs.Numerālis Numerālis { get; }

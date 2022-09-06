@@ -17,13 +17,6 @@ namespace Īnflexōrēs.Effectī.Adiectīva
   [AsyncOverloads]
   public abstract partial class ĪnflexorEffectusAdiectīvīs<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Adiectīvum>
   {
-    public enum Versiō
-    {
-      Aut_Prīmus_Aut_Secundus_Aut_Tertius, Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē, Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē,
-      Aut_Tertius_Aut_Prīmus_Aut_Secundus, Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō, Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō,
-      Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Varius
-    }
-
     public static readonly Func<PēnsorAdiectīvīs.Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor
               = async versiō => versiō switch
                                 {
@@ -41,6 +34,9 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                             => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
                                             => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                                  Versiō.Prōnōminālis => null,
+                                  Versiō.Prōnōminālis_Cum_Litterā_Ē => null,
+                                  Versiō.Prōnōminālis_Sine_Litterā_Ē => null,
                                   _ => new Lazy(null)
                                 };
 
@@ -70,7 +66,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                     (_, _, _, _) => string.Empty
                   };
 
-    public sealed async string? Suffixum(in Enum[] illa)
+    public virtual string? Suffixum(in Enum[] illa)
     {
       const Gradus gradus = illa.FirstOf<Gradus>();
       const Genus genus = illa.FirstOf<Genus>();

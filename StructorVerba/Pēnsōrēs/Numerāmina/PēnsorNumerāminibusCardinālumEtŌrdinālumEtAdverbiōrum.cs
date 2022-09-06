@@ -21,7 +21,7 @@ namespace Pēnsōrēs.Numerāmina
 
     [Singleton]
     private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum
-                : Nūntius<PēnsōrNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>
+                : Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>
     {
       public static readonly Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum> Faciendum =
                          new Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>(() => Instance);

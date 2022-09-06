@@ -12,27 +12,16 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Incertī
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorIncertus<Hoc>
+  public abstract partial class ĪnflexorIncertus<Hoc, Illud> : Īnflexor<Hoc, Illud>
   {
-    private readonly ComparātorSeriērum ComparātorSeriērum = ComparātorSeriērum.Faciendum.Value;
-    private readonly ComparātorValōrum ComparātorValōrum = ComparātorValōrum.Faciendum.Value;
     private readonly IDictionary<Enum[], string> Fōrmae = new PredicatedSortedDictionary<Enum[], string>(ComparātorSeriērum,
                                                                                                          Tabula.Contains, "Ēnumerātiō scīta'stō",
                                                                                                          string.IsNullOrWhiteSpace, "Fōrma invacua'stō");
     public readonly Func<IDictionary<Enum[], string>> Fōrmātor = () => Fōrmae.ToImmutableSortedDictionary();
-    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
-    private readonly SortedSet<Enum[]> Tabula = new SortedSet<Enum[]>(ComparātorSeriērum);
-    public readonly Func<ISet<Enum[]>> Tabulātor = () => Tabula.ToImmutableSortedSet();
-    private readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
-    protected readonly Nūntius<ĪnflexorIncertus> Nūntius { get; }
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params IEnumerable<Enum[]> illa)
-    {
-      Catēgoria = catēgoria;
-      Nūntius = nūntius.Value;
-      illa.ForEach(haec => Tabula.Add(haec.Sort(ComparātorValōrum)));
-    }
+                               : base(catēgoria, nūntius, illa) { }
 
     public sealed void Fōrmam(in string fōrma, in params Enum illa)
     {
@@ -47,51 +36,17 @@ namespace Īnflexōrēs.Incertī
       }
     }
 
-    public virtual string Scrībam(in params Enum illa)
-              => await Ūtilitātēs.Seriēs((from linea in Fōrmae
-                                          where ComparātorSeriērum.Equals(linea.Key, illa.Sort(ComparātorValōrum))
-                                          select linea.Value).First(),
-                                        (from linea in Fōrmae
-                                         where illa.ContainsAll(linea.Key)
-                                         select linea.Value).Single(),
-                                        Fōrmae.Item[illa])
-                                 .FirstNonNull(string.Empty);
+    public sealed string Scrībam(in Hoc hoc, in params Enum illa)
+              => await ScrībamAsync(illa);
 
-    private Hoc? Cōnstruam(in Enum[] illa)
-    {
-      const string scrīpum = await ScrībamAsync(illa);
-      try
-      {
-        return string.IsNullOrWhitespace(scrīptum)
-                     .Choose(null, await Cōnstrūctor?.Invoke(illa, scrīptum));
-      }
-      catch (BuilderException error)
-      {
-        Nūntius.TerreōAsync(error);
-        return null;
-      }
-    }
-
-    public sealed Hoc? Īnflectem(in Enum[] illa)
-    {
-      if (Tabula.Contains(illa))
-      {
-        const Illud illud = await CōnstruamAsync(illa);
-        if (illud is null)
-        {
-          Nūntius.MoneōAsync("Īnflexiō dēfēcit");
-        }
-        else
-        {
-          Nūntius.NōtōAsync("Verbum īnflexu'st ut", illud);
-        }
-
-        return illud;
-      }
-      else
-      {
-        return null;
-      }
-    }
+    public sealed string Scrībam(in params Enum illa)
+              => Ūtilitātēs.Seriēs((from linea in Fōrmae
+                                    where ComparātorSeriērum.Equals(linea.Key, illa.Sort(ComparātorValōrum))
+                                    select linea.Value).First(),
+                                   (from linea in Fōrmae
+                                    where illa.ContainsAll(linea.Key)
+                                    select linea.Value).Single(),
+                                   Fōrmae.Item[illa])
+                            .FirstNonNull(string.Empty);
   }
 }

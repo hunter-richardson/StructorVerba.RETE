@@ -24,7 +24,7 @@ namespace Pēnsōrēs
   {
     public enum Tabula
     {
-      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Āctūs_Effectī,
+      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Āctūs,
       Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
       Numerāmina_Cardinālium_Solōrum, Numerāmina_Cardinālium_Ōrdināliumque,
       Numerāmina_Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,

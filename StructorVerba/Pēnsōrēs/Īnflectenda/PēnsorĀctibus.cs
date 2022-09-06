@@ -15,7 +15,7 @@ namespace Pēnsōrēs.Īnflectenda
       Prīmus_Dēpōnēns, Secundus_Dēpōnēns, Tertius_Dēpōnēns, Quārtus_Dēpōnēns,
       Prīmus_Semidēpōnēns, Secundus_Semidēpōnēns, Tertius_Semidēpōnēns,
       Secundus_Impersōnālis, Tertius_Impersōnālis,
-      Secundus_Impersōnālis_Semidēpōnēns, Tertius_Impersōnālis_Semidēpōnēns,
+      Prīmus_Impersōnālis_Semidēpōnēns, Secundus_Impersōnālis_Semidēpōnēns, Tertius_Impersōnālis_Semidēpōnēns,
       Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus,
       Secundus_Impersōnālis_Semidēpōnēns_Imperfectus,
       Tertius_Impersōnālis_Semidēpōnēns_Imperfectus,

@@ -28,19 +28,19 @@ namespace Officīnae
     private readonly OfficīnaImmūtantium<Hoc> Relātum { get; }
     private readonly Dictionārium<Hoc>? Dictionārium { get; }
     public readonly Func<string, Enum[], Task<Hoc?>> Inventor
-        = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.Īnflexor.Invoke(lemma, illa),
+        = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.FeramĪnflectemqueAsync(lemma, illa),
                                                    (await (await Relātum.Inventor.Invoke(lemma))
                                                             ?.Relātor.Invoke())?.ĪnflectemAsync(illa))
                                            .FirstNonNull();
 
     public readonly Func<string, Task<Hoc?>> FortisĪnflexor
-        = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.FortisĪnflexor.Invoke(lemma),
+        = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.ĪnflexōrīFortisFeramAsync(lemma),
                                            (await (await Relātum.Inventor.Invoke(lemma))
                                                        ?.Relātor.Invoke())?.FortisĪnflexor.Invoke())
                                    .FirstNonNull();
 
     public readonly Func<Task<Hoc?>> FortisInventor
-        = async () => Ūtilitātēs.Seriēs(await Dictionārium?.FortisInventor.Invoke(),
+        = async () => Ūtilitātēs.Seriēs(await Dictionārium?.ForsFeratĪnflectetqueAsync(),
                                         (await (await Relātum.FortisInventor.Invoke())
                                                     ?.Relator.Invoke())?.FortisĪnflexor.Invoke())
                                 .FirstNonNull();

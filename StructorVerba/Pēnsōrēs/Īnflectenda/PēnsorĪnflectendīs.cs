@@ -4,7 +4,7 @@ using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
 using Praebeunda;
-using Pēnsōrēs.Adverbia;
+using Pēnsōrēs.Nōmina;
 using Pēnsōrēs.Numerāmina;
 using Ēnumerātiōnēs.Catēgoria;
 using Nūntiī.Nūntius;
@@ -18,12 +18,16 @@ namespace Pēnsōrēs.Īnflectenda
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<PēnsorĪnflectendīs?>> Relātor =
             (catēgoria, versiō) => catēgoria switch
             {
-              Ēnumerātiōnēs.Catēgoria.Āctus       => null,
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum  => PēnsorAdiectīvīs.Faciendum,
-              Ēnumerātiōnēs.Catēgoria.Adverbium   => PēnsorAdverbiīs.Faciendum,
-              Ēnumerātiōnēs.Catēgoria.Nōmen       => null,
-              Ēnumerātiōnēs.Catēgoria.Numerāmen   => PēnsorNumerāminibus.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Prōnōmen    => null,
+              Ēnumerātiōnēs.Catēgoria.Āctus => PēnsorĀctibus.Faciendum.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Adiectīvum => PēnsorAdiectīvīs.Faciendum.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Adverbium => PēnsorAdverbiīs.Faciendum,
+              Ēnumerātiōnēs.Catēgoria.Numerāmen => PēnsorNumerāminibus.Relātor.Invoke(versiō),
+              Ēnumerātiōnēs.Catēgoria.Nōmen => valor.GetType() switch
+                                                {
+                                                  typeof(PēnsorNōminibusFactīs.Versiō) => PēnsorNōminibusFactīs.Faciendum.Invoke(versiō),
+                                                  typeof(PēnsorNōminibus.Versiō) => PēnsorNōminibus.Faciendum.Invoke(versiō),
+                                                  _ => new Lazy(null)
+                                                },
               _ => new Lazy(null)
             };
 

@@ -4,26 +4,42 @@ using System.Collections.Generic.IEnumerable;
 using Miscella;
 using Praebeunda.Īnflecendum;
 using Pēnsōrēs.Nōmina.PēnsorNōminibus.Versiō;
-using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus;
+using Īnflexōrēs.Effectī.Nōmina;
 using Ēnumerātiōnēs;
+
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttritbue;
+using Lombok.NET.PropertyGenerators.SingletonAttritbue;
 
 namespace Īnflexōrēs.Dēfectī.Nōmina
 {
-  public abstract class ĪnflexorSingulārisNōminibus : ĪnflexorDēfectusNōminibus<Īnflectendum.Nōmen>
+  [AsyncOverloads]
+  public sealed class ĪnflexorSingulārisNōminibus : ĪnflexorDēfectusNōminibus<Īnflectendum.Nōmen>
   {
+    private static readonly Lazy<ĪnflexorSingulārisNōminibus> Prīmus
+                      = new Lazy<ĪnflexorSingulārisNōminibus>(() => new ĪnflexorSingulārisNōminibus(ĪnflexorEffectusPrīmusNōminibus.Faciendum));
+    private static readonly Lazy<ĪnflexorSingulārisNōminibus> SecundusMasculīnus
+                      = new Lazy<ĪnflexorSingulārisNōminibus>(() => new ĪnflexorSingulārisNōminibus(ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum));
+    private static readonly Lazy<ĪnflexorSingulārisNōminibus> Tertius
+                      = new Lazy<ĪnflexorSingulārisNōminibus>(() => new ĪnflexorSingulārisNōminibus(ĪnflexorEffectusTertiusNōminibus.Faciendum));
     public static readonly Func<PēnsorNōminibus.Versiō, Task<Lazy<ĪnflexorSingulārisNōminibus?>>> Relātor = async versiō => versiō switch
     {
-      PēnsorNōminibus.Versiō.Nōmen_Prīmum_Singulāris => null,
-      PēnsorNōminibus.Versiō.Nōmen_Secundum_Masculīnum_Singulāris => null,
-      PēnsorNōminibus.Versiō.Nōmen_Tertium_Singulāris => null,
+      PēnsorNōminibus.Versiō.Nōmen_Prīmum_Singulāris => Prīmus,
+      PēnsorNōminibus.Versiō.Nōmen_Secundum_Masculīnum_Singulāris => SecundusMasculīnus,
+      PēnsorNōminibus.Versiō.Nōmen_Tertium_Singulāris => Tertius,
       _ => new Lazy(null),
     };
 
-    protected ĪnflexorSingulārisNōminibus(in Lazy<Nūntius<ĪnflexorSingulārisNōminibus>> nūntius,
-                                          in Lazy<ĪnflexorEffectusNōminibus> relātus)
-                                                                                 : base(nūntius, relātus) { }
+    private ĪnflexorSingulārisNōminibus(in Lazy<ĪnflexorEffectusNōminibus> relātus)
+                      : base(NūntiusĪnflexōrīSingulārīNōminibus.Faciendum, relātus) { }
 
-    protected sealed Enum[] Referō(in Enum[] illa)
+    protected Enum[] Referō(in Enum[] illa)
           => Ūtilitātēs.Seriēs(Numerālis.Singulāris, illa.FirstOf<Casus>());
+  }
+
+  [Singleton]
+  private sealed partial class NūntiusĪnflexōrīSingulārīNōminibus : Nūntius<ĪnflexorSingulārisNōminibus>
+  {
+    public static readonly Lazy<NūntiusĪnflexōrīSingulārīNōminibus> Faciendum
+                     = new Lazy<NūntiusĪnflexōrīSingulārīNōminibus>(() => Instance);
   }
 }

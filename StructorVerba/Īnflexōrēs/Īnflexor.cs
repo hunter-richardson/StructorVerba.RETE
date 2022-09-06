@@ -57,8 +57,10 @@ namespace Īnflexōrēs
               _ => new Lazy(null)
             };
 
+    protected readonly Comparer<Enum[]> ComparātorSeriērum = ComparātorSeriērum.Faciendum.Value;
+    protected readonly Comparer<Enum> ComparātorValōrum = ComparātorValōrum.Faciendum.Value;
     public readonly Func<string, Task<Enum?>> Versor
-              = async versiō => (from valor in Ūtilitātēs.Complānō(Comparātor,
+              = async versiō => (from valor in Ūtilitātēs.Complānō(ComparātorValōrum,
                                                                    PēnsorAdverbiīs.Versiō.GetValues(),
                                                                    PēnsorAdiectīvīs.Versiō.GetValues(),
                                                                    PēnsorNōminibus.Versiō.GetValues(),
@@ -67,9 +69,8 @@ namespace Īnflexōrēs
                                  where valor.ToString().Equals(versiō, StringComparison.OrdinalIgnoreCase)
                                  select valor).FirstNonNull(null);
 
+    protected SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum);
     public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
-    protected SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum.Faciendum.Value);
-    private readonly Comparer<Enum> Comparātor = ComparātorValōrum.Faciendum.Value;
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);
     public readonly Func<Hoc, Task<Illud?>> FortisĪnflexor => hoc => ĪnflectemAsync(hoc, await Tabula.Random());
 

@@ -2,20 +2,35 @@ using System;
 
 using Nūntiī.Nūntius;
 using Īnflexōrēs.Effectī.Āctibus.ĪnflexorEffectusSecundusĀctibus;
+using Īnflexōrēs.Effectī.Āctūs;
 
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
 namespace Īnflexōrēs.Dēfectī.Āctūs
 {
-  [Singleton]
-  public sealed partial class ĪnflexorImpersōnālisSemidēpōnēnsSecundusĀctibus : ĪnflexorDēfectusĀctibus
+  [AsyncOverloads]
+  public sealed partial class ĪnflexorImpersōnālisSemidēpōnēnsĀctibus : ĪnflexorDēfectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsSecundusĀctibus> Faciendum
-                     = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsSecundusĀctibus>(() => Instance);
-    private ĪnflexorImpersōnālisSemidēpōnēsSecundusĀctibus()
-          : base(NūntiusĪnflexōrīImpersōnālisSemidēpōnentīSecundōĀctibus.Faciendum, ĪnflexorEffectusSecundusĀctibus.Faciendum) { }
+    private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus> Prīmus
+                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsĀctibus(ĪnflexorEffectusPrīmusĀctibus.Faciendum));
+    private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus> Secundus
+                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
+    private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus> Tertius
+                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
+    public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus?>>> Relātor
+              = async versiō => versiō switch
+                                {
+                                  PēnsorĀctibus.Versiō.Prīmus_Impersōnālis_Semidēpōnēns => Prīmus,
+                                  PēnsorĀctibus.Versiō.Secundus_Impersōnālis_Semidēpōnēns => Secundus,
+                                  PēnsorĀctibus.Versiō.Tertius_Impersōnālis_Semidēpōnēns => Tertius,
+                                  _ => new Lazy(null),
+                                };
 
-    public sealed Enum[] Referō(in Enum[] illa)
+    private ĪnflexorImpersōnālisSemidēpōnēsĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
+                 : base(NūntiusĪnflexōrīImpersōnālisSemidēpōnentīĀctibus.Faciendum, relātum) { }
+
+    public Enum[] Referō(in Enum[] illa)
     {
       const Modus modus = illa.FirstOf<Modus>();
       const Tempus tempus = illa.FirstOf<Tempus>();
@@ -29,10 +44,10 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
     }
 
     [Singleton]
-    private sealed partial class NūntiusĪnflexōrīImpersōnālisSemidēpōnentīSecundōĀctibus : Nūntius<ĪnflexorImpersōnālisSemidēpōnēnsSecundusĀctibus>
+    private sealed partial class NūntiusĪnflexōrīImpersōnālisSemidēpōnentīĀctibus : Nūntius<ĪnflexorImpersōnālisSemidēpōnēnsĀctibus>
     {
-      public static readonly Lazy<NūntiusĪnflexōrīImpersōnālisSemidēpōnentīSecundōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīImpersōnālisSemidēpōnentīSecundōĀctibus>(() => Instance);
+      public static readonly Lazy<NūntiusĪnflexōrīImpersōnālisSemidēpōnentīĀctibus> Faciendum
+                       = new Lazy<NūntiusĪnflexōrīImpersōnālisSemidēpōnentīĀctibus>(() => Instance);
     }
   }
 }

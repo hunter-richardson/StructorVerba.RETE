@@ -41,7 +41,7 @@ namespace Pēnsōrēs.Nōmina
       }
     };
 
-    private PēnsorNōminibus(in Versio versiō)
+    private PēnsorNōminibus(in Versiō versiō)
                                : base(versiō, nameof(Īnflectendum.Nōmen.Nominātīvum),
                                       Tabula.Nōmina, NūntiusPēnsōrīNōminibus.Faciendum,
                                       Īnflectendum.Nōmen.Lēctor) {  }
