@@ -14,9 +14,17 @@ namespace Dictionāria
 
     protected readonly Īnflectendum.Nōmen Athōs = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīAthōs.Faciendum,
                                                                                               Ūtilitātēs.Seriēs("Athōs", "Athō"));
+    protected readonly Īnflectendum.Nōmen Dea = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīDea.Faciendum,
+                                                                                              Ūtilitātēs.Seriēs("dea", "dea"));
 
     private DictionāriumNōminibus()
-        : base(DictionāriumNōminibus.Faciendum) { }
+        : base((lemma, illud) => string.Equals(lemma switch
+                                                {
+                                                  "deus" => nameof(DeusCommūnis),
+                                                  "Deus" => nameof(DeusProprius),
+                                                  _ => lemma
+                                                }, illud.Name, StringComparison.OrdinalIgnoreCase),
+                DictionāriumNōminibus.Faciendum) { }
 
     [Singleton]
     private sealed partial class NūntiusDictionāriōNōminibus : Nūntius<DictionāriumNōminibus>

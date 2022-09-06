@@ -14,12 +14,14 @@ namespace Īnflexōrēs.Incertī.Nōmina
                      = new Lazy<ĪnflexorVerbīAthōs>(() => Instance);
 
     private ĪnflexorVerbīAthōs()
-          : base(Ēnumerātiōnēs.Catēgoria.Nōmen, NūntiusĪnflexōrīVerbīAthōs.Faciendum)
+          : base(Ēnumerātiōnēs.Catēgoria.Nōmen,
+                 NūntiusĪnflexōrīVerbīAthōs.Faciendum,
+                 Casus.GetValues().Except(Casus.Dērēctus))
     {
       FōrmamAsync("Athōs", Casus.Nominātīvus);
       FōrmamAsync("Athōn", Casus.Accusātīvus);
 
-      Casus.GetValues().Except(Casus.Nominātīvus, Casus.Accusātīvus)
+      Casus.GetValues().Except(Casus.Dērēctus, Casus.Nominātīvus, Casus.Accusātīvus)
                        .ForEach(valor => FōrmamAsync("Athō", valor));
     }
 

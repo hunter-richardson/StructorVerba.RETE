@@ -18,9 +18,15 @@ namespace Īnflexōrēs.Incertī
                                                                                                          Tabula.Contains, "Ēnumerātiō scīta'stō",
                                                                                                          string.IsNullOrWhiteSpace, "Fōrma invacua'stō");
     public readonly Func<IDictionary<Enum[], string>> Fōrmātor = () => Fōrmae.ToImmutableSortedDictionary();
+
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params IEnumerable<Enum[]> illa)
+                               : base(catēgoria, nūntius, illa) { }
+
+    protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
+                               in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
+                               in params Enum illa)
                                : base(catēgoria, nūntius, illa) { }
 
     public sealed void Fōrmam(in string fōrma, in params Enum illa)
