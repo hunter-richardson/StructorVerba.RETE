@@ -23,7 +23,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public sealed string Singulāre(in Casus casus) => casus switch
     {
       Casus.Nominātīvus or Casus.Accusātīvus or Casus.Vocātīvus => "um",
-      Casus.Genitīvus => "ī",
+      Casus.Genitīvus or Casus.Locātīvus => "ī",
       _ => "ō"
     };
 
