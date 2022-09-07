@@ -8,8 +8,7 @@ using Pēnsōrēs.Īnflectenda.PēnsorAdiectīvīs.Versiō;
 using Praebeunda.Multiplex.Adiectivum;
 using Praebeunda.Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium;
 using Ēnumerātiōnēs;
-using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius;
-using Īnflexōrēs.Dēfectī.Adiectīva.ĪnflexorIncomparābilisAdiectīvīs;
+using Īnflexōrēs.Effectī.Adiectīva;
 
 using Lombok.NET.MethodGenerators.SingletonAttribute;
 
@@ -20,8 +19,6 @@ namespace Īnflexōrēs.Incertī.Adiectīva
   {
     public static readonly Lazy<ĪnflexorVerbīMultum> Faciendum
                      = new Lazy<ĪnflexorVerbīMultum>(() => Instance);
-
-    private ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius relātus = ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum;
 
     private ĪnflexorVerbīMultum()
           : base(Ēnumerātiōnēs.Catēgoria.Adiectīvum,
