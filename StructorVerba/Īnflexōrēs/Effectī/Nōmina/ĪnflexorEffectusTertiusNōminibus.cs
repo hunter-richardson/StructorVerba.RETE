@@ -28,7 +28,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     {
       Casus.Nominātīvus or Casus.Vocātīvus => string.Empty,
       Casus.Genitīvus => "is",
-      Casus.Datīvus => "ī",
+      Casus.Datīvus or Casus.Locātīvus => "ī",
       Casus.Accusātīvus => "em",
       _ => "e"
     };
