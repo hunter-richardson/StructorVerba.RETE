@@ -18,17 +18,11 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   {
     public static readonly Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus> Faciendum
                      = new Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>(() => Instance);
-    private ĪnflexorIncomparābilisPlūrālisAdiectīvīs()
-          : base(NūntiusĪnflexōrīPlūrāleAdiectīvīsAutPrīmīsAutSecundīs.Faciendum, ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum) { }
+    private ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus()
+          : base(new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(() => new Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>()),
+                 ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum) { }
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Gradus.Positīvus, illa.FirstOf<Genus>(), Numerālis.Plūrālis, illa.FirstOf<Casus>());
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīPlūrāleAdiectīvīsAutPrīmīsAutSecundīs : Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīPlūrāleAdiectīvīsAutPrīmīsAutSecundīs> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīPlūrāleAdiectīvīsAutPrīmīsAutSecundīs>(() => Instance);
-    }
   }
 }

@@ -16,12 +16,17 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
   [AsyncOverloads]
   public abstract partial class ĪnflexorEffectusNōminibusFactīs : ĪnflexorEffectusNōminibus<Īnflectendum.NōmenFactum>
   {
+    private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Prīmus = new Lazy<ĪnflexorEffectusNōminibusFactīs>("āre", "and");
+    private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Secundus = new Lazy<ĪnflexorEffectusNōminibusFactīs>("ēre", "end");
+    private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Tertius = new Lazy<ĪnflexorEffectusNōminibusFactīs>("ere", "iend");
+    private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Quārtus = new Lazy<ĪnflexorEffectusNōminibusFactīs>("īre", "iend");
+
     public static readonly Func<PēnsorNōminibusFactīs.Versiō, Task<Lazy<ĪnflexorEffectusNōminibusFactīs?>>> Relātor = async versiō => versiō switch
       {
-        Versiō.Nōmen_Factum_Prīmum => ĪnflexorEffectusPrīmusNōminibusFactīs.Faciendum,
-        Versiō.Nōmen_Factum_Secundum => ĪnflexorEffectusSecundusNōminibusFactīs.Faciendum,
-        Versiō.Nōmen_Factum_Tertium => ĪnflexorEffectusTertiusNōminibusFactīs.Faciendum,
-        Versiō.Nōmen_Factum_Quārtum => ĪnflexorEffectusQuārtusNōminibusFactīs.Faciendum,
+        Versiō.Nōmen_Factum_Prīmum => Prīmus,
+        Versiō.Nōmen_Factum_Secundum => Secundus,
+        Versiō.Nōmen_Factum_Tertium => Tertius,
+        Versiō.Nōmen_Factum_Quārtum => Quārtus,
         _ => new Lazy(null),
       };
 
@@ -30,7 +35,9 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
 
     protected ĪnflexorEffectusNōminibusFactīs(in Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>> nūntius,
                                               in string īnfīnītīvum, in string gerundīvum)
-                                                                       : base(versiō, nūntius, nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
+                                                                       : base(versiō,
+                                                                              new Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>>(() => new Nūntius<ĪnflexorEffectusNōminibusFactīs>()),
+                                                                              nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
                                                                               (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
                                                                                                               .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
                                                                               Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),

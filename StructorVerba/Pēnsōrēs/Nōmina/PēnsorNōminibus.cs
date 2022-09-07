@@ -42,14 +42,8 @@ namespace Pēnsōrēs.Nōmina
     };
 
     private PēnsorNōminibus(in Versiō versiō)
-                               : base(versiō, nameof(Īnflectendum.Nōmen.Nominātīvum),
-                                      Tabula.Nōmina, NūntiusPēnsōrīNōminibus.Faciendum,
+                               : base(versiō, nameof(Īnflectendum.Nōmen.Nominātīvum), Tabula.Nōmina,
+                                      new Lazy<Nūntius<PēnsorNōminibus>>(() => new Nūntius<PēnsorNōminibus>()),
                                       Īnflectendum.Nōmen.Lēctor) {  }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīNōminibus : Nūntius<PēnsorNōminibus>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīNōminibus> Faciendum = new Lazy<NūntiusPēnsōrīNōminibus>(() => Instance);
-    }
   }
 }

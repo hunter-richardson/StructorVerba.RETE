@@ -72,7 +72,7 @@ namespace Pēnsōrēs.Īnflectenda
 
     protected PēnsorAdiectīvīs(in Versiō versiō)
                                   : base(versiō, nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
-                                         Tabulātor.Invoke(versiō), NūntiusPēnsōrīAdiectīvīs.Faciendum,
+                                         Tabulātor.Invoke(versiō), new Lazy<Nūntius<PēnsorAdiectīvīs>>(() => new Nūntius<PēnsorAdiectīvīs>()),
                                          Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor) { }
 
     [Singleton]

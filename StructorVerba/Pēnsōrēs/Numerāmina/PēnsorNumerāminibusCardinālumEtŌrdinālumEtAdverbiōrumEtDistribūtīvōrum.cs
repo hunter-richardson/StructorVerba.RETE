@@ -14,18 +14,10 @@ namespace Pēnsōrēs.Numerāmina
   {
     public static readonly Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum> Faciendum =
                        new Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>(() => Instance);
-    private PēnsorNumerāminibusCardinālumSōlōrum()
+    private PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum()
           : base(Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
                  nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Numerus),
-                 NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Faciendum,
+                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>>(() => new Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>()),
                  Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Lēctor) {  }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum
-               : Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum> Faciendum =
-                         new Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>(() => Instance);
-    }
   }
 }

@@ -8,13 +8,13 @@ using Īnflexōrēs.Incertī.Nōmina;
 namespace Dictionāria
 {
   [Singleton]
-  public sealed partial class DictionāriumNōminibus : Dictionārium<DictionāriumNōminibus, Multiplex.Nōmen>
+  public sealed partial class DictionāriumAdiectīvīs : Dictionārium<DictionāriumAdiectīvīs, Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<DictionāriumNōminibus> Faciendum = new Lazy<DictionāriumNōminibus>(() => Instance);
+    public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy<DictionāriumAdiectīvīs>(() => Instance);
 
-    protected readonly Īnflectendum.Nōmen Athōs
+    protected readonly Īnflectendum.Nōmen Multum
           = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīAthōs.Faciendum,
-                                                        Ūtilitātēs.Seriēs("Athōs", "Athō"));
+                                                        Ūtilitātēs.Seriēs("multum", "plūs", "plūrimum"));
     protected readonly Īnflectendum.Nōmen Balneum
           = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīBalneum.Faciendum,
                                                         Ūtilitātēs.Seriēs("balneum", "balneī"));
@@ -24,6 +24,9 @@ namespace Dictionāria
     protected readonly Īnflectendum.Nōmen Domus
           = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīDomus.Faciendum,
                                                         Ūtilitātēs.Seriēs("domus", "domūs"));
+    protected readonly Īnflectendum.Nōmen Ēthos
+          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīĒthos.Faciendum,
+                                                        Ūtilitātēs.Seriēs("ēthos", "ētheos"));
     protected readonly Īnflectendum.Nōmen Iēsūs
           = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīIēsūs.Faciendum,
                                                         Ūtilitātēs.Seriēs("Iēsūs", "Iēsūs"));
@@ -42,14 +45,11 @@ namespace Dictionāria
     protected readonly Īnflectendum.Nōmen Vīs
           = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīVīs.Faciendum,
                                                         Ūtilitātēs.Seriēs("vīs", "viris"));
-    protected readonly Īnflectendum.Nōmen Ēthos
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīĒthos.Faciendum,
-                                                        Ūtilitātēs.Seriēs("ēthos", "ētheos"));
     protected readonly Īnflectendum.NōmenFactum Īre
           = await Īnflectendum.NōmenFactum.Aedificātor.Invoke(ĪnflexorVerbīĪre.Faciendum,
                                                               Ūtilitātēs.Seriēs("īre", "itum"));
 
     private DictionāriumNōminibus()
-        : base(new Lazy<Nūntius<DictionāriumNōminibus>>(() => new Nūntius<DictionāriumNōminibus>())) { }
+        : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>(() => new Nūntius<DictionāriumAdiectīvīs>())) { }
   }
 }

@@ -1,7 +1,8 @@
+using System;
 
+using Nūntiī.Nūntius;
 using Praebeunda.Īnflectendum.NumerāmenCardinālumŌrdinālumque;
 using Ēnumerātiōnēs;
-using Nūntiī.Nūntius;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
@@ -15,22 +16,15 @@ namespace Īnflexōrēs.Numerāmina
     public static readonly Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque> Faciendum
                      = new Lazy<ĪnflexorNumerāminibusCardinālumŌrdinālumque>(() => Instance);
 
-    protected ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
-          : base(NūntiusĪnflexōrīNumerāminibusCardinālumSōlōrum.Faciendum,
+    protected ĪnflexorNumerāminibusCardinālumŌrdinālumque()
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumŌrdinālumque>>(() => new Nūntius<ĪnflexorNumerāminibusCardinālumŌrdinālumque>()),
                  Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle) { }
     public string Scrībam(in NumerāminibusCardinālumŌrdinālumque numerāmen, in Numerium numerium)
             => numerium switch
-            {
-              Numerium.Ōrdināle => numerāmen.Ōrdināle,
-              Numerium.Cardināle => numerāmen.Cardināle,
-              _ => numerāmen.Numerus
-            };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumŌrdinālumque : Nūntius<ĪnflexorNumerāminibusCardinālumŌrdinālumque>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumŌrdinālumque> Faciendum =
-                         new Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumŌrdinālumque>(() => Instance);
-    }
+                {
+                  Numerium.Ōrdināle => numerāmen.Ōrdināle,
+                  Numerium.Cardināle => numerāmen.Cardināle,
+                  _ => numerāmen.Numerus
+                };
   }
 }

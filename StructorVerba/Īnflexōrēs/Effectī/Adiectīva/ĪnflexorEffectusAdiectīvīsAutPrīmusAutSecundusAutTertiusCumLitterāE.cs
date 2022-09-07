@@ -20,7 +20,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
     public static readonly Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE> Faciendum
                      = new Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE>(() => Instance);
     private ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE()
-        : base(NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōCumLitterāE.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE>>(() => new Nūntius<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE>()),
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => illa.FirstOf<Gradus>() switch
                 {
@@ -41,13 +41,5 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                 (_, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
                 _ => null
               };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōCumLitterāE
-                : Nūntius<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōCumLitterāE> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōAdiectīvīsAutPrīmōAutSecundōAutTertiōCumLitterāE>(() => Instance);
-    }
   }
 }

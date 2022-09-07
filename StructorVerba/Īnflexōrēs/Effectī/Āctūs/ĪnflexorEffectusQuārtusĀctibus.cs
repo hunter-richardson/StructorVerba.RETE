@@ -18,7 +18,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                      = new Lazy<ĪnflexorEffectusQuārtusĀctibus>(() => Instance);
 
     private ĪnflexorEffectusQuārtusĀctibus()
-        : base(NūntiusĪnflexōrīEffectōQuārtōĀctibus.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusĀctibus>>(() => new Nūntius<ĪnflexorEffectusQuārtusĀctibus>()),
                (āctus, illa) => (illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>()) switch
                                   {
                                     var īnscītum when (modus is default(Modus)) ||
@@ -200,13 +200,5 @@ namespace Īnflexōrēs.Effectī.Āctūs
                     (Vōx.Passīva, Tempus.Perfectum) => "iendum",
                     _ => null
                   };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīEffectōQuārtōĀctibus
-                : Nūntius<ĪnflexorEffectusQuārtusĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōQuārtōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōQuārtōĀctibus>(() => Instance);
-    }
   }
 }

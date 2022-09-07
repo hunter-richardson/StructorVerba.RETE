@@ -18,16 +18,10 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
     public static readonly Lazy<ĪnflexorPrīmusPlūrālisNōminibus> Faciendum
                      = new Lazy<ĪnflexorPrīmusPlūrālisNōminibus>(() => Instance);
     protected ĪnflexorPrīmusPlūrālisNōminibus()
-          : base(NūntiusĪnflexōrīPrīmōPlūrāleNōminibus.Faciendum, ĪnflexorEffectusPrīmusNōminibus.Faciendum) { }
+          : base(new Lazy<Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>>(() => new Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>()),
+                 ĪnflexorEffectusPrīmusNōminibus.Faciendum) { }
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Numerālis.Plūrālis, illa.FirstOf<Casus>());
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīPrīmōPlūrāleNōminibus : Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīPrīmōPlūrāleNōminibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīPrīmōPlūrāleNōminibus>(() => Instance);
-    }
   }
 }

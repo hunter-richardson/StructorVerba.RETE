@@ -9,7 +9,7 @@ namespace Pēnsōrēs.Nōmina
   public abstract class PēnsorNōminibus<Hoc> : PēnsorĪnflectendīs<Hoc, Multiplex.Nōmen>
   {
     private PēnsorNōminibus(in Enum versiō, in string quaerendī,
-                            in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
+                            in Lazy<Nūntius<PēnsorNōminibus<Hoc>>> nūntius,
                             in Func<JsonElement, Task<Hoc>> lēctor)
                              : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen, quaerendī, nūntius, lēctor) { }
   }

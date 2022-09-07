@@ -32,7 +32,7 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                                 };
 
     private ĪnflexorSemidēpōnēnsĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-                  : base(NūntiusĪnflexōrīSemidēpōnentīĀctibus.Faciendum, relātum) { }
+        : base(new Lazy<Nūntius<ĪnflexorSemidēpōnēnsĀctibus>>(() => new Nūntius<ĪnflexorSemidēpōnēnsĀctibus>()), relātum) { }
 
     public Enum[] Referō(in Enum[] illa)
     {
@@ -45,13 +45,6 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                         _ => Vōx.Āctīva
                       };
       return Ūtilitātēs.Seriēs(modus, vōx, tempus, illa.FirstOf<Numerālis>(), illa.FirstOf<Persōna>());
-    }
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīSemidēpōnentīĀctibus : Nūntius<ĪnflexorSemidēpōnēnsĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīSemidēpōnentīĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīSemidēpōnentīĀctibus>(() => Instance);
     }
   }
 }

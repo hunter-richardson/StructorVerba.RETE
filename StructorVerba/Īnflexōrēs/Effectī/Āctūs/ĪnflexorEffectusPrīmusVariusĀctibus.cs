@@ -20,18 +20,10 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusPrīmusĀctibus Relātum = ĪnflexorEffectusPrīmusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusPrīmusVariusĀctibus()
-        : base(NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus.Faciendum) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>(() => new Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>())) { }
 
     protected override sealed string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
                   => (await Relātum.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))
                                   ?.ReplaceStart("āv", "u");
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus
-                : Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōPrīmōVariōĀctibus>(() => Instance);
-    }
   }
 }

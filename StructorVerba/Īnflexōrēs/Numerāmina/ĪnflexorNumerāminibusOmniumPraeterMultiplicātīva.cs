@@ -1,7 +1,9 @@
+using System;
+
+using Nūntiī.Nūntius;
 using Praebeunda.Īnflectendum.NumerāmenOmniumPraeterMultiplicātīva;
 using Praebeunda.Multiplex.Numerāmen;
 using Ēnumerātiōnēs;
-using Nūntiī.Nūntius;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
@@ -15,20 +17,20 @@ namespace Īnflexōrēs.Numerāmina
     public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva> Faciendum
                      = new Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>(() => Instance);
     protected ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
-          : base(NūntiusĪnflexōrīNumerāminibusOmniumPraeterMultiplicātīva.Faciendum,
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>>(() => new Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>()),
                  Numerium.GetValues().Except(Numerium.Multiplicātīvum))
     { }
 
     public string Scrībam(in NumerāmenOmniumPraeterMultiplicātīva numerāmen, in Numerium numerium)
             => numerium switch
-            {
-              Numerium.Ōrdināle => numerāmen.Ōrdināle,
-              Numerium.Cardināle => numerāmen.Cardināle,
-              Numerium.Adverbium => numerāmen.Adverbium,
-              Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
-              Numerium.Frāctiōnāle => numerāmen.Frāctiōnāle,
-              _ => numerāmen.Numerus
-            };
+                {
+                  Numerium.Ōrdināle => numerāmen.Ōrdināle,
+                  Numerium.Cardināle => numerāmen.Cardināle,
+                  Numerium.Adverbium => numerāmen.Adverbium,
+                  Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
+                  Numerium.Frāctiōnāle => numerāmen.Frāctiōnāle,
+                  _ => numerāmen.Numerus
+                };
 
     [Singleton]
     private sealed partial class NūntiusĪnflexōrīNumerāminibusOmniumPraeterMultiplicātīva : Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>

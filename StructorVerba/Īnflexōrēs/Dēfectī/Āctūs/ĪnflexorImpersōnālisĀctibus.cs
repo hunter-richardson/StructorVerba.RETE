@@ -29,17 +29,10 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                                 };
 
     private ĪnflexorImpersōnālisĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-                    : base(NūntiusĪnflexōrīImpersōnālīĀctibus.Faciendum, relātum) { }
+        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisĀctibus>>(() => new Nūntius<ĪnflexorImpersōnālisĀctibus>()), relātum) { }
 
     public Enum[] Referō(in Enum[] illa)
               => Ūtilitātēs.Seriēs(illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(),
                                    illa.FirstOf<Tempus>(), Numerālis.Singulāris, Persōna.Prīma);
-  }
-
-  [Singleton]
-  private sealed partial class NūntiusĪnflexōrīImpersōnālīĀctibus : Nūntius<ĪnflexorImperdōnālisĀctibus>
-  {
-    public static readonly Lazy<NūntiusĪnflexōrīImpersōnālīĀctibus> Faciendum
-                     = new Lazy<NūntiusĪnflexōrīImpersōnālīĀctibus>(() => Instance);
   }
 }

@@ -16,15 +16,7 @@ namespace Pēnsōrēs.Numerāmina
     private PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum()
           : base(Versiō.Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
                  nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Numerus),
-                 NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Faciendum,
+                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>>(() => new Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>()),
                  Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Lēctor) { }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
-                : Nūntius<PēnsōrNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
-                         new Lazy<NūntiusPēnsōrīNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);
-    }
   }
 }

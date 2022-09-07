@@ -4,23 +4,38 @@ using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Praebeunda.Verbum;
-
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Praebeunda.Simplicibus;
 
 namespace Pēnsōrēs
 {
-  [Singleton]
-  public sealed partial class PēnsorVerbīs : PēnsorVerbīs<Verbum>
+  public abstract class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
   {
-    public static readonly Lazy<PēnsorVerbīs> Faciendum = new Lazy<PēnsorVerbīs>(() => Instance);
-    private PēnsorVerbīs()
-        : base(nameof(Verbum.Scrīptum), Tabula.Verba,
-                      NūntiusPēnsōrīVerbīs.Faciendum, Verbum.Lēctor) {  }
+    private static readonly Lazy<PēnsorVerbīs<Coniūnctiō>> Coniūnctiōnibus
+              = new Lazy<PēnsorVerbīs<Coniūnctiō>>(() => new PēnsorVerbīs<Coniūnctiō>(Coniūnctiō.Lēctor));
+    private static readonly Lazy<PēnsorVerbīs<Interiectiō>> Interiectiōnibus
+              = new Lazy<PēnsorVerbīs<Interiectiō>>(() => new PēnsorVerbīs<Interiectiō>(Interiectiō.Lēctor));
+    private static readonly Lazy<PēnsorVerbīs<Praepositiō>> Coniūnctiōnibus
+              = new Lazy<PēnsorVerbīs<Praepositiō>>(() => new PēnsorVerbīs<Praepositiō>(Praepositiō.Lēctor));
+    private static readonly Lazy<PēnsorVerbīs<Lemma>> Lemmīs
+              = new Lazy<PēnsorVerbīs<Lemma>>(() => new PēnsorVerbīs<Lemma>(Lemma.Lēctor));
+    private static readonly Lazy<PēnsorVerbīs<Verbum>> Verbīs
+              = new Lazy<PēnsorVerbīs<Verbum>>(() => new PēnsorVerbīs<Verbum>(Verbum.Lēctor));
 
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīVerbīs : Nūntius<PēnsorVerbīs>
+    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
+            catēgoria => catēgoria switch
+            {
+              Ēnumerātiōnēs.Catēgoria.Coniūnctiō => Coniūnctiōnibus,
+              Ēnumerātiōnēs.Catēgoria.Interiectiō => Interiectiōnibus,
+              Ēnumerātiōnēs.Catēgoria.Praepositiō => Praepositiōnibus,
+              _ => PēnsorLemmīs.Faciendum
+            };
+
+    protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
+                           : base(nameof(Verbum.Scrīptum), Tabula.Verba,
+                                  new Lazy<Nūntius<PēnsorVerbīs>>(() => new Nūntius<PēnsorVerbīs>()),
+                                  lēctor)
     {
-      public static readonly Lazy<NūntiusPēnsōrīVerbīs> Faciendum = new Lazy<NūntiusPēnsōrīVerbīs>(() => Instance);
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

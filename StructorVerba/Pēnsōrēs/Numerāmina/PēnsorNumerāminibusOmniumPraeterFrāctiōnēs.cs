@@ -15,14 +15,7 @@ namespace Pēnsōrēs.Numerāmina
     private PēnsorNumerāminibusOmniumPraeterFrāctiōnēs()
           : base(Versiō.Omnium_Praeter_Frāctiōnēs,
                  nameof(Īnflectendum.NumerāmenOmniumPraeterFrāctiōnēs.Numerus),
-                 NūntiusPēnsōrīNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
+                 new Lazy<Nūntius<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>>(() => new Nūntius<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>()),
                  Īnflectendum.NumerāmenOmniumPraeterFrāctiōnēs.Lēctor) { }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīNumerāminibusOmniumPraeterFrāctiōnēs : Nūntius<PēnsōrNumerāminibusOmniumPraeterFrāctiōnēs>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum =
-                         new Lazy<NūntiusPēnsōrīNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
-    }
   }
 }

@@ -18,7 +18,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
                      = new Lazy<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō>(() => Instance);
     private readonly ĪnflexorEffectusTertiusNeuterNōminibus Relātum = ĪnflexorEffectusTertiusNeuterNōminibus.Faciendum.Value;
     private ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō()
-        : base(NūntiusĪnflexōrīEffectōTertiōNeutrōNōminibusCumGenitīvōVariō.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō>>(() => new Nūntius<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō>()),
                (nōmen, illa) => (illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
                                 {
                                   (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,
@@ -29,12 +29,5 @@ namespace Īnflexōrēs.Effectī.Nōmina
 
     public sealed string Plūrāle(in Casus casus) => (casus is Casus.Genitīvus)
                                                         .Choose("ium", Relātum.PlūrāleAsync(casus));
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīEffectōTertiōNeutrōNōminibusCumGenitīvōVariō : Nūntius<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōVariō>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōTertiōNeutrōNōminibusCumGenitīvōVariō> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōTertiōNeutrōNōminibusCumGenitīvōVariō>(() => Instance);
-    }
   }
 }

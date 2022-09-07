@@ -21,19 +21,12 @@ namespace Īnflexōrēs.Effectī.Nōmina
     private readonly ĪnflexorEffectusSecundusMasculīnusNōminibus Relātum = ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum.Value;
 
     private ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE()
-        : base(NūntiusĪnflexōrīEffectōSecundōVariōNōminibusCumLitterāE.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE>>(() => new Nūntius<ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE>()),
                (nōmen, illa) => nōmen.Nominātīvum) { }
 
     public sealed string Singulāre(in Casus casus) => (casus is Casus.Nominātīvus or Casus.Vocātīvus)
                                                           .Choose(string.Empty, await Relātum.SingulāreAsync(casus));
 
     public sealed string Plūrāle(in Casus casus) => await Relātum.PlūrāleAsync(casus);
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīEffectōSecundōVariōNōminibusCumLitterāE : Nūntius<ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōSecundōVariōNōminibusCumLitterāE> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōSecundōVariōNōminibusCumLitterāE>(() => Instance);
-    }
   }
 }

@@ -7,7 +7,7 @@ using Lombok.NET.MethodGenerators.AsyncGenerator;
 
 namespace Nūntiī
 {
-  public abstract class Nūntius<Hoc>
+  public sealed class Nūntius<Hoc>
   {
     private static readonly string Locus = "nūntia";
     private static readonly Func<Type, RollingFileAppender> Generātor =

@@ -18,7 +18,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                      = new Lazy<ĪnflexorEffectusTertiusĀctibus>(() => Instance);
 
     private ĪnflexorEffectusTertiusĀctibus()
-        : base(NūntiusĪnflexōrīEffectōTertiōĀctibus.Faciendum) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibus>>(() => new Nūntius<ĪnflexorEffectusTertiusĀctibus>())) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {
@@ -190,13 +190,5 @@ namespace Īnflexōrēs.Effectī.Āctūs
                     (Vōx.Passīva, Tempus.Perfectum) => "endum",
                     _ => null
                   };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīEffectōTertiōĀctibus
-                : Nūntius<ĪnflexorEffectusTertiusĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōTertiōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōTertiōĀctibus>(() => Instance);
-    }
   }
 }

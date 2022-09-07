@@ -27,7 +27,7 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
     };
 
     private ĪnflexorImpersōnālisPerfectōĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-                    : base(NūntiusĪnflexōrīImpersōnālīPerfectōĀctibus.Faciendum, relātum) { }
+        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisPerfectōĀctibus>>(() => new Nūntius<ĪnflexorImpersōnālisPerfectōĀctibus>()), relātum) { }
 
     public Enum[] Referō(in Enum[] illa)
     {
@@ -38,13 +38,6 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
                                        .Choose(illa.FirstOf<Persōna>(), Persōna.Prīma);
       return Ūtilitātēs.Seriēs(illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(),
                                tempus, numerālis, persōna);
-    }
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīImpersōnālīPerfectōĀctibus : Nūntius<ĪnflexorImpersōnālisPerfectōĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīImpersōnālīPerfectōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīImpersōnālīPerfectōĀctibus>(() => Instance);
     }
   }
 }

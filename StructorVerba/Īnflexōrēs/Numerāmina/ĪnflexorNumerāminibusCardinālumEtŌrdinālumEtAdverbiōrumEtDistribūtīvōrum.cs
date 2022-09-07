@@ -1,7 +1,9 @@
+using System;
+
+using Nūntiī.Nūntius;
 using Praebeunda.Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum;
 using Praebeunda.Multiplex.Numerāmen;
 using Ēnumerātiōnēs;
-using Nūntiī.Nūntius;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
@@ -16,26 +18,18 @@ namespace Īnflexōrēs.Numerāmina
                        new Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>(() => Instance);
 
     protected ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum()
-          : base(NūntiusĪnflexōrīNumerāminibusOmnium.Faciendum,
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>>(() => new Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>()),
                  Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium, Numerium.Distribūtīvum)
     { }
 
     public string Scrībam(in NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum numerāmen, in Numerium numerium)
             => numerium switch
-            {
-              Numerium.Ōrdināle => numerāmen.Ōrdināle,
-              Numerium.Cardināle => numerāmen.Cardināle,
-              Numerium.Adverbium => numerāmen.Adverbium,
-              Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
-              _ => numerāmen.Numerus
-            };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum
-                : Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum> Faciendum =
-                         new Lazy<NūntiusĪnflexōrīNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>(() => Instance);
-    }
+                {
+                  Numerium.Ōrdināle => numerāmen.Ōrdināle,
+                  Numerium.Cardināle => numerāmen.Cardināle,
+                  Numerium.Adverbium => numerāmen.Adverbium,
+                  Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
+                  _ => numerāmen.Numerus
+                };
   }
 }

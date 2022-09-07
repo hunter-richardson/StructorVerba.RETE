@@ -17,7 +17,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public static readonly Lazy<ĪnflexorEffectusSecundusNeuterNōminibus> Faciendum
                      = new Lazy<ĪnflexorEffectusSecundusNeuterNōminibus>(() => Instance);
     private ĪnflexorEffectusSecundusNeuterNōminibus()
-        : base(NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusNeuterNōminibus>>(() => new Nūntius<ĪnflexorEffectusSecundusNeuterNōminibus>()),
                (nōmen, illa) => nōmen.Nominātīvum.Chop(2)) { }
 
     public sealed string Singulāre(in Casus casus) => casus switch
@@ -33,12 +33,5 @@ namespace Īnflexōrēs.Effectī.Nōmina
       Casus.Genitīvus => "ōrum",
       _ => "īs"
     };
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus : Nūntius<ĪnflexorEffectusSecundusNeuterNōminibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōSecundōNeutrōNōminibus>(() => Instance);
-    }
   }
 }

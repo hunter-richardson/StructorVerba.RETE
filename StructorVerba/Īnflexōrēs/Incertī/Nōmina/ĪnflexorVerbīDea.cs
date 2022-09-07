@@ -10,14 +10,15 @@ using Lombok.NET.MethodGenerators.SingletonAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  public sealed partial class ĪnflexorVerbīDea : ĪnflexorIncertī<Multiplex.Nōmen>
+  [Singleton]
+  public sealed partial class ĪnflexorVerbīDea : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
     public static readonly Lazy<ĪnflexorVerbīDea> Faciendum
                      = new Lazy<ĪnflexorVerbīDea>(() => Instance);
 
     private readonly ĪnflexorEffectusPrīmusNōminibus Relātum = ĪnflexorEffectusPrīmusNōminibus.Faciendum.Value;
     private ĪnflexorVerbīDea()
-          : base(Ēnumerātiōnēs.Catēgoria.Nōmen, NūntiusĪnflexōrīVerbīCommūnisDeus.Faciendum,
+          : base(Ēnumerātiōnēs.Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīDea>>(() => new Nūntius<ĪnflexorVerbīDea>()),
                  Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToSortedSet(),
                                     Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet()))
     {
@@ -25,14 +26,7 @@ namespace Īnflexōrēs.Incertī.Nōmina
                 .ForEach(valor => FōrmamAsync("deābus", valor, Numerālis.Plūrālis));
 
       Tabula.Except(valōrēs => Fōrmae.Keys.Contains(valōrēs))
-            .ForEach(valōrēs => FōrmamAsync("de".Concat(Relātum.Suffixum(valōrēs))));
-    }
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīVerbīDea : Nūntius<ĪnflexorVerbīDea>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīVerbīDea> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīVerbīDea>(() => Instance);
+            .ForEach(valōrēs => FōrmamAsync("de".Concat(await Relātum.SuffixumAsync(valōrēs), valōrēs)));
     }
   }
 }

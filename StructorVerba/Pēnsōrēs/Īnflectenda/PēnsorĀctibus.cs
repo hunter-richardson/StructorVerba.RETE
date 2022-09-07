@@ -44,13 +44,8 @@ namespace Pēnsōrēs.Īnflectenda
     };
 
     private PēnsorĀctibus(in Versiō versiō)
-                             : base(versiō, nameof(Īnflectendum.Āctus.Īnfīnītīvum),
-                                    Tabula.Āctūs, NūntiusPēnsōrīĀctibus.Faciendum, Īnflectendum.Āctus.Lēctor) { }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīĀctibus : Nūntius<PēnsorĀctibus>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīĀctibus> Faciendum = new Lazy<NūntiusPēnsōrīĀctibus>(() => Instance);
-    }
+                             : base(versiō, nameof(Īnflectendum.Āctus.Īnfīnītīvum), Tabula.Āctūs,
+                                    new Lazy<Nūntius<PēnsorĀctibus>>(() => new Nūntius<PēnsorĀctibus>()),
+                                    Īnflectendum.Āctus.Lēctor) { }
   }
 }

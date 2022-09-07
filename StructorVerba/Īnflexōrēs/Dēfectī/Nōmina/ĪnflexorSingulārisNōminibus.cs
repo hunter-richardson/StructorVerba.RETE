@@ -30,16 +30,9 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
     };
 
     private ĪnflexorSingulārisNōminibus(in Lazy<ĪnflexorEffectusNōminibus> relātus)
-                      : base(NūntiusĪnflexōrīSingulārīNōminibus.Faciendum, relātus) { }
+        : base(new Lazy<Nūntius<ĪnflexorSingulārisNōminibus>>(() => new Nūntius<ĪnflexorSingulārisNōminibus>()), relātus) { }
 
     protected Enum[] Referō(in Enum[] illa)
           => Ūtilitātēs.Seriēs(Numerālis.Singulāris, illa.FirstOf<Casus>());
-  }
-
-  [Singleton]
-  private sealed partial class NūntiusĪnflexōrīSingulārīNōminibus : Nūntius<ĪnflexorSingulārisNōminibus>
-  {
-    public static readonly Lazy<NūntiusĪnflexōrīSingulārīNōminibus> Faciendum
-                     = new Lazy<NūntiusĪnflexōrīSingulārīNōminibus>(() => Instance);
   }
 }

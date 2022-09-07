@@ -20,7 +20,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusVariusĀctibus()
-        : base(NūntiusĪnflexōrīEffectōVariōTertiōĀctibus.Faciendum) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>(() => new Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>())) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {
@@ -109,13 +109,5 @@ namespace Īnflexōrēs.Effectī.Āctūs
 
     public sealed string? Participāle(in Vōx vōx, in Tempus tempus)
               => await Relātum.ParticipāleAsync(vōx, tempus);
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīEffectōVariōTertiōĀctibus
-                : Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōVariōTertiōĀctibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōVariōTertiōĀctibus>(() => Instance);
-    }
   }
 }

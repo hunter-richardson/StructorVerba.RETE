@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using System.Collections.Immutable;
 using System;
 using System.Reflection;
@@ -156,12 +157,20 @@ namespace Praebeunda
       public string ToString() => Nominātīvum;
     }
 
+    [GenerateBuilder]
     public sealed class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>
     {
+      public static readonly Func<Lazy<ĪnflexorIncertus<NōmenFactum, Multiplex.Nōmen>>, string?[], Task<NōmenFactum>> Aedificātor
+                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
+                                                      .Īnfīnītum(valōrēs[0]).GetString()
+                                                      .Supīnum(valōrēs[1] ?? string.Empty)
+                                                      .Īnflexor(īnflexor).Build();
+
       public static readonly Func<JsonElement, Enum, Task<NōmenFactum>> Lēctor
-                = async (legendum, valor) => new NōmenFactum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
-                                                             legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
-                                                             legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty);
+                = async (legendum, valor) => BlobBuilder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32()
+                                                        .Īnfīnītīvum(legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString())
+                                                        .Supīnum(legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty))
+                                                        .Versiō(valor).Build();
       private NōmenFactum(in int minūtal, in string īnfīnītīvum,
                           in string supīnum, in Enum versiō)
                           : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, versiō)

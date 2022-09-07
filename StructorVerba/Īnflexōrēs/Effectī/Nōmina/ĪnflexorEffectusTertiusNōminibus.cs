@@ -17,7 +17,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public static readonly Lazy<ĪnflexorEffectusTertiusNōminibus> Faciendum
                      = new Lazy<ĪnflexorEffectusTertiusNōminibus>(() => Instance);
     private ĪnflexorEffectusTertiusNōminibus()
-        : base(NūntiusĪnflexōrīEffectōTertiōNōminibus.Faciendum,
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNōminibus>>(() => new Nūntius<ĪnflexorEffectusTertiusNōminibus>()),
                (nōmen, illa) => (illa.FirstOf<Numerālis>, illa.FirstOf<Casus>()) switch
                                 {
                                   (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,
@@ -39,12 +39,5 @@ namespace Īnflexōrēs.Effectī.Nōmina
       Casus.Genitīvus => "um",
       _ => "ibus"
     };
-
-    [Singleton]
-    private sealed class NūntiusĪnflexōrīEffectōTertiōNōminibus : Nūntius<ĪnflexorEffectusTertiusNōminibus>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīEffectōTertiōNōminibus> Faciendum
-                       = new Lazy<NūntiusĪnflexōrīEffectōTertiōNōminibus>(() => Instance);
-    }
   }
 }

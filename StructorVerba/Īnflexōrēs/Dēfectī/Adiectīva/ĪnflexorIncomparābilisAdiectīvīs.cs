@@ -38,30 +38,23 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
 
     public static readonly Func<PēnsorAdiectīvīs.Versiō, Task<Lazy<ĪnflexorIncomparābilisAdiectīvīs?>>> Relātor = async versiō => versiō switch
     {
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Prīmus_Aut_Secundus => AutPrīmusAutSecundus,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Prīmus_Aut_Secundus_Cum_Litterā_Ē => AutPrīmusAutSecundusCumLitterāE,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Prīmus_Aut_Secundus_Sine_Litterā_Ē => AutPrīmusAutSecundusSineLitterāE,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Tertius => Tertius,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō => TertiusCumGenitīvōVariō,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō => TertiusCumAblātīvōVariō,
-      PēnsorAdiectīvīs.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Ablātīvōque_Variō => TertiusCumGenitīvōAblātīvōqueVariō,
-      PēnsorAdiectīvīs.Incomparābilis_Prōnōminālis => Prōnōminālis,
-      PēnsorAdiectīvīs.Incomparābilis_Prōnōminālis_Cum_Litterā_Ē => PrōnōminālisCumLitterāE,
-      PēnsorAdiectīvīs.Incomparābilis_Prōnōminālis_Sine_Litterā_Ē => PrōnōminālisSineLitterāE,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus => AutPrīmusAutSecundus,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus_Cum_Litterā_Ē => AutPrīmusAutSecundusCumLitterāE,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus_Sine_Litterā_Ē => AutPrīmusAutSecundusSineLitterāE,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Tertius => Tertius,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō => TertiusCumGenitīvōVariō,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō => TertiusCumAblātīvōVariō,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Ablātīvōque_Variō => TertiusCumGenitīvōAblātīvōqueVariō,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Prōnōminālis => Prōnōminālis,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Prōnōminālis_Cum_Litterā_Ē => PrōnōminālisCumLitterāE,
+      PēnsorAdiectīvīs.Versiō.Incomparābilis_Prōnōminālis_Sine_Litterā_Ē => PrōnōminālisSineLitterāE,
       _ => new Lazy(null),
     };
 
     private ĪnflexorIncomparābilisAdiectīvīs(in Lazy<ĪnflexorEffectusAdiectīvīs> relātus)
-                       : base(NūntiusĪnflexōrīIncomparābilīAdiectīvīs.Faciendum, relātus) { }
+        : base(new Lazy<Nūntius<ĪnflexorIncomparābilisAdiectīvīs>>(() => new Nūntius<ĪnflexorIncomparābilisAdiectīvīs>()), relātus) { }
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Gradus.Positīvus, illa.FirstOf<Genus>(), illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>());
-  }
-
-  [Singleton]
-  private sealed partial class NūntiusĪnflexōrīIncomparābilīAdiectīvīs : Nūntius<ĪnflexorIncomparābilisAdiectīvīs>
-  {
-    public static readonly Lazy<NūntiusĪnflexōrīIncomparābilīAdiectīvīs> Faciendum
-                     = new Lazy<NūntiusĪnflexōrīIncomparābilīAdiectīvīs>(() => Instance);
   }
 }
