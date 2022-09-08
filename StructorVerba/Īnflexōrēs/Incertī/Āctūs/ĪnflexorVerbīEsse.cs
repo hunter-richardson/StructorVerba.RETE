@@ -28,7 +28,7 @@ namespace Īnflexōrēs.Incertī.Āctūs
     {
       FōrmamAsync("esse", Modus.Īnfīnītīvus, Tempus.Praesēns);
       FōrmamAsync("fuisse", Modus.Īnfīnītīvus, Tempus.Perfectum);
-      FōrmamAsync("futūrum", Modus.Participāle);
+      FōrmamAsync("futūrum", Modus.Participālis);
       FōrmamAsync("estō", Modus.Imperātīvus, Nunerālis.Singulāris);
       FōrmamAsync("estōte", Modus.Imperātīvus, Nunerālis.Plūrālis);
       FōrmamAsync("sum", Modus.Indicātīvus, Tempus.Praesēns, Nunerālis.Singulāris, Persōna.Prīma);
