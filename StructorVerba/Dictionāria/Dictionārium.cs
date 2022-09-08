@@ -49,6 +49,10 @@ namespace Dictionāria
     public readonly Func<Task<IEnumerable<string>>> Lemmae = async () => (from illud in (await Omnia.Invoke())
                                                                           select illud.Name.ToLower()).Distinct();
 
+    public readonly Func<Task<IEnumerable<string>>> LemmaeCumApicibusAbditīs
+          = async () => from lemma in (await Lemmae)
+                        select await Ūtilitātēs.ApicumAbditor.Invoke(lemma);
+
     protected Dictionārium(in Lazy<Nūntius<Dictionārium<Hoc, Illud>>> nūntius) => Nūntius = nūntius.Value;
 
     private sealed Īnflectendum? Feram(string lemma)
@@ -56,11 +60,23 @@ namespace Dictionāria
                                   where string.Equals(lemma, illud.Name, StringComparison.OrdinalIgnoreCase)
                                   select illud).FirstOrDefault());
 
+    private sealed Īnflectendum? SineApicibusFeram(string lemma)
+          => await Obātor.Invoke((from illud in (await Omnia.Invoke())
+                                  where string.Equals(lemma, await Ūtilitātēs.ApicumAbditor.Invoke(illud.Name),
+                                                      StringComparison.OrdinalIgnoreCase)
+                                  select illud).FirstOrDefault());
+
     public sealed Illud? FeramĪnflectemque(string lemma, in Enum[] illa)
           => await (await FeramAsync(lemma))?.ĪnflectemAsync(illa);
 
     public sealed Illud? ĪnflexōrīFortisFeram(string lemma)
           => await (await FeramAsync(lemma))?.FortisĪnflexor.Invoke();
+
+    public sealed Illud? SineApicibusFeramĪnflectemque(string lemma, in Enum[] illa)
+          => await(await SineApicibusFeramAsync(lemma))?.ĪnflectemAsync(illa);
+
+    public sealed Illud? ĪnflexōrīFortisSineApicibusFeram(string lemma)
+          => await(await SineApicibusFeramAsync(lemma))?.FortisĪnflexor.Invoke();
 
     public sealed Illud? ForsFeratĪnflectetque()
           => await (await FortisLātor.Invoke())?.FortisĪnflexor.Invoke();
