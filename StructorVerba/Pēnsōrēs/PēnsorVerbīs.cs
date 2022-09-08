@@ -31,9 +31,8 @@ namespace Pēnsōrēs
             };
 
     protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
-                           : base(nameof(Verbum.Scrīptum), Tabula.Verba,
-                                  new Lazy<Nūntius<PēnsorVerbīs>>(),
-                                  lēctor)
+                  : base(nameof(Verbum.Scrīptum), Tabula.Verba,
+                         new Lazy<Nūntius<PēnsorVerbīs>>(), lēctor)
     {
       Nūntius.PlūsGarriōAsync("Fīō");
     }

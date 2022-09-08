@@ -98,7 +98,7 @@ namespace Īnflexōrēs
       }
       catch (BuilderException error)
       {
-        Nūntius.Terreō(error);
+        Nūntius.TerreōAsync(error);
         return null;
       }
     }
@@ -110,11 +110,11 @@ namespace Īnflexōrēs
         const Illud illud = await CōnstruamAsync(hoc, illa);
         if (illud is null)
         {
-          Nūntius.Moneō("Īnflexiō dēfēcit");
+          Nūntius.MoneōAsync("Īnflexiō dēfēcit");
         }
         else
         {
-          Nūntius.Nōtō("Verbum īnflexu'st ut", illud);
+          Nūntius.NōtōAsync("Verbum īnflexu'st ut", illud);
         }
 
         return illud;

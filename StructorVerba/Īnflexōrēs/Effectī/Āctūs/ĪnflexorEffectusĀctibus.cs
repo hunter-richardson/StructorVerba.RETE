@@ -75,25 +75,25 @@ namespace Īnflexōrēs.Effectī.Āctūs
     protected virtual string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
               => await (modus, vōx, tempus, numerālis, persōna) switch
                         {
-                          var īnscītum when (modus is default(Modus)) || (tempus is default(Tempus)) || (vōx is default(Vōx))
+                          var īnscītum when Ūtilitātēs.Ūlla(modus is default(Modus), tempus is default(Tempus), vōx is default(Vōx))
                                                                         => Task.FromResult<string?>(null),
-                          var īnscītum when (numerālis is default(Numerālis)) && (modus is Modus.Indicātīvus or Modus.Subiūnctīvus or Modus.Imperātīvus)
+                          var īnscītum when Ūtilitātēs.Omnia(numerālis is default(Numerālis), modus is Modus.Indicātīvus or Modus.Subiūnctīvus or Modus.Imperātīvus)
                                                                         => Task.FromResult<string?>(null),
-                          var īnscītum when (persōna is default(Persōna)) && (modus is Modus.Indicātīvus or Modus.Subiūnctīvus)
+                          var īnscītum when Ūtilitātēs.Omnia(persōna is default(Persōna), modus is Modus.Indicātīvus or Modus.Subiūnctīvus)
                                                                         => Task.FromResult<string?>(null),
-                          var īnscītum when (modus is Modus.Participālis) && (tempus is Tempus.Praesēns or Tempus.Futūrum or Tempus.Perfectum)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Participālis, tempus is Tempus.Praesēns or Tempus.Futūrum or Tempus.Perfectum)
                                                                         => ParticipāleAsync(vōx, tempus),
-                          var īnscītum when (modus is Modus.Imperātīvus) && (tempus is Tempus.Praesēns or Tempus.Futūrum)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Imperātīvus, tempus is Tempus.Praesēns or Tempus.Futūrum)
                                                                         => ImperātīvumAsync(vōx, tempus, numerālis),
-                          var īnscītum when (modus is Modus.Īnfīnītīvus) && (tempus is Tempus.Praesēns or Tempus.Perfectum)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Īnfīnītīvus, tempus is Tempus.Praesēns or Tempus.Perfectum)
                                                                         => ĪnfīnītīvumAsync(vōx, tempus),
-                          var īnscītum when (modus is Modus.Indicātīvus) && (vōx is Vōx.Āctīva)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Indicātīvus, vōx is Vōx.Āctīva)
                                                                         => IndicātīvumĀctīvumAsync(tempus, numerālis, persōna),
-                          var īnscītum when (modus is Modus.Indicātīvus) && (vōx is Vōx.Passīva)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Indicātīvus, vōx is Vōx.Passīva)
                                                                         => IndicātīvumPassīvumAsync(tempus, numerālis, persōna),
-                          var īnscītum when (modus is Modus.Subiūnctīvus) && (vōx is Vōx.Āctīva)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Subiūnctīvus, vōx is Vōx.Āctīva)
                                                                         => SubiūnctīvumĀctīvumAsync(tempus, numerālis, persōna),
-                          var īnscītum when (modus is Modus.Subiūnctīvus) && (vōx is Vōx.Passīva)
+                          var īnscītum when Ūtilitātēs.Omnia(modus is Modus.Subiūnctīvus, vōx is Vōx.Passīva)
                                                                         => SubiūnctīvumPassīvumAsync(tempus, numerālis, persōna),
                           _ => null
                         };

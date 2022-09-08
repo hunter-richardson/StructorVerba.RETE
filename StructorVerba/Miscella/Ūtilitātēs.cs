@@ -28,7 +28,7 @@ namespace Miscella
 
     public static IEnumerable<T> Seriēs<T>(in params T seriēs) => seriēs;
 
-    public static Boolean Omnēs(in params Boolean seriēs) => seriēs.All();
+    public static Boolean Omnia(in params Boolean seriēs) => seriēs.All();
     public static Boolean Ūlla(in params Boolean seriēs) => seriēs.Any();
     public static Boolean Nūlla(in params Boolean seriēs) => seriēs.None();
 

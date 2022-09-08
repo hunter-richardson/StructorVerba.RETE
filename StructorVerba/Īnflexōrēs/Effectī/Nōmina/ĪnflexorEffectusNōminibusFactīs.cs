@@ -39,13 +39,13 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
 
     protected ĪnflexorEffectusNōminibusFactīs(in string īnfīnītīvum, in string gerundīvum)
           : base(new Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>>(),
-                nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
-                (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
-                                                .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
-                Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),
-                Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
+                 nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
+                 (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
+                                                 .Choose(nōmen.Supīnum.Chop(2), nōmen.Īnfīnītīvum.Chop(3)),
+                 Ūtilitātēs.Colligō(Factum.Īnfīnītīvum.SingleItemSet()),
+                 Ūtilitātēs.Combīnō(Factum.Gerundātīvum.SingleItemSet(),
                                     new HashSet<Casus>() { Casus.Genitīvus, Casus.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }),
-                Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
+                 Ūtilitātēs.Combīnō(Factum.Supīnum.SingleItemSet(),
                                     new HashSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }))
     {
       SuffixumĪnfīntītīvum = īnfīnītīvum;

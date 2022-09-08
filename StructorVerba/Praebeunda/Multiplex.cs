@@ -100,7 +100,8 @@ namespace Praebeunda
 
       [Required] public readonly Gradus Gradus { get; }
 
-      private Adverbium(in int minūtal, in Ēnumerātiōnēs.Gradus gradus, [StringLength(25, MinimumLength = 2)] in string scrīpum)
+      private Adverbium(in int minūtal, in Ēnumerātiōnēs.Gradus gradus,
+                        [StringLength(25, MinimumLength = 2)] in string scrīpum)
                         : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium, scrīptum)
                 => Gradus = gradus;
     }

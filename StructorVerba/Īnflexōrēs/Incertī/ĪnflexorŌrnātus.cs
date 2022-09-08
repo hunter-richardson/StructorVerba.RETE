@@ -7,7 +7,6 @@ namespace Īnflexor.Incertī
   [AsyncOverloads]
   public sealed partial class ĪnflexorŌrnātus<Hoc> : Īnflexor<Hoc>
   {
-
     private readonly ĪnflexorIncertus<Hoc> Relātus { get; }
     private readonly Func<Enum[], string> Prefixor { get; }
     public ĪnflexorŌrnātus(in Lazy<ĪnflexorIncertus<Hoc>> relātus,

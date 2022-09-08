@@ -88,7 +88,7 @@ namespace Pēnsōrēs
         const Hoc? hoc = (from linea in Tabulātor.Invoke()
                           where minūtal == linea.GetProperty(nameof(minūtal)).GetInt32()
                           select await LegamAsync(linea)).FirstOrDefault(null);
-        if (hoc == null)
+        if (hoc is null)
         {
           Nūntius.MoneōAsync("Nīl advenī");
         }
@@ -113,7 +113,7 @@ namespace Pēnsōrēs
         const Hoc? hoc = (from linea in Tabulātor.Invoke()
                           where scrīptum.Equals(linea.GetProperty(Quaerendī).GetString())
                           select await LegamAsync(linea)).FirstOrDefault(null);
-        if (hoc == null)
+        if (hoc is null)
         {
           Nūntius.MoneōAsync("Nīl advenī");
         }

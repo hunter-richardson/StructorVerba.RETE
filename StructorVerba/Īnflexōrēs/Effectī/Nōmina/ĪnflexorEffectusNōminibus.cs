@@ -49,7 +49,7 @@ namespace Īnflexōrēs.Effectī.Nōmina
     public sealed string? Suffixum(in Enum[] illa)
               => await(illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
               {
-                var īnscītum when default(Numerālis).Equals(numerālis).Or(default(Casus).Equals(casus))
+                var īnscītum when Ūtilitātēs.Ūlla(default(Numerālis).Equals(numerālis), default(Casus).Equals(casus))
                                         => Task.FromResult<string?>(null),
                 (Numerālis.Singulāris, _) => SingulāreAsync(casus),
                 (Numerālis.Plūrālis, _) => PlūrāleAsync(casus)

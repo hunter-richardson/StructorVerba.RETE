@@ -1,9 +1,11 @@
+using System.Data;
 using System;
 using System.ComponentModel.DataAnnotations.StringLength;
 using System.Reflection;
 using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
+using Miscella.Ūtilitātēs;
 using Praebeunda.Interfecta.Pēnsābile;
 using Miscella.Ūtilitātēs;
 
@@ -38,15 +40,15 @@ namespace Praebeunda
     public virtual string ToString() => Scrīptum;
 
     public virtual int CompareTo(Verbum aliud)
-              => (this is Simplicia.Numerus).And(aliud is Simplicia.Numerus)
-                                            .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
-                                                    (from comparātiō in Ūtilitātēs.Seriēs(Scrīpum.CompareTo(aliud.Scrīptum),
-                                                                                          Minūtal.CompareTo(aliud.Minūtal))
-                                                     where comparātiō is not 0
-                                                     select comparātiō).FirstOrDefault(0));
+              => Ūtilitātēs.Omnia(this is Simplicia.Numerus, aliud is Simplicia.Numerus)
+                           .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
+                                   (from comparātiō in Ūtilitātēs.Seriēs(Scrīpum.CompareTo(aliud.Scrīptum),
+                                                                         Minūtal.CompareTo(aliud.Minūtal))
+                                     where comparātiō is not 0
+                                     select comparātiō).FirstOrDefault(0));
 
     public sealed Boolean Equals(Verbum aliud)
-              => Ūtilitātēs.Omnēs(Minūtal is aliud.Minūtal,
+              => Ūtilitātēs.Omnia(Minūtal is aliud.Minūtal,
                                   Catēgoria is aliud.Catēgoria,
                                   Scrīpum is aliud.Scrīptum);
   }

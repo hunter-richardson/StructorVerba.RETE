@@ -7,7 +7,7 @@ using Praebeunda.Multiplex.Adiectīvum;
 using Praebeunda.Simplicia.Lemma;
 using Praebeunda.Īnflectendum;
 using Īnflexōrēs.Incertī.Adiectīva;
-using Īnflexōrēs.Incertī.ĪnflexorConiūnctīs;
+using Īnflexōrēs.Incertī.ĪnflexorConiūnctus;
 
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
@@ -16,11 +16,14 @@ namespace Dictionāria
   [Singleton]
   public sealed partial class DictionāriumAdiectīvīs : Dictionārium<DictionāriumAdiectīvīs, Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy<DictionāriumAdiectīvīs>(() => Instance);
+    public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy(() => Instance);
 
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Offiīnātor.Invoke(null);
     private static readonly Func<string, Task<Lemma?>> Lemmātor = async scrīptum => Officīna.Value.Inventor.Invoke(scrīptum);
 
+    protected readonly Lazy<ĪnflexorIncertus> Meum = ĪnflexorVerbīMeum.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;
     protected readonly Lazy<ĪnflexorConiūnctus> Tertiumdecimum
        = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("tertium"),
                                                await Lemmātor.Invoke("decimum")));
@@ -42,8 +45,7 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorConiūnctus> Nōnumdecimum
        = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("nōnum"),
                                                await Lemmātor.Invoke("decimum")));
-    protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;
+
     private DictionāriumNōminibus()
         : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>()) { }
   }

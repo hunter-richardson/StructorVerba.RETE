@@ -47,7 +47,7 @@ namespace Officīnae
         = async () => Ūtilitātēs.Seriēs(await Dictionārium?.ForsFeratĪnflectetqueAsync(),
                                         (await (await Relātum.FortisInventor.Invoke())
                                                     ?.Relator.Invoke())?.FortisĪnflexor.Invoke())
-                                .FirstNonNull();
+                                .Random();
 
     private OfficīnaĪnflexōrum(in Catēgoria? catēgoria)
     {

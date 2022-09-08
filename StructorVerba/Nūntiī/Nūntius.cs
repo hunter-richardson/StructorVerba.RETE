@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 
+using Miscella;
+
 using log4net.Appender.RollingFileAppender;
 using log4net.Core;
 using Lombok.NET.MethodGenerators.AsyncGenerator;
@@ -31,7 +33,7 @@ namespace Nūntiī
                               };
 
     private readonly RollingFileAppender Praecō { get; }
-    private readonly Temporis Temporis { get => Temporis.Faciendum.Invoke(); }
+    private readonly Temporis Temporis { get => Temporis.Faciendum.Value; }
 
     public Nūntius()
     {
@@ -78,7 +80,7 @@ namespace Nūntiī
        where nūntium is Exception
        select nūntium.Cast<Exception>())
             .ForEach(error => await Nūntiō(Ūtilitātēs.Seriēs(level, Level.Error).Min(), error));
-      await Nūntiō(level, string.Join(' ', $"{typeof(Hoc).FullName}: [{Tempors.FormatDate(DateTime.Now)}] <{gradus}>",
+      await Nūntiō(level, string.Join(' ', $"{typeof(Hoc).FullName}: [{Temporis.FormatDate(DateTime.Now)}] <{gradus}>",
                                            string.Join(' ', from nūntium in nūntia
                                                             where nūntium is not Exception
                                                             select nūntium.ToString())));

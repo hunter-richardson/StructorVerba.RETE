@@ -29,12 +29,14 @@ namespace Dictionāria
 
     protected readonly Nūntius<Dictionārium<Hoc, Illud>> Nūntius { get; }
 
-    private readonly Func<Task<IEnumerable<FieldInfo>>> Omnēs
+    private readonly Func<Task<IEnumerable<FieldInfo>>> Omnia
           = async () => from illud in typeof(Hoc).GetFields()
-                        where Ūtilitātēs.Omnēs(illud.IsFamily, !illud.IsStatic,
-                                               illud.FieldType is Īnflexor,
-                                               illud.FieldType.GenericTypeArguments.Length is 1,
-                                               illud.FieldType.GenericTypeArguments[0] is Illud)
+                        from istud in illud.FieldType.GenericTypeArguments[0]
+                        from abstractus in istud?.GenericTypeArguments.Length
+                        where Ūtilitātēs.Omnia(illud.IsFamily, !illud.IsStatic,
+                                               illud.FieldType is Lazy,
+                                               istud is Īnflexor,
+                                               abstractus is 1)
                         orderby illud.Name
                         select illud;
 
@@ -42,15 +44,15 @@ namespace Dictionāria
           = async locus => locus.GetObject(this).Cast<Īnflexor<Illud>>(null);
 
     private readonly Func<Task<Īnflectendum?>> FortisLātor
-          = async () => await Oblātor.Invoke(await (await Omnēs.Invoke()).Random());
+          = async () => await Oblātor.Invoke(await (await Omnia.Invoke()).Random());
 
-    public readonly Func<Task<IEnumerable<string>>> Lemmae = async () => (from illud in (await Omnēs.Invoke())
+    public readonly Func<Task<IEnumerable<string>>> Lemmae = async () => (from illud in (await Omnia.Invoke())
                                                                           select illud.Name.ToLower()).Distinct();
 
     protected Dictionārium(in Lazy<Nūntius<Dictionārium<Hoc, Illud>>> nūntius) => Nūntius = nūntius.Value;
 
     private sealed Īnflectendum? Feram(string lemma)
-          => await Obātor.Invoke((from illud in (await Omnēs.Invoke())
+          => await Obātor.Invoke((from illud in (await Omnia.Invoke())
                                   where string.Equals(lemma, illud.Name, StringComparison.OrdinalIgnoreCase)
                                   select illud).FirstOrDefault());
 
