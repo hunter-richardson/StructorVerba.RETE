@@ -12,7 +12,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Incertī
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorIncertus<Hoc, Illud> : Īnflexor<Hoc, Illud>
+  public abstract partial class ĪnflexorIncertus<Hoc> : Īnflexor<Hoc>
   {
     private readonly IDictionary<Enum[], string> Fōrmae = new PredicatedSortedDictionary<Enum[], string>(ComparātorSeriērum,
                                                                                                          Tabula.Contains, "Ēnumerātiō scīta'stō",
@@ -22,12 +22,12 @@ namespace Īnflexōrēs.Incertī
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params IEnumerable<Enum[]> illa)
-                               : base(catēgoria, nūntius, illa) { }
+                                                   : base(catēgoria, nūntius, illa) { }
 
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params Enum illa)
-                               : base(catēgoria, nūntius, illa) { }
+                                                   : base(catēgoria, nūntius, illa) { }
 
     public sealed void Fōrmam(in string fōrma, in params Enum illa)
     {
@@ -41,9 +41,6 @@ namespace Īnflexōrēs.Incertī
         Nūntius.TerreōAsync(error);
       }
     }
-
-    public sealed string Scrībam(in Hoc hoc, in params Enum illa)
-              => await ScrībamAsync(illa);
 
     public sealed string Scrībam(in params Enum illa)
               => Ūtilitātēs.Seriēs((from linea in Fōrmae

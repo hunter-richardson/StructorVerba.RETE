@@ -14,6 +14,7 @@ using Īnflexōrēs.Incertī.ĪnflexorIncertus;
 using BuilderGenerator.GenerateBuilderAttribute;
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
+using Lombok.NET.PropertyGenerators.SingletonsAttribute;
 
 namespace Praebeunda
 {
@@ -31,8 +32,13 @@ namespace Praebeunda
           : this(minūtal, catēgoria, Īnflexōrēs.Īnflexor.Relātor.Invoke(catēgoria, versiō)) { }
 
     public sealed Illud? Īnflectem(in params Enum illa)
+          => Īnflexor.Value?.ĪnflectemAsync(this, illa);
+
+    [Singleton]
+    public sealed partial class Nūllum<Hoc> : Īnflectendum<Nūllum, Hoc>
     {
-      return Īnflexor.Value?.ĪnflectemAsync(this, illa);
+      public static readonly Lazy<Nūllum> Faceindum = new Lazy(() => Instance);
+      private Nūllum() : base(0, null, null) { }
     }
 
     public sealed class Adverbium : Īnflectendum<Adverbium, Multiplex.Adverbium>
@@ -58,36 +64,19 @@ namespace Praebeunda
       public string ToString() => Positīvum;
     }
 
-    [GenerateBuilder]
     public sealed class Āctus : Īnflectendum<Āctus, Multiplex.Āctus>
     {
-      public static readonly Func<Lazy<ĪnflexorIncertus<Āctus, Multiplex.Āctus>>, string?[], Task<Prōnōmen>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
-                                                      .Īnfīnītīvum(valōrēs[0]).GetString()
-                                                      .Perfectum(valōrēs[1] ?? string.Empty)
-                                                      .Supīnum(valōrēs[2] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
       public static readonly Func<JsonElement, Enum, Task<Āctus>> Lēctor
-                = async (legendum, valor) => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32())
-                                                    .Īnfīnītīvum(legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString())
-                                                    .Perfectum(legendum.GetProperty(nameof(Perfectum).ToLower()).GetString() ?? string.Empty)
-                                                    .Supīnum(legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty)
-                                                    .Versiō(valor).Build();
+                = async (legendum, valor) => new Āctus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                       legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
+                                                       legendum.GetProperty(nameof(Perfectum).ToLower()).GetString() ?? string.Empty,
+                                                       legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
+                                                       valor);
 
       private Āctus(in int minūtal, in string īnfīnītīvum,
                     in string perfectum, in string supīnum,
                     in Enum versiō)
                      : base(minūtal, Ēnumerātiōnēs.Catēgoria.Āctus, versiō)
-      {
-        Īnfīnītīvum = īnfīnītīvum;
-        Perfectum = perfectum;
-        Supīnum = supīnum;
-      }
-
-      private Āctus(in int minūtal, in string īnfīnītīvum,
-                    in string perfectum, in string supīnum,
-                    in Lazy<ĪnflexorIncertus<Āctus, Multiplex.Āctus>> īnflexor)
-                     : base(minūtal, Ēnumerātiōnēs.Catēgoria.Āctus, īnflexor)
       {
         Īnfīnītīvum = īnfīnītīvum;
         Perfectum = perfectum;
@@ -100,77 +89,34 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    [GenerateBuilder]
-    public sealed class Prōnōmen : Īnflectendum<Prōnōmen, Multiplex.Prōnōmen>
-    {
-      public static readonly Func<Lazy<ĪnflexorIncertus<Prōnōmen, Multiplex.Prōnōmen>>, string?[], Task<Prōnōmen>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(minūtal)
-                                                      .Nominātīvum(valōrēs[0]).GetString()
-                                                      .Genitīvum(valōrēs[1] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
-
-      private Prōnōmen(in int minūtal, in string nōminātīvum, in string genitīvum,
-                       in Lazy<ĪnflexorIncertus<Prōnōmen, Multiplex.Prōnōmen>> īnflexor)
-                       : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, īnflexor)
-      {
-        Nominātīvum = nōminātīvum;
-        Genitīvum = genitīvum;
-      }
-
-      public readonly string Nominātīvum { get; }
-      public readonly string Genitīvum { get; }
-      public string ToString() => Nominātīvum;
-    }
-
-    [GenerateBuilder]
     public sealed class Nōmen : Īnflectendum<Nōmen, Multiplex.Nōmen>
     {
-      public static readonly Func<Lazy<ĪnflexorIncertus<Nōmen, Multiplex.Nōmen>>, string?[], Task<Nōmen>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
-                                                      .Nominātīvum(valōrēs[0]).GetString()
-                                                      .Genitīvum(valōrēs[1] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
       public static readonly Func<JsonElement, Enum, Task<Nōmen>> Lēctor
-                = async (legendum, valor) => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32())
-                                                    .Nominātīvum(legendum.GetProperty(nameof(Nominātīvum).ToLower()).GetString())
-                                                    .Genitīvum(legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString() ?? string.Empty)
-                                                    .Versiō(valor).Build();
-
-      private Nōmen(in int minūtal, in string nōminātīvum, in string genitīvum,
-                    in Lazy<ĪnflexorIncertus<Nōmen, Multiplex.Nōmen>> īnflexor)
-                    : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, īnflexor)
-      {
-        Nominātīvum = nōminātīvum;
-        Genitīvum = genitīvum;
-      }
+                = async (legendum, valor) => new Nōmen(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                       legendum.GetProperty(nameof(Nōminātīvum).ToLower()).GetString(),
+                                                       legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString() ?? string.Empty,
+                                                       valor);
 
       private Nōmen(in int minūtal, in string nōminātīvum,
                     in string genitīvum, in Enum versiō)
                     : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, versiō)
       {
-        Nominātīvum = nōminātīvum;
+        Nōminātīvum = nōminātīvum;
         Genitīvum = genitīvum;
       }
 
-      public readonly string Nominātīvum { get; }
+      public readonly string Nōminātīvum { get; }
       public readonly string Genitīvum { get; }
-      public string ToString() => Nominātīvum;
+      public string ToString() => Nōminātīvum;
     }
 
-    [GenerateBuilder]
     public sealed class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>
     {
-      public static readonly Func<Lazy<ĪnflexorIncertus<NōmenFactum, Multiplex.Nōmen>>, string?[], Task<NōmenFactum>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
-                                                      .Īnfīnītum(valōrēs[0]).GetString()
-                                                      .Supīnum(valōrēs[1] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
-
       public static readonly Func<JsonElement, Enum, Task<NōmenFactum>> Lēctor
-                = async (legendum, valor) => BlobBuilder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32()
-                                                        .Īnfīnītīvum(legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString())
-                                                        .Supīnum(legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty))
-                                                        .Versiō(valor).Build();
+                = async (legendum, valor) => new NōmenFactum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                             legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
+                                                             legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
+                                                             valor);
       private NōmenFactum(in int minūtal, in string īnfīnītīvum,
                           in string supīnum, in Enum versiō)
                           : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, versiō)
@@ -184,31 +130,14 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    [GenerateBuilder]
     public sealed class AdiectīvumAutPrīmumAutSecundumAutTertium : Īnflectendum<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
     {
-      public static readonly Func<Lazy<ĪnflexorIncertus<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>>,
-                                  string?[], Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
-                                                      .Positīvum(valōrēs[0]).GetString()
-                                                      .Comparātīvum(valōrēs[1] ?? string.Empty)
-                                                      .Superlātīvum(valōrēs[2] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumAutPrīmumAutSecundumAutTertium>> Lēctor
-                = async (legendum, valor) => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32())
-                                                    .Positīvum(legendum.GetProperty(nameof(Positīvum).ToLower()).GetString())
-                                                    .Comparātīvum(legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString() ?? string.Empty)
-                                                    .Superlātīvum(legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString() ?? string.Empty)
-                                                    .Versiō(valor).Build();
-
-      private AdiectīvumAutPrīmumAutSecundumAutTertium(in int minūtal, in string positīvum, in string comparātīvum,
-                                                       in string superlātīvum, in Lazy<ĪnflexorIncertus<Nōmen, Multiplex.Nōmen>> īnflexor)
-                                                       : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adiectīvum, īnflexor)
-      {
-        Positīvum = positīvum;
-        Comparātīvum = comparātīvum;
-        Superlātīvum = superlātīvum;
-      }
+                = async (legendum, valor) => new AdiectīvumAutPrīmumAutSecundumAutTertium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                          legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
+                                                                                          legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString() ?? string.Empty,
+                                                                                          legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString() ?? string.Empty,
+                                                                                          valor);
 
       private AdiectīvumAutPrīmumAutSecundumAutTertium(in int minūtal, in string positīvum, in string comparātīvum,
                                                        in string superlātīvum, in Enum versiō)
@@ -225,32 +154,17 @@ namespace Praebeunda
       public string ToString() => Positīvum;
     }
 
-    [GenerateBuilder]
     public sealed class AdiectīvumTertiumAutPrīmumAutSecundum : Īnflectendum<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>
     {
-      public static readonly Func<Lazy<ĪnflexorIncertus<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>>,
-                                  string?[], Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Aedificātor
-                = async (īnflexor, valōrēs) => Builder.Minūtal(HashCode.Combine(valōrēs[0], Ēnumerātiōnēs.Catēgoria.Nōmen))
-                                                      .Nominātīvum(valōrēs[0]).GetString()
-                                                      .Genitīvum(valōrēs[1] ?? string.Empty)
-                                                      .Īnflexor(īnflexor).Build();
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Lēctor
-                = async (legendum, valor) => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32())
-                                                    .Nominātīvum(legendum.GetProperty(nameof(Nominātīvum).ToLower()).GetString())
-                                                    .Genitīvum(legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString())
-                                                    .Versiō(valor).Build();
+                = async (legendum, valor) => new AdiectīvumTertiumAutPrīmumAutSecundum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                       legendum.GetProperty(nameof(Nominātīvum).ToLower()).GetString(),
+                                                                                       legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString(),
+                                                                                       valor);
 
       private AdiectīvumTertiumAutPrīmumAutSecundum(in int minūtal, in string nominātīvum,
                                                     in string genitīvum, in Enum versiō)
                                                     : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adiectīvumm, versiō)
-      {
-        Nominātīvum = nominātīvum;
-        Genitīvum = genitīvum;
-      }
-
-      private AdiectīvumTertiumAutPrīmumAutSecundum(in int minūtal, in string nominātīvum,
-                                                    in string genitīvum, in Lazy<ĪnflexorIncertus<Nōmen, Multiplex.Nōmen>> īnflexor)
-                                                    : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adiectīvumm, īnflexor)
       {
         Nominātīvum = nominātīvum;
         Genitīvum = genitīvum;

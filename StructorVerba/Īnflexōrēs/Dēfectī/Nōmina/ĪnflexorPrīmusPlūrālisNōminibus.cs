@@ -15,10 +15,9 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
   [AsyncOverloads]
   public abstract class ĪnflexorPrīmusPlūrālisNōminibus : ĪnflexorDēfectusNōminibus<Īnflectendum.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorPrīmusPlūrālisNōminibus> Faciendum
-                     = new Lazy<ĪnflexorPrīmusPlūrālisNōminibus>(() => Instance);
+    public static readonly Lazy<ĪnflexorPrīmusPlūrālisNōminibus> Faciendum = new Lazy(() => Instance);
     protected ĪnflexorPrīmusPlūrālisNōminibus()
-          : base(new Lazy<Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>>(() => new Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>()),
+          : base(new Lazy<Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>>(),
                  ĪnflexorEffectusPrīmusNōminibus.Faciendum) { }
 
     protected sealed Enum[] Referō(in Enum[] illa)

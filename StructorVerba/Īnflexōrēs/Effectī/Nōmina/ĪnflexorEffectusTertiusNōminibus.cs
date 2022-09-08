@@ -14,28 +14,27 @@ namespace Īnflexōrēs.Effectī.Nōmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusNōminibus : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusNōminibus> Faciendum
-                     = new Lazy<ĪnflexorEffectusTertiusNōminibus>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusTertiusNōminibus> Faciendum = new Lazy(() => Instance);
     private ĪnflexorEffectusTertiusNōminibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNōminibus>>(() => new Nūntius<ĪnflexorEffectusTertiusNōminibus>()),
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNōminibus>>(),
                (nōmen, illa) => (illa.FirstOf<Numerālis>, illa.FirstOf<Casus>()) switch
                                 {
-                                  (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,
+                                  (Numerālis.Singulāris, Casus.Nōminātīvus or Casus.Vocātīvus) => nōmen.Nōminātīvum,
                                   _ => nōmen.Genitīvum.Chop(2)
                                 }) { }
 
     public sealed string Singulāre(in Casus casus) => casus switch
     {
-      Casus.Nominātīvus or Casus.Vocātīvus => string.Empty,
+      Casus.Nōminātīvus or Casus.Vocātīvus => string.Empty,
       Casus.Genitīvus => "is",
       Casus.Datīvus => "ī",
-      Casus.Accusātīvus => "em",
+      Casus.Accūsātīvus => "em",
       _ => "e"
     };
 
     public sealed string Plūrāle(in Casus casus) => casus switch
     {
-      Casus.Nominātīvus or Casus.Accusātīvus or Casus.Vocātīvus => "ēs",
+      Casus.Nōminātīvus or Casus.Accūsātīvus or Casus.Vocātīvus => "ēs",
       Casus.Genitīvus => "um",
       _ => "ibus"
     };

@@ -15,9 +15,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
   public sealed partial class ĪnflexorImpersōnālisĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorImpersōnālisĀctibus> Secundus
-                      = new Lazy<ĪnflexorImpersōnālisĀctibus>(() => new ĪnflexorImpersōnālisĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorImpersōnālisĀctibus> Tertius
-                      = new Lazy<ĪnflexorImpersōnālisĀctibus>(() => new ĪnflexorImpersōnālisĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisĀctibus?>>> Relātor
               = async versiō => versiō switch
@@ -28,7 +28,7 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                                 };
 
     private ĪnflexorImpersōnālisĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisĀctibus>>(() => new Nūntius<ĪnflexorImpersōnālisĀctibus>()), relātum) { }
+        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisĀctibus>>(), relātum) { }
 
     public Enum[] Referō(in Enum[] illa)
               => Ūtilitātēs.Seriēs(illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(),

@@ -16,10 +16,9 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   [AsyncOverloads]
   public abstract class ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus : ĪnflexorDēfectusAdiectīvīs<Īnflectendum.Adiectīva>
   {
-    public static readonly Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus> Faciendum
-                     = new Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>(() => Instance);
+    public static readonly Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus> Faciendum = new Lazy(() => Instance);
     private ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus()
-          : base(new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(() => new Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>()),
+          : base(new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(),
                  ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum) { }
 
     protected sealed Enum[] Referō(in Enum[] illa)

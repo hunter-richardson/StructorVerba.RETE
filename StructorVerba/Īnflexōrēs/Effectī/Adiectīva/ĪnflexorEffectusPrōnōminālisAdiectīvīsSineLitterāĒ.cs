@@ -17,10 +17,9 @@ namespace Īnflexōrēs.Effectī.Adiectīva
   public sealed partial class ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ
             : ĪnflexorEffectusAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
   {
-    public static readonly Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ> Faciendum
-                     = new Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ> Faciendum = new Lazy(() => Instance);
     private ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ>>(() => new Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ>()),
+        : base(new Lazy<Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ>>(),
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => (illa.FirstOf<Gradus>() is Gradus.Positīvus)
                                           .Choose(adiectīvum.Positīvum.Chop(2), string.Empty)) { }

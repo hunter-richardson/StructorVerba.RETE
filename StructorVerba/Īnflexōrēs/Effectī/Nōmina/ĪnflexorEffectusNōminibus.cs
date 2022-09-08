@@ -39,9 +39,9 @@ namespace Īnflexōrēs.Effectī.Nōmina
 
     protected ĪnflexorEffectusNōminibus(in Lazy<Nūntius<ĪnflexorEffectusNōminibus>> nūntius,
                                         in Func<Īnflectendum.Nōmen, Enum[], string> rādīcātor)
-                                                           : base(versiō, nūntius, nameof(Īnflectendum.Nōmen.Nominātīvum), rādīcātor,
-                                                                  Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToSortedSet(),
-                                                                                     Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet())) { }
+                                                           : base(versiō, nūntius, nameof(Īnflectendum.Nōmen.Nōminātīvum), rādīcātor,
+                                                                  Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
+                                                                                     Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet())) { }
 
     public abstract string Singulāre(in Casus casus);
     public abstract string Plūrāle(in Casus casus);

@@ -14,11 +14,11 @@ namespace Pēnsōrēs.Īnflectenda
     public enum Versiō
     { Exāctum }
 
-    public static readonly Lazy<PēnsorAdverbiīs> Faciendum = new Lazy<PēnsorAdverbiīs>(() => Instance);
+    public static readonly Lazy<PēnsorAdverbiīs> Faciendum = new Lazy(() => Instance);
 
     protected PēnsorAdverbiīs()
-          : base(Versiō.Exāctum, nameof(Īnflectendum.Adverbium.Positīvum), Tabula.Adverbia,
-                 new Lazy<Nūntius<PēnsorAdverbiīs>>(() => new Nūntius<PēnsorAdverbiīs>()),
+          : base(Versiō.Exāctum, nameof(Īnflectendum.Adverbium.Positīvum),
+                 Tabula.Adverbia, new Lazy<Nūntius<PēnsorAdverbiīs>>(),
                  Īnflectendum.Adverbium.Lēctor) { }
   }
 }

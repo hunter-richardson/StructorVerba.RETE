@@ -10,22 +10,22 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Incertī
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorCircumfixusque<Hoc> : ĪnflexorIncertus<Hoc>
+  public sealed partial class ĪnflexorCircumfixus<Hoc> : Īnflexor<Hoc>
   {
     private readonly ĪnflexorIncertus<Hoc> Relātus { get; }
     private readonly string Prefixum { get; }
     private readonly string Suffixum { get; }
-    protected ĪnflexorCircumfixusque(in Ēnumerātiōnēs.Catēgoria catēgoria,
-                                     in Lazy<Nūntius<ĪnflexorPrefixusSuffixusque<Hoc>>> nūntius, in Lazy<ĪnflexorIncertus<Hoc>> relātus,
-                                     in string? prefixum, in string? suffixum, in params IEnumerable<Enum[]> illa)
-                                                         : base(catēgoria, nūntius, illa)
+    public ĪnflexorCircumfixus(in Lazy<ĪnflexorIncertus<Hoc>> relātus,
+                               in Lazy<Nūntius<ĪnflexorCircumfixus<Hoc>>> nūntius,
+                               in string? prefixum, in string? suffixum)
+                                          : base(relātus.Value.Catēgoria, nūntius, relātus.Value.Tabulātor.Invoke())
     {
       Relātus = relātus.Value;
       Prefixum = prefixum ?? string.Empty;
       Suffixum = suffixum ?? string.Empty;
     }
 
-    public virtual string Scrībam(in Enum[] illa)
+    public string Scrībam(in Enum[] illa)
     {
       const string? relātum = await Relātus.ScrībamAsync(illa);
       return string.IsNullOrWhitespace(relātum)

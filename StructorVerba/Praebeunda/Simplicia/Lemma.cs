@@ -5,7 +5,6 @@ using System.Threading.Tasks.Task;
 
 using Pēnsōrēs.PēnsorĪnflectendīs;
 using Praebeunda.Īnflectendum;
-using Īnflexōrēs.Īnflexor;
 
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 
@@ -25,6 +24,6 @@ namespace Praebeunda.Simplicia
        new Lemma(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
                  Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
                  legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString(),
-                 Īnflexor.Versor.Invoke(legendum.GetProperty(nameof(Versiō).ToLower())));
+                 PēnsorĪnflectendīs.Versor.Invoke(legendum.GetProperty(nameof(Versiō).ToLower())));
   }
 }

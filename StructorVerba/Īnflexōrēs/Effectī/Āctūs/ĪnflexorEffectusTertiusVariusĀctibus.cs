@@ -14,13 +14,12 @@ namespace Īnflexōrēs.Effectī.Āctūs
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusVariusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusVariusĀctibus> Faciendum
-                     = new Lazy<ĪnflexorEffectusTertiusVariusĀctibus>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusTertiusVariusĀctibus> Faciendum = new Lazy(() => Instance);
 
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusVariusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>(() => new Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>())) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>()) { }
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {

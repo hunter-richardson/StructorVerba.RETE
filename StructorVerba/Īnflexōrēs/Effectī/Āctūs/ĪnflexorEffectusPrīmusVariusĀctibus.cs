@@ -14,13 +14,12 @@ namespace Īnflexōrēs.Effectī.Āctūs
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusPrīmusVariusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusPrīmusVariusĀctibus> Faciendum
-                     = new Lazy<ĪnflexorEffectusPrīmusVariusĀctibus>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusPrīmusVariusĀctibus> Faciendum = new Lazy(() => Instance);
 
     private static readonly ĪnflexorEffectusPrīmusĀctibus Relātum = ĪnflexorEffectusPrīmusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusPrīmusVariusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>(() => new Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>())) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>()) { }
 
     protected override sealed string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
                   => (await Relātum.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))

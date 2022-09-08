@@ -14,28 +14,26 @@ namespace Īnflexōrēs.Incertī.Nōmina
   [Singleton]
   public sealed partial class ĪnflexorVerbīĒthos : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīĒthos> Faciendum = new Lazy<ĪnflexorVerbīĒthos>(() => Instance);
+    public static readonly Lazy<ĪnflexorVerbīĒthos> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīĒthos()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīĒthos>>(() => new Nūntius<ĪnflexorVerbīĒthos>()),
-               Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToSortedSet(),
-                                  Numerālis.GetValues().Except(Numerālis.Nūllus).ToSortedSet()))
-    {
-      FōrmamAsync("ēthos", Numerālis.Singulāris, Casus.Nominātīvus);
-      FōrmamAsync("ēthea", Numerālis.Plūrālis, Casus.Nominātīvus);
-      FōrmamAsync("ētheos", Numerālis.Singulāris, Casus.Genitīvus);
-      FōrmamAsync("ēthōn", Numerālis.Plūrālis, Casus.Genitīvus);
-      FōrmamAsync("ēthī", Numerālis.Singulāris, Casus.Datīvus);
-      FōrmamAsync("ēthesī", Numerālis.Plūrālis, Casus.Datīvus);
-      FōrmamAsync("ētheos", Numerālis.Singulāris, Casus.Accūsātīvus);
-      FōrmamAsync("ēthōs", Numerālis.Plūrālis, Casus.Accūsātīvus);
-      FōrmamAsync("ēthī", Numerālis.Singulāris, Casus.Ablātīvus);
-      FōrmamAsync("ēthesī", Numerālis.Plūrālis, Casus.Ablātīvus);
-      FōrmamAsync("ēthos", Numerālis.Singulāris, Casus.Vocātīvus);
-      FōrmamAsync("ēthea", Numerālis.Plūrālis, Casus.Vocātīvus);
-      FōrmamAsync("ēthī", Numerālis.Singulāris, Casus.Locātīvus);
-      FōrmamAsync("ēthesī", Numerālis.Plūrālis, Casus.Locātīvus);
-      FōrmamAsync("ēthī", Numerālis.Singulāris, Casus.Instrumentālis);
-      FōrmamAsync("ēthesī", Numerālis.Plūrālis, Casus.Instrumentālis);
-    }
+        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīĒthos>>(),
+               Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
+                                  Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet()))
+    => Tabula.ForEach(illa =>
+        {
+          const Numerālis numerālis = illa.FirstOf<Numerālis>();
+          const Casus casus = illa.FirstOf<Casus>();
+          const string fōrma = (numerālis, casus) switch
+                                {
+                                  (Numerālis.Singulāris, Casus.Nōminātīvus or Casus.Vocātīvus) => "os",
+                                  (Numerālis.Singulāris, Casus.Genitīvus or Casus.Accūsātīvus) => "eos",
+                                  (Numerālis.Plūrālis, Casus.Nōminātīvus or Casus.Vocātīvus) => "ea",
+                                  (Numerālis.Plūrālis, Casus.Genitīvus) => "ōn",
+                                  (Numerālis.Plūrālis, Casus.Accūsātīvus) => "ōs",
+                                  (Numerālis.Singulāris, _) => "ī",
+                                  (Numerālis.Plūrālis, _) => "esī"
+                                };
+          FōrmamAsync("ēth".Concat(fōrma), numerālis, casus);
+        });
   }
 }

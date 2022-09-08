@@ -14,21 +14,25 @@ namespace Īnflexōrēs.Effectī.Nōmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusSecundusMasculīnusNōminibus : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusSecundusMasculīnusNōminibus> Faciendum
-                     = new Lazy<ĪnflexorEffectusSecundusMasculīnusNōminibus>(() => Instance);
-    private readonly ĪnflexorEffectusSecundusNeuterNōminibus Relātum = ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value;
+    public static readonly Lazy<ĪnflexorEffectusSecundusMasculīnusNōminibus> Faciendum = new Lazy(() => Instance);
+    private readonly ĪnflexorEffectusSecundusNeuterNōminibus Relātus = ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value;
     private ĪnflexorEffectusSecundusMasculīnusNōminibus()
-          : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusMasculīnusNōminibus>>(() => new Nūntius<ĪnflexorEffectusSecundusMasculīnusNōminibus>()),
-                 (nōmen, illa) => nōmen.Nominātīvum.Chop(2)) { }
+          : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusMasculīnusNōminibus>>(),
+                 (nōmen, illa) => nōmen.Nōminātīvum.Chop(2)) { }
 
-    public sealed string Singulāre(in Casus casus) => (casus is Casus.Nominātīvus or Casus.Vocātīvus)
-                                                          .Choose("us", await Relātum.SingulāreAsync(casus));
+    public sealed async string Singulāre(in Casus casus)
+        => casus switch
+        {
+          Casus.Nōminātīvus => "us",
+          Casus.Vocātīvus => "e",
+          _ => await Relātus.SingulāreAsync(casus)
+        };
 
     public sealed string Plūrāle(in Casus casus) => casus switch
     {
-      Casus.Nominātīvus or Casus.Vocātīvus => "ī",
-      Casus.Accusātīvus => "ōs",
-      _ => await Relātum.PlūrāleAsync(casus)
+      Casus.Nōminātīvus or Casus.Vocātīvus => "ī",
+      Casus.Accūsātīvus => "ōs",
+      _ => await Relātus.PlūrāleAsync(casus)
     };
   }
 }

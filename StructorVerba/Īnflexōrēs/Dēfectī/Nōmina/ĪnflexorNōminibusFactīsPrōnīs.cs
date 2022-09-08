@@ -12,24 +12,29 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
   public sealed class ĪnflexorNōminibusFactīsPrōnīs : ĪnflexorDēfectusNōminibus<Īnflectendum.NōmenFactum>
   {
     private static readonly Lazy<ĪnflexorNōminibusFactīsPrōnīs> Prīmus
-                      = new Lazy<ĪnflexorNōminibusFactīsPrōnīs>(() => new ĪnflexorNōminibusFactīsPrōnīs(ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Prīmum)));
+            = new Lazy(() => new ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Prīmum));
     private static readonly Lazy<ĪnflexorNōminibusFactīsPrōnīs> Secundus
-                      = new Lazy<ĪnflexorNōminibusFactīsPrōnīs>(() => new ĪnflexorNōminibusFactīsPrōnīs(ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Secundum)));
+            = new Lazy(() => new ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Secundum));
     private static readonly Lazy<ĪnflexorNōminibusFactīsPrōnīs> Tertius
-                      = new Lazy<ĪnflexorNōminibusFactīsPrōnīs>(() => new ĪnflexorNōminibusFactīsPrōnīs(ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Tertium)));
+            = new Lazy(() => new ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Tertium));
+    private static readonly Lazy<ĪnflexorNōminibusFactīsPrōnīs> TertiusVarius
+            = new Lazy(() => new ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Tertium_Varium));
     private static readonly Lazy<ĪnflexorNōminibusFactīsPrōnīs> Quārtus
-                      = new Lazy<ĪnflexorNōminibusFactīsPrōnīs>(() => new ĪnflexorNōminibusFactīsPrōnīs(ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Quārtum)));
-    public static readonly Func<PēnsorNōminibusFactīs.Versiō, Task<Lazy<ĪnflexorNōminibusFactīsPrōnīs?>>> Relātor = async versiō => versiō switch
-    {
-      Nōmen_Factum_Prīmum_Prōnum => Prīmus,
-      Nōmen_Factum_Secundum_Prōnum => Secundus,
-      Nōmen_Factum_Tertium_Prōnum => Tertius,
-      Nōmen_Factum_Quārtum_Prōnum => Quārtus,
-      _ => new Lazy(null),
-    };
+            = new Lazy(() => new ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō.Nōmen_Factum_Quārtum));
+    public static readonly Func<PēnsorNōminibusFactīs.Versiō, Task<Lazy<ĪnflexorNōminibusFactīsPrōnīs?>>> Relātor
+        = async versiō => versiō switch
+                          {
+                            Nōmen_Factum_Prīmum_Prōnum => Prīmus,
+                            Nōmen_Factum_Secundum_Prōnum => Secundus,
+                            Nōmen_Factum_Tertium_Prōnum => Tertius,
+                            Nōmen_Factum_Tertium_Varium_Prōnum => TertiusVarius,
+                            Nōmen_Factum_Quārtum_Prōnum => Quārtus,
+                            _ => new Lazy(null),
+                          };
 
-    private ĪnflexorNōminibusFactīsPrōnīs(in Lazy<ĪnflexorEffectusNōminibusFactīs> relātus)
-        : base(new Lazy<Nūntius<ĪnflexorNōminibusFactīsPrōnīs>>(() => new Nūntius<ĪnflexorNōminibusFactīsPrōnīs>()), relātus) { }
+    private ĪnflexorNōminibusFactīsPrōnīs(PēnsorNōminibusFactīs.Versiō versiō)
+        : base(new Lazy<Nūntius<ĪnflexorNōminibusFactīsPrōnīs>>(),
+               ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(versiō)) { }
 
     protected Enum[] Referō(in Enum[] illa)
     {

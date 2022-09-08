@@ -12,10 +12,12 @@ namespace Pēnsōrēs.Nōmina
       Nōmen_Factum_Prīmum = PēnsorĀctibus.Versiō.Prīmus,
       Nōmen_Factum_Secundum = PēnsorĀctibus.Versiō.Secundus,
       Nōmen_Factum_Tertium = PēnsorĀctibus.Versiō.Tertius,
+      Nōmen_Factum_Tertium_Varium = PēnsorĀctibus.Versiō.Tertius_Varius,
       Nōmen_Factum_Quārtum = PēnsorĀctibus.Versiō.Quārtus,
       Nōmen_Factum_Prīmum_Prōnum,
       Nōmen_Factum_Secundum_Prōnum,
       Nōmen_Factum_Tertium_Prōnum,
+      Nōmen_Factum_Tertium_Varium_Prōnum,
       Nōmen_Factum_Quārtum_Prōnum
     }
 
@@ -34,7 +36,7 @@ namespace Pēnsōrēs.Nōmina
       }
       else
       {
-        const PēnsorNōminibusFactīs hoc = new Lazy<PēnsorNōminibusFactīs>(() => new PēnsorNōminibusFactīs(valor));
+        const PēnsorNōminibusFactīs hoc = new Lazy(() => new PēnsorNōminibusFactīs(valor));
         Reservātī.Add(valor, hoc);
         return hoc;
       }
@@ -42,7 +44,7 @@ namespace Pēnsōrēs.Nōmina
 
     private PēnsorNōminibusFactīs(in Versiō versiō)
                                      : base(versiō, nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum), Tabula.Nōmina_Facta,
-                                            new Lazy<Nūntius<PēnsorNōminibusFactīs>>(() => new Nūntius<PēnsorNōminibusFactīs>()),
-                                            Īnflectendum.NōmenFactum.Lēctor) {  }
+                                            new Lazy<Nūntius<PēnsorNōminibusFactīs>>(),
+                                            Īnflectendum.NōmenFactum.Lēctor) { }
   }
 }

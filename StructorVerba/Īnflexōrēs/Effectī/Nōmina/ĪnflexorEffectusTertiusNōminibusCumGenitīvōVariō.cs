@@ -14,14 +14,13 @@ namespace Īnflexōrēs.Effectī.Nōmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō> Faciendum
-                     = new Lazy<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō> Faciendum = new Lazy(() => Instance);
     private readonly ĪnflexorEffectusTertiusNōminibus Relātum = ĪnflexorEffectusTertiusNōminibus.Faciendum.Value;
     private ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō>>(() => new Nūntius<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō>()),
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō>>(),
                (nōmen, illa) => (illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
                                 {
-                                  (Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => nōmen.Nominātīvum,
+                                  (Numerālis.Singulāris, Casus.Nōminātīvus or Casus.Vocātīvus) => nōmen.Nōminātīvum,
                                   _ => nōmen.Genitīvum.Chop(2)
                                 }) { }
 

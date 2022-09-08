@@ -14,12 +14,12 @@ namespace Īnflexōrēs.Incertī.Nōmina
   [Singleton]
   public sealed partial class ĪnflexorVerbīLexis : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīLexis> Faciendum = new Lazy<ĪnflexorVerbīLexis>(() => Instance);
+    public static readonly Lazy<ĪnflexorVerbīLexis> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīLexis()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīLexis>>(() => new Nūntius<ĪnflexorVerbīLexis>()),
-               Casus.Nominātīvus, Casus.Genitīvus, Casus.Accūsātīvus)
+        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīLexis>>(),
+               Casus.Nōminātīvus, Casus.Genitīvus, Casus.Accūsātīvus)
     {
-      FōrmamAsync("lexis", Casus.Nominātīvus);
+      FōrmamAsync("lexis", Casus.Nōminātīvus);
       FōrmamAsync("lexeōs", Casus.Genitīvus);
       FōrmamAsync("lexis", Casus.Accūsātīvus);
     }

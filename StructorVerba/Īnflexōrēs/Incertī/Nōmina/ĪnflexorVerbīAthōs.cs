@@ -12,18 +12,17 @@ namespace Īnflexōrēs.Incertī.Nōmina
   [Singleton]
   public sealed partial class ĪnflexorVerbīAthōs : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīAthōs> Faciendum
-                     = new Lazy<ĪnflexorVerbīAthōs>(() => Instance);
+    public static readonly Lazy<ĪnflexorVerbīAthōs> Faciendum = new Lazy(() => Instance);
 
     private ĪnflexorVerbīAthōs()
           : base(Ēnumerātiōnēs.Catēgoria.Nōmen,
-                 new Lazy<Nūntius<ĪnflexorVerbīAthōs>>(() => new Nūntius<ĪnflexorVerbīAthōs>()),
+                 new Lazy<Nūntius<ĪnflexorVerbīAthōs>>(),
                  Casus.GetValues().Except(Casus.Dērēctus))
     {
-      FōrmamAsync("Athōs", Casus.Nominātīvus);
-      FōrmamAsync("Athōn", Casus.Accusātīvus);
+      FōrmamAsync("Athōs", Casus.Nōminātīvus);
+      FōrmamAsync("Athōn", Casus.Accūsātīvus);
 
-      Casus.GetValues().Except(Casus.Dērēctus, Casus.Nominātīvus, Casus.Accusātīvus)
+      Casus.GetValues().Except(Casus.Dērēctus, Casus.Nōminātīvus, Casus.Accūsātīvus)
                        .ForEach(valor => FōrmamAsync("Athō", valor));
     }
   }

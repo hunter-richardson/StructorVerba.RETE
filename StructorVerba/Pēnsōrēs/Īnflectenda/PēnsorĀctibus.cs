@@ -27,9 +27,9 @@ namespace Pēnsōrēs.Īnflectenda
       public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
     }
 
-    private static Dictionary<Versio, PēnsorĀctibus> Reservātī = new Dictionary<Versio, PēnsorĀctibus>();
+    private static Dictionary<Versio, Lazy<PēnsorĀctibus>> Reservātī = new Dictionary<Versio, Lazy<PēnsorĀctibus>>();
 
-    public static Func<Versio, PēnsorĀctibus> Faciendum = valor =>
+    public static Func<Versio, Lazy<PēnsorĀctibus>> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -37,7 +37,7 @@ namespace Pēnsōrēs.Īnflectenda
       }
       else
       {
-        const PēnsorĀctibus hoc = new PēnsorĀctibus(valor);
+        const Lazy<PēnsorĀctibus> hoc = new Lazy(() => new PēnsorĀctibus(valor));
         Reservātī.Add(valor, hoc);
         return hoc;
       }
@@ -45,7 +45,7 @@ namespace Pēnsōrēs.Īnflectenda
 
     private PēnsorĀctibus(in Versiō versiō)
                              : base(versiō, nameof(Īnflectendum.Āctus.Īnfīnītīvum), Tabula.Āctūs,
-                                    new Lazy<Nūntius<PēnsorĀctibus>>(() => new Nūntius<PēnsorĀctibus>()),
+                                    new Lazy<Nūntius<PēnsorĀctibus>>(),
                                     Īnflectendum.Āctus.Lēctor) { }
   }
 }

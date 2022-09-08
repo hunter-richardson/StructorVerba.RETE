@@ -1,9 +1,15 @@
 using System;
+using System.Threading.Tasks.Task;
 
 using Miscella.Ūtilitātēs;
+using Officīnae.OfficīnaPēnsābilium;
+using Praebeunda.Multiplex.Adiectīvum;
+using Praebeunda.Simplicia.Lemma;
 using Praebeunda.Īnflectendum;
-using Praebeunda.Multiplex;
-using Īnflexōrēs.Incertī.Nōmina;
+using Īnflexōrēs.Incertī.Adiectīva;
+using Īnflexōrēs.Incertī.ĪnflexorConiūnctīs;
+
+using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
 namespace Dictionāria
 {
@@ -12,44 +18,33 @@ namespace Dictionāria
   {
     public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy<DictionāriumAdiectīvīs>(() => Instance);
 
-    protected readonly Īnflectendum.Nōmen Multum
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīAthōs.Faciendum,
-                                                        Ūtilitātēs.Seriēs("multum", "plūs", "plūrimum"));
-    protected readonly Īnflectendum.Nōmen Balneum
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīBalneum.Faciendum,
-                                                        Ūtilitātēs.Seriēs("balneum", "balneī"));
-    protected readonly Īnflectendum.Nōmen Dea
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīDea.Faciendum,
-                                                        Ūtilitātēs.Seriēs("dea", "dea"));
-    protected readonly Īnflectendum.Nōmen Domus
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīDomus.Faciendum,
-                                                        Ūtilitātēs.Seriēs("domus", "domūs"));
-    protected readonly Īnflectendum.Nōmen Ēthos
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīĒthos.Faciendum,
-                                                        Ūtilitātēs.Seriēs("ēthos", "ētheos"));
-    protected readonly Īnflectendum.Nōmen Iēsūs
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīIēsūs.Faciendum,
-                                                        Ūtilitātēs.Seriēs("Iēsūs", "Iēsūs"));
-    protected readonly Īnflectendum.Nōmen Iūgerum
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīIūgerum.Faciendum,
-                                                        Ūtilitātēs.Seriēs("iūgerum", "iūgerī"));
-    protected readonly Īnflectendum Lexis
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīLexis.Faciendum,
-                                                        Ūtilitātēs.Seriēs("lexis", "lexeōs"));
-    protected readonly Īnflectendum Sapphō
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīSapphō.Faciendum,
-                                                        Ūtilitātēs.Seriēs("Sapphō", "Sapphūs"));
-    protected readonly Īnflectendum.Nōmen Vicis
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīVicis.Faciendum,
-                                                        Ūtilitātēs.Seriēs(string.Empty, "vicis"));
-    protected readonly Īnflectendum.Nōmen Vīs
-          = await Īnflectendum.Nōmen.Aedificātor.Invoke(ĪnflexorVerbīVīs.Faciendum,
-                                                        Ūtilitātēs.Seriēs("vīs", "viris"));
-    protected readonly Īnflectendum.NōmenFactum Īre
-          = await Īnflectendum.NōmenFactum.Aedificātor.Invoke(ĪnflexorVerbīĪre.Faciendum,
-                                                              Ūtilitātēs.Seriēs("īre", "itum"));
+    private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Offiīnātor.Invoke(null);
+    private static readonly Func<string, Task<Lemma?>> Lemmātor = async scrīptum => Officīna.Value.Inventor.Invoke(scrīptum);
 
+    protected readonly Lazy<ĪnflexorConiūnctus> Tertiumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("tertium"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Quārtumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("quārtum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Quīntumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("quīntum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Sextumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("sextum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Septimumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("septimum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Octāvumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("octāvum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorConiūnctus> Nōnumdecimum
+       = new Lazy(() => new ĪnflexorConiūnctus(await Lemmātor.Invoke("nōnum"),
+                                               await Lemmātor.Invoke("decimum")));
+    protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;
     private DictionāriumNōminibus()
-        : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>(() => new Nūntius<DictionāriumAdiectīvīs>())) { }
+        : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>()) { }
   }
 }

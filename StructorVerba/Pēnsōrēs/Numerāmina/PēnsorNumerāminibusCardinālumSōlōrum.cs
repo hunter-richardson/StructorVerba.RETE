@@ -10,13 +10,12 @@ namespace Pēnsōrēs.Numerāmina
 {
   public sealed class PēnsorNumerāminibusCardinālumSōlōrum : PēnsorĪnflectendīs<Īnflectendum.NumerāmenCardinālumSōlōrum, Multiplex.Numerāmen>
   {
-    public static readonly Lazy<PēnsorNumerāminibusCardinālumSōlōrum> Faciendum =
-                       new Lazy<PēnsorNumerāminibusCardinālumSōlōrum>(() => Instance);
+    public static readonly Lazy<PēnsorNumerāminibusCardinālumSōlōrum> Faciendum = new Lazy(() => Instance);
 
     private PēnsorNumerāminibusCardinālumSōlōrum()
           : base(Versiō.Cardinālium_Sōlōrum,
                  nameof(Īnflectendum.NumerāmenCardinālumSōlōrum.Numerus),
-                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumSōlōrum>>(() => new Nūntius<PēnsorNumerāminibusCardinālumSōlōrum>()),
+                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumSōlōrum>>(),
                  Īnflectendum.NumerāmenCardinālumSōlōrum.Lēctor) { }
   }
 }

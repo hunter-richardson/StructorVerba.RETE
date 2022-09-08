@@ -16,16 +16,12 @@ namespace Īnflexōrēs.Effectī
     protected ĪnflexorEffectus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorEffectus<Hoc>>> nūntius,
                                in Func<Hoc, Enum[], Task<string>> rādīcātor, in params IEnumerable<Enum[]> illa)
                                      : base(catēgoria, nūntius, illa)
-    {
-      Rādīcātor = rādīcātor;
-    }
+            => Rādīcātor = rādīcātor;
 
     protected ĪnflexorEffectus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorEffectus<Hoc>>> nūntius,
                                in Func<Hoc, Enum[], Task<string>> rādīcātor, in params Enum illa)
                                      : base(catēgoria, nūntius, illa)
-    {
-      Rādīcātor = rādīcātor;
-    }
+            => Rādīcātor = rādīcātor;
 
     public abstract string? Suffixum(in Enum[] illa);
     public sealed string Scrībam(in Hoc hoc, in Enum[] illa)

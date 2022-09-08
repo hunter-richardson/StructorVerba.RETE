@@ -14,13 +14,12 @@ namespace Īnflexōrēs.Effectī.Āctūs
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī> Faciendum
-                     = new Lazy<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī> Faciendum = new Lazy(() => Instance);
 
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī>>(() => new Nūntius<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī>())) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī>>()) { }
 
 
     public sealed async string? Imperātīvum(in Vōx vōx, in Tempus tempus, in Numerālis numerālis)

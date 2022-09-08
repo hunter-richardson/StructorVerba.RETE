@@ -11,12 +11,11 @@ namespace Pēnsōrēs.Numerāmina
   public sealed class PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
             : PēnsorĪnflectendīs<Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum, Multiplex.Numerāmen>
   {
-    public static readonly Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
-                       new Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);
+    public static readonly Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum = new Lazy(() => Instance);
     private PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum()
           : base(Versiō.Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
                  nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Numerus),
-                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>>(() => new Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>()),
+                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>>(),
                  Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum.Lēctor) { }
   }
 }

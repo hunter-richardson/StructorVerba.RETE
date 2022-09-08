@@ -14,11 +14,10 @@ namespace Īnflexōrēs.Effectī.Āctūs
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusQuārtusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusQuārtusĀctibus> Faciendum
-                     = new Lazy<ĪnflexorEffectusQuārtusĀctibus>(() => Instance);
+    public static readonly Lazy<ĪnflexorEffectusQuārtusĀctibus> Faciendum = new Lazy(() => Instance);
 
     private ĪnflexorEffectusQuārtusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusĀctibus>>(() => new Nūntius<ĪnflexorEffectusQuārtusĀctibus>()),
+        : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusĀctibus>>(),
                (āctus, illa) => (illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>()) switch
                                   {
                                     var īnscītum when (modus is default(Modus)) ||

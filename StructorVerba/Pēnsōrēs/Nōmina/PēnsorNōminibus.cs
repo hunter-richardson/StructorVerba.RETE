@@ -25,9 +25,9 @@ namespace Pēnsōrēs.Nōmina
       public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
     }
 
-    private static Dictionary<Versio, PēnsorNōminibus> Reservātī = new Dictionary<Versio, PēnsorNōminibus>();
+    private static Dictionary<Versio, Lazy<PēnsorNōminibus>> Reservātī = new Dictionary<Versio, Lazy<PēnsorNōminibus>>();
 
-    public static Func<Versio, PēnsorNōminibus> Faciendum = valor =>
+    public static Func<Versio, Lazy<PēnsorNōminibus>> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -35,15 +35,15 @@ namespace Pēnsōrēs.Nōmina
       }
       else
       {
-        const PēnsorNōminibus hoc = new PēnsorNōminibus(valor);
+        const Lazy<PēnsorNōminibus> hoc = new Lazy(() => new PēnsorNōminibus(valor));
         Reservātī.Add(valor, hoc);
         return hoc;
       }
     };
 
     private PēnsorNōminibus(in Versiō versiō)
-                               : base(versiō, nameof(Īnflectendum.Nōmen.Nominātīvum), Tabula.Nōmina,
-                                      new Lazy<Nūntius<PēnsorNōminibus>>(() => new Nūntius<PēnsorNōminibus>()),
+                               : base(versiō, nameof(Īnflectendum.Nōmen.Nōminātīvum), Tabula.Nōmina,
+                                      new Lazy<Nūntius<PēnsorNōminibus>>(),
                                       Īnflectendum.Nōmen.Lēctor) {  }
   }
 }

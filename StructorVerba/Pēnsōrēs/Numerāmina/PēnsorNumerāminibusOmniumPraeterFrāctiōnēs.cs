@@ -10,12 +10,12 @@ namespace Pēnsōrēs.Numerāmina
 {
   public sealed class PēnsorNumerāminibusOmniumPraeterFrāctiōnēs : PēnsorĪnflectendīs<Īnflectendum.NumerāmenOmniumPraeterFrāctiōnēs, Multiplex.Numerāmen>
   {
-    public static readonly Lazy<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum = new Lazy<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
+    public static readonly Lazy<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum = new Lazy(() => Instance);
 
     private PēnsorNumerāminibusOmniumPraeterFrāctiōnēs()
           : base(Versiō.Omnium_Praeter_Frāctiōnēs,
                  nameof(Īnflectendum.NumerāmenOmniumPraeterFrāctiōnēs.Numerus),
-                 new Lazy<Nūntius<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>>(() => new Nūntius<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>()),
+                 new Lazy<Nūntius<PēnsorNumerāminibusOmniumPraeterFrāctiōnēs>>(),
                  Īnflectendum.NumerāmenOmniumPraeterFrāctiōnēs.Lēctor) { }
   }
 }

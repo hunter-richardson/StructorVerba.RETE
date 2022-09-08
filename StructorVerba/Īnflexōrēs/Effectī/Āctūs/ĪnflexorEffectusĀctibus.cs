@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic.HashSet;
 using System.Collections.Immutable;
 using System.Threading.Tasks.Task;
 
@@ -44,14 +45,14 @@ namespace Īnflexōrēs.Effectī.Āctūs
                                                                                           Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(), Tempus.Praesēns.SingleItemSet(),
                                                                                                              Vōx.GetValues().Except(default(Vōx))).ToHashSet(),
                                                                                           Ūtilitātēs.Combīnō(Modus.Imperātīvus.SingleItemSet(),
-                                                                                                             new SortedSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum },
+                                                                                                             new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum },
                                                                                                              Vōx.GetValues().Except(default(Vōx)).ToHashSet(),
                                                                                                              Numerālis.GetValues().Except(default(Numerālis)).ToHashSet()),
                                                                                           Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(),
-                                                                                                             new SortedSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
+                                                                                                             new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
                                                                                           Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(), Tempus.Futūrum.SingleItemSet(),
                                                                                                              Vōx.GetValues().Except(default(Vōx)).ToHashSet()),
-                                                                                          Ūtilitātēs.Combīnō(new SortedSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
+                                                                                          Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
                                                                                                              Vōx.GetValues().Except(default(Vōx)).ToHashSet(),
                                                                                                              Tempus.GetValues().Except(default(Tempus)).ToHashSet(),
                                                                                                              Numerālis.GetValues().Except(default(Numerālis)).ToHashSet(),

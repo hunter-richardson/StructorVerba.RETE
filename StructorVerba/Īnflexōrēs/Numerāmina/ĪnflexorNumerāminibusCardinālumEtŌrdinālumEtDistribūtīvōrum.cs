@@ -14,13 +14,11 @@ namespace Īnflexōrēs.Numerāmina
   public sealed partial class ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum
             : ĪnflexorNumerāminibus<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum =
-                       new Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>(() => Instance);
+    public static readonly Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum> Faciendum = new Lazy(() => Instance);
 
     protected ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>>(() => new Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>()),
-                 Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium)
-    { }
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum>>(),
+                 Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium) { }
 
     public string Scrībam(in NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum numerāmen, in Numerium numerium)
             => numerium switch

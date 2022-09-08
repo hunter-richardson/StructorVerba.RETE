@@ -13,10 +13,9 @@ namespace Īnflexōrēs.Numerāmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs : ĪnflexorNumerāminibus<NumerāmenOmniumPraeterFrāctiōnēs>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum =
-                       new Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
+    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum = new Lazy(() => Instance);
     protected ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>>(() => new Nūntius<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>()),
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>>(),
                  Numerium.GetValues().Except(Numerium.Frāctiōnāle)) { }
     public string Scrībam(in NumerāmenOmniumPraeterFrāctiōnēs numerāmen, in Numerium numerium)
             => numerium switch
@@ -29,12 +28,5 @@ namespace Īnflexōrēs.Numerāmina
                   Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
                   _ => numerāmen.Numerus
                 };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs : Nūntius<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs> Faciendum =
-                         new Lazy<NūntiusĪnflexōrīNumerāminibusOmniumPraeterFrāctiōnēs>(() => Instance);
-    }
   }
 }

@@ -1,6 +1,7 @@
+using System;
+using System.Collections.Generic.HashSet;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices.ComTypes;
-using System;
 
 using Miscella;
 using Nūntiī.Nūntius;
@@ -45,14 +46,14 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                             : this(versiō, nūntius, quaerendī, rādīcātor,
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
                                                                       Genus.GetValues().Except(default(Genus)).ToHashSet(),
-                                                                      new SortedSet<Casus>() { Casus.Nominātīvus, Casus.Genitīvus, Casus.Accusātīvus, Casus.Vocātīvus },
+                                                                      new HashSet<Casus>() { Casus.Nominātīvus, Casus.Genitīvus, Casus.Accusātīvus, Casus.Vocātīvus },
                                                                       Numerālis.GetValues().Except(default(Numerālis)).ToHashSet()),
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
-                                                                      new SortedSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
+                                                                      new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
                                                                       Numerālis.Plūrālis.SingleItemSet()),
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
                                                                       Genus.GetValues().Except(default(Genus)).ToHashSet(),
-                                                                      new SortedSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
+                                                                      new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
                                                                       Numerālis.Singulāris.SingleItemSet())) { }
 
     public abstract Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus);

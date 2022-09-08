@@ -8,18 +8,18 @@ using Praebeunda.Simplicibus;
 
 namespace Pēnsōrēs
 {
-  public abstract class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
+  public sealed class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
   {
     private static readonly Lazy<PēnsorVerbīs<Coniūnctiō>> Coniūnctiōnibus
-              = new Lazy<PēnsorVerbīs<Coniūnctiō>>(() => new PēnsorVerbīs<Coniūnctiō>(Coniūnctiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Coniūnctiō>(Coniūnctiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Interiectiō>> Interiectiōnibus
-              = new Lazy<PēnsorVerbīs<Interiectiō>>(() => new PēnsorVerbīs<Interiectiō>(Interiectiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Interiectiō>(Interiectiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Praepositiō>> Coniūnctiōnibus
-              = new Lazy<PēnsorVerbīs<Praepositiō>>(() => new PēnsorVerbīs<Praepositiō>(Praepositiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Praepositiō>(Praepositiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Lemma>> Lemmīs
-              = new Lazy<PēnsorVerbīs<Lemma>>(() => new PēnsorVerbīs<Lemma>(Lemma.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Lemma>(Lemma.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Verbum>> Verbīs
-              = new Lazy<PēnsorVerbīs<Verbum>>(() => new PēnsorVerbīs<Verbum>(Verbum.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Verbum>(Verbum.Lēctor));
 
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
             catēgoria => catēgoria switch
@@ -32,7 +32,7 @@ namespace Pēnsōrēs
 
     protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
                            : base(nameof(Verbum.Scrīptum), Tabula.Verba,
-                                  new Lazy<Nūntius<PēnsorVerbīs>>(() => new Nūntius<PēnsorVerbīs>()),
+                                  new Lazy<Nūntius<PēnsorVerbīs>>(),
                                   lēctor)
     {
       Nūntius.PlūsGarriōAsync("Fīō");

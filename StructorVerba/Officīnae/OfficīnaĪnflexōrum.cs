@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks.Task;
 
+using Dictionāria.Dictionārium;
 using Miscella;
+using Nūntiī.Nūntius;
 using Praebeunda.Interfecta.Īnflexum;
 using Praebeunda.Multiplex;
 using Ēnumerātiōnēs.Catēgoria;
@@ -25,7 +27,9 @@ namespace Officīnae
     public static readonly Lazy<OfficīnaĪnflexōrum<Multiplex.Prōnōmen>> Prōnōminātor
            = new Lazy(() => new OfficīnaĪnflexōrum<Multiplex.Prōnōmen>(Catēgoria.Prōnōmen));
 
-    private readonly OfficīnaImmūtantium<Hoc> Relātum { get; }
+    private readonly Nūntius nūntius = new Nūntius<OfficīnaĪnflexōrum>();
+
+    private readonly OfficīnaPēnsābilium<Hoc> Relātum { get; }
     private readonly Dictionārium<Hoc>? Dictionārium { get; }
     public readonly Func<string, Enum[], Task<Hoc?>> Inventor
         = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.FeramĪnflectemqueAsync(lemma, illa),
@@ -49,12 +53,6 @@ namespace Officīnae
     {
       Relātum = OfficīnaPēnsābilium.Officīnātor.Invoke(catēgoria).Value;
       Dictionārium = Dictionārium.Lēctor.Invoke(catēgoria).Value;
-    }
-
-    [Singleton]
-    private sealed partial class NūntiusOfficīnaeĪnflexōrum : Nūntius<OfficīnaĪnflexōrum>
-    {
-      public static readonly Lazy<NūntiusOfficīnaeĪnflexōrum> Faciendum = new Lazy<NūntiusOfficīnaeĪnflexōrum>(() => Instance);
     }
   }
 }

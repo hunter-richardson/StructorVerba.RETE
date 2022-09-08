@@ -14,10 +14,9 @@ namespace Īnflexōrēs.Numerāmina
   [AsyncOverloads]
   public sealed partial class ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva : ĪnflexorNumerāminibus<NumerāmenOmniumPraeterMultiplicātīva>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva> Faciendum
-                     = new Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>(() => Instance);
+    public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva> Faciendum = new Lazy(() => Instance);
     protected ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>>(() => new Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>()),
+          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>>(),
                  Numerium.GetValues().Except(Numerium.Multiplicātīvum))
     { }
 
@@ -31,12 +30,5 @@ namespace Īnflexōrēs.Numerāmina
                   Numerium.Frāctiōnāle => numerāmen.Frāctiōnāle,
                   _ => numerāmen.Numerus
                 };
-
-    [Singleton]
-    private sealed partial class NūntiusĪnflexōrīNumerāminibusOmniumPraeterMultiplicātīva : Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>
-    {
-      public static readonly Lazy<NūntiusĪnflexōrīNumerāminibusOmniumPraeterMultiplicātīva> Faciendum =
-                         new Lazy<NūntiusĪnflexōrīNumerāminibusOmniumPraeterMultiplicātīva>(() => Instance);
-    }
   }
 }

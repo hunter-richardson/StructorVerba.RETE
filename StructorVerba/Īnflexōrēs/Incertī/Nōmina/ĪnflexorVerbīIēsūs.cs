@@ -14,22 +14,20 @@ namespace Īnflexōrēs.Incertī.Nōmina
   [Singleton]
   public sealed partial class ĪnflexorVerbīIēsūs : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīIēsūs> Faciendum = new Lazy<ĪnflexorVerbīIēsūs>(() => Instance);
+    public static readonly Lazy<ĪnflexorVerbīIēsūs> Faciendum = new Lazy(() => Instance);
     private readonly Lazy<ĪnflexorEffectusQuārtusNōminibus> Relātus = ĪnflexorEffectusQuārtusNōminibus.Faciendum;
     private ĪnflexorVerbīIēsūs()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīIēsūs>>(() => new Nūntius<ĪnflexorVerbīIēsūs>()),
+        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīIēsūs>>(),
                Casus.GetValues().Except(Casus.Dērēctus))
-    {
-      Tabula.ForEach(illa =>
-      {
-        const Casus casus = illa.FirstOf<Casus>() switch
+    => Tabula.ForEach(illa =>
         {
-          Casus.Nominātīvus or Casus.Genitīvus => Casus.Genitīvus,
-          Casus.Accūsātīvus => Casus.Accūsātīvus,
-          _ => Casus.Ablātīvus
-        };
-        FōrmamAsync(await Relātus.SuffixumAsync(casus, Numerālis.Singulāris), illa.FirstOf<Casus>());
-      });
-    }
+          const Casus casus = illa.FirstOf<Casus>() switch
+          {
+            Casus.Nōminātīvus or Casus.Genitīvus => Casus.Genitīvus,
+            Casus.Accūsātīvus => Casus.Accūsātīvus,
+            _ => Casus.Ablātīvus
+          };
+          FōrmamAsync(await Relātus.SuffixumAsync(casus, Numerālis.Singulāris), illa.FirstOf<Casus>());
+        });
   }
 }

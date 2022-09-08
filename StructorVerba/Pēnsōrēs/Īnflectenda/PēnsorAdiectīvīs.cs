@@ -6,7 +6,7 @@ using Pēnsōrēs.Pēnsor.Tabula;
 
 namespace Pēnsōrēs.Īnflectenda
 {
-  public abstract class PēnsorAdiectīvīs : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+  public sealed class PēnsorAdiectīvīs : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
   {
     public enum Versiō
     {
@@ -26,9 +26,9 @@ namespace Pēnsōrēs.Īnflectenda
       public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
     }
 
-    private static Dictionary<Versio, PēnsorAdiectīvīs> Reservātī = new Dictionary<Versio, PēnsorAdiectīvīs>();
+    private static Dictionary<Versio, Lazy<PēnsorAdiectīvīs>> Reservātī = new Dictionary<Versio, Lazy<PēnsorAdiectīvīs>>();
 
-    public static Func<Versio, PēnsorAdiectīvīs> Faciendum = valor =>
+    public static Func<Versio, Lazy<PēnsorAdiectīvīs>> Faciendum = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {
@@ -36,7 +36,7 @@ namespace Pēnsōrēs.Īnflectenda
       }
       else
       {
-        const PēnsorAdiectīvīs hoc = new PēnsorAdiectīvīs(valor);
+        const Lazy<PēnsorAdiectīvīs> hoc = new Lazy(() => new PēnsorAdiectīvīs(valor));
         Reservātī.Add(valor, hoc);
         return hoc;
       }
@@ -72,13 +72,7 @@ namespace Pēnsōrēs.Īnflectenda
 
     protected PēnsorAdiectīvīs(in Versiō versiō)
                                   : base(versiō, nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
-                                         Tabulātor.Invoke(versiō), new Lazy<Nūntius<PēnsorAdiectīvīs>>(() => new Nūntius<PēnsorAdiectīvīs>()),
+                                         Tabulātor.Invoke(versiō), new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
                                          Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor) { }
-
-    [Singleton]
-    private sealed partial class NūntiusPēnsōrīAdiectīvīs : Nūntius<PēnsorAdiectīvīs>
-    {
-      public static readonly Lazy<NūntiusPēnsōrīAAdiectīvīs> Faciendum = new Lazy<NūntiusPēnsōrīAdiectīvīs>(() => Instance);
-    }
   }
 }

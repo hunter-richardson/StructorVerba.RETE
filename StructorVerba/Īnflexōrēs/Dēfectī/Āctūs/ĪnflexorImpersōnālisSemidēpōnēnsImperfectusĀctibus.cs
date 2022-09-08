@@ -15,11 +15,11 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
   public sealed partial class ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Prīmus
-                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusPrīmusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusPrīmusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Secundus
-                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Tertius
-                      = new Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus?>>> Relātor = async versiō => versiō switch
     {
@@ -30,7 +30,7 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
     };
 
     private ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>>(() => new Nūntius<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>()), relātum) { }
+        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus>>(), relātum) { }
 
     public Enum[] Referō(in Enum[] illa)
     {

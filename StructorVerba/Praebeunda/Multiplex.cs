@@ -40,9 +40,7 @@ namespace Praebeunda
 
       public Speciāle(in int minūtal, in Ēnumerātiōnēs.Catēgoria catēgoria, in string scrīpum)
                       : base(minūtal, catēgoria, scrīptum)
-      {
-        Speciālitās = Speciālitātēs.Ipsius(scrīptum);
-      }
+              => Speciālitās = Speciālitātēs.Ipsius(scrīptum);
 
       public virtual override string ToString()
               => Ēnumerātiōnēs.Speciālitās.Propria.Equals(Speciālitās)
@@ -60,9 +58,7 @@ namespace Praebeunda
 
       protected Numerāmen(in int minūtal, in Ēnumerātiōnēs.Numerium numerium, in string scrīpum)
                           : base(minūtal, in Ēnumerātiōnēs.Catēgoria.Numerāmen, scrīptum)
-      {
-        Numerium = numerium;
-      }
+                => Numerium = numerium;
     }
 
     [GenerateBuilder]
@@ -106,9 +102,7 @@ namespace Praebeunda
 
       private Adverbium(in int minūtal, in Ēnumerātiōnēs.Gradus gradus, [StringLength(25, MinimumLength = 2)] in string scrīpum)
                         : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium, scrīptum)
-      {
-        Gradus = gradus;
-      }
+                => Gradus = gradus;
     }
 
     [GenerateBuilder]

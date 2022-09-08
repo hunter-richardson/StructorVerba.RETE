@@ -21,6 +21,7 @@ namespace Officīnae
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Lemmātor
                 = new Lazy(() => OfficīnaPēnsābilium<Lemma>(null));
 
+    private readonly Nūntius nūntius = new Nūntius<OfficīnaPēnsābilium>();
     public static readonly Func<Catēgoria, Lazy<OfficīnaPēnsābilium>> Officīnātor
                = catēgoria => catēgoria switch
                               {
@@ -34,14 +35,6 @@ namespace Officīnae
     public readonly Func<string, Task<Hoc?>> Inventor = Pēnsor.PēnsorVerbālis;
     public readonly Func<Task<Hoc?>> FortisInventor = Pēnsor.FortisPēnsor;
     private OfficīnaPēnsābilium(in Catēgoria? catēgoria)
-    {
-      Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;
-    }
-
-    [Singleton]
-    private sealed partial class NūntiusOfficīnaePēnsābilium : Nūntius<OfficīnaPēnsābilium>
-    {
-      public static readonly Lazy<NūntiusOfficīnaePēnsābilium> Faciendum = new Lazy<NūntiusOfficīnaePēnsābilium>(() => Instance);
-    }
+          => Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;
   }
 }

@@ -17,9 +17,7 @@ namespace Īnflexōrēs.Dēfectī
     protected ĪnflexorDēfectus(in Ēnumerātiōnēs.Catēgoria catēgoria, in Lazy<Nūntius<ĪnflexorDēfectus<Hoc, Illud>>> nūntius,
                                in Lazy<ĪnflexorEffectus<Hoc, Illud>> relātus, in params IEnumerable<Enum[]> illa)
                                                    : base(catēgoria, nūntius, Array.Empty)
-    {
-      Relātus = relātus.Value;
-    }
+            => Relātus = relātus.Value;
 
     public abstract Enum[] Referō(in Enum[] illa);
 
