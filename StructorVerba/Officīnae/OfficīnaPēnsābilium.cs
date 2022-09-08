@@ -33,6 +33,7 @@ namespace Officīnae
 
     private readonly PēnsorVerbīs Pēnsor { get; }
     public readonly Func<string, Task<Hoc?>> Inventor = Pēnsor.PēnsorVerbālis;
+    public readonly Func<string, Task<Hoc?>> InventorSineApicibus = Pēnsor.PēnsorVerbālisSineApicibus;
     public readonly Func<Task<Hoc?>> FortisInventor = Pēnsor.FortisPēnsor;
     private OfficīnaPēnsābilium(in Catēgoria? catēgoria)
           => Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;

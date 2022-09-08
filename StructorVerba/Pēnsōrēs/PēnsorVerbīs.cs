@@ -23,18 +23,16 @@ namespace Pēnsōrēs
 
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
             catēgoria => catēgoria switch
-            {
-              Ēnumerātiōnēs.Catēgoria.Coniūnctiō => Coniūnctiōnibus,
-              Ēnumerātiōnēs.Catēgoria.Interiectiō => Interiectiōnibus,
-              Ēnumerātiōnēs.Catēgoria.Praepositiō => Praepositiōnibus,
-              _ => PēnsorLemmīs.Faciendum
-            };
+                          {
+                            Ēnumerātiōnēs.Catēgoria.Coniūnctiō => Coniūnctiōnibus,
+                            Ēnumerātiōnēs.Catēgoria.Interiectiō => Interiectiōnibus,
+                            Ēnumerātiōnēs.Catēgoria.Praepositiō => Praepositiōnibus,
+                            _ => PēnsorLemmīs.Faciendum
+                          };
 
     protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
                   : base(nameof(Verbum.Scrīptum), Tabula.Verba,
                          new Lazy<Nūntius<PēnsorVerbīs>>(), lēctor)
-    {
-      Nūntius.PlūsGarriōAsync("Fīō");
-    }
+            => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

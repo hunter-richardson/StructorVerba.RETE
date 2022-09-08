@@ -37,9 +37,21 @@ namespace Officīnae
                                                             ?.Relātor.Invoke())?.ĪnflectemAsync(illa))
                                            .FirstNonNull();
 
+    public readonly Func<string, Enum[], Task<Hoc?>> InventorSineApicibus
+        = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.SineApicibusFeramĪnflectemqueAsync(lemma, illa),
+                                                   (await (await Relātum.InventorSineApicibus.Invoke(lemma))
+                                                            ?.Relātor.Invoke())?.ĪnflectemAsync(illa))
+                                           .FirstNonNull();
+
     public readonly Func<string, Task<Hoc?>> FortisĪnflexor
         = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.ĪnflexōrīFortisFeramAsync(lemma),
                                            (await (await Relātum.Inventor.Invoke(lemma))
+                                                       ?.Relātor.Invoke())?.FortisĪnflexor.Invoke())
+                                   .FirstNonNull();
+
+    public readonly Func<string, Task<Hoc?>> FortisĪnflexorSineApicibus
+        = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.ĪnflexōrīFortisSineApicibusFeramAsync(lemma),
+                                           (await (await Relātum.InventorSineApicibus.Invoke(lemma))
                                                        ?.Relātor.Invoke())?.FortisĪnflexor.Invoke())
                                    .FirstNonNull();
 
