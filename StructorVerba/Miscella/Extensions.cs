@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic.IEnumerable;
 using System.Linq;
+using System.Text.Json.JsonElement;
 namespace Miscella
 {
   public static sealed class Extensions
@@ -106,6 +107,18 @@ namespace Miscella
     public static async R ApplyOr<T, U, R>(this in Func<T, U, R> function,
                                            in T? obj1, in U? obj2, in R? or = default)
                 => Enumerate(obj1, obj2).AllNotNull().choose(function.Invoke(obj1, obj2), or);
+
+    public static Boolean HasProperty(this in JsonElement json, in string propertyName)
+    {
+      try
+      {
+        return json.GetProperty(propertyName) is not null;
+      }
+      catch (Exception error) when (error is InvalidOperationException or KeyNotFoundException or ObjectDisposedException)
+      {
+        return false;
+      }
+    }
 
     public static string ReplaceFirst(this in string source, in string toReplace, in string replacement)
     {

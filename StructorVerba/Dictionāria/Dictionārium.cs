@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic.IEnumerable;
 using System.Threading.Tasks.Task;
@@ -49,9 +50,8 @@ namespace Dictionāria
     public readonly Func<Task<IEnumerable<string>>> Lemmae = async () => (from illud in (await Omnia.Invoke())
                                                                           select illud.Name.ToLower()).Distinct();
 
-    public readonly Func<Task<IEnumerable<string>>> LemmaeCumApicibusAbditīs
-          = async () => from lemma in (await Lemmae)
-                        select await Ūtilitātēs.ApicumAbditor.Invoke(lemma);
+    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus = async () => (from lemma in (await Lemmae.Invoke())
+                                                                                      select await Ūtilitātēs.ApicumAbditor.Invoke(lemma)).Distinct();
 
     protected Dictionārium(in Lazy<Nūntius<Dictionārium<Hoc, Illud>>> nūntius) => Nūntius = nūntius.Value;
 

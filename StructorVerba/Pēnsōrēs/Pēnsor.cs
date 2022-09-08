@@ -6,7 +6,7 @@ using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
-using Miscella.Extensions;
+using Miscella;
 using Pēnsōrēs.Simplicia;
 using Pēnsōrēs.Īnflectenda;
 using Praebeunda.Interfecta.Pēnsābile;
@@ -35,7 +35,7 @@ namespace Pēnsōrēs
 
     public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();
 
-    public static readonly Lazy<AmazonDynamoDBClient> Cliēns = new Lazy<AmazonDynamoDbClient>(() =>
+    public static readonly Lazy<AmazonDynamoDBClient> Cliēns = new Lazy(() =>
     {
       const AmazonDynamoDBClient cliēns = new AmazonDynamoDBClient();
       cliens.BufferSize = 4096;
@@ -56,10 +56,21 @@ namespace Pēnsōrēs
       return Contextus.Value.GetTable<JsonElement>();
     };
 
-    public readonly Func<Task<Enumerable<Hoc>>> Omnēs = async () => (from linea in Tabulātor.Invoke()
-                                                                     select await LegamAsync(linea))
-                                                                        .Where(hoc => hoc is not null);
-    public readonly Func<Task<Hoc?>> FortisPēnsor = async () => Omnēs.Invoke().Random();
+    public readonly Func<Task<Enumerable<Hoc>>> Omnia
+          = async () => (from linea in (await Tabulātor.Invoke())
+                         from hoc in await LegamAsync(linea)
+                         where hoc is not null
+                         select hoc);
+    public readonly Func<Task<IEnumerable<string>>> Lemmae
+          = async () => (from linea in (await Tabulātor.Invoke())
+                         where linea.HasProperty(Quaerendī)
+                         from scrīptum in linea.GetProperty(Quaerendī).GetString()
+                         where !string.IsNullOrWhiteSpace(scrīptum)
+                         select scrīptum);
+    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus
+          = async () => (from lemma in (await Lemmae.Invoke())
+                         select await Ūtilitātēs.ApicumAbditor.Invoke(lemma));
+    public readonly Func<Task<Hoc?>> FortisPēnsor = async () => Omnia.Invoke().Random();
 
     protected readonly string Nōmen { get; }
     protected readonly Lazy<DataContext> Contextus { get; }
@@ -83,18 +94,26 @@ namespace Pēnsōrēs
 
     public readonly Func<int, Task<Hoc?>> PēnsorNumerius
         = async minūtal => (from linea in Tabulātor.Invoke()
-                            where minūtal == linea.GetProperty(nameof(minūtal)).GetInt32()
+                            where linea.HasProperty(nameof(minūtal))
+                            from numerus in linea.GetProperty(nameof(minūtal)).GetInt32()
+                            where minūtal == numerus
                             select await LegamAsync(linea)).FirstOrDefault(null);
 
     public readonly Func<string, Task<Hoc?>> PēnsorVerbālis
         = async scrīptum => (from linea in Tabulātor.Invoke()
-                             where string.Equals(scrīptum, linea.GetProperty(Quaerendī).GetString(),
+                             where linea.HasProperty(Quaerendī)
+                             from scrīptum in linea.GetProperty(Quaerendī).GetString()
+                             where !string.IsNullOrWhiteSpace(scrīptum)
+                             where string.Equals(scrīptum, scrīptum,
                                                  StringComparison.OrdinalIgnoreCase)
                              select await LegamAsync(linea)).FirstOrDefault(null);
 
     public readonly Func<string, Task<Hoc?>> PēnsorVerbālisSineApicibus
         = async scrīptum => (from linea in Tabulātor.Invoke()
-                             where string.Equals(scrīptum, await Ūtilitātēs.ApicumAbditor.Invoke(linea.GetProperty(Quaerendī).GetString()),
+                             where linea.HasProperty(Quaerendī)
+                             from scrīptum in linea.GetProperty(Quaerendī).GetString()
+                             where !string.IsNullOrWhiteSpace(scrīptum)
+                             where string.Equals(scrīptum, await Ūtilitātēs.ApicumAbditor.Invoke(scrīptum),
                                                  StringComparison.OrdinalIgnoreCase)
                              select await LegamAsync(linea)).FirstOrDefault(null);
 
@@ -114,7 +133,7 @@ namespace Pēnsōrēs
 
         return hoc;
       }
-      catch (SystemException error) when (error is InvalidOperationException || error is KeyNotFoundException)
+      catch (SystemException error) when (error is InvalidOperationException or KeyNotFoundException)
       {
         Nūntius.TerreōAsync(error);
         return null;

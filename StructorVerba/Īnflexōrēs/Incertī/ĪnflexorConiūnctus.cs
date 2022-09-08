@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks.Task;
 
 using Miscella.Ūtilitātēs;
@@ -18,7 +19,7 @@ namespace Īnflexōrēs.Incertī
     private readonly Īnflectendum? Secundum { get; }
     public ĪnflexorConiūnctus(in Lemma? prīmum, in Lemma? secundum)
         : base(primum?.Catēgoria, new Lazy<Nūntius<ĪnflexorConiūnctus>>(),
-               IEnumerable.Intersect(prīmum?.Tabulātor.Invoke(), secundum?.Tabulātor.Invoke()))
+               Enumerable.Intersect(prīmum?.Tabulātor.Invoke(), secundum?.Tabulātor.Invoke()))
     {
       Prīmum = await prīmum?.Relātor.Invoke();
       Secundum = await secundum?.Relātor.Invoke();

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks.Task;
 
 using Dictionāria.Dictionārium;
@@ -29,41 +30,47 @@ namespace Officīnae
 
     private readonly Nūntius nūntius = new Nūntius<OfficīnaĪnflexōrum>();
 
-    private readonly OfficīnaPēnsābilium<Hoc> Relātum { get; }
+    private readonly OfficīnaPēnsābilium<Hoc> Relāta { get; }
     private readonly Dictionārium<Hoc>? Dictionārium { get; }
     public readonly Func<string, Enum[], Task<Hoc?>> Inventor
         = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.FeramĪnflectemqueAsync(lemma, illa),
-                                                   (await (await Relātum.Inventor.Invoke(lemma))
+                                                   (await (await Relāta.Inventor.Invoke(lemma))
                                                             ?.Relātor.Invoke())?.ĪnflectemAsync(illa))
                                            .FirstNonNull();
 
     public readonly Func<string, Enum[], Task<Hoc?>> InventorSineApicibus
         = async (lemma, illa) => Ūtilitātēs.Seriēs(await Dictionārium?.SineApicibusFeramĪnflectemqueAsync(lemma, illa),
-                                                   (await (await Relātum.InventorSineApicibus.Invoke(lemma))
+                                                   (await (await Relāta.InventorSineApicibus.Invoke(lemma))
                                                             ?.Relātor.Invoke())?.ĪnflectemAsync(illa))
                                            .FirstNonNull();
 
     public readonly Func<string, Task<Hoc?>> FortisĪnflexor
         = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.ĪnflexōrīFortisFeramAsync(lemma),
-                                           (await (await Relātum.Inventor.Invoke(lemma))
+                                           (await (await Relāta.Inventor.Invoke(lemma))
                                                        ?.Relātor.Invoke())?.FortisĪnflexor.Invoke())
                                    .FirstNonNull();
 
     public readonly Func<string, Task<Hoc?>> FortisĪnflexorSineApicibus
         = async lemma => Ūtilitātēs.Seriēs(await Dictionārium?.ĪnflexōrīFortisSineApicibusFeramAsync(lemma),
-                                           (await (await Relātum.InventorSineApicibus.Invoke(lemma))
+                                           (await (await Relāta.InventorSineApicibus.Invoke(lemma))
                                                        ?.Relātor.Invoke())?.FortisĪnflexor.Invoke())
                                    .FirstNonNull();
 
     public readonly Func<Task<Hoc?>> FortisInventor
         = async () => Ūtilitātēs.Seriēs(await Dictionārium?.ForsFeratĪnflectetqueAsync(),
-                                        (await (await Relātum.FortisInventor.Invoke())
+                                        (await (await Relāta.FortisInventor.Invoke())
                                                     ?.Relator.Invoke())?.FortisĪnflexor.Invoke())
                                 .Random();
 
+    public readonly Func<Task<IEnumerable<string>>> Lemmae
+        = async () => Enumerable.Union(await Dictionārium?.Lemmae.Invoke(),
+                                       await Relāta.Lemmae.Invoke());
+    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus
+        = async () => Enumerable.Union(await Dictionārium?.LemmaeSineApicibus.Invoke(),
+                                       await Relāta.LemmaeSineApicibus.Invoke());
     private OfficīnaĪnflexōrum(in Catēgoria? catēgoria)
     {
-      Relātum = OfficīnaPēnsābilium.Officīnātor.Invoke(catēgoria).Value;
+      Relāta = OfficīnaPēnsābilium.Officīnātor.Invoke(catēgoria).Value;
       Dictionārium = Dictionārium.Lēctor.Invoke(catēgoria).Value;
     }
   }
