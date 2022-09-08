@@ -16,7 +16,7 @@ namespace Īnflexōrēs.Incertī.Āctūs
     private readonly Lazy<ĪnflexorVerbīEsse> Relātus = ĪnflexorVerbīEsse.Faciendum;
     private ĪnflexorVerbīPosse()
     : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīPosse>>(),
-           Modus.Participāle.SingleItemSet(),
+           Modus.Participālis.SingleItemSet(),
            Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(),
                               new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
            Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
