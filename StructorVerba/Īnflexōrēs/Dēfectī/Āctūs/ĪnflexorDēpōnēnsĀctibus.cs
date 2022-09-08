@@ -7,7 +7,6 @@ using Pēnsōrēs.Īnflectenda.PēnsorĀctibus.Versiō;
 using Īnflexōrēs.Effectī.Āctūs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttritbue;
 
 namespace Īnflexōrēs.Dēfectī.Āctūs
 {

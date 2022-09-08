@@ -22,12 +22,13 @@ namespace Officīnae
                 = new Lazy(() => OfficīnaPēnsābilium<Lemma>(null));
 
     private readonly Nūntius nūntius = new Nūntius<OfficīnaPēnsābilium>();
-    public static readonly Func<Catēgoria, Lazy<OfficīnaPēnsābilium>> Officīnātor
+    public static readonly Func<Catēgoria, Lazy<OfficīnaPēnsābilium?>> Officīnātor
                = catēgoria => catēgoria switch
                               {
                                 Catēgoria.Coniūnctiō => Āctor,
                                 Catēgoria.Interiectiō => Adiectīvātor,
                                 Catēgoria.Praepositiō => Nōminātor,
+                                Catēgoria.Prōnōmen => new Lazy(null),
                                 _ => Lemmātor
                               };
 

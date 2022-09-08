@@ -32,6 +32,16 @@ namespace Dictionāria
                                                               };
                                                     };
 
+    protected readonly Lazy<ĪnflexorRescrīptus> Posse = new Lazy(() => new ĪnflexorRescrīptus(ĪnflexorVerbīEsse.Faciendum,
+                                                                                              scrīptum => scrīptum switch
+                                                                                              {
+                                                                                                "esse" => "posse",
+                                                                                                var īnscītum when scrīptum.StartsWith("estō") => string.Empty,
+                                                                                                var īnscītum when scrīptum.StartsWith('s') => "pos".Concat(scrīptum),
+                                                                                                var īnscītum when scrīptum.StartsWith('e') => "pot".Concat(scrīptum),
+                                                                                                var īnscītum when scrīptum.StartsWith('f') => "pot".Concat(scrīptum.Substring(1)),
+                                                                                                _ => string.Empty
+                                                                                              }));
     protected readonly Lazy<ĪnflexorIncertus> Aiere = ĪnflexorVerbīAiere.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Esse = ĪnflexorVerbīEsse.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Facere = ĪnflexorVerbīFacere.Faciendum;
@@ -39,7 +49,6 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorIncertus> Inquiī = ĪnflexorVerbīInquiī.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Mālle = ĪnflexorVerbīMālle.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Nōlle = ĪnflexorVerbīNōlle.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Posse = ĪnflexorVerbīPosse.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Velle = ĪnflexorVerbīVelle.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Īnfierī = ĪnflexorVerbīĪnfierī.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Īre = ĪnflexorVerbīĪre.Faciendum;

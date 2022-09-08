@@ -34,26 +34,31 @@ namespace Īnflexōrēs
             where Illud : Īnflexum<Illud>
   {
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<Īnflexor?>> Relātor =
-            (catēgoria, versiō) => await (catēgoria, versiō) switch
+            async (catēgoria, versiō) => (catēgoria, versiō) switch
             {
+              var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen,
+                                                 versiō is PēnsorNōminibusFactīs.Versiō)
+                                                     => ĪnflexorEffectusNōminibusFactīs.Faciendum,
+              var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen,
+                                                 versiō.ToString().EndsWith("_Singulāris"))
+                                                     => ĪnflexorSingulārisNōminibus.Relātor.Invoke(versiō),
+              var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Adiectīvum,
+                                                 versiō.ToString().StartsWith("Incomparābilis_"))
+                                                     => ĪnflexorIncomparābilisAdiectīvīs.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Adverbium, _) => ĪnflexorAdverbiīs.Faciendum,
               (Ēnumerātiōnēs.Catēgoria.Numerāmen, _) => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Adiectīvum, PēnsorAdiectīvīs.Versiō.Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus)
-                                                      => ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus.Faciendum,
-              (Ēnumerātiōnēs.Catēgoria.Nōmen, PēnsorNōminibus.Versiō.Nōmen_Prīmum_Plūrālis)
-                                                      => ĪnflexorPrīmusPlūrālisNōminibus.Faciendum,
-              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Adiectīvum) &&
-                                (versiō.ToString().StartsWith("Incomparābilis_"))
-                                                 => ĪnflexorIncomparābilisAdiectīvīs.Relātor.Invoke(versiō),
-              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen) &&
-                                (versiō is PēnsorNōminibusFactīs.Versiō)
-                                                 => ĪnflexorEffectusNōminibusFactīs.Relātor.Invoke(versiō),
-              var īnscītum when (catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen) &&
-                                (versiō is PēnsorNōminibus.Versiō)
-                                                 => ĪnflexorSingulārisNōminibus.Relātor.Invoke(versiō),
+                                                     => ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus.Faciendum,
               (Ēnumerātiōnēs.Catēgoria.Adiectīvum, _) => ĪnflexorEffectusAdiectīvīs.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Āctus, PēnsorĀctibus.Versiō.Prīmus or PēnsorĀctibus.Versiō.Prīmus_Varius or
+                                              PēnsorĀctibus.Versiō.Secundus or PēnsorĀctibus.Versiō.Quārtus or
+                                              PēnsorĀctibus.Versiō.Tertius or PēnsorĀctibus.Versiō.Tertius_Varius or
+                                              PēnsorĀctibus.Versiō.Tertius_Cum_Imperātīvō_Brevī)
+                                                     => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Āctus, _) => ĪnflexorDēfectusĀctibus.Relātor.Invoke(versiō),
+              (Ēnumerātiōnēs.Catēgoria.Nōmen, PēnsorNōminibus.Versiō.Nōmen_Prīmum_Plūrālis)
+                                                     => ĪnflexorPrīmusPlūrālisNōminibus.Faciendum,
               (Ēnumerātiōnēs.Catēgoria.Nōmen, _) => ĪnflexorEffectusNōminibus.Relātor.Invoke(versiō),
-              (Ēnumerātiōnēs.Catēgoria.Āctus, _) => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
 

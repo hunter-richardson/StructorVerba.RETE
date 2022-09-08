@@ -46,7 +46,7 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                 {
                   (Modus.Participāle, _) => tempus,
                   (_, Tempus.Perfectum) => Tempus.Praesēns,
-                  (_, Tempus.PlūsquamPercectum) => Tempus.Infectum,
+                  (_, Tempus.Plūsquamperfectum) => Tempus.Īnfectum,
                   (_, Tempus.Futūrum_Exāctum) => Tenpus.Futūrum,
                   _ => tempus
                 };

@@ -33,9 +33,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
     public Enum[] Referō(in Enum[] illa)
     {
       const Tempus tempus = illa.FirstOf<Tempus>();
-      const Numerālis numerālis = (tempus is Tempus.Praesēns or Tempus.Infectum or Tempus.Futūrum)
+      const Numerālis numerālis = (tempus is Tempus.Praesēns or Tempus.Īnfectum or Tempus.Futūrum)
                                        .Choose(illa.FirstOf<Numerālis>(), Numerālis.Singulāris);
-      const Persōna persōna = (tempus is Tempus.Praesēns or Tempus.Infectum or Tempus.Futūrum)
+      const Persōna persōna = (tempus is Tempus.Praesēns or Tempus.Īnfectum or Tempus.Futūrum)
                                        .Choose(illa.FirstOf<Persōna>(), Persōna.Prīma);
       return Ūtilitātēs.Seriēs(illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(),
                                tempus, numerālis, persōna);
