@@ -1,6 +1,6 @@
-using System.Data;
 using System;
-using System.ComponentModel.DataAnnotations.StringLength;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Reflection;
 using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
@@ -31,9 +31,11 @@ namespace Praebeunda
                             Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
                             legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
 
+    [Required]
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
 
+    [Required]
     [StringLength(25, MinimumLength = 1)]
     public readonly string Scrīpum { get; }
 

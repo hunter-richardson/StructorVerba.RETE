@@ -6,8 +6,8 @@ using Officīnae.OfficīnaPēnsābilium;
 using Praebeunda.Multiplex.Adiectīvum;
 using Praebeunda.Simplicia.Lemma;
 using Praebeunda.Īnflectendum;
+using Īnflexōrēs.Incertī;
 using Īnflexōrēs.Incertī.Adiectīva;
-using Īnflexōrēs.Incertī.ĪnflexorConiūnctus;
 
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
 
@@ -21,6 +21,7 @@ namespace Dictionāria
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Offiīnātor.Invoke(null);
     private static readonly Func<string, Task<Lemma?>> Lemmātor = async scrīptum => Officīna.Value.Inventor.Invoke(scrīptum);
 
+    protected readonly Lazy<ĪnflexorIncertus> Aliud = ĪnflexorVerbīAliud.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Meum = ĪnflexorVerbīMeum.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;

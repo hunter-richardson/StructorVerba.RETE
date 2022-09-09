@@ -52,6 +52,7 @@ namespace Praebeunda
     {
       public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor
                 = async (illa, scrīpum) => Builder.Numerium(illa.FirstOf<Numerium>())
+                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Numerāmen))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Numerium Numerium { get; }
@@ -70,6 +71,7 @@ namespace Praebeunda
                                                   .Tempus(illa.FirstOf<Tempus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Persōna(illa.FirstOf<Persōna>())
+                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Āctus))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Modus Modus { get; }
@@ -96,6 +98,7 @@ namespace Praebeunda
     {
       public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor
                 = async (illa, scrīpum) =>  Builder.Gradus(illa.FirstOf<Gradus>())
+                                                   .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Adverbium))
                                                    .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Gradus Gradus { get; }
@@ -114,6 +117,7 @@ namespace Praebeunda
                                                   .Genus(illa.FirstOf<Genus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Casus(illa.FirstOf<Casus>())
+                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Adiectīvum))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Gradus Gradus { get; }
@@ -146,6 +150,7 @@ namespace Praebeunda
                 = async (illa, scrīpum) => Builder.Factum(illa.FirstOf<Factum>())
                                                   .Casus(illa.FirstOf<Casus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
+                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Nōmen))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Factum Factum { get; }
@@ -169,6 +174,7 @@ namespace Praebeunda
                 = async (illa, scrīpum) => Builder.Genus(illa.FirstOf<Genus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Casus(illa.FirstOf<Casus>())
+                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Prōnōmen))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }

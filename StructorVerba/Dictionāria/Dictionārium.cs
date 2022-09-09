@@ -39,7 +39,6 @@ namespace Dictionāria
                         from abstractus in istud?.GenericTypeArguments.Length
                         where Ūtilitātēs.Omnia(illud.IsFamily, !illud.IsStatic,
                                                illud.FieldType is Lazy,
-                                               istud is Īnflexor,
                                                abstractus is 1)
                         orderby illud.Name
                         select illud;

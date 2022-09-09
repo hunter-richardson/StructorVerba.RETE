@@ -12,11 +12,11 @@ using Lomok.NET.PropertyGenerators.SingletonAttribute;
 namespace Īnflexōrēs.Incertī.Āctūs
 {
   [Singleton]
-  public sealed partial class ĪnflexorVerbīEsse : ĪnflexorIncertus<Multiplex.Āctus>
+  public sealed partial class ĪnflexorVerbīĪre : ĪnflexorIncertus<Multiplex.Āctus>
   {
-    public static readonly Lazy<ĪnflexorVerbīEsse> Faciendum = new Lazy(() => Instance);
-    private ĪnflexorVerbīEsse()
-        : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīEsse>>(),
+    public static readonly Lazy<ĪnflexorVerbīĪre> Faciendum = new Lazy(() => Instance);
+    private ĪnflexorVerbīĪre()
+        : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīĪre>>(),
                Ūtilitātēs.Colligō(Modus.Īnfīnītīvus.SingleItemSet(), Tempus.Perfectum.SingleItemSet()),
                Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(), Tempus.Praesēns.SingleItemSet(),
                                   Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet()),

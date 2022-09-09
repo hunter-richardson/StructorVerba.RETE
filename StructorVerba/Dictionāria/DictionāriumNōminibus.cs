@@ -3,6 +3,7 @@ using System;
 using Miscella.Ūtilitātēs;
 using Praebeunda.Īnflectendum;
 using Praebeunda.Multiplex;
+using Īnflexōrēs.Incertī;
 using Īnflexōrēs.Incertī.Nōmina;
 
 namespace Dictionāria

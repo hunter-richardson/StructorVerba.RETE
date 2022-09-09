@@ -18,17 +18,19 @@ namespace Īnflexōrēs.Incertī.Āctūs
                Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(), Vōx.Āctīva.SingleItemSet(),
                                   new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
                Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(), Vōx.Passīva.SingleItemSet()),
-               Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(), Vōx.Āctīva.SingleItemSet(),
-                                  new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Futūrum }),
-               Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(), Vōx.Passīva.SingleItemSet(),
-                                  new HashSet<Tempus>() { Tempus.Futūrum, Tempus.Perfectum }),
+               Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(), Tempus.Futūrum.SingleItemSet(),
+                                  Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet()),
+               Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSet(),
+                                  new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
                Ūtilitātēs.Combīnō(Modus.Imperātīvus.SingleItemSet(), Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet(),
                                   Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
                                   new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Futūrum }),
-               Ūtilitātēs.Combīnō(Modus.Imperātīvus.SingleItemSet(), Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet(),
-                                  Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
-                                  Persōna.GetValus().Except(Persōna.Nūlla).ToHashSet(),
-                                  new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Futūrum }))
+                Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
+                                   Tempus.GetValues().Except(Tempus.Dērēctus).ToHashSet(),
+                                   Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
+                                   Persōna.GetValues().Except(Persōna.Nūlla).ToHashSet())
+                          .Except(illa => Ūtilitātēs.Omnia(illa.FirstOf<Modus>() is Modus.Subiūnctīvus,
+                                                           illa.FirstOf<Tempus>() is Tempus.Futūrum or Tempus.Futūrum_Exāctum)))
     {
       FōrmamAsync("ferre", Modus.Īnfīnītīvus, Vōx.Āctīva, Tempus.Praesēns);
       FōrmamAsync("tulisse", Modus.Īnfīnītīvus, Vōx.Āctīva, Tempus.Perfectum);
