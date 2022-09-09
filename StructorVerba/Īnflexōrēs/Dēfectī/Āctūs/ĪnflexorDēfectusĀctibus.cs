@@ -25,8 +25,6 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                                                 => ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus.Relātor.Invoke(versiō),
               var īnscītum when versiō.ToString().EndsWith("_Impersōnālis_Perfectō")
                                                 => ĪnflexorImpersōnālisPerfectōĀctibus.Relātor.Invoke(versiō),
-              var īnscītum when versiō.ToString().EndsWith("Perfectus")
-                                                => ĪnflexorPerfectusĀctibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
     protected ĪnflexorDēfectusĀctibus(in Lazy<Nūntius<ĪnflexorDēfectusĀctibus>> nūntius,
