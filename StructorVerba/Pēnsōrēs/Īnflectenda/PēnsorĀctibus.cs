@@ -19,8 +19,7 @@ namespace Pēnsōrēs.Īnflectenda
       Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus,
       Secundus_Impersōnālis_Semidēpōnēns_Imperfectus,
       Tertius_Impersōnālis_Semidēpōnēns_Imperfectus,
-      Secundus_Impersōnālis_Perfectō, Tertius_Impersōnālis_Perfectō,
-      Tertius_Perfectus, Quārtus_Perfectus
+      Secundus_Impersōnālis_Perfectō, Tertius_Impersōnālis_Perfectō
     }
 
     public static sealed class Versiōnēs
