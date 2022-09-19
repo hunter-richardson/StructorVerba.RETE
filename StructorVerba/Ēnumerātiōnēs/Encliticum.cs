@@ -11,6 +11,13 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Enclitica
   {
-    public static string ToString(this Encliticum valor) => Enum.GetName<Encliticum>(valor).ToLower();
+    public static string ToString(this Encliticum valor) =>
+        enclitic switch
+        {
+          Encliticum.Coniugāns => "que",
+          Encliticum.Interrogāns => "ne",
+          Encliticum.Ēligēns => "ve",
+          _ => string.Empty
+        };
   }
 }

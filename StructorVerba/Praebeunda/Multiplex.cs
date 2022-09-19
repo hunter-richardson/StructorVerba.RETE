@@ -28,8 +28,8 @@ namespace Praebeunda
     public Ēnumerātiōnēs.Encliticum Encliticum { get; } => Ēnumerātiōnēs.Encliticum.Nōlēns;
 
     public sealed void allegam(in Ēnumerātiōnēs.Encliticum ntlcm)
-            => Encliticum = Enum.GetValues<Encliticum>().Any(valor => scrīptum.EndsWith(Enclitica.Suffixor.Invoke(valor))
-                                                        .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
+            => Encliticum = Encliticum.GetValues().Any(valor => scrīptum.EndsWith(valor.ToString())
+                                                  .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
 
     public virtual override string ToString()
             => base.ToString().concat(Enclitica.Suffixor.Invoke(encliticum));
