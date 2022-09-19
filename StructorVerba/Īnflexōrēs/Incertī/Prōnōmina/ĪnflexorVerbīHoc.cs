@@ -44,7 +44,6 @@ namespace Īnflexōrēs.Incertī.Prōnōmina
       FōrmamAsync("hāc", Genus.Fēminīnum, Casus.Locātīvus, Numerālis.Singulāris);
       FōrmamAsync("hāc", Genus.Fēminīnum, Casus.Instrumentālis, Numerālis.Singulāris);
 
-
       FōrmamAsync("huius", Casus.Genitīvus, Numerālis.Singulāris);
       FōrmamAsync("huic", Casus.Datīvus, Numerālis.Singulāris);
 
