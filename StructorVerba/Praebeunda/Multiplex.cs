@@ -14,7 +14,7 @@ namespace Praebeunda
   public abstract class Multiplex<Hoc> : Verbum<Hoc> where Hoc : Īnflexum<Hoc>
       where Hoc : Īnflexum<Hoc>
   {
-    private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Catēgoria switch
+    private readonly Func<Enum[], string, Task<Hoc>>? Cōnstrūctor = Catēgoria switch
     {
       Ēnumerātiōnēs.Catēgoria.Āctus => Multiplex.Āctus.Cōnstrūctor,
       Ēnumerātiōnēs.Catēgoria.Adiectīvum => Multiplex.Adiectīvum.Cōnstrūctor,
@@ -27,9 +27,12 @@ namespace Praebeunda
 
     public Ēnumerātiōnēs.Encliticum Encliticum { get; } => Ēnumerātiōnēs.Encliticum.Nōlēns;
 
-    public sealed void allegam(in Ēnumerātiōnēs.Encliticum ntlcm)
-            => Encliticum = Encliticum.GetValues().Any(valor => scrīptum.EndsWith(valor.ToString())
-                                                  .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
+    public sealed Hoc Allegam(in Ēnumerātiōnēs.Encliticum ntlcm)
+    {
+      Encliticum = Encliticum.GetValues().Any(valor => scrīptum.EndsWith(valor.ToString())
+                                         .Choose(Ēnumerātiōnēs.Encliticum.Nōlēns, nltcm));
+      return this.Cast<Hoc>();
+    }
 
     public virtual override string ToString()
             => base.ToString().concat(Enclitica.Suffixor.Invoke(encliticum));
@@ -138,8 +141,8 @@ namespace Praebeunda
       public string Contractum()
                 => Ēnumerātiōnēs.Numerālis.Singulāris.Equals(Numerālis)
                                                      .Choose(Scrīptum[Scrīptum.Length - 1].IsAmong('m', 's')
-                                                                                           .Choose(ToString().Chop(1), ToString())
-                                                                                           .Concat("'st"),
+                                                                                          .Choose(ToString().Chop(1), ToString())
+                                                                                          .Concat("'st"),
                                                              ToString());
     }
 

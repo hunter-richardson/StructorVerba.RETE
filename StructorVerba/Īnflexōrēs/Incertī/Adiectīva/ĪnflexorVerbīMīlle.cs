@@ -15,22 +15,26 @@ namespace Īnflexōrēs.Incertī.Adiectīva
     public static readonly Lazy<ĪnflexorVerbīMīlle> Faciendum = new Lazy(() => Instance);
     private readonly Lazy<ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō> Relātus
           = ĪnflexorEffectusTertiusNōminibusCumGenitīvōVariō.Faciendum;
+
     private ĪnflexorVerbīMīlle()
         : base(Catēgoria.Adiectīvum, new Lazy<Nūntius<ĪnflexorVerbīMīlle>>(),
                Numerālis.Singulāris.SingleItemSet(), Casus.GetValues().Except(Casus.Dērēctus).ToHashSet())
-        => Tabula.ForEach(illa =>
+    {
+      Tabula.ForEach(illa =>
             {
               const Numerālis numerālis = illa.FirstOf<Numrālis>();
               const Casus casus = illa.FirstOf<Casus>();
               const string? suffixum = (numerālis, casus) switch
-                                        {
-                                          (Numerālis.Singulāris, _) => "e",
-                                          _ => await Relātus.Value.SuffixumAsync(Numerālis.Plūrālis, casus)
-                                        };
-              if(suffixum is not null)
               {
-                FōrmamAsync("mīll".Concat(suffixum), genus, casus);
+                (Numerālis.Singulāris, _) => "e",
+                _ => await Relātus.Value.SuffixumAsync(Numerālis.Plūrālis, casus)
+              };
+              if (suffixum is not null)
+              {
+                FōrmamAsync("mīll".Concat(suffixum), numerālis, casus);
               }
             });
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

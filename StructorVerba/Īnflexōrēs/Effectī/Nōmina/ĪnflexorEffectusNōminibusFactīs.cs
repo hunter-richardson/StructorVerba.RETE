@@ -50,6 +50,7 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
     {
       SuffixumĪnfīntītīvum = īnfīnītīvum;
       ĪnfixumGerundīvum = gerundīvum;
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
 
     public sealed string? Suffixum(in Enum[] illa)

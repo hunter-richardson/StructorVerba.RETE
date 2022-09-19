@@ -46,9 +46,9 @@ namespace Nūntiī
       Praecō.ActivateOptions();
     }
 
-    [Async] public sealed void Morior(in Exception error) => Nuntiō(Level.Fatal, error);
+    [Async] public sealed void Morior(in Exception error) => Nuntiō(gradus: Level.Fatal, error: error);
 
-    [Async] public sealed void Terreō(in Exception error) => Nuntiō(Level.Error, error);
+    [Async] public sealed void Terreō(in Exception error) => Nuntiō(gradus: Level.Error, error: error);
 
     private sealed async void Nūntiō(in LoggingEvent factum) => await Praecō.DoAppend(factum);
 
@@ -79,18 +79,24 @@ namespace Nūntiī
       (from nūntium in nūntia
        where nūntium is Exception
        select nūntium.Cast<Exception>())
-            .ForEach(error => await Nūntiō(Ūtilitātēs.Seriēs(level, Level.Error).Min(), error));
-      await Nūntiō(level, string.Join(' ', $"{typeof(Hoc).FullName}: [{Temporis.FormatDate(DateTime.Now)}] <{gradus}>",
-                                           string.Join(' ', from nūntium in nūntia
-                                                            where nūntium is not Exception
-                                                            select nūntium.ToString())));
+            .ForEach(error => await Nūntiō(gradus: Ūtilitātēs.Seriēs(level, Level.Error).Min(), error: error));
+      await Nūntiō(gradus: level, nūntium: string.Join(' ', $"{typeof(Hoc).FullName}: [{Temporis.FormatDate(DateTime.Now)}] <{gradus}>",
+                                                            string.Join(' ', from nūntium in nūntia
+                                                                              where nūntium is not Exception
+                                                                              select nūntium.ToString())));
     }
 
-    [Async] public sealed void Nōtō(in params object nūntia) => await Nūntiō(Level.Notice, nūntia);
-    [Async] public sealed void Moneō(in params object nūntia) => await Nūntiō(Level.Warn, nūntia);
-    [Async] public sealed void Certiōrō(in params object nūntia) => await Nūntiō(Level.Info, nūntia);
-    [Async] public sealed void Garriō(in params object nūntia) => await Nūntiō(Level.Debug, nūntia);
-    [Async] public sealed void PlūsGarriō(in params object nūntia) => await Nūntiō(Level.Trace, nūntia);
-    [Async] public sealed void PlūrimumGarriō(in params object nūntia) => await Nūntiō(Level.Verbose, nūntia);
+    [Async] public sealed void Nōtō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Notice, nūntia: nūntia);
+    [Async] public sealed void Moneō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Warn, nūntia: nūntia);
+    [Async] public sealed void Certiōrō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Info, nūntia: nūntia);
+    [Async] public sealed void Garriō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Debug, nūntia: nūntia);
+    [Async] public sealed void PlūsGarriō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Trace, nūntia: nūntia);
+    [Async] public sealed void PlūrimumGarriō(in params object nūntia)
+                => await Nūntiō(gradus: Level.Verbose, nūntia: nūntia);
   }
 }

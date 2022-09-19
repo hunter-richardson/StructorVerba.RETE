@@ -16,10 +16,11 @@ namespace Īnflexōrēs.Incertī.Nōmina
   {
     public static readonly Lazy<ĪnflexorVerbīBalneum> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīIūgerum()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīBalneum>>(),
-               Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
-                                  Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet()))
-    => Tabula.ForEach(illa =>
+        : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīBalneum>>(),
+               illa: Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
+                                        Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet()))
+    {
+      Tabula.ForEach(illa =>
         {
           const Numerālis numerālis = illa.FirstOf<Numerālis>();
           const Casus casus = illa.FirstOf<Casus>();
@@ -31,5 +32,7 @@ namespace Īnflexōrēs.Incertī.Nōmina
           };
           FōrmamAsync("balne".Concat(await relātum?.Value.SuffixumAsync(numerālis, casus)), numerālis, casus);
         });
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

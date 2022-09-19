@@ -27,7 +27,9 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                   Gradus.Comparātīvus => adiectīvum.Comparātīvum.Chop(3),
                   Gradus.Superlātīvus => adiectīvum.Superlātīvum.Chop(2),
                   _ => string.Empty
-                }) { }
+                })
+        => Nūntius.PlūsGarriōAsync("Fīō");
+
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch
               {

@@ -15,9 +15,10 @@ namespace Īnflexōrēs.Numerāmina
   {
     public static readonly Lazy<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum> Faciendum =new Lazy(() => Instance);
 
-    protected ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>>(),
-                 Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium) { }
+    private ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum()
+        : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>>(),
+               Numerium.Numerus, Numerium.Cardināle, Numerium.Ōrdināle, Numerium.Adverbium)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public string Scrībam(in NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum numerāmen, in Numerium numerium)
             => numerium switch

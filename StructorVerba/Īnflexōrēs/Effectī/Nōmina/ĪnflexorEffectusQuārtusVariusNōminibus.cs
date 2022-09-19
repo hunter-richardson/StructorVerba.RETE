@@ -18,7 +18,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
     private readonly ĪnflexorEffectusQuārtusNōminibus Relātus = ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value;
     private ĪnflexorEffectusQuārtusVariusNōminibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusVariusNōminibus>>(),
-               (nōmen, illa) => nōmen.Nōminātīvum.Chop(2)) { }
+               (nōmen, illa) => nōmen.Nōminātīvum.Chop(2))
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string Singulāre(in Casus casus)
               => (casus is Casus.Nōminātīvus or Casus.Accūsātīvus or Casus.Vocātīvus)

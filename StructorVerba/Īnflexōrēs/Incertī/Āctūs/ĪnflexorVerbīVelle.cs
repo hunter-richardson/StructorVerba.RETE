@@ -88,6 +88,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("voluissēmus", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Prīma);
       FōrmamAsync("voluissētis", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Secunda);
       FōrmamAsync("voluissent", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

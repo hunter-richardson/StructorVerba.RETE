@@ -17,7 +17,8 @@ namespace Īnflexōrēs.Effectī.Āctūs
     public static readonly Lazy<ĪnflexorEffectusTertiusĀctibus> Faciendum = new Lazy(() => Instance);
 
     private ĪnflexorEffectusTertiusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibus>>()) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibus>>())
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {

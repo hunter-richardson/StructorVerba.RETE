@@ -23,17 +23,21 @@ namespace Īnflexōrēs.Incertī.Nōmina
                                   new HashSet<Casus>() { Casus.Accūsātīvus, Casus.Ablātīvus }),
                Ūtilitātēs.Combīnō(Factum.Gerundīvum.SingleItemSet(),
                                   new HashSet<Casus>() { Casus.Genitīvus, Casua.Datīvus, Casus.Accūsātīvus, Casus.Ablātīvus }))
-    => Tabula.ForEach(illa =>
+    {
+      Tabula.ForEach(illa =>
         {
           const Factum factum = illa.FirstOf<Factum>();
           const Casus casus = illa.FirstOf<Casus>();
           const string fōrma = factum switch
-                                {
-                                  Factum.Īnfīnītīvum => "īre",
-                                  Factum.Supīnum => "it".Concat(await ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
-                                  Factum.Gerundīvum => "eund".Concat(await ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus))
-                                };
+          {
+            Factum.Īnfīnītīvum => "īre",
+            Factum.Supīnum => "it".Concat(await ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
+            Factum.Gerundīvum => "eund".Concat(await ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus))
+          };
           FōrmamAsync(fōrma, factum, casus);
         });
+
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

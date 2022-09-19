@@ -18,8 +18,9 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   {
     public static readonly Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus> Faciendum = new Lazy(() => Instance);
     private ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus()
-          : base(new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(),
-                 ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum) { }
+          : base(nūntius: new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(),
+                 relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum)
+          => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Gradus.Positīvus, illa.FirstOf<Genus>(), Numerālis.Plūrālis, illa.FirstOf<Casus>());

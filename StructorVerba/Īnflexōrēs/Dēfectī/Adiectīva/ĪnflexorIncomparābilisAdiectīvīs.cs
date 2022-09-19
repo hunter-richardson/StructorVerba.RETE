@@ -16,25 +16,25 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   {
     [AsyncOverloads]
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> AutPrīmusAutSecundus
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> AutPrīmusAutSecundusCumLitterāE
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> AutPrīmusAutSecundusSineLitterāE
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> Tertius
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> TertiusCumGenitīvōVariō
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> TertiusCumAblātīvōVariō
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> TertiusCumGenitīvōAblātīvōqueVariō
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> Prōnōminālis
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusPrōnōminālisAdiectīvīs.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusPrōnōminālisAdiectīvīs.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> PrōnōminālisCumLitterāE
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāE.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāE.Faciendum));
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> PrōnōminālisSineLitterāE
-            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(ĪnflexorEffectusPrōnōminālisAdiectīvīsAutPrīmusSineLitterāE.Faciendum));
+            = new Lazy(() => new ĪnflexorIncomparābilisAdiectīvīs(relātus: ĪnflexorEffectusPrōnōminālisAdiectīvīsAutPrīmusSineLitterāE.Faciendum));
 
     public static readonly Func<PēnsorAdiectīvīs.Versiō, Task<Lazy<ĪnflexorIncomparābilisAdiectīvīs?>>> Relātor
         = async versiō => versiō switch
@@ -53,7 +53,8 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
                           };
 
     private ĪnflexorIncomparābilisAdiectīvīs(in Lazy<ĪnflexorEffectusAdiectīvīs> relātus)
-        : base(new Lazy<Nūntius<ĪnflexorIncomparābilisAdiectīvīs>>(), relātus) { }
+        : base(nūntius: new Lazy<Nūntius<ĪnflexorIncomparābilisAdiectīvīs>>(), relātus: relātus)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Gradus.Positīvus, illa.FirstOf<Genus>(), illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>());

@@ -22,7 +22,9 @@ namespace Īnflexōrēs.Effectī.Adiectīva
         : base(new Lazy<Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ>>(),
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => (illa.FirstOf<Gradus>() is Gradus.Positīvus)
-                                          .Choose(adiectīvum.Positīvum.Chop(2), string.Empty)) { }
+                                          .Choose(adiectīvum.Positīvum.Chop(2), string.Empty),
+               DictionāriumPrōnōminibus.Praegenerātor.Invoke())
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch

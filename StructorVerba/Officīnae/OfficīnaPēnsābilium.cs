@@ -13,13 +13,13 @@ namespace Officīnae
   public sealed class OfficīnaPēnsābilium<Hoc> where Hoc : Pēnsābile<Hoc>
   {
     private static readonly Lazy<OfficīnaPēnsābilium<Coniūntiō>> Coniūnctor
-                = new Lazy(() => OfficīnaPēnsābilium<Coniūntiō>(Catēgoria.Coniūnctiō));
+                = new Lazy(() => OfficīnaPēnsābilium<Coniūntiō>(catēgoria: Catēgoria.Coniūnctiō));
     private static readonly Lazy<OfficīnaPēnsābilium<Interiectiō>> Interiector
-                = new Lazy(() => OfficīnaPēnsābilium<Interiectiō>(Catēgoria.Interiectiō));
+                = new Lazy(() => OfficīnaPēnsābilium<Interiectiō>(catēgoria: Catēgoria.Interiectiō));
     private static readonly Lazy<OfficīnaPēnsābilium<Praepositiō>> Praepositor
-                = new Lazy(() => OfficīnaPēnsābilium<Praepositiō>(Catēgoria.Praepositiō));
+                = new Lazy(() => OfficīnaPēnsābilium<Praepositiō>(catēgoria: Catēgoria.Praepositiō));
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Lemmātor
-                = new Lazy(() => OfficīnaPēnsābilium<Lemma>(null));
+                = new Lazy(() => OfficīnaPēnsābilium<Lemma>(catēgoria: null));
 
     private readonly Nūntius nūntius = new Nūntius<OfficīnaPēnsābilium>();
     public static readonly Func<Catēgoria, Lazy<OfficīnaPēnsābilium?>> Officīnātor
@@ -39,6 +39,9 @@ namespace Officīnae
     public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus = Pēnsor.LemmaeSineApicibus;
     public readonly Func<Task<Hoc?>> FortisInventor = Pēnsor.FortisPēnsor;
     private OfficīnaPēnsābilium(in Catēgoria? catēgoria)
-          => Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;
+    {
+      Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

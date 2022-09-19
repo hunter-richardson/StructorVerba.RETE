@@ -17,8 +17,9 @@ namespace Pēnsōrēs.Īnflectenda
     public static readonly Lazy<PēnsorAdverbiīs> Faciendum = new Lazy(() => Instance);
 
     protected PēnsorAdverbiīs()
-          : base(Versiō.Exāctum, nameof(Īnflectendum.Adverbium.Positīvum),
-                 Tabula.Adverbia, new Lazy<Nūntius<PēnsorAdverbiīs>>(),
-                 Īnflectendum.Adverbium.Lēctor) { }
+          : base(versiō: Versiō.Exāctum, quaerendī: nameof(Īnflectendum.Adverbium.Positīvum),
+                 tabula: Tabula.Adverbia, nūntius: new Lazy<Nūntius<PēnsorAdverbiīs>>(),
+                 lēctor: Īnflectendum.Adverbium.Lēctor)
+          => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

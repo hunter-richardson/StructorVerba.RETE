@@ -18,7 +18,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
     private readonly ĪnflexorEffectusSecundusNeuterNōminibus Relātus = ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value;
     private ĪnflexorEffectusSecundusMasculīnusNōminibus()
           : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusMasculīnusNōminibus>>(),
-                 (nōmen, illa) => nōmen.Nōminātīvum.Chop(2)) { }
+                 (nōmen, illa) => nōmen.Nōminātīvum.Chop(2))
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed async string Singulāre(in Casus casus)
         => casus switch

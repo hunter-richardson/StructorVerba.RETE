@@ -51,6 +51,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("aistī", Tempus.Perfectum, Persōna.Secunda);
       FōrmamAsync("ait", Tempus.Perfectum, Persōna.Tertia);
       FōrmamAsync("aiās", Modus.Subiūnctīvus, Persōna.Secunda);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

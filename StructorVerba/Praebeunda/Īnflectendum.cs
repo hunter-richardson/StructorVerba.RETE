@@ -26,6 +26,7 @@ namespace Praebeunda
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
     private readonly Lazy<Īnflexor<Hoc, Illud>?> Īnflexor { get; }
+    public readonly Func<ISet<Enum[]>> Tabulātor = () => Īnflexor.Value.Tabulātor.Invoke();
     public readonly Func<Īnflectendum<Task<Illud?>>> FortisĪnflexor = async () => Īnflexor.Value?.FortisĪnflexor.Invoke(this);
 
     protected Īnflectendum(in int minūtal, in Ēnumerātiōnēs.Catēgoria catēgoria, in Enum versiō)
@@ -44,10 +45,10 @@ namespace Praebeunda
     public sealed class Adverbium : Īnflectendum<Adverbium, Multiplex.Adverbium>
     {
       public static readonly Func<JsonElement, Enum, Task<Adverbium>> Lēctor
-                = async (legendum, valor) => new Adverbium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
-                                                           legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
-                                                           legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString(),
-                                                           legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString());
+                = async (legendum, valor) => new Adverbium(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(), valor,
+                                                           positīvum: legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
+                                                           comparātīvum: legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString(),
+                                                           superlātīvum: legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString());
 
       private AdverbiumExāctum(in int minūtal, in string positīvum,
                                in string comparātīvum, in string superlātīvum)
@@ -67,11 +68,11 @@ namespace Praebeunda
     public sealed class Āctus : Īnflectendum<Āctus, Multiplex.Āctus>
     {
       public static readonly Func<JsonElement, Enum, Task<Āctus>> Lēctor
-                = async (legendum, valor) => new Āctus(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                       legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
-                                                       legendum.GetProperty(nameof(Perfectum).ToLower()).GetString() ?? string.Empty,
-                                                       legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
-                                                       valor);
+                = async (legendum, valor) => new Āctus(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                       īnfīnītīvum: legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
+                                                       perfectum: legendum.GetProperty(nameof(Perfectum).ToLower()).GetString() ?? string.Empty,
+                                                       supīnum: legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
+                                                       versiō: valor);
 
       private Āctus(in int minūtal, in string īnfīnītīvum,
                     in string perfectum, in string supīnum,
@@ -92,10 +93,10 @@ namespace Praebeunda
     public sealed class Nōmen : Īnflectendum<Nōmen, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<Nōmen>> Lēctor
-                = async (legendum, valor) => new Nōmen(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                       legendum.GetProperty(nameof(Nōminātīvum).ToLower()).GetString(),
-                                                       legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString() ?? string.Empty,
-                                                       valor);
+                = async (legendum, valor) => new Nōmen(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                       nōminātīvum: legendum.GetProperty(nameof(Nōminātīvum).ToLower()).GetString(),
+                                                       genitīvum: legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString() ?? string.Empty,
+                                                       versiō: valor);
 
       private Nōmen(in int minūtal, in string nōminātīvum,
                     in string genitīvum, in Enum versiō)
@@ -113,10 +114,10 @@ namespace Praebeunda
     public sealed class NōmenFactum : Īnflectendum<NōmenFactum, Multiplex.Nōmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NōmenFactum>> Lēctor
-                = async (legendum, valor) => new NōmenFactum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                             legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
-                                                             legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
-                                                             valor);
+                = async (legendum, valor) => new NōmenFactum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                             īnfīnītīvum: legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
+                                                             supīnum: legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
+                                                             versiō: valor);
       private NōmenFactum(in int minūtal, in string īnfīnītīvum,
                           in string supīnum, in Enum versiō)
                           : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, versiō)
@@ -133,11 +134,11 @@ namespace Praebeunda
     public sealed class AdiectīvumAutPrīmumAutSecundumAutTertium : Īnflectendum<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumAutPrīmumAutSecundumAutTertium>> Lēctor
-                = async (legendum, valor) => new AdiectīvumAutPrīmumAutSecundumAutTertium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                          legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
-                                                                                          legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString() ?? string.Empty,
-                                                                                          legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString() ?? string.Empty,
-                                                                                          valor);
+                = async (legendum, valor) => new AdiectīvumAutPrīmumAutSecundumAutTertium(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                          positīvum: legendum.GetProperty(nameof(Positīvum).ToLower()).GetString(),
+                                                                                          comparātīvum: legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString() ?? string.Empty,
+                                                                                          superlātīvum: legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString() ?? string.Empty,
+                                                                                          versiō: valor);
 
       private AdiectīvumAutPrīmumAutSecundumAutTertium(in int minūtal, in string positīvum, in string comparātīvum,
                                                        in string superlātīvum, in Enum versiō)
@@ -157,16 +158,16 @@ namespace Praebeunda
     public sealed class AdiectīvumTertiumAutPrīmumAutSecundum : Īnflectendum<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Lēctor
-                = async (legendum, valor) => new AdiectīvumTertiumAutPrīmumAutSecundum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                       legendum.GetProperty(nameof(Nominātīvum).ToLower()).GetString(),
-                                                                                       legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString(),
-                                                                                       valor);
+                = async (legendum, valor) => new AdiectīvumTertiumAutPrīmumAutSecundum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                       nōminātīvum: legendum.GetProperty(nameof(Nōminātīvum).ToLower()).GetString(),
+                                                                                       genitīvum: legendum.GetProperty(nameof(Genitīvum).ToLower()).GetString(),
+                                                                                       versiō: valor);
 
-      private AdiectīvumTertiumAutPrīmumAutSecundum(in int minūtal, in string nominātīvum,
+      private AdiectīvumTertiumAutPrīmumAutSecundum(in int minūtal, in string nōminātīvum,
                                                     in string genitīvum, in Enum versiō)
                                                     : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adiectīvumm, versiō)
       {
-        Nominātīvum = nominātīvum;
+        Nōminātīvum = nōminātīvum;
         Genitīvum = genitīvum;
       }
 
@@ -178,14 +179,14 @@ namespace Praebeunda
     public sealed class NumerāmenOmnium : Īnflectendum<NumerāmenOmnium, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmnium>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmnium(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                 legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Multiplicātīvum).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString(),
-                                                                 legendum.GetProperty(nameof(Frāctiōnāle).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenOmnium(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                 numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                 cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                 ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                 adverbium: legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
+                                                                 multiplicātīvum: legendum.GetProperty(nameof(Multiplicātīvum).ToLower()).GetString(),
+                                                                 distribūtīvum: legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString(),
+                                                                 frāctiōnāle: legendum.GetProperty(nameof(Frāctiōnāle).ToLower()).GetString());
 
       private NumerāmenOmnium(in int minūtal, in string numerus, in string cardināle, in string ōrdināle,
                               in string adverbium, in string multiplicātīvum, in string distribūtīvum, in string frāctiōnāle)
@@ -213,9 +214,9 @@ namespace Praebeunda
     public sealed class NumerāmenCardinālumSōlōrum : Īnflectendum<NumerāmenCardinālumSōlōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumSōlōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumSōlōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                            legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                            legendum.GetProperty(nameof(Cardināle).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenCardinālumSōlōrum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                            numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                            cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString());
 
       private NumerāmenCardinālumSōlōrum(in int minūtal, in string numerus, in string cardināle)
                                         : base(minūtal, Ēnumerātiōnēs.Catēgoria.Numerāmen,
@@ -233,10 +234,10 @@ namespace Praebeunda
     public sealed class NumerāmenCardinālumŌrdinālumque : Īnflectendum<NumerāmenCardinālumŌrdinālumque, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumŌrdinālumque>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumŌrdinālumque(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                 legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                 legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                 legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenCardinālumŌrdinālumque(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                 numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                 cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                 ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString());
 
       private NumerāmenCardinālumŌrdinālumque(in int minūtal, in string numerus, in string cardināle, in string ōrdināle)
                                               : base(minūtal, Ēnumerātiōnēs.Catēgoria.Numerāmen,
@@ -256,11 +257,11 @@ namespace Praebeunda
     public sealed class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                             legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                             legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                             legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                                             legendum.GetProperty(nameof(Adverbium).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                             numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                             cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                             ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                                             adverbium: legendum.GetProperty(nameof(Adverbium).ToLower()).GetString());
 
       private NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(in int minūtal, in string numerus, in string cardināle,
                                                           in string ōrdināle, in string adverbium)
@@ -284,11 +285,11 @@ namespace Praebeunda
               : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                                 legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                                 legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                                 legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                                                 legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                                 numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                                 cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                                 ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                                                 distribūtīvum: legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
 
       private NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum(in int minūtal, in string numerus, in string cardināle,
                                                               in string ōrdināle, in string distribūtīvum)
@@ -312,12 +313,12 @@ namespace Praebeunda
               : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                                              legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                                              legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                                              legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                                                              legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
-                                                                                                              legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                                              numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                                              cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                                              ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                                                              adverbium: legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
+                                                                                                              distribūtīvum: legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
 
       private NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum(in int minūtal, in string numerus, in string cardināle,
                                                                            in string ōrdināle, in string adverbium, in string distribūtīvum)
@@ -342,13 +343,13 @@ namespace Praebeunda
     public sealed class NumerāmenOmniumPraeterMultiplicātīva : Īnflectendum<NumerāmenOmniumPraeterMultiplicātīva, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterMultiplicātīva>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmniumPraeterMultiplicātīva(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                      legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                      legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                      legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                                      legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
-                                                                                      legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString(),
-                                                                                      legendum.GetProperty(nameof(Frāctiōnāle).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenOmniumPraeterMultiplicātīva(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                      numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                      cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                      ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                                      adverbium: legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
+                                                                                      distribūtīvum: legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString(),
+                                                                                      frāctiōnāle: legendum.GetProperty(nameof(Frāctiōnāle).ToLower()).GetString());
 
       private NumerāmenOmniumPraeterMultiplicātīva(in int minūtal, in string numerus, in string cardināle, in string ōrdināle,
                                                    in string adverbium, in string distribūtīvum, in string frāctiōnāle)
@@ -375,13 +376,13 @@ namespace Praebeunda
     public sealed class NumerāmenOmniumPraeterFrāctiōnēs : Īnflectendum<NumerāmenOmniumPraeterFrāctiōnēs, Multiplex.Numerāmen>
     {
       public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterFrāctiōnēs>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmniumPraeterFrāctiōnēs(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                                                                                  legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
-                                                                                  legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
-                                                                                  legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
-                                                                                  legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
-                                                                                  legendum.GetProperty(nameof(Multiplicātīvum).ToLower()).GetString(),
-                                                                                  legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
+                = async (legendum, valor) => new NumerāmenOmniumPraeterFrāctiōnēs(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
+                                                                                  numerus: legendum.GetProperty(nameof(Numerus).ToLower()).GetString(),
+                                                                                  cardināle: legendum.GetProperty(nameof(Cardināle).ToLower()).GetString(),
+                                                                                  ōrdināle: legendum.GetProperty(nameof(Ōrdināle).ToLower()).GetString(),
+                                                                                  adverbium: legendum.GetProperty(nameof(Adverbium).ToLower()).GetString(),
+                                                                                  multiplicātīvum: legendum.GetProperty(nameof(Multiplicātīvum).ToLower()).GetString(),
+                                                                                  distribūtīvum: legendum.GetProperty(nameof(Distribūtīvum).ToLower()).GetString());
 
       private NumerāmenOmniumPraeterFrāctiōnēs(in int minūtal, in string numerus, in string cardināle, in string ōrdināle,
                                                in string adverbium, in string multiplicātīvum, in string distribūtīvum)

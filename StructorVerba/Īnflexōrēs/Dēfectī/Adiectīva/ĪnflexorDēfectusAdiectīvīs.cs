@@ -12,6 +12,6 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   {
     protected ĪnflexorDēfectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorDēfectusAdiectīvīs>> nūntius,
                                          in Lazy<ĪnflexorEffectusAdiectīvīs> relātus)
-                                                : base(Catēgoria.Adiectīvum, nūntius, relātus) { }
+                                              : base(catēgoria: Catēgoria.Adiectīvum, nūntius: nūntius, relātus: relātus) { }
   }
 }

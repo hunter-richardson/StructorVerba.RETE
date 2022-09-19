@@ -12,6 +12,6 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
   {
     protected ĪnflexorDēfectusNōminibus(in Lazy<Nūntius<ĪnflexorDēfectusNōminibus>> nūntius,
                                         in Lazy<ĪnflexorEffectusNōminibus> relātus)
-                                                   : base(Catēgoria.Nōmen, nūntius, relātus) {  }
+                                                 : base(catēgoria: Catēgoria.Nōmen, nūntius: nūntius, relātus: relātus) {  }
   }
 }

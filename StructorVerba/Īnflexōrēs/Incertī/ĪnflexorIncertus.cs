@@ -22,12 +22,12 @@ namespace Īnflexōrēs.Incertī
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params IEnumerable<Enum[]> illa)
-                                                   : base(catēgoria, nūntius, illa) { }
+                                        : base(catēgoria: catēgoria, nūntius: nūntius, illa: illa) { }
 
     protected ĪnflexorIncertus(in Ēnumerātiōnēs.Catēgoria catēgoria,
                                in Lazy<Nūntius<ĪnflexorIncertus<Hoc>>> nūntius,
                                in params Enum illa)
-                                                   : base(catēgoria, nūntius, illa) { }
+                                        : base(catēgoria: catēgoria, nūntius: nūntius, illa: illa) { }
 
     public sealed void Fōrmam(in string fōrma, in params Enum illa)
     {

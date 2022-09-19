@@ -22,6 +22,7 @@ namespace Īnflexōrēs.Incertī.Nōmina
       FōrmamAsync("lexis", Casus.Nōminātīvus);
       FōrmamAsync("lexeōs", Casus.Genitīvus);
       FōrmamAsync("lexis", Casus.Accūsātīvus);
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

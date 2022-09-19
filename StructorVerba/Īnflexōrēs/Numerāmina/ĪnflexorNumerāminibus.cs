@@ -38,7 +38,7 @@ namespace Īnflexōrēs.Numerāmina
 
     protected ĪnflexorNumerāminibus(in Lazy<Nūntius<ĪnflexorNumerāminibus<Hoc>>> nūntius,
                                     in params Numerium illa)
-                                       : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, nūntius, illa) { }
+                   : base(catēgoria: Ēnumerātiōnēs.Catēgoria.Numerāmen, nūntius: nūntius, illa: illa) { }
 
     public abstract string Scrībam(in Hoc hoc, in Numerium numerium);
     public string Scrībam(in Hoc hoc, in Enum[] illa) => await ScrībamAsync(hoc, illa.FirstOf<Numerium>());

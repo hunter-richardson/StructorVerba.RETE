@@ -15,10 +15,11 @@ namespace Īnflexōrēs
   {
     public static readonly Lazy<ĪnflexorAdverbiīs> Faciendum = new Lazy(() => Instance);
 
-    protected ĪnflexorAdverbiīs()
-          : base(Ēnumerātiōnēs.Catēgoria.Adverbium,
-                 new Lazy<Nūntius<ĪnflexorAdverbiīs>>(),
-                 Gradus.GetValues().Except(Gradus.Nūllus)) { }
+    private ĪnflexorAdverbiīs()
+        : base(catēgoria: Ēnumerātiōnēs.Catēgoria.Adverbium,
+               nūntius: new Lazy<Nūntius<ĪnflexorAdverbiīs>>(),
+               illa: Gradus.GetValues().Except(Gradus.Nūllus))
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string? Scrībam(in Īnflectendum.Adverbium adverbium, in Enum[] illa)
               => illa.FirstOf<Gradus>() switch

@@ -42,6 +42,11 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                 };
 
     protected ĪnflexorEffectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
+                                         in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
+                                         in params IEnumerable<Enum[]> illa)
+                                            : base(versiō, nūntius, quaerendī, rādīcātor, illa) { }
+
+    protected ĪnflexorEffectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
                                          in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor)
                                             : this(versiō, nūntius, quaerendī, rādīcātor,
                                                    Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),

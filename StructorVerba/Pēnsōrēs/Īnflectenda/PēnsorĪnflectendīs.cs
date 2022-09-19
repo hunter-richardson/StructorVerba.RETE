@@ -45,8 +45,8 @@ namespace Pēnsōrēs.Īnflectenda
     protected PēnsorĪnflectendīs(in Enum versiō, in string quaerendī, in Tabula tabula,
                                  in Lazy<Nūntius<PēnsorĪnflectendīs<Hoc>>> nūntius,
                                  in Func<JsonElement, Task<Hoc>> lēctor)
-                                    : base(quaerendī, tabula, nūntius,
-                                           async legendum => lēctor.Invoke(legendum, versiō))
-            => Versiō = versiō;
+                                    : base(quaerendī: quaerendī, tabula: tabula, nūntius: nūntius,
+                                           lēctor: async legendum => lēctor.Invoke(legendum, versiō))
+          => Versiō = versiō;
   }
 }

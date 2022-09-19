@@ -25,7 +25,8 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                         (Gradus.Positīvus, Genus.Masculīnum, Numerālis.Singulāris, Casus.Nominātīvus or Casus.Vocātīvus) => adiectīvum.Positīvum,
                                         (Gradus.Superlātīvus, _, _, _) => adiectīvum.Superlātīvum.Chop(2),
                                         (_, _, _, _) => adiectīvum.Comparātīvum.Chop(3),
-                                      }) {  }
+                                      })
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch

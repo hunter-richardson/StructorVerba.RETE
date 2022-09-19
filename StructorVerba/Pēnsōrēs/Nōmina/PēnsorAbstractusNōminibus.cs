@@ -11,6 +11,7 @@ namespace Pēnsōrēs.Nōmina
     private PēnsorNōminibus(in Enum versiō, in string quaerendī,
                             in Lazy<Nūntius<PēnsorNōminibus<Hoc>>> nūntius,
                             in Func<JsonElement, Task<Hoc>> lēctor)
-                             : base(versiō, Ēnumerātiōnēs.Catēgoria.Nōmen, quaerendī, nūntius, lēctor) { }
+                             : base(versiō: versiō, catēgoria: Ēnumerātiōnēs.Catēgoria.Nōmen,
+                                    quaerendī: quaerendī, nūntius: nūntius, lēctor: lēctor) { }
   }
 }

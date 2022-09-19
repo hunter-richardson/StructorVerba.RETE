@@ -18,7 +18,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
 
     private ĪnflexorEffectusPrīmusNōminibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusNōminibus>>(),
-               (nōmen, illa) => nōmen.Nōminātīvum.Chop(1)) { }
+               (nōmen, illa) => nōmen.Nōminātīvum.Chop(1))
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string Singulāre(in Casus casus) => casus switch
     {

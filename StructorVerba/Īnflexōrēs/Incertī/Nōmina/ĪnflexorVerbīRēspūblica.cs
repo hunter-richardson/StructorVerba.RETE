@@ -18,9 +18,9 @@ namespace Īnflexōrēs.Incertī.Adiectīva
     public static readonly Lazy<ĪnflexorVerbīRēspūblica> Faciendum = new Lazy(() => Instance);
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Offiīnātor.Invoke(null);
     private ĪnflexorVerbīRēspūblica()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīRēspūblica>>(),
-               Ūtilitātēs.Combīnō(Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
-                                  Casus.GetValues().Except(Casus.Dērēctus).ToHashSet()))
+        : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīRēspūblica>>(),
+               illa: Ūtilitātēs.Combīnō(Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
+                                        Casus.GetValues().Except(Casus.Dērēctus).ToHashSet()))
     {
       const Īnflectendum? rēs = await (await Officīna.Value.Inventor.Invoke("rēs"))?.Relātum.Invoke();
       const Īnflectendum? pūblicum = await (await Officīna.Value.Inventor.Invoke("pūblicum"))?.Relātum.Invoke();
@@ -36,6 +36,8 @@ namespace Īnflexōrēs.Incertī.Adiectīva
           FōrmamAsync(fōrmaPrīma.Concat(fōrmaSecunda), numerālis, casus);
         }
       });
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

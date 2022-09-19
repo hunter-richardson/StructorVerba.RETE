@@ -19,7 +19,8 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusPrīmusĀctibus Relātum = ĪnflexorEffectusPrīmusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusPrīmusVariusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>()) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>())
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected override sealed string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
                   => (await Relātum.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))

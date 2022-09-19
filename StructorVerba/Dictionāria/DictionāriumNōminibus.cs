@@ -3,6 +3,7 @@ using System;
 using Miscella.Ūtilitātēs;
 using Praebeunda.Īnflectendum;
 using Praebeunda.Multiplex;
+using Īnflexōrēs.Exāctī.ĪnflexorExactusNōminibus;
 using Īnflexōrēs.Incertī;
 using Īnflexōrēs.Incertī.Nōmina;
 
@@ -28,6 +29,7 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorIncertus> Īre = ĪnflexorVerbīĪre.Faciendum;
 
     private DictionāriumNōminibus()
-        : base(new Lazy<Nūntius<DictionāriumNōminibus>>()) { }
+        : base(new Lazy<Nūntius<DictionāriumNōminibus>>())
+        => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

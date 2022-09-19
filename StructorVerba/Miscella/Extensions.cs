@@ -49,6 +49,13 @@ namespace Miscella
                                 .Concat(source.Substring(place + replacement.Length)));
     }
 
+    public static string ReplaceLast(this in string source, in string toReplace, in string replacement)
+    {
+      const int place = source.LastIndexOf(toReplace);
+      return (place < 0).Choose(source, source.Substring(0, place).Concat(replacement)
+                                .Concat(source.Substring(place + replacement.Length)));
+    }
+
     public static T? Choose<T>(this in Boolean boolean,
                                in T? first, in T? second) => boolean ? first : second;
 

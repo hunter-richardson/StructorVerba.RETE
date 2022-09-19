@@ -29,6 +29,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("īnfiēbat", Modus.Indicātīvus, Tempus.Īnfectum);
       FōrmamAsync("īnfit", Modus.Subiūnctīvus, Tempus.Praesēns);
       FōrmamAsync("īnfieret", Modus.Subiūnctīvus, Tempus.Īnfectum);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

@@ -15,9 +15,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
   public sealed partial class ĪnflexorImpersōnālisPerfectōĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorImpersōnālisPerfectōĀctibus> Secundus
-            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorImpersōnālisPerfectōĀctibus> Tertius
-            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Faciendum));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisPerfectōĀctibus?>>> Relātor
         = async versiō => versiō switch
@@ -27,8 +27,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
                             _ => new Lazy(null),
                           };
 
-    private ĪnflexorImpersōnālisPerfectōĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-        : base(new Lazy<Nūntius<ĪnflexorImpersōnālisPerfectōĀctibus>>(), relātum) { }
+    private ĪnflexorImpersōnālisPerfectōĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātus)
+        : base(nūntius: new Lazy<Nūntius<ĪnflexorImpersōnālisPerfectōĀctibus>>(), relātus: relātus)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public Enum[] Referō(in Enum[] illa)
     {

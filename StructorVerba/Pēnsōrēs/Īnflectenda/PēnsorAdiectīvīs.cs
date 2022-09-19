@@ -71,8 +71,9 @@ namespace Pēnsōrēs.Īnflectenda
                         };
 
     protected PēnsorAdiectīvīs(in Versiō versiō)
-                                  : base(versiō, nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
-                                         Tabulātor.Invoke(versiō), new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
-                                         Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor) { }
+                                  : base(versiō: versiō, quaerendī: nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
+                                         tabula: Tabulātor.Invoke(versiō), nūntius: new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
+                                         lēctor: Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor)
+          => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

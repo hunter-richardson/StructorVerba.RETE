@@ -40,6 +40,7 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("perīre", Modus.Īnfīnītīvus, Vōx.Āctīva);
       FōrmamAsync("perīsse", Modus.Īnfīnītīvus, Vōx.Passīva);
       FōrmamAsync("periēns", Modus.Participālis);
+
       (from valōrēs in Tabula
        where Ūtilitātēs.Omnia(valōrēs.Contains(Vōx.Passīva),
                              !valōrēs.Contains(Modus.Īnfīnītīvus))
@@ -48,11 +49,14 @@ namespace Īnflexōrēs.Incertī.Āctūs
                                   const Modus modus = illa.FirstOf<Modus>();
                                   const Vōx vōx = illa.FirstOf<Vōx>();
                                   const Tempus tempus = illa.FirstOf<Tempus>();
-                                  FōrmamAsync("per".Concat(await Relātus.Value.ScrībamAsync(modus, vōx, tempus, Numerālis.Singulāris, Persōna.Tertia)), illa);
+                                  FōrmamAsync(fōrma: "per".Concat(await Relātus.Value.ScrībamAsync(modus, vōx, tempus, Numerālis.Singulāris, Persōna.Tertia)), illa: illa);
                                 });
+
       (from valōrēs in Tabula
        where valōrēs.ContainsAny(Modus.Īnfīnītīvus, Modus.Participālis, Vōx.Passīva)
-       select valōrēs).ForEach(illa => FōrmamAsync("per".Concat(await Relātus.Value.ScrībamAsync(illa)), illa));
+       select valōrēs).ForEach(illa => FōrmamAsync(fōrma: "per".Concat(await Relātus.Value.ScrībamAsync(illa)), illa: illa));
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

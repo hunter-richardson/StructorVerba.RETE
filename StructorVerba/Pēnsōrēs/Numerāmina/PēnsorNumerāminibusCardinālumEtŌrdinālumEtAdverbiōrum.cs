@@ -13,9 +13,10 @@ namespace Pēnsōrēs.Numerāmina
   {
     public static readonly Lazy<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum> Faciendum = new Lazy(() => Instance);
     private PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum()
-          : base(Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
-                 nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum.Numerus),
-                 new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>>(),
-                 Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum.Lēctor) { }
+          : base(versiō: Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
+                 quaerendī: nameof(Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum.Numerus),
+                 nūntius: new Lazy<Nūntius<PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum>>(),
+                 lēctor: Īnflectendum.NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum.Lēctor)
+          => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

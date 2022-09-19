@@ -15,9 +15,10 @@ namespace Īnflexōrēs.Numerāmina
   public sealed partial class ĪnflexorNumerāminibusCardinālumSōlōrum : ĪnflexorNumerāminibus<NumerāmenCardinālumSōlōrum>
   {
     public static readonly Lazy<ĪnflexorNumerāminibusCardinālumSōlōrum> Faciendum = new Lazy(() => Instance);
-    protected ĪnflexorNumerāminibusCardinālumSōlōrum()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumSōlōrum>>(),
-                 Numerium.Numerus, Numerium.Cardināle) { }
+    private ĪnflexorNumerāminibusCardinālumSōlōrum()
+        : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumSōlōrum>>(),
+               Numerium.Numerus, Numerium.Cardināle)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public string Scrībam(in NumerāminibusCardinālumŌrdinālumque numerāmen, in Numerium numerium)
             => Numerium.Cardināle.Equals(numerium).Choose(numerāmen.Cardināle, numerāmen.Numerus);

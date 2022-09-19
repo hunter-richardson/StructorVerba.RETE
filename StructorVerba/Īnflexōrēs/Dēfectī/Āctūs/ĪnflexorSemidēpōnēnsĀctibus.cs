@@ -15,11 +15,11 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
   public sealed partial class ĪnflexorSemidēpōnēnsĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorSemidēpōnēnsĀctibus> Prīmus
-            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(ĪnflexorEffectusPrīmusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(relātus: ĪnflexorEffectusPrīmusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorSemidēpōnēnsĀctibus> Secundus
-            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Faciendum));
     private static readonly Lazy<ĪnflexorSemidēpōnēnsĀctibus> Tertius
-            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorSemidēpōnēnsĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Faciendum));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorDēfectusĀctibus?>>> Relātor
               = async versiō => versiō switch
@@ -30,8 +30,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
                                   _ => new Lazy(null),
                                 };
 
-    private ĪnflexorSemidēpōnēnsĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātum)
-        : base(new Lazy<Nūntius<ĪnflexorSemidēpōnēnsĀctibus>>(), relātum) { }
+    private ĪnflexorSemidēpōnēnsĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātus)
+        : base(nūntius: new Lazy<Nūntius<ĪnflexorSemidēpōnēnsĀctibus>>(), relātus: relātus)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public Enum[] Referō(in Enum[] illa)
     {

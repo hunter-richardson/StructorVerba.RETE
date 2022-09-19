@@ -139,6 +139,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("ferrēmur", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Prīma);
       FōrmamAsync("ferrēminī", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Secunda);
       FōrmamAsync("ferrentur", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

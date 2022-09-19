@@ -11,15 +11,15 @@ namespace Pēnsōrēs
   public sealed class PēnsorVerbīs<Hoc> : Pēnsor<Hoc> where Hoc : Verbum<Hoc>
   {
     private static readonly Lazy<PēnsorVerbīs<Coniūnctiō>> Coniūnctiōnibus
-            = new Lazy(() => new PēnsorVerbīs<Coniūnctiō>(Coniūnctiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Coniūnctiō>(lēctor: Coniūnctiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Interiectiō>> Interiectiōnibus
-            = new Lazy(() => new PēnsorVerbīs<Interiectiō>(Interiectiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Interiectiō>(lēctor: Interiectiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Praepositiō>> Coniūnctiōnibus
-            = new Lazy(() => new PēnsorVerbīs<Praepositiō>(Praepositiō.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Praepositiō>(lēctor: Praepositiō.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Lemma>> Lemmīs
-            = new Lazy(() => new PēnsorVerbīs<Lemma>(Lemma.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Lemma>(lēctor: Lemma.Lēctor));
     private static readonly Lazy<PēnsorVerbīs<Verbum>> Verbīs
-            = new Lazy(() => new PēnsorVerbīs<Verbum>(Verbum.Lēctor));
+            = new Lazy(() => new PēnsorVerbīs<Verbum>(lēctor: Verbum.Lēctor));
 
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> RelātorSimplicibus =
             catēgoria => catēgoria switch
@@ -31,8 +31,8 @@ namespace Pēnsōrēs
                           };
 
     protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
-                  : base(nameof(Verbum.Scrīptum), Tabula.Verba,
-                         new Lazy<Nūntius<PēnsorVerbīs>>(), lēctor)
+                  : base(quaerendī: nameof(Verbum.Scrīptum), tabula: Tabula.Verba,
+                         nūntius: new Lazy<Nūntius<PēnsorVerbīs>>(), lēctor: lēctor)
             => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

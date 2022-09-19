@@ -25,7 +25,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
                                 {
                                   (Numerālis.Singulāris, Casus.Nōminātīvus or Casus.Vocātīvus) => nōmen.Nōminātīvum,
                                   _ => nōmen.Genitīvum.Chop(2)
-                                }) { }
+                                })
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string Singulāre(in Casus casus) => (casus is Casus.Nōminātīvus or Casus.Vocātīvus)
                                                           .Choose(string.Empty, "r".Concat(await Relātus.SingulāreAsync(casus)));

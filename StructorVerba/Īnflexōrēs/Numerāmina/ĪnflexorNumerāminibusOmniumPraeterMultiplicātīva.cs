@@ -15,10 +15,10 @@ namespace Īnflexōrēs.Numerāmina
   public sealed partial class ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva : ĪnflexorNumerāminibus<NumerāmenOmniumPraeterMultiplicātīva>
   {
     public static readonly Lazy<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva> Faciendum = new Lazy(() => Instance);
-    protected ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>>(),
-                 Numerium.GetValues().Except(Numerium.Multiplicātīvum))
-    { }
+    private ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva()
+        : base(nūntius: new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva>>(),
+               illa: Numerium.GetValues().Except(Numerium.Multiplicātīvum))
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public string Scrībam(in NumerāmenOmniumPraeterMultiplicātīva numerāmen, in Numerium numerium)
             => numerium switch

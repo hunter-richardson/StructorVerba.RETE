@@ -30,12 +30,12 @@ namespace Īnflexōrēs.Incertī.Āctūs
                                   Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
                                   new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Futūrum },
                                   Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet()),
-              Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
+               Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
                                   Vōx.GetValues().Except(Vōx.Nūlla).ToHashSet(),
                                   Tempus.GetValues().Except(Tempus.Dērēctus).ToHashSet(),
                                   Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
                                   Persōna.GetValues().Except(Persōna.Nūlla).ToHashSet())
-                        .Except(illa => Ūtilitātēs.Omnia(illa.FirstOf<Modus>() is Modus.Subiūnctīvus,
+                         .Except(illa => Ūtilitātēs.Omnia(illa.FirstOf<Modus>() is Modus.Subiūnctīvus,
                                                           illa.FirstOf<Tempus>() is Tempus.Futūrum or Tempus.Futūrum_Exāctum)))
     {
       FōrmamAsync("īre", Modus.Īnfīnītīvus, Vōx.Āctīva, Tempus.Praesēns);
@@ -145,6 +145,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("īrēmur", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Prīma);
       FōrmamAsync("īrēminī", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Secunda);
       FōrmamAsync("īrentur", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

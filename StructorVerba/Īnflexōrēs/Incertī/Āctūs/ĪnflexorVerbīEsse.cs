@@ -14,8 +14,7 @@ namespace Īnflexōrēs.Incertī.Āctūs
   {
     public static readonly Lazy<ĪnflexorVerbīEsse> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīEsse()
-    : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīEsse>>(),
-           Modus.Participālis.SingleItemSet(),
+    : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīEsse>>(), Modus.Participālis.SingleItemSet(),
            Ūtilitātēs.Combīnō(Modus.Īnfīnītīvus.SingleItemSet(),
                               new HashSet<Tempus>() { Tempus.Praesēns, Tempus.Perfectum }),
            Ūtilitātēs.Combīnō(Modus.Imperātīvus.SingleItemSet(),
@@ -32,6 +31,7 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("futūrum", Modus.Participālis);
       FōrmamAsync("estō", Modus.Imperātīvus, Nunerālis.Singulāris);
       FōrmamAsync("estōte", Modus.Imperātīvus, Nunerālis.Plūrālis);
+
       FōrmamAsync("sum", Modus.Indicātīvus, Tempus.Praesēns, Numerālis.Singulāris, Persōna.Prīma);
       FōrmamAsync("es", Modus.Indicātīvus, Tempus.Praesēns, Numerālis.Singulāris, Persōna.Secunda);
       FōrmamAsync("est", Modus.Indicātīvus, Tempus.Praesēns, Numerālis.Singulāris, Persōna.Tertia);
@@ -92,6 +92,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("fuissēmus", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Prīma);
       FōrmamAsync("fuissētis", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Secunda);
       FōrmamAsync("fuissent", Modus.Subiūnctīvus, Tempus.Plūsquamperfectum, Numerālis.Plūrālis, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

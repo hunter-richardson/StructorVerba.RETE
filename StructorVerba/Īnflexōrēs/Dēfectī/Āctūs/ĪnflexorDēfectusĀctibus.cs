@@ -29,6 +29,6 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
             };
     protected ĪnflexorDēfectusĀctibus(in Lazy<Nūntius<ĪnflexorDēfectusĀctibus>> nūntius,
                                       in Lazy<ĪnflexorEffectusĀctibus> relātus)
-                                               : base(Catēgoria.Āctus, nūntius, relātus) { }
+                                             : base(catēgoria: Catēgoria.Āctus, nūntius: nūntius, relātus: relātus) { }
   }
 }

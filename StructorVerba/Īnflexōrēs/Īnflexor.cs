@@ -1,5 +1,10 @@
-using Praebeunda.Īnflectendum;
+using System;
+using System.Collections.Generic.IEnumerable;
 
+using Praebeunda.Īnflectendum;
+using Ēnumerātiōnēs;
+
+using BuilderCommon.BuilderException;
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
 namespace Īnflexōrēs
@@ -10,19 +15,19 @@ namespace Īnflexōrēs
     protected Īnflector(in Catēgoria catēgoria,
                         in Lazy<Nūntius<Īnflexor<Hoc>>> nūntius,
                         in params Enum illa)
-          : base(catēgoria, nūntius, illa) { }
+                   : base(catēgoria: catēgoria, nūntius: nūntius, illa: illa) { }
 
     protected Īnflector(in Catēgoria catēgoria,
                         in Lazy<Nūntius<Īnflexor<Hoc>>> nūntius,
                         in params IEnumerable<Enum> illa)
-          : base(catēgoria, nūntius, illa) { }
+                   : base(catēgoria: catēgoria, nūntius: nūntius, illa: illa) { }
 
     public override sealed Hoc? Īnflectem(in Īnflectendum.Nūllum nūllum, in Enum[] illa)
-        => await ĪnflectemAsync(illa);
+        => await ĪnflectemAsync(illa: illa);
 
     private Hoc? Cōnstruam(in Enum[] illa)
     {
-      const string scrīpum = await ScrībamAsync(illa);
+      const string scrīpum = await ScrībamAsync(illa: illa);
       try
       {
         return string.IsNullOrWhitespace(scrīptum)
@@ -30,26 +35,26 @@ namespace Īnflexōrēs
       }
       catch (BuilderException error)
       {
-        Nūntius.TerreōAsync(error);
+        Nūntius.TerreōAsync(error: error);
         return null;
       }
     }
 
-    public virtual Illud? Īnflectem(in Enum[] illa)
+    public virtual Hoc? Īnflectem(in Enum[] illa)
     {
       if (Tabula.Contains(illa))
       {
-        const Illud illud = await CōnstruamAsync(illa);
-        if (illud is null)
+        const Hoc hoc = await CōnstruamAsync(illa: illa);
+        if (hoc is null)
         {
           Nūntius.MoneōAsync("Īnflexiō dēfēcit");
         }
         else
         {
-          Nūntius.NōtōAsync("Verbum īnflexu'st ut", illud);
+          Nūntius.NōtōAsync("Verbum īnflexu'st ut", hoc);
         }
 
-        return illud;
+        return hoc;
       }
       else
       {

@@ -147,6 +147,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("fīerēmus", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Prīma);
       FōrmamAsync("fīerētis", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Secunda);
       FōrmamAsync("fīerent", Modus.Subiūnctīvus, Vōx.Passīva, Tempus.Īnfectum, Numerālis.Plūrālis, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

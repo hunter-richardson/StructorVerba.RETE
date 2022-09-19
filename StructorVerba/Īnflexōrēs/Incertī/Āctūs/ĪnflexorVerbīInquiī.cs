@@ -44,6 +44,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("inquiī", Modus.Indicātīvus, Tempus.Perfectum, Persōna.Prīma);
       FōrmamAsync("inquistī", Modus.Indicātīvus, Tempus.Perfectum, Persōna.Secunda);
       FōrmamAsync("inquit", Modus.Indicātīvus, Tempus.Perfectum, Persōna.Tertia);
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

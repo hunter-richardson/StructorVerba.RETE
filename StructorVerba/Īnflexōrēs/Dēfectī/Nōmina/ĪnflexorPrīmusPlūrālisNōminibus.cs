@@ -13,12 +13,13 @@ namespace Īnflexōrēs.Dēfectī.Nōmina
 {
   [Singleton]
   [AsyncOverloads]
-  public abstract class ĪnflexorPrīmusPlūrālisNōminibus : ĪnflexorDēfectusNōminibus<Īnflectendum.Nōmen>
+  public sealed class ĪnflexorPrīmusPlūrālisNōminibus : ĪnflexorDēfectusNōminibus<Īnflectendum.Nōmen>
   {
     public static readonly Lazy<ĪnflexorPrīmusPlūrālisNōminibus> Faciendum = new Lazy(() => Instance);
-    protected ĪnflexorPrīmusPlūrālisNōminibus()
-          : base(new Lazy<Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>>(),
-                 ĪnflexorEffectusPrīmusNōminibus.Faciendum) { }
+    private ĪnflexorPrīmusPlūrālisNōminibus()
+          : base(nūntius: new Lazy<Nūntius<ĪnflexorPrīmusPlūrālisNōminibus>>(),
+                 relātus: ĪnflexorEffectusPrīmusNōminibus.Faciendum)
+          => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected sealed Enum[] Referō(in Enum[] illa)
          => Ūtilitātēs.Seriēs(Numerālis.Plūrālis, illa.FirstOf<Casus>());

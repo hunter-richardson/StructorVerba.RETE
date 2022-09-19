@@ -14,8 +14,9 @@ namespace Īnflexōrēs.Numerāmina
   public sealed partial class ĪnflexorNumerāminibusOmnium : ĪnflexorNumerāminibus<NumerāmenOmnium>
   {
     public static readonly Lazy<ĪnflexorNumerāminibusOmnium> Faciendum = new Lazy(() => Instance);
-    protected ĪnflexorNumerāminibusOmnium()
-          : base(new Lazy<Nūntius<ĪnflexorNumerāminibusOmnium>>(), Numerium.GetValues()) { }
+    private ĪnflexorNumerāminibusOmnium()
+        : base(nūntius: new Lazy<Nūntius<ĪnflexorNumerāminibusOmnium>>(), illa: Numerium.GetValues())
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public string Scrībam(in NumerāmenOmnium numerāmen, in Numerium numerium)
             => numerium switch

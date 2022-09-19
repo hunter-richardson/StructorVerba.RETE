@@ -52,13 +52,13 @@ namespace Pēnsōrēs
 
     private readonly Func<Task<Enumerable<JsonElement>>> Tabulātor = async () =>
     {
-      Nūntius.Garriō("Tabulam aperiō");
+      Nūntius.GarriōAsync("Tabulam aperiō");
       return Contextus.Value.GetTable<JsonElement>();
     };
 
     public readonly Func<Task<Enumerable<Hoc>>> Omnia
           = async () => (from linea in (await Tabulātor.Invoke())
-                         from hoc in await LegamAsync(linea)
+                         from hoc in await LegamAsync(legendum: linea)
                          where hoc is not null
                          select hoc);
     public readonly Func<Task<IEnumerable<string>>> Lemmae
@@ -97,7 +97,7 @@ namespace Pēnsōrēs
                             where linea.HasProperty(nameof(minūtal))
                             from numerus in linea.GetProperty(nameof(minūtal)).GetInt32()
                             where minūtal == numerus
-                            select await LegamAsync(linea)).FirstOrDefault(null);
+                            select await LegamAsync(legendum: linea)).FirstOrDefault(null);
 
     public readonly Func<string, Task<Hoc?>> PēnsorVerbālis
         = async scrīptum => (from linea in Tabulātor.Invoke()
@@ -106,7 +106,7 @@ namespace Pēnsōrēs
                              where !string.IsNullOrWhiteSpace(scrīptum)
                              where string.Equals(scrīptum, scrīptum,
                                                  StringComparison.OrdinalIgnoreCase)
-                             select await LegamAsync(linea)).FirstOrDefault(null);
+                             select await LegamAsync(legendum: linea)).FirstOrDefault(null);
 
     public readonly Func<string, Task<Hoc?>> PēnsorVerbālisSineApicibus
         = async scrīptum => (from linea in Tabulātor.Invoke()
@@ -115,7 +115,7 @@ namespace Pēnsōrēs
                              where !string.IsNullOrWhiteSpace(scrīptum)
                              where string.Equals(scrīptum, await Ūtilitātēs.ApicumAbditor.Invoke(scrīptum),
                                                  StringComparison.OrdinalIgnoreCase)
-                             select await LegamAsync(linea)).FirstOrDefault(null);
+                             select await LegamAsync(legendum: linea)).FirstOrDefault(null);
 
     private async Hoc? Legam(in JsonElement legendum)
     {
@@ -135,7 +135,7 @@ namespace Pēnsōrēs
       }
       catch (SystemException error) when (error is InvalidOperationException or KeyNotFoundException)
       {
-        Nūntius.TerreōAsync(error);
+        Nūntius.TerreōAsync(error: error);
         return null;
       }
     }

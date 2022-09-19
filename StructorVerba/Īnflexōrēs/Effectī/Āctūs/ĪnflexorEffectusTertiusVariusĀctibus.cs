@@ -19,7 +19,8 @@ namespace Īnflexōrēs.Effectī.Āctūs
     private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
 
     private ĪnflexorEffectusTertiusVariusĀctibus()
-        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>()) { }
+        : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>())
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string? IndicātīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
     {

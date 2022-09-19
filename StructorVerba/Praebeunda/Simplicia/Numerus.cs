@@ -28,17 +28,17 @@ namespace Praebeunda.Simplicia
     }
 
     public static Numerus operator +(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(prīmus.Minūtal + secundus.Minūtal);
+              => new Numerus(numerus: prīmus.Minūtal + secundus.Minūtal);
     public static Numerus operator -(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(prīmus.Minūtal - secundus.Minūtal);
+              => new Numerus(numerus: prīmus.Minūtal - secundus.Minūtal);
     public static Numerus operator /(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(prīmus.Minūtal / secundus.Minūtal);
+              => new Numerus(numerus: prīmus.Minūtal / secundus.Minūtal);
     public static Numerus operator *(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(prīmus.Minūtal * secundus.Minūtal);
+              => new Numerus(numerus: prīmus.Minūtal * secundus.Minūtal);
     public static Numerus operator %(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(prīmus.Minūtal % secundus.Minūtal);
-    public static Numerus operator ++(in Numerus numerus) => new Numerus(++numerus.Minūtal);
-    public static Numerus operator --(in Numerus numerus) => new Numerus(--numerus.Minūtal);
+              => new Numerus(numerus: prīmus.Minūtal % secundus.Minūtal);
+    public static Numerus operator ++(in Numerus numerus) => new Numerus(numerus: ++numerus.Minūtal);
+    public static Numerus operator --(in Numerus numerus) => new Numerus(numerus: --numerus.Minūtal);
     public sealed override int CompareTo(Numerus aliud) => Minūtal.CompareTo(aliud.Minūtal);
   }
 }

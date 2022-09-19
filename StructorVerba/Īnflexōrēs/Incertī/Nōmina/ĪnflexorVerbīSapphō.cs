@@ -17,9 +17,10 @@ namespace Īnflexōrēs.Incertī.Nōmina
   {
     public static readonly Lazy<ĪnflexorVerbīSapphō> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīSapphō()
-        : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīSapphō>>(),
-               Casus.GetValues().Except(Casus.Dērēctus, Casus.Datīvus))
-    => Tabula.ForEach(illa =>
+        : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīSapphō>>(),
+               illa: Casus.GetValues().Except(Casus.Dērēctus, Casus.Datīvus))
+    {
+      Tabula.ForEach(illa =>
         {
           const Task<string> suffixum = illa.FirstOf<Casus>() switch
           {
@@ -28,5 +29,8 @@ namespace Īnflexōrēs.Incertī.Nōmina
           };
           FōrmamAsync("Sapph".Concat(await suffixum), illa);
         });
+
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

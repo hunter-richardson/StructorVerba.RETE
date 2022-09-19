@@ -18,17 +18,19 @@ namespace Īnflexōrēs.Incertī.Āctūs
     public ĪnflexorPerfectusSōlusĀctibus(in Lazy<ĪnflexorEffectusĀctibus> relātus,
                                          in string perfectum, in string supīnum)
         : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorPerfectusSōlusĀctibus>>(),
-                                         Modus.Īnfīnītīvus.SingleItemSet(),
-                                         Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSst(),
-                                                            new HashSet<Casus>() { Tempus.Futūrum, Tempus.Perfectum }),
-                                         Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
-                                                            new HashSet<Tempus>() { Tempus.Perfectum, Tempus.Plūsquamperfectum, Tempus.Futūrum_Exāctum },
-                                                            Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
-                                                            Persōna.GetValues().Except(Persōna.Nūlla).ToHashSet()))
+               Modus.Īnfīnītīvus.SingleItemSet(),
+               Ūtilitātēs.Combīnō(Modus.Participālis.SingleItemSst(),
+                                  new HashSet<Casus>() { Tempus.Futūrum, Tempus.Perfectum }),
+               Ūtilitātēs.Combīnō(new HashSet<Modus>() { Modus.Indicātīvus, Modus.Subiūnctīvus },
+                                  new HashSet<Tempus>() { Tempus.Perfectum, Tempus.Plūsquamperfectum, Tempus.Futūrum_Exāctum },
+                                  Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
+                                  Persōna.GetValues().Except(Persōna.Nūlla).ToHashSet())
+                         .Except(illa => illa.ContainsAll(Modus.Subiūnctīvus, Tempus.Futūrum_Exāctum)))
     {
       Relātus = relātus.Value;
       RādīxPerfectum = perfectum.Chop(4);
       RādīxSupīnum = supīnum.Chop(2);
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
 
     public sealed string Scrībam(in Enum[] illa)

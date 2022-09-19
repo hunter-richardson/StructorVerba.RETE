@@ -15,15 +15,16 @@ namespace Īnflexōrēs.Incertī.Nōmina
     public static readonly Lazy<ĪnflexorVerbīAthōs> Faciendum = new Lazy(() => Instance);
 
     private ĪnflexorVerbīAthōs()
-          : base(Ēnumerātiōnēs.Catēgoria.Nōmen,
-                 new Lazy<Nūntius<ĪnflexorVerbīAthōs>>(),
-                 Casus.GetValues().Except(Casus.Dērēctus))
+          : base(catēgoria: Catēgoria.Nōmen,
+                 nūntius: new Lazy<Nūntius<ĪnflexorVerbīAthōs>>(),
+                 illa: Casus.GetValues().Except(Casus.Dērēctus))
     {
       FōrmamAsync("Athōs", Casus.Nōminātīvus);
       FōrmamAsync("Athōn", Casus.Accūsātīvus);
 
       Casus.GetValues().Except(Casus.Dērēctus, Casus.Nōminātīvus, Casus.Accūsātīvus)
                        .ForEach(valor => FōrmamAsync("Athō", valor));
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

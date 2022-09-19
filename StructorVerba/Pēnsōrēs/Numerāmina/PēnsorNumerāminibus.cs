@@ -65,6 +65,8 @@ namespace Pēnsōrēs.Numerāmina
     protected PēnsorNumerāminibus(in ĪnflexorNumerāmibus.Versiō versiō, in string quaerendī,
                                   in Lazy<Nūntius<PēnsorNumerāminibus<Hoc>>> nūntius,
                                   in Func<JsonElement, Task<Hoc>> lēctor)
-                                     : base(versiō, quaerendī, Tabulātor.Invoke(versiō), nūntius, lēctor) { }
+                                     : base(versiō: versiō, quaerendī: quaerendī,
+                                            tabula: Tabulātor.Invoke(versiō),
+                                            nūntius: nūntius, lēctor: lēctor) { }
   }
 }

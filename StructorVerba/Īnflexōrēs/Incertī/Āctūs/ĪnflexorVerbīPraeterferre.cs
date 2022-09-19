@@ -37,7 +37,9 @@ namespace Īnflexōrēs.Incertī.Āctūs
       FōrmamAsync("praeterferre", Modus.Īnfīnītīvus, Vōx.Āctīva);
       (from valōrēs in Tabula
        where valōrēs.ContainsAny(Modus.Īnfīnītīvus, Vōx.Passīva)
-       select valōrēs).ForEach(illa => FōrmamAsync("praeter".Concat(await Relātus.Value.ScrībamAsync(illa)), illa));
+       select valōrēs).ForEach(illa => FōrmamAsync(fōrma: "praeter".Concat(await Relātus.Value.ScrībamAsync(illa)), illa: illa));
+
+      Nūntius.PlūsGarriōAsync("Fīō");
     }
   }
 }

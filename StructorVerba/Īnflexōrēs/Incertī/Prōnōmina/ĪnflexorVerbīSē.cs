@@ -15,9 +15,10 @@ namespace Īnflexōrēs.Incertī.Prōmōmina
     public static readonly Lazy<ĪnflexorVerbīSē> Faciendum = new Lazy(() => Instance);
 
     private ĪnfexorVerbīSē()
-          : base(new Lazy<Nūntius<ĪnflexorVerbīSē>>(),
-                Casus.GetValues().Except(Casus.Dērēctus, Casus.Nōminātīvus, Casus.Vocātīvus).ToHashSet())
-          => Tabula.ForEach(illa =>
+          : base(catēgoria: Catēgoria.Prōnōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīSē>>(),
+                 illa: Casus.GetValues().Except(Casus.Dērēctus, Casus.Nōminātīvus, Casus.Vocātīvus).ToHashSet())
+    {
+      Tabula.ForEach(illa =>
               {
                 const Casus casus = illa.FirstOf<Casus>();
                 const string fōrma = casus switch
@@ -28,6 +29,9 @@ namespace Īnflexōrēs.Incertī.Prōmōmina
                   _ => "sē"
                 };
                 FōrmamAsync(fōrma, casus);
-            });
+              });
+
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

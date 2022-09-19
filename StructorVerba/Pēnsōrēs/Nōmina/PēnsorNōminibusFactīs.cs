@@ -43,8 +43,9 @@ namespace Pēnsōrēs.Nōmina
     };
 
     private PēnsorNōminibusFactīs(in Versiō versiō)
-                                     : base(versiō, nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum), Tabula.Nōmina_Facta,
-                                            new Lazy<Nūntius<PēnsorNōminibusFactīs>>(),
-                                            Īnflectendum.NōmenFactum.Lēctor) { }
+                                     : base(versiō: versiō, quaerendī: nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
+                                            tabula: Tabula.Nōmina_Facta, nūntius: new Lazy<Nūntius<PēnsorNōminibusFactīs>>(),
+                                            lēctor: Īnflectendum.NōmenFactum.Lēctor)
+          => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }

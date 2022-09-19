@@ -14,7 +14,8 @@ namespace Īnflexōrēs.Incertī.Āctūs
   {
     public static readonly Lazy<ĪnflexorVerbīNōlle> Faciendum = new Lazy(() => Instance);
 
-    private readonly Lazy<ĪnflexorVerbīVelle> Relātus = ĪnflexorVerbīVelle.Faciendum;
+    private readonly Lazy<ĪnflexorRescrīptus> Relātus = new Lazy(() => new ĪnflexorRescrīptus(ĪnflexorVerbīVelle.Faciendum,
+                                                                                              scrīptum => "nō".Concat(scrīptum.Substring(2))));
 
     private ĪnflexorVerbīNōlle()
         : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīNōlle>>(), Modus.Participālis.SingleItemSet(),
@@ -34,9 +35,9 @@ namespace Īnflexōrēs.Incertī.Āctūs
                                                           illa.FirstOf<Tempus>() is Tempus.Praesēns,
                                                           illa.FirstOf<Numerālis>() is Numerālis.Plūrālis,
                                                           illa.FirstOf<Persōna>() is Persōna.Secunda)))
-        => Tabula.ForEach(illa => FōrmamAsync(await Relātus.ScrībamAsync(illa)
-                                                           .ReplaceFirst("vo", "nō")
-                                                           .ReplaceFirst("ve", "nō"),
-                                              illa));
+    {
+      Tabula.ForEach(illa => FōrmamAsync(fōrma: await Relātus.ScrībamAsync(illa), illa: illa));
+      Nūntius.PlūsGarriōAsync("Fīō");
+    }
   }
 }

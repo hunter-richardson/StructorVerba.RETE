@@ -21,7 +21,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
 
     private ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE()
         : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusVariusNōminibusCumLitterāE>>(),
-               (nōmen, illa) => nōmen.Nōminātīvum) { }
+               (nōmen, illa) => nōmen.Nōminātīvum)
+        => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string Singulāre(in Casus casus) => (casus is Casus.Nōminātīvus or Casus.Vocātīvus)
                                                           .Choose(string.Empty, await Relātus.SingulāreAsync(casus));
