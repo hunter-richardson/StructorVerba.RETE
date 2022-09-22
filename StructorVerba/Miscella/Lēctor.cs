@@ -45,5 +45,10 @@ namespace Miscella
         => from verbum in await QuaerōAsync(quaerendum: quaerendum)
            where verbum.Item2 is catēgoria
            select verbum;
+
+    public Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria) => Verba.Value.Pendam(quaerendum, catēgoria);
+
+    public Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria, in Enum[] illa)
+        => Verba.Value.Pendam(quaerendum, catēgoria)?.Īnflexor.Invoke(illa);
   }
 }

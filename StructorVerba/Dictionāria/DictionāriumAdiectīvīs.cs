@@ -20,7 +20,8 @@ namespace Dictionāria
     public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy(() => Instance);
 
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Officīnātor.Invoke(null);
-    private static readonly Func<string, Task<Lemma?>> Lemmātor = async scrīptum => Officīna.Value.Inventor.Invoke(scrīptum);
+    private static readonly Func<string, Task<Lemma?>> Lemmātor
+        = async scrīptum => Officīna.Value.FortisInventorCatēgoriae.Invoke(scrīptum, Catēgoria.Adiectīvum);
 
     protected readonly Lazy<ĪnflexorIncertus> Aliud = ĪnflexorVerbīAliud.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Frūgī = ĪnflexorVerbīFrūgī.Faciendum;
@@ -29,35 +30,35 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;
     protected readonly Lazy<ĪnflexorIncertus> Nēquam = ĪnflexorVerbīNēquam.Faciendum;
     protected readonly Lazy<ĪnflexorConiūnctus> Nōnumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("nōnum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("nōnum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorConiūnctus> Octāvumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("octāvum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("octāvum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorConiūnctus> Quārtumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("quārtum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("quārtum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorConiūnctus> Quīntumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("quīntum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("quīntum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorIncertus> Satis = ĪnflexorVerbīSatis.Faciendum;
     protected readonly Lazy<ĪnflexorConiūnctus> Septimumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("septimum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("septimum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorConiūnctus> Sextumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("sextum"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("sextum"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorConiūnctus> Tertiumdecimum
-       = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("tertium"),
-                                               secundum: await Lemmātor.Invoke("decimum")));
+        = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("tertium"),
+                                                secundum: await Lemmātor.Invoke("decimum")));
     protected readonly Lazy<ĪnflexorSuffīxus> Utrumcumque
-       = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"),
-                                             suffīxum: "cum".Concat(Encliticum.Coniugāns.ToString())));
+        = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"),
+                                              suffīxum: "cum".Concat(Encliticum.Coniugāns.ToString())));
     protected readonly Lazy<ĪnflexorSuffīxus> Utrumque
-       = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"),
-                                             suffīxum: Encliticum.Coniugāns.ToString()));
+        = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"),
+                                              suffīxum: Encliticum.Coniugāns.ToString()));
     protected readonly Lazy<ĪnflexorSuffīxus> Utrumvīs
-       = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"), suffīxum: "vīs"));
+        = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"), suffīxum: "vīs"));
 
     private DictionāriumNōminibus()
         : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>())

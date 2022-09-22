@@ -30,6 +30,7 @@ namespace Officīnae
 
     private readonly Nūntius nūntius = new Nūntius<OfficīnaĪnflexōrum>();
 
+    private readonly Catēgoria Catēgoria { get; }
     private readonly OfficīnaPēnsābilium<Hoc>? Relāta { get; }
     private readonly Dictionārium<Hoc>? Dictionārium { get; }
     public readonly Func<string, Enum[], Task<Hoc?>> Inventor
@@ -42,17 +43,17 @@ namespace Officīnae
 
     public readonly Func<string, Task<Hoc?>> FortisĪnflexor
         = async lemma => (await Dictionārium?.ĪnflexōrīFortisFeramAsync(lemma)) ??
-                         (await (await Relāta?.Inventor.Invoke(lemma))
+                         (await (await Relāta?.InventorCatēgoriae.Invoke(lemma, Catēgoria))
                                 ?.FortisĪnflexor.Invoke());
 
     public readonly Func<string, Task<Hoc?>> FortisĪnflexorSineApicibus
         = async lemma => (await Dictionārium?.ĪnflexōrīFortisSineApicibusFeramAsync(lemma)) ??
-                         (await (await Relāta?.InventorSineApicibus.Invoke(lemma))
+                         (await (await Relāta?.InventorCatēgoriaeSineApicibus.Invoke(lemma, Catēgoria))
                                 ?.FortisĪnflexor.Invoke());
 
     public readonly Func<Task<Hoc?>> FortisInventor
         = async () => Ūtilitātēs.Seriēs(await Dictionārium?.ForsFeratĪnflectetqueAsync(),
-                                       (await (await Relāta?.FortisInventor.Invoke())
+                                       (await (await Relāta?.FortisInventorCatēgoriae.Invoke(Catēgoria))
                                               ?.FortisĪnflexor.Invoke()))
                                 .Random();
 
@@ -65,8 +66,9 @@ namespace Officīnae
 
     private OfficīnaĪnflexōrum(in Catēgoria? catēgoria)
     {
-      Relāta = OfficīnaPēnsābilium.Officīnātor.Invoke(catēgoria).Value;
-      Dictionārium = Dictionārium.Lēctor.Invoke(catēgoria).Value;
+      Catēgoria = catēgoria;
+      Relāta = OfficīnaPēnsābilium.Officīnātor.Invoke(Catēgoria).Value;
+      Dictionārium = Dictionārium.Lēctor.Invoke(Catēgoria).Value;
       Nūntius.PlūsGarriōAsync("Fīō");
     }
   }

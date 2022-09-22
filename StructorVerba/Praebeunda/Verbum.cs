@@ -7,6 +7,7 @@ using System.Threading.Tasks.Task;
 
 using Miscella.Ūtilitātēs;
 using Praebeunda.Interfecta.Pēnsābile;
+using Praebeunda.Simplicia;
 using Miscella.Ūtilitātēs;
 
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
@@ -29,7 +30,7 @@ namespace Praebeunda
     public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
               => new Verbum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
                             Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
-                            legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString());
+                            legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant());
 
     [Required]
     public readonly int Minūtal { get; }
@@ -39,12 +40,13 @@ namespace Praebeunda
     [StringLength(25, MinimumLength = 1)]
     public readonly string Scrīpum { get; }
 
-    public virtual string ToString() => Scrīptum;
+    public virtual string ToString() => (Catēgoria is Catēgoria.Numerus).Choose(Scrīptum, this.Cast<Numerus>().ToString());
 
     public virtual int CompareTo(Verbum aliud)
               => Ūtilitātēs.Omnia(this is Simplicia.Numerus, aliud is Simplicia.Numerus)
                            .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
-                                   (from comparātiō in Ūtilitātēs.Seriēs(Scrīpum.CompareTo(aliud.Scrīptum),
+                                   (from comparātiō in Ūtilitātēs.Seriēs(Scrīptum.CompareTo(aliud.Scrīptum),
+                                                                         Catēgoria.CompareTo(aliud.Catēgoria),
                                                                          Minūtal.CompareTo(aliud.Minūtal))
                                      where comparātiō is not 0
                                      select comparātiō).FirstOrDefault(0));

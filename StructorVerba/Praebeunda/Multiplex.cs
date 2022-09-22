@@ -1,11 +1,11 @@
-using System.Collections.Immutable;
 using System;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-using Ēnumerātiōnēs;
 using Miscella;
 using Praebeunda.Interfecta;
+using Ēnumerātiōnēs;
 
 using BuilderGenerator.GenerateBuilderAttribute;
 
@@ -53,10 +53,30 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Numerāmen : Multiplex<Numerāmen>, Īnflexum<Numerāmen>
     {
+      private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+      private readonly Lazy<Numerātor> Numerātor = Numerātor.Faciendum;
+
       public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor
                 = async (illa, scrīpum) => Builder.Numerium(illa.FirstOf<Numerium>())
                                                   .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Numerāmen))
                                                   .Scrīpum(scrīpum).Build();
+
+      private readonly Func<Catēgoria> Classificātor
+            = () => Numerium switch
+                    {
+                      Numerium.Adverbium => Catēgoria.Adverbium,
+                      Numerium.Frāctiōnāle => Catēgoria.Nōmen,
+                      _ => Catēgoria.Adiectīvum
+                    };
+
+      public readonly Func<Enum[], Task<Verbum?>> Relātor
+            = async illa =>
+                    {
+                      const Catēgoria catēgoria = Classificātor.Invome(Numerium);
+                      return (catēgoria is Catēgoria.Numerus)
+                                .Choose(Numerātor.Value.Generātor.Invoke(Scrīptum),
+                                        Lēctor.Value.Inveniam(Scrīptum, catēgoria, illa));
+                    };
 
       [Required] public readonly Numerium Numerium { get; }
 
@@ -68,6 +88,8 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Āctus : Multiplex<Āctus>, Īnflexum<Āctus>
     {
+      private readonly Lazy<OfficīnaĪnflexōrum> Adiectīva = OfficīnaĪnflexōrum.Officīnātor.Invoke(Catēgoria.Adiectīvum);
+
       public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor
                 = async (illa, scrīpum) => Builder.Modus(illa.FirstOf<Modus>())
                                                   .Vōx(illa.FirstOf<Vōx>())
@@ -76,6 +98,10 @@ namespace Praebeunda
                                                   .Persōna(illa.FirstOf<Persōna>())
                                                   .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Āctus))
                                                   .Scrīpum(scrīpum).Build();
+
+      public readonly Func<Enum[], Task<Adiectīvum?>> Relātor
+          = async illa => (modus is Modus.Participālis)
+                              .Choose(Adiectīva.Value.Inventor.Invoke(Scrīptum, illa), null);
 
       [Required] public readonly Modus Modus { get; }
       [Required] public readonly Vōx Vōx { get; }

@@ -146,7 +146,7 @@ namespace Miscella
 
     public static string Capitalize(this in string source)
                 => source.ReplaceFirst(source.ElementAt(0).ToString(),
-                                       char.ToUpper(source.ElementAt(0).ToString()));
+                                       char.ToUpperInvariant(source.ElementAt(0).ToString()));
 
     public static string Chop(this in string source, in int length)
                 => source.Substring(source.Length - length);

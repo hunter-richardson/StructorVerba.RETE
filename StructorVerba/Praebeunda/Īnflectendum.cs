@@ -1,7 +1,7 @@
-using System.Reflection.Metadata;
-using System.Collections.Immutable;
 using System;
+using System.Collections.Immutable;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
@@ -69,6 +69,7 @@ namespace Praebeunda
 
     public sealed class Āctus : Īnflectendum<Āctus, Multiplex.Āctus>
     {
+      private Lazy<OfficīnaĪnflexōrum> Nōmina = OfficīnaĪnflexōrum.Officīnātor.Invoke(Catēgoria.Nōmen);
       public static readonly Func<JsonElement, Enum, Task<Āctus>> Lēctor
                 = async (legendum, valor) => new Āctus(minūtal: legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
                                                        īnfīnītīvum: legendum.GetProperty(nameof(Īnfīnītīvum).ToLower()).GetString(),
@@ -76,10 +77,28 @@ namespace Praebeunda
                                                        supīnum: legendum.GetProperty(nameof(Supīnum).ToLower()).GetString() ?? string.Empty,
                                                        versiō: valor);
 
+      private Func<Enum[], Task<NōmenFactum?>> Nōminātor = async illa => Nōmina.Value.Inventor.Invoke(Supīnum, illa);
+
+      private Func<Enum[], Task<Nōmen?>> Āctor
+          = async illa =>
+                  {
+                    const Genus genus = illa.FirstOf<Genus>();
+                    if (genus is default(Genus) or Genus.Neutrum)
+                    {
+                      return null;
+                    }
+                    else
+                    {
+                      const string rādīx = Supīnum.Chop(2);
+                      const string suffīxum = (genus is Genus.Masculīnum)
+                      .Choose("or", rādīx.EndsWith('t').Choose("rīx", "trīx"));
+                      return Nōmina.Value.Inventor.Invoke(rādīx.Concat(suffīxum), illa);
+                    }
+                  };
+
       private Āctus(in int minūtal, in string īnfīnītīvum,
-                    in string perfectum, in string supīnum,
-                    in Enum versiō)
-                     : base(minūtal, Ēnumerātiōnēs.Catēgoria.Āctus, versiō)
+                    in string perfectum, in string supīnum, in Enum versiō)
+                    : base(minūtal, Ēnumerātiōnēs.Catēgoria.Āctus, versiō)
       {
         Īnfīnītīvum = īnfīnītīvum;
         Perfectum = perfectum;
