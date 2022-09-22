@@ -9,6 +9,7 @@ using Praebeunda.Interfecta;
 using Praebeunda.Multiplex;
 using Pēnsōrēs.Numerāmina.PēnsorNumerāminibus.Versiō;
 using Pēnsōrēs.Īnflectenda;
+using Ēnumerātiōnēs;
 using Īnflexōrēs.Incertī.ĪnflexorIncertus;
 
 using BuilderGenerator.GenerateBuilderAttribute;
@@ -24,16 +25,17 @@ namespace Praebeunda
             where Hoc : Īnflectendum<Hoc, Illud> where Illud : Īnflexum<Illud>
   {
     public readonly int Minūtal { get; }
-    public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
+    public readonly Catēgoria Catēgoria { get; }
     private readonly Lazy<Īnflexor<Hoc, Illud>?> Īnflexor { get; }
     public readonly Func<ISet<Enum[]>> Tabulātor = () => Īnflexor.Value.Tabulātor.Invoke();
     public readonly Func<Īnflectendum<Task<Illud?>>> FortisĪnflexor = async () => Īnflexor.Value?.FortisĪnflexor.Invoke(this);
 
-    protected Īnflectendum(in int minūtal, in Ēnumerātiōnēs.Catēgoria catēgoria, in Enum versiō)
+    protected Īnflectendum(in int minūtal, in Catēgoria catēgoria, in Enum versiō)
           : this(minūtal, catēgoria, Īnflexōrēs.Īnflexor.Relātor.Invoke(catēgoria, versiō)) { }
 
     public sealed Illud? Īnflectem(in params Enum illa)
-          => Īnflexor.Value?.ĪnflectemAsync(this, illa);
+          => Īnflexor.Value?.ĪnflectemAsync(this, illa)
+                           ?.Allegam(illa.FirstOf<Encliticum>());
 
     [Singleton]
     public sealed partial class Nūllum<Hoc> : Īnflectendum<Nūllum, Hoc>
@@ -50,9 +52,9 @@ namespace Praebeunda
                                                            comparātīvum: legendum.GetProperty(nameof(Comparātīvum).ToLower()).GetString(),
                                                            superlātīvum: legendum.GetProperty(nameof(Superlātīvum).ToLower()).GetString());
 
-      private AdverbiumExāctum(in int minūtal, in string positīvum,
-                               in string comparātīvum, in string superlātīvum)
-                               : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium, PēnsorAdverbiīs.Versiō.Exāctum)
+      private Adverbium(in int minūtal, in string positīvum,
+                        in string comparātīvum, in string superlātīvum)
+                        : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium, PēnsorAdverbiīs.Versiō.Exāctum)
       {
         Positīvum = positīvum;
         Comparātīvum = comparātīvum;
