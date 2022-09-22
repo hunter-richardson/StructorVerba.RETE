@@ -18,25 +18,6 @@ namespace Ēnumerātiōnēs
               where valor.ToString().Equals(lēctum.GetString(), StringComparison.OrdinalIgnoreCase)
               select valor).First().Cast<Catēgoria>();
 
-    public static string NōmenTabulae(this in Catēgoria catēgoria, Enum? versiō = null)
-    {
-      const string scrīptum = catēgoria switch
-      {
-        Catēgoria.Āctus       => "actus",
-        Catēgoria.Adiectīvum  => "adiectiva",
-        Catēgoria.Adverbium   => "adverbia",
-        Catēgoria.Coniūnctiō  => "coniunctiones",
-        Catēgoria.Interiectiō => "interiectio",
-        Catēgoria.Nōmen       => "nomnia",
-        Catēgoria.Numerāmen   => "numeramina",
-        Catēgoria.Numerus     => "numeri",
-        Catēgoria.Praepositiō => "praepositiones",
-        Catēgoria.Prōnōmen    => "pronomnia"
-      };
-
-      return (versiō is not null).Choose(scrīptum.Concat(versiō.ToString()), scrīptum);
-    }
-
     public static Boolean Īnflexa(this in Catēgoria catēgoria)
               => !catēgoria.IsAmong(Catēgoria.Coniūnctiō, Catēgoria.Interiectiō, Catēgoria.Numerus, Catēgoria.Praepositiō);
 

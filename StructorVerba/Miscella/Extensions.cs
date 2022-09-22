@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic.IEnumerable;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.JsonElement;
 namespace Miscella
@@ -96,8 +96,16 @@ namespace Miscella
                    where predicate.Negate().Invoke(item)
                    select item;
 
+    public static Boolean IsBetween<T>(this in T number, in T from, in T to,
+                                       in Boolean inclusivity = true) where T : IComparable<T>
+    {
+      const T[] bounds = new T[] { from, to };
+      return inclusivity.Choose(number >= bounds.Min() && number <= bounds.Max(),
+                                number > bounds.Min() && number < bounds.Max());
+    }
+
     public static ISet<T> SingleItemSet(in T obj)
-                where T : IComparable<T> => new SortedSet() { obj };
+                where T : IComparable<T> => new HashSet() { obj };
 
     public static ISet<T> SingleItemSet(in T obj, in IComparer<T> comparer)
                 => new SortedSet(comparer) { obj };

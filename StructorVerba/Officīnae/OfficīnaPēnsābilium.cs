@@ -40,7 +40,7 @@ namespace Officīnae
     public readonly Func<Task<Hoc?>> FortisInventor = Pēnsor.FortisPēnsor;
     private OfficīnaPēnsābilium(in Catēgoria? catēgoria)
     {
-      Pēnsor = PēnsorVerbīs.RelātorSimicibus.Invoke(catēgoria).Value;
+      Pēnsor = PēnsorVerbīs.Relātor.Invoke(catēgoria).Value;
       Nūntius.PlūsGarriōAsync("Fīō");
     }
   }

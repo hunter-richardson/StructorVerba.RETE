@@ -26,7 +26,7 @@ namespace Dictionāria
                               {
                                 Catēgora.Adiectīvum => DictionāriumAdiectīvīs.Faciendum,
                                 Catēgora.Nōmen => DictionāriumNōminibus.Faciendum,
-//                                Catēgora.Prōnōmen => DictionāriumPrōnōminibus.Faciendum,
+                                Catēgora.Prōnōmen => DictionāriumPrōnōminibus.Faciendum,
                                 Catēgora.Āctus => DictionāriumĀctibus.Faciendum,
                                 _ => new Lazy(null)
                               };
@@ -49,15 +49,21 @@ namespace Dictionāria
     private readonly Func<Task<Īnflexor<Illud>?>> FortisLātor
           = async () => await Oblātor.Invoke(await (await Omnia.Invoke()).Random());
 
-    public readonly Func<Task<IEnumerable<string>>> Lemmae
+    public readonly Func<Task<IEnumerable<(string, Catēgora)>>> Lemmae
           = async () => (from illud in (await Omnia.Invoke())
-                         select illud.Name.ToLower()).Distinct();
+                         select (illud.Name.ToLower(), Catēgora)).Distinct();
 
-    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus
+    public readonly Func<Task<IEnumerable<(string, Catēgora)>>> LemmaeSineApicibus
           = async () => (from lemma in (await Lemmae.Invoke())
-                         select await Ūtilitātēs.ApicumAbditor.Invoke(lemma)).Distinct();
+                         select (await Ūtilitātēs.ApicumAbditor.Invoke(lemma), Catēgora)).Distinct();
 
-    protected Dictionārium(in Lazy<Nūntius<Dictionārium<Hoc, Illud>>> nūntius) => Nūntius = nūntius.Value;
+    private readonly Catēgora Catēgora { get; }
+
+    protected Dictionārium(in Catēgora catēgora, in Lazy<Nūntius<Dictionārium<Hoc, Illud>>> nūntius)
+    {
+      Catēgora = catēgora;
+      Nūntius = nūntius.Value;
+    }
 
     private sealed Īnflexor<Illud>? Feram(string lemma)
           => await Obātor.Invoke((from illud in (await Omnia.Invoke())
