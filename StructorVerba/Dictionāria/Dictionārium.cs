@@ -62,9 +62,9 @@ namespace Dictionāria
     }
 
     private sealed Īnflexor<Illud>? Feram(string lemma)
-          => await Obātor.Invoke((from illud in (await Omnia.Invoke())
-                                  where string.Equals(lemma, illud.Name, StringComparison.OrdinalIgnoreCase)
-                                  select illud).FirstOrDefault());
+          => await Oblātor.Invoke((from illud in (await Omnia.Invoke())
+                                   where string.Equals(lemma, illud.Name, StringComparison.OrdinalIgnoreCase)
+                                   select illud).FirstOrDefault());
 
     public sealed Illud? FeramĪnflectemque(string lemma, in Enum[] illa)
           => await (await FeramAsync(lemma: lemma))?.ĪnflectemAsync(illa: illa);
