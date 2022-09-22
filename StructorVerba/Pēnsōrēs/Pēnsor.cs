@@ -61,15 +61,6 @@ namespace Pēnsōrēs
                          from hoc in await LegamAsync(legendum: linea)
                          where hoc is not null
                          select hoc);
-    public readonly Func<Task<IEnumerable<string>>> Lemmae
-          = async () => (from linea in (await Tabulātor.Invoke())
-                         where linea.HasProperty(Quaerendī)
-                         from scrīptum in linea.GetProperty(Quaerendī).GetString()
-                         where !string.IsNullOrWhiteSpace(scrīptum)
-                         select scrīptum);
-    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus
-          = async () => (from lemma in (await Lemmae.Invoke())
-                         select await Ūtilitātēs.ApicumAbditor.Invoke(lemma));
     public readonly Func<Task<Hoc?>> FortisPēnsor = async () => Omnia.Invoke().Random();
 
     protected readonly string Nōmen { get; }
@@ -129,27 +120,10 @@ namespace Pēnsōrēs
             where string.Equals(valor, quaerendum, StringComparison.OrdinalIgnoreCase)
             select await LegamAsync(legendum: linea)).FirstOrDefault();
 
-    public sealed Hoc? SineApicibusPendam(in string quaerendum)
-        => (from linea in await Tabulātor.Invoke()
-            where linea.HasProperty(quaerendī)
-            from valor in Ūtilitātēs.ApicumAbditor.Invoke(linea.GetProperty(quaerendī)?.GetString())
-            where !string.IsNullOrWhitespace(valor)
-            where string.Equals(valor, quaerendum, StringComparison.OrdinalIgnoreCase)
-            select await LegamAsync(legendum: linea)).FirstOrDefault();
-
     public sealed Hoc? Pendam(in string quaerendum, in Catēgoria catēgoria)
         => (from linea in await Tabulātor.Invoke()
             where linea.HasProperty(quaerendī)
             from valor in linea.GetProperty(quaerendī)?.GetString()
-            where !string.IsNullOrWhitespace(valor)
-            where string.Equals(valor, quaerendum, StringComparison.OrdinalIgnoreCase)
-            where string.Equals(catēgoria.ToString(), linea.GetProperty(nameof(catēgoria))?.GetString())
-            select await LegamAsync(legendum: linea)).FirstOrDefault();
-
-    public sealed Hoc? SineApicibusPendam(in string quaerendum, in Catēgoria catēgoria)
-        => (from linea in await Tabulātor.Invoke()
-            where linea.HasProperty(quaerendī)
-            from valor in Ūtilitātēs.ApicumAbditor.Invoke(linea.GetProperty(quaerendī)?.GetString())
             where !string.IsNullOrWhitespace(valor)
             where string.Equals(valor, quaerendum, StringComparison.OrdinalIgnoreCase)
             where string.Equals(catēgoria.ToString(), linea.GetProperty(nameof(catēgoria))?.GetString())

@@ -35,12 +35,10 @@ namespace Officīnae
                               };
 
     private readonly PēnsorVerbīs Pēnsor { get; }
-    public readonly Func<Task<IEnumerable<string>>> Lemmae = Pēnsor.Lemmae;
-    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus = Pēnsor.LemmaeSineApicibus;
+    public readonly Func<Task<IEnumerable<string>>> Omnia = Pēnsor.Omnia;
     public readonly Func<string, Task<Hoc?>> Inventor = verbum => Pēnsor.PendemAsync(quaerendum: verbum);
-    public readonly Func<string, Task<Hoc?>> InventorSineApicibus = verbum => Pēnsor.SineApicibusPendemAsync(quaerendum: verbum);
-    public readonly Func<string, Catēgoria, Task<Hoc?>> InventorCatēgoriae = (verbum, catēgoria) => Pēnsor.PendemAsync(quaerendum: verbum, catēgoria: catēgoria);
-    public readonly Func<string, Catēgoria, Task<Hoc?>> InventorCatēgoriaeSineApicibus = (verbum, catēgoria) => Pēnsor.SineApicibusPendemAsync(quaerendum: verbum, catēgoria: catēgoria);
+    public readonly Func<string, Catēgoria, Task<Hoc?>> InventorCatēgoriae
+        = (verbum, catēgoria) => Pēnsor.PendemAsync(quaerendum: verbum, catēgoria: catēgoria);
     public readonly Func<Task<Hoc?>> FortisInventor = () => Pēnsor.ForsPendatAsync();
     public readonly Func<Task<Hoc?>> FortisInventorCatēgoriae
         = () => (Catēgoria is not null).Choose(Pēnsor.ForsPendatAsync(catēgoria: Catēgoria), null);

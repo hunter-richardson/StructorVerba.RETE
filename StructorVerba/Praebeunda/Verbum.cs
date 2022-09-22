@@ -10,10 +10,12 @@ using Praebeunda.Interfecta.Pēnsābile;
 using Praebeunda.Simplicia;
 using Miscella.Ūtilitātēs;
 
+using BuilderGenerator.GenerateBuilderAttribute;
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 
 namespace Praebeunda
 {
+  [GenerateBuilder]
   [AllArgsConstructor(MemberTypes.Property, AccessType.Protected)]
   public partial class Verbum<Hoc> : Pēnsābile<Hoc>, IComparable<Verbum>, IEquatable<Verbum>
                         where Hoc : Verbum<Hoc>
@@ -32,6 +34,11 @@ namespace Praebeunda
                             Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
                             legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant());
 
+    public static readonly Func<string, Catēgoria, Task<Adverbium>> Cōnstrūctor
+              = async (scrīpum, catēgoria) => Builder.Gradus(illa.FirstOf<Gradus>())
+                                                     .Minūtal(HashCode.Combine(scrīptum, catēgoria))
+                                                     .Catēgora(catēgoria)
+                                                     .Scrīpum(scrīpum).Build();
     [Required]
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }

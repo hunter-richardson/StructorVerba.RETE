@@ -37,18 +37,9 @@ namespace Officīnae
         = async (lemma, illa) => (await Dictionārium?.FeramĪnflectemqueAsync(lemma, illa)) ??
                                  (await (await Relāta?.Inventor.Invoke(lemma))?.Īnflexor.Invoke(illa));
 
-    public readonly Func<string, Enum[], Task<Hoc?>> InventorSineApicibus
-        = async (lemma, illa) => (await Dictionārium?.SineApicibusFeramĪnflectemqueAsync(lemma, illa)) ??
-                                 (await (await Relāta?.InventorSineApicibus.Invoke(lemma))?.Īnflexor.Invoke(illa));
-
     public readonly Func<string, Task<Hoc?>> FortisĪnflexor
         = async lemma => (await Dictionārium?.ĪnflexōrīFortisFeramAsync(lemma)) ??
                          (await (await Relāta?.InventorCatēgoriae.Invoke(lemma, Catēgoria))
-                                ?.FortisĪnflexor.Invoke());
-
-    public readonly Func<string, Task<Hoc?>> FortisĪnflexorSineApicibus
-        = async lemma => (await Dictionārium?.ĪnflexōrīFortisSineApicibusFeramAsync(lemma)) ??
-                         (await (await Relāta?.InventorCatēgoriaeSineApicibus.Invoke(lemma, Catēgoria))
                                 ?.FortisĪnflexor.Invoke());
 
     public readonly Func<Task<Hoc?>> FortisInventor
@@ -57,13 +48,9 @@ namespace Officīnae
                                               ?.FortisĪnflexor.Invoke()))
                                 .Random();
 
-    public readonly Func<Task<IEnumerable<string>>> Lemmae
+    public readonly Func<Task<IEnumerable<Verbum>>> Lemmae
         = async () => Enumerable.Union(await Dictionārium?.Lemmae.Invoke(),
-                                       await Relāta?.Lemmae.Invoke());
-    public readonly Func<Task<IEnumerable<string>>> LemmaeSineApicibus
-        = async () => Enumerable.Union(await Dictionārium?.LemmaeSineApicibus.Invoke(),
-                                       await Relāta?.LemmaeSineApicibus.Invoke());
-
+                                       await Relāta?.Omnia.Invoke());
     private OfficīnaĪnflexōrum(in Catēgoria? catēgoria)
     {
       Catēgoria = catēgoria;

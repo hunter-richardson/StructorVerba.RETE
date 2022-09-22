@@ -49,13 +49,9 @@ namespace Dictionāria
     private readonly Func<Task<Īnflexor<Illud>?>> FortisLātor
           = async () => await Oblātor.Invoke(await (await Omnia.Invoke()).Random());
 
-    public readonly Func<Task<IEnumerable<(string, Catēgora)>>> Lemmae
+    public readonly Func<Task<IEnumerable<Verbum>>> Lemmae
           = async () => (from illud in (await Omnia.Invoke())
-                         select (illud.Name.ToLower(), Catēgora)).Distinct();
-
-    public readonly Func<Task<IEnumerable<(string, Catēgora)>>> LemmaeSineApicibus
-          = async () => (from lemma in (await Lemmae.Invoke())
-                         select (await Ūtilitātēs.ApicumAbditor.Invoke(lemma), Catēgora)).Distinct();
+                         select await Verbum.Cōnstrūctor.Invoke(illud.Name.ToLower(), Catēgora)).Distinct();
 
     private readonly Catēgora Catēgora { get; }
 
@@ -70,23 +66,11 @@ namespace Dictionāria
                                   where string.Equals(lemma, illud.Name, StringComparison.OrdinalIgnoreCase)
                                   select illud).FirstOrDefault());
 
-    private sealed Īnflexor<Illud>? SineApicibusFeram(string lemma)
-          => await Obātor.Invoke((from illud in (await Omnia.Invoke())
-                                  where string.Equals(lemma, await Ūtilitātēs.ApicumAbditor.Invoke(illud.Name),
-                                                      StringComparison.OrdinalIgnoreCase)
-                                  select illud).FirstOrDefault());
-
     public sealed Illud? FeramĪnflectemque(string lemma, in Enum[] illa)
           => await (await FeramAsync(lemma: lemma))?.ĪnflectemAsync(illa: illa);
 
     public sealed Illud? ĪnflexōrīFortisFeram(string lemma)
           => await (await FeramAsync(lemma: lemma))?.FortisĪnflexor.Invoke();
-
-    public sealed Illud? SineApicibusFeramĪnflectemque(string lemma, in Enum[] illa)
-          => await(await SineApicibusFeramAsync(lemma: lemma))?.ĪnflectemAsync(illa: illa);
-
-    public sealed Illud? ĪnflexōrīFortisSineApicibusFeram(string lemma)
-          => await(await SineApicibusFeramAsync(lemma: lemma))?.FortisĪnflexor.Invoke();
 
     public sealed Illud? ForsFeratĪnflectetque()
           => await (await FortisLātor.Invoke())?.FortisĪnflexor.Invoke();
