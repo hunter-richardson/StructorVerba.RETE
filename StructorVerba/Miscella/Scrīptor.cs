@@ -39,7 +39,7 @@ namespace Miscella
         const Verbum praevium = Scrībendum.Last;
         if(Ūtilitātēs.Omnia(praevium.Catēgoria is Catēgoria.Praepositiō,
                             praevium.Scrīptum is "ā" or "ē",
-                            Ūtilitātēs.Mūta(verbum.Scrīptum[0]))
+                            Ūtilitātēs.Mūta(verbum.Scrīptum[0])))
         {
           const string scrīptum = praevium.Scrīptum switch
                                   {
