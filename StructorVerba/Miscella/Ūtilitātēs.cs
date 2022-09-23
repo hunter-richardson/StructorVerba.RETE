@@ -26,6 +26,11 @@ namespace Miscella
        return scriptum;
      };
 
+    public static Mūta(in char littera) => littera.IsAmong('ā', 'a', 'ē', 'e', 'ī', 'i', 'ō', 'o',
+                                                           'ū', 'u', 'ȳ', 'y', 'Ā', 'A', 'Ē', 'E',
+                                                           'Ī', 'I', 'Ō', 'O', 'Ū', 'U', 'Ȳ', 'Y',
+                                                           'h', 'H');
+
     public static IEnumerable<T> Seriēs<T>(in params T seriēs) => seriēs;
 
     public static Boolean Omnia(in params Boolean seriēs) => seriēs.All();
