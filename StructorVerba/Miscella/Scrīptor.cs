@@ -30,14 +30,29 @@ namespace Miscella
     public readonly Action Purgātor = Scrībendum.Clear;
     private readonly Func<Verbum?, Task<Boolean>> Additor = async verbum =>
     {
-      if (verbum is not null)
+      if (verbum is null)
       {
-        Scrībendum.Add(verbum);
-        return true;
+        return false;
       }
       else
       {
-        return false;
+        const Verbum praevium = Scrībendum.Last;
+        if(Ūtilitātēs.Omnia(praevium.Catēgoria is Catēgoria.Praepositiō,
+                            praevium.Scrīptum is "ā" or "ē",
+                            Ūtilitātēs.Mūta(verbum.Scrīptum[0]))
+        {
+          const string scrīptum = praevium.Scrīptum switch
+                                  {
+                                    "ā" => "ab",
+                                    "ē" => "ex",
+                                    _ => praevium.Scrīptum
+                                  };
+          Scrībendum.RemoveLast();
+          Scrībendum.Add(Verbum.Cōnstrūctor.Invoke(scrīptum, Catēgoria.Praepositiō));
+        }
+
+        Scrībendum.Add(verbum);
+        return true;
       }
     };
 
