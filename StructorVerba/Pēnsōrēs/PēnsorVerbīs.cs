@@ -15,8 +15,8 @@ namespace Pēnsōrēs
     private static readonly Lazy<PēnsorVerbīs<Verbum>> Verbīs
             = new Lazy(() => new PēnsorVerbīs<Verbum>(lēctor: Verbum.Lēctor));
 
-    public static readonly Func<Ēnumerātiōnēs.Catēgoria, Lazy<PēnsorVerbīs>> Relātor =
-            catēgoria => catēgoria.Īnflexa().Choose(Lemmīs, Verbīs);
+    public static readonly Func<Boolean, Lazy<PēnsorVerbīs>> Relātor =
+            īnflexum => īnflexum.Choose(Lemmīs, Verbīs);
 
     protected PēnsorVerbīs(in Func<JsonElement, Task<Hoc>> lēctor)
                   : base(quaerendī: nameof(Verbum.Scrīptum), tabula: Tabula.Verba,

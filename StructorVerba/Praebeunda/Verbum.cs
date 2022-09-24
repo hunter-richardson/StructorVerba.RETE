@@ -30,9 +30,9 @@ namespace Praebeunda
               };
 
     public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
-              => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32()),
-                        .Catēgoria(Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
-                        .Scrīptum(legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant()));
+              => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32())
+                        .Catēgoria(Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())))
+                        .Scrīptum(legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant());
 
     public static readonly Func<string, Catēgoria, Task<Adverbium>> Cōnstrūctor
               = async (scrīpum, catēgoria) => Builder.Minūtal(HashCode.Combine(scrīptum, catēgoria))
