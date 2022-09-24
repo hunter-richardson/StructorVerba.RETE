@@ -25,14 +25,12 @@ namespace Miscella
     private readonly Lazy<Nūntius> Nūntius = new Lazy<Nūntius<Lēctor>>();
 
     private readonly Func<Task<IEnumerable<Verbum>>> Omnia
-        = async () => IEnumerable.Union(from verbum in IEnumerable.Union(await Verba.Value.Omnia.Invoke(),
-                                                                         await Lemmae.Value.Omnia.Invoke())
-                                        select (verbum.Scrīptum, verbum.Catēgoria),
-                                        from verbum in IEnumerable.Union(await Āctūs.Value.Lemmae.Invoke(),
-                                                                          await Adiectīva.Value.Lemmae.Invoke(),
-                                                                          await Nōmina.Value.Lemmae.Invoke(),
-                                                                          await Prōnōmina.Value.Lemmae.Invoke())
-                                        select verbum);
+        = async () => IEnumerable.Union(await Verba.Value.Omnia.Invoke(),
+                                        await Lemmae.Value.Omnia.Invoke(),
+                                        await Āctūs.Value.Lemmae.Invoke(),
+                                        await Adiectīva.Value.Lemmae.Invoke(),
+                                        await Nōmina.Value.Lemmae.Invoke(),
+                                        await Prōnōmina.Value.Lemmae.Invoke());
 
     public IEnumerable<Verbum> Quaerō(in string quaerendum)
         => from verbum in await Omnia.Invoke()
