@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.JsonElement;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace Miscella
 {
   public static sealed class Extensions
@@ -96,13 +98,41 @@ namespace Miscella
                    where predicate.Negate().Invoke(item)
                    select item;
 
-    public static Boolean IsBetween<T>(this in T number, in T from, in T to,
+    public static Boolean IsBetween<T>(this in T value, in T from, in T to,
                                        in Boolean inclusivity = true) where T : IComparable<T>
     {
       const T[] bounds = new T[] { from, to };
-      return inclusivity.Choose(number >= bounds.Min() && number <= bounds.Max(),
-                                number > bounds.Min() && number < bounds.Max());
+      return inclusivity.Choose(value >= bounds.Min() && value <= bounds.Max(),
+                                value > bounds.Min() && value < bounds.Max());
     }
+
+    public static Boolean IsBetween<T>(this in T value, in T from, in T to,
+                                       in IComparer<T> comparer,
+                                       in Boolean inclusivity = true)
+    {
+      const T[] bounds = new T[] { from, to };
+      const int comparison1 = comparer.Compare(value, from);
+      const int comparison2 = comparer.Compare(value, to);
+      return inclusivity.Choose(comparison1 >= 0 && comparison2 <= 0,
+                                comparison1 > 0 && comparison2 < 0);
+    }
+
+    public static Boolean IsBetween<T>(this in T value, in Tuple<T, T> range,
+                                       in Boolean inclusivity = true) where T : IComparable<T>
+                => value.IsBetween(range.Item1, range.Item2, inclusivity);
+
+    public static Boolean IsBetween<T>(this in T value, in Tuple<T, T> range,
+                                       in IComparer<T> comparer,
+                                       in Boolean inclusivity = true)
+                => value.IsBetween(range.Item1, range.Item2, comparer, inclusivity);
+
+    public void AreEqual(this in Assert assert, in string expected, in string actual,
+                         in StringComparison comparison, in string message = string.Empty)
+                => assert.IsTrue(string.Equals(expected, actual, comparison));
+
+    public void AreNotEqual(this in Assert assert, in string expected, in string actual,
+                            in StringComparison comparison, in string message = string.Empty)
+                => assert.IsFalse(string.Equals(expected, actual, comparison));
 
     public static ISet<T> SingleItemSet(in T obj)
                 where T : IComparable<T> => new HashSet() { obj };
