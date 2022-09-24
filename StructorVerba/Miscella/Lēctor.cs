@@ -39,19 +39,33 @@ namespace Miscella
                                             StringComparison.OrdinalIgnoreCase)
            select verbum;
 
+    public IEnumerable<Verbum> Quaerō(in Catēgoria catēgoria)
+        => from verbum in await Omnia.Invoke()
+           where verbum.Catēgoria is catēgoria
+           select verbum;
+
     public IEnumerable<Verbum> Quaerō(in string quaerendum, in Catēgoria catēgoria)
         => from verbum in await QuaerōAsync(quaerendum: quaerendum)
            where verbum.Catēgoria is catēgoria
            select verbum;
 
-    public Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria)
+    public Verbum? Inveniam(in string quaerendum, in Catēgoria catēgoria)
         => (from verbum in await Omnia.Invoke()
             where verbum.Scrīptum is quaerendum
             where verbum.Catēgoria is catēgoria
             select verbum).FirstOrDefault();
 
-    public async Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria, in Enum[] illa)
+    public Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria, in Enum[] illa)
         => Catēgoria.Īnflexa.Choose(await (await InveniamAsync(quaerendum: quaerendum, catēgoria: catēgoria))?.Īnflexor.Invoke(illa),
                                            await InveniamAsync(quaerendum: quaerendum, catēgoria: catēgoria));
+
+    public Verbum ForsInveniat(in Catēgoria catēgoria)
+    {
+      const Verbum verbum = await (await QuaerōAsync(catēgoria: catēgoria)).Random();
+      return Catēgoria.Īnflexa.Choose(await verbum.FortisĪnflexor.Invoke(), verbum);
+    }
+
+    public Verbum ForsInveniat()
+        => await ForsInveniatAsync(catēgoria: Catēgoria.GetValues().Except(Catēgoria.Numerus).Random());
   }
 }

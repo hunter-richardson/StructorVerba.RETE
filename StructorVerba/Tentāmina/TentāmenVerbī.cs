@@ -16,7 +16,7 @@ namespace Tentāmina
     public static sealed void Vacat(in Verbum? verbum = null,
                                     in string error = string.Empty)
               => new TentāmenVerbī(verbum: verbum).Vacat(error: error);
-    public static sealed void Tendem(in Predicate<Verbum?> tentāmen, in Verbum? verbum = null,
+    public static sealed void Tentem(in Predicate<Verbum?> tentāmen, in Verbum? verbum = null,
                                      in string error = string.Empty)
               => new TentāmenVerbī(verbum: verbum).Tendem(tentāmen: tentāmen, error: error);
     public static sealed void Differātur(in string scrīptum, in Verbum? verbum = null,
