@@ -28,18 +28,18 @@ namespace Miscella
         = async () => IEnumerable.Union(from verbum in IEnumerable.Union(await Verba.Value.Omnia.Invoke(),
                                                                          await Lemmae.Value.Omnia.Invoke())
                                         select (verbum.Scrīptum, verbum.Catēgoria),
-                                        from valōrēs in IEnumerable.Union(await Āctūs.Value.Lemmae.Invoke(),
+                                        from verbum in IEnumerable.Union(await Āctūs.Value.Lemmae.Invoke(),
                                                                           await Adiectīva.Value.Lemmae.Invoke(),
                                                                           await Nōmina.Value.Lemmae.Invoke(),
                                                                           await Prōnōmina.Value.Lemmae.Invoke())
-                                        select valōrēs);
+                                        select verbum);
 
     public IEnumerable<Verbum> Quaerō(in string quaerendum)
         => from verbum in await Omnia.Invoke()
            where (await Ūtilitātēs.ApicumAbditor.Invoke(verbum.Scrīptum))
                                   .Contains(await Ūtilitātēs.ApicumAbditor.Invoke(quaerendum),
                                             StringComparison.OrdinalIgnoreCase)
-           select valōrēs;
+           select verbum;
 
     public IEnumerable<Verbum> Quaerō(in string quaerendum, in Catēgoria catēgoria)
         => from verbum in await QuaerōAsync(quaerendum: quaerendum)
@@ -50,7 +50,7 @@ namespace Miscella
         => (from verbum in await Omnia.Invoke()
             where verbum.Scrīptum is quaerendum
             where verbum.Catēgoria is catēgoria
-            select valōrēs).FirstOrDefault();
+            select verbum).FirstOrDefault();
 
     public async Verbum Inveniam(in string quaerendum, in Catēgoria catēgoria, in Enum[] illa)
         => Catēgoria.Īnflexa.Choose(await (await InveniamAsync(quaerendum: quaerendum, catēgoria: catēgoria))?.Īnflexor.Invoke(illa),
