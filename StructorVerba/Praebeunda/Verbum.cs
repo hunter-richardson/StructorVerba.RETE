@@ -30,22 +30,21 @@ namespace Praebeunda
               };
 
     public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
-              => new Verbum(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32(),
-                            Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
-                            legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant());
+              => Builder.Minūtal(legendum.GetProperty(nameof(Minūtal).ToLower()).GetInt32()),
+                        .Catēgoria(Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
+                        .Scrīptum(legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant()));
 
     public static readonly Func<string, Catēgoria, Task<Adverbium>> Cōnstrūctor
-              = async (scrīpum, catēgoria) => Builder.Gradus(illa.FirstOf<Gradus>())
-                                                     .Minūtal(HashCode.Combine(scrīptum, catēgoria))
-                                                     .Catēgora(catēgoria)
-                                                     .Scrīpum(scrīpum).Build();
+              = async (scrīpum, catēgoria) => Builder.Minūtal(HashCode.Combine(scrīptum, catēgoria))
+                                                     .Catēgoria(catēgoria)
+                                                     .Scrīptum(scrīptum).Build();
     [Required]
     public readonly int Minūtal { get; }
     public readonly Ēnumerātiōnēs.Catēgoria Catēgoria { get; }
 
     [Required]
     [StringLength(25, MinimumLength = 1)]
-    public readonly string Scrīpum { get; }
+    public readonly string Scrīptum { get; }
 
     public virtual string ToString() => (Catēgoria is Catēgoria.Numerus).Choose(Scrīptum, this.Cast<Numerus>().ToString());
 
