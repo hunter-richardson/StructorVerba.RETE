@@ -20,7 +20,7 @@ namespace Tentāmina
     private readonly Task<string[]> Prīmum
               = async () =>
                       {
-                        const string error = $"Verba prōducta {Nōmen} vacat";
+                        const string error = $"Verba prōducta{Nōmen} vacat";
                         Verba.ForEach(verbum => await Scrīptor.Value.Additor.Invoke(verbum));
                         await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: Verba?.Count(), error);
                         await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: Scrīptor.Value.Mēnsura, error);
@@ -35,7 +35,7 @@ namespace Tentāmina
     private readonly Task<Action<Verbum?, string>> Quidque
                 = async (verbum, prōductum) =>
                         {
-                          const string error = $"Prōducta {Nōmen} relica'st prōductiō verbī {prōductum}";
+                          const string error = $"Prōducta{Nōmen} relica'st prōductiō verbī {prōductum}";
                           const TentāmenVerbī tentāmen = new TentāmenVerbī(verbum);
                           await tentāmen.ExsistatAsync(error);
                           await tentāmen.AequāturAsync(prōductum: prōductum, error);
@@ -57,7 +57,7 @@ namespace Tentāmina
                           {
                             await Quidque.Invoke(Verba.ElementAt(i), scrīpta[i].ToLowerInvariant());
                           }
-                          return $"Prōducta {Nōmen}: {await Ultimum.Invoke()}";
+                          return $"Prōducta{Nōmen}: {await Ultimum.Invoke()}";
                         };
     private readonly Enumerable<Verbum?>? Verba { get; }
     private readonly string Locūtiō { get; }
@@ -65,11 +65,11 @@ namespace Tentāmina
     private readonly string Error => $"Verba prōducta {Nōmen} exspectātiōne differt";
 
     private TentāmenVerbōrum(in Enumerable<Verbum?>? verba,
-                            in string locūtiō, in string nōmen = string.Empty)
+                             in string locūtiō, in string nōmen = string.Empty)
     {
       Verba = verba;
       Locūtiō = locūtiō;
-      Nōmen = nōmen;
+      Nōmen = " ".Concat(nōmen);
     }
   }
 }
