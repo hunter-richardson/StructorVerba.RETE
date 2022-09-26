@@ -14,7 +14,7 @@ namespace Tentāmina
     private Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
     private Lazy<Lēctor> Numerātor = Numerātor.Faciendum;
 
-    private Task<Catēgoria, string> Ullum
+    private Task<Catēgoria, Action> Ullum
         = async catēgoria =>
                 {
                   const Verbum verbum = (catēgoria is Catēgoria.Numerus)
@@ -23,52 +23,32 @@ namespace Tentāmina
                   const TentāmenVerbī tentāmen = TentāmenVerbī(verbum);
                   await tentāmen.ExsistatAsync(error: $"Prōductum {catēgoria} vacat");
                   await tentāmen.AequēturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
-                  return $"Prōducta {catēgoria}: {verbum}";
+                  return Console.WriteLine($"Prōducta {catēgoria}: {verbum}");
                 };
 
     [TestMethod]
-    public void Āctus()
-        => Console.Write(await Ullum.Invoke(Catēgoria.Āctus));
-
+    public void Āctus() => await Ullum.Invoke(Catēgoria.Āctus);
     [TestMethod]
-    public void Adiectīvum
-        => Console.Write(await Ullum.Invoke(Catēgoria.Adiectīvum));
-
+    public void Adiectīvum() => await Ullum.Invoke(Catēgoria.Adiectīvum);
     [TestMethod]
-    public void Adverbium
-        => Console.Write(await Ullum.Invoke(Catēgoria.Adverbium));
-
+    public void Adverbium() => await Ullum.Invoke(Catēgoria.Adverbium);
     [TestMethod]
-    public void Coniūnctiō
-        => Console.Write(await Ullum.Invoke(Catēgoria.Coniūnctiō));
-
+    public void Coniūnctiō() => await Ullum.Invoke(Catēgoria.Coniūnctiō);
     [TestMethod]
-    public void Interiectiō
-        => Console.Write(await Ullum.Invoke(Catēgoria.Interiectiō));
-
+    public void Interiectiō() => await Ullum.Invoke(Catēgoria.Interiectiō);
     [TestMethod]
-    public void Nōmen
-        => Console.Write(await Ullum.Invoke(Catēgoria.Nōmen));
-
+    public void Nōmen() => await Ullum.Invoke(Catēgoria.Nōmen);
     [TestMethod]
-    public void Numerāmen
-        => Console.Write(await Ullum.Invoke(Catēgoria.Numerāmen));
-
+    public void Numerāmen() => await Ullum.Invoke(Catēgoria.Numerāmen);
     [TestMethod]
-    public void Numerus
-        => Console.Write(await Ullum.Invoke(Catēgoria.Numerus));
-
+    public void Numerus() => await Ullum.Invoke(Catēgoria.Numerus);
     [TestMethod]
-    public void Praepositiō
-        => Console.Write(await Ullum.Invoke(Catēgoria.Praepositiō));
-
+    public void Praepositiō() => await Ullum.Invoke(Catēgoria.Praepositiō);
     [TestMethod]
-    public void Prōnōmen
-        => Console.Write(await Ullum.Invoke(Catēgoria.Prōnōmen));
-
+    public void Prōnōmen() => await Ullum.Invoke(Catēgoria.Prōnōmen);
     [TestMethod]
     public void Omnia()
         => Catēgoria.GetValues()
-                    .ForEach(valor => Console.Write(await Ullum.Invoke(valor)));
+                    .ForEach(valor => await Ullum.Invoke(valor));
   }
 }
