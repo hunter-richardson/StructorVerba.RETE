@@ -21,8 +21,8 @@ namespace Tentāmina
                                             .Choose(await Numerātor.Value.FortisGenerātor.Invoke(),
                                                     await Lēctor.Value.ForsInveniatAsync(catēgoria));
                   const TentāmenVerbī tentāmen = TentāmenVerbī(verbum);
-                  await tentāmen.ExsistatAsync();
-                  await tentāmen.TentemAsync(hoc => hoc.Catēgoria is catēgoria);
+                  await tentāmen.ExsistatAsync(error: $"Prōductum {catēgoria} vacat");
+                  await tentāmen.AequēturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
                   return $"Prōducta {catēgoria}: {verbum}";
                 };
 

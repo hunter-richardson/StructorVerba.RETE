@@ -5,58 +5,65 @@ using System.Threading.Tasks.Task;
 using Miscella.Scrīptor;
 using Praebeunda.Verbum;
 
+using Lombok.NET.MethodGenerators.AsyncAttribute;
+
 namespace Tentāmina
 {
   public sealed partial class TentāmenVerbōrum
   {
-    public static Task<Action> Agō(in Enumerable<Verbum?>? verba,
-                                   in string locūtiō, in string nōmen = string.Empty)
-              => await new TentāmenVerbōrum(verba, locūtiō, nōmen).Tentātor.Invoke();
+    [Async] public static Task<Action> Agō(in Enumerable<Verbum?>? verba,
+                                           in string locūtiō, in string nōmen = string.Empty)
+                      => await new TentāmenVerbōrum(verba, locūtiō, nōmen).Tentātor.Invoke();
 
     private readonly Lazy<Scrīptor> Scrīptor = Scrīptor.Faciendum;
 
-    private readonly Task<Action> Prīmum
+    private readonly Task<string[]> Prīmum
               = async () =>
                       {
                         const string error = $"Verba prōducta {Nōmen} vacat";
-                        await TentāmenReī.SupersitAsync(0, Verba?.Count(), error);
-                        await TentāmenReī.SupersitAsync(0, Locūtiō.Length, error);
-                        await TentāmenReī.AequāturAsync(Locūtiō.Length, Verba.Count(), Error);
+                        Verba.ForEach(verbum => await Scrīptor.Value.Additor.Invoke(verbum));
+                        await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: Verba?.Count(), error);
+                        await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: Scrīptor.Value.Mēnsura, error);
+                        await TentāmenReī.AequāturAsync(tendandum: Verba.Count(), prōductum: Scrīptor.Value.Mēnsura, Error);
+
+                        const string[] scrīpta = Locūtiō.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: scrīpta.Length, error);
+                        await TentāmenReī.AequāturAsync(tendandum: scrīpta.Length, prōductum: Verba.Count(), Error);
+                        return scrīpta;
                       };
 
-    private readonly Task<Action> Ultimum
-                = async () =>
-                        {
-                          Verba.ForEach(verbum => await Scrīptor.Additor.Invoke(verbum));
-                          await TentāmenReī.AequāturAsync(Locūtiō, Scrīptor.ToString(), Error);
-                        };
-
-    private readonly Task<Action<Verbum?, string>> Ullum
+    private readonly Task<Action<Verbum?, string>> Quidque
                 = async (verbum, prōductum) =>
                         {
                           const string error = $"Prōducta {Nōmen} relica'st prōductiō verbī {prōductum}";
                           const TentāmenVerbī tentāmen = new TentāmenVerbī(verbum);
                           await tentāmen.ExsistatAsync(error);
-                          await tentāmen.AequāturAsync(prōductum, error);
+                          await tentāmen.AequāturAsync(prōductum: prōductum, error);
+                        };
+
+    private readonly Task<string> Ultimum
+                = async () =>
+                        {
+                          const string scrīptum = await Scrīptor.Value.ScrīptumAsync();
+                          await TentāmenReī.AequāturAsync(tendandum: Locūtiō, prōductum: scrīptum, Error);
+                          return scrīptum;
                         };
 
     public readonly Task<Func<string>> Tentātor
                 = async () =>
                         {
-                          await Prīmum.Invoke();
-                          const string[] scrīpta = Locūtiō.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                          const string[] scrīpta = await Prīmum.Invoke();
                           for (int i = 0; i < Verba.Count(); i++)
                           {
-                            await Ullum.Invoke(Verba.ElementAt(i), scrīpta[i].ToLowerInvariant());
+                            await Quidque.Invoke(Verba.ElementAt(i), scrīpta[i].ToLowerInvariant());
                           }
-                          await Ultimum.Invoke();
-                          return $"Prōducta {Nōmen}: {Verba}";
-
+                          return $"Prōducta {Nōmen}: {await Ultimum.Invoke()}";
                         };
     private readonly Enumerable<Verbum?>? Verba { get; }
     private readonly string Locūtiō { get; }
     private readonly string Nōmen { get; }
-    private readonly string Error => $"Verba prōducta {Nōmen} exspectātiōne eius differt";
+    private readonly string Error => $"Verba prōducta {Nōmen} exspectātiōne differt";
+
     private TentāmenVerbōrum(in Enumerable<Verbum?>? verba,
                             in string locūtiō, in string nōmen = string.Empty)
     {

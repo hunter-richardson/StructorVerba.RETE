@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System;
 using System.Linq;
 using System.Collections.Generic.LinkedList;
@@ -27,8 +28,10 @@ namespace Miscella
     private readonly Lazy<Nūntius> Nūntius = new Lazy<Nūntius<Scrīptor>>();
 
     private readonly LinkedList<Verbum> Scrībendum { get; }
+    public readonly int Mēnsura => Scrībendum.Count();
+    public readonly Func<Task<IEnumerable<Verbum>>> Verba = async () => Scrībendum.ToImmutableList();
     public readonly Action Purgātor = Scrībendum.Clear;
-    private readonly Func<Verbum?, Task<Boolean>> Additor = async verbum =>
+    public readonly Func<Verbum?, Task<Boolean>> Additor = async verbum =>
     {
       if (verbum is null)
       {
@@ -86,9 +89,9 @@ namespace Miscella
         => Additor.Invoke(catēgoria.Īnflexa().Choose(Īnflexor.Invoke(catēgoria).Value?.FortisĪnflexor,
                                                      Pēnsor.Invoke(catēgoria).Value?.FortisInventor)
                                              .Invoke());
-    public Boolean ForsAddat(in string lemma, in Catēgoria catēgoria)
+    public Boolean ForsAddat(in Catēgoria catēgoria)
         => Additor.Invoke(Īnflexor.Invoke(catēgoria).Value?.Fortis.Īnflexor.Invoke());
     public Boolean ForsAddat() => ForsAddat(catēgoria: Catēgoria.GetValues().Except(Catēgoria.Numerāmen, Catēgoria.Numerus).Random());
-    public string ToString() => string.Join(' ', Scrībendum.ToArray()).Capitalize();
+    public string Scrīptum() => string.Join(' ', Scrībendum.ToArray()).Capitalize();
   }
 }

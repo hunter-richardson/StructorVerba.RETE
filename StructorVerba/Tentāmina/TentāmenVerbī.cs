@@ -2,6 +2,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Praebeunda.Verbum;
+using Ēnumerātiōnēs.Catēgoria;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttributes;
 
@@ -31,6 +32,12 @@ namespace Tentāmina
       Exsistat(error: error);
       Assert.That.AreEqual(Verbum.Scrīptum, scrīptum,
                            StringComparison.OrdinalIgnoreCase, error);
+    }
+
+    public static sealed void Aequētur(in Catēgoria catēgoria, in string error = string.Empty)
+    {
+      Exsistat(error: error);
+      Assert.That.AreEqual(Verbum.Catēgoria, catēgoria, error);
     }
 
     private readonly Verbum? Verbum { get; }
