@@ -17,10 +17,10 @@ namespace Tentāmina
     private Task<Catēgoria, Action> Ullum
         = async catēgoria =>
                 {
-                  const Verbum verbum = (catēgoria is Catēgoria.Numerus)
+                  const Verbum? verbum = (catēgoria is Catēgoria.Numerus)
                                             .Choose(await Numerātor.Value.FortisGenerātor.Invoke(),
                                                     await Lēctor.Value.ForsInveniatAsync(catēgoria));
-                  const TentāmenVerbī tentāmen = TentāmenVerbī(verbum);
+                  const TentāmenVerbī tentāmen = TentāmenVerbī(verbum: verbum);
                   await tentāmen.ExsistatAsync(error: $"Prōductum {catēgoria} vacat");
                   await tentāmen.AequēturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
                   return Console.WriteLine($"Prōducta {catēgoria}: {verbum}");
