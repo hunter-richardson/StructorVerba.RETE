@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Miscella;
 using Praebeunda.Multiplex.Āctūs;
-using Ēnumerātiōnēs.Catēgoria;
+using Ēnumerātiōnēs;
 
 namespace Tentāmina
 {
@@ -12,15 +12,30 @@ namespace Tentāmina
   public sealed partial class Carthāgō
   {
     private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+
+    private readonly Dictionary<string, Catēgoria> Verba = new Dictionary<string, Catēgoria>()
+                                                                  {
+                                                                    { "cēterum", Catēgoria.Adverbium },
+                                                                    { "cēnsēre", Catēgoria.Āctus },
+                                                                    { "Carthāgō", Catēgoria.Nōmen },
+                                                                    { "esse", Catēgoria.Āctus },
+                                                                    { "dēlēre", Catēgoria.Āctus }
+                                                                  };
     private readonly string Prōdūcendum = "Cēterum cēnseō Carthāginem esse dēlendam";
 
     [TestMethod]
-    public void Prōdūcam() => Console.WriteLine(TentāmenVerbōrum.Agō(Ūtilitātēs.Seriēs(Lēctor.Value.Inveniam("cēterum", Catēgoria.Adverbium),
-                                                                                       Lēctor.Value.Inveniam("cēnsēre", Catēgoria.Āctūs, Modus.Indicātīvus, Vōx.Āctīva, Tempus.Praesēns, Numerālis.Singulāris, Persōna.Prīma),
-                                                                                       Lēctor.Value.Inveniam("Carthāgō", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Accūsātīvus),
-                                                                                       Lēctor.Value.Inveniam("esse", Catēgoria.Āctūs, Modus.Īnfīnītīvus, Tempus.Praesēns),
-                                                                                       Lēctor.Value.Inveniam("dēlēre", Catēgoria.Āctūs, Modus.Participālis, Vōx.Passīva, Tempus.Futūrum)
-                                                                                                  ?.Cast<Āctūs>()?.Relātor.Invoke(Genus.Fēminīnum, Numerālis.Singulāris, Casus.Accūsātīvus)),
-                                                                     Prōdūcendum));
+    public async void Prōdūcam()
+    {
+      await TentāmenVerbōrum.VērificemAsync(Verba);
+
+      const Verbum?[] verba = Ūtilitātēs.Seriēs(await Lēctor.Value.InveniamAsync("cēterum", Catēgoria.Adverbium),
+                                                await Lēctor.Value.InveniamAsync("cēnsēre", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
+                                                                                 Tempus.Praesēns, Numerālis.Singulāris, Persōna.Prīma),
+                                                await Lēctor.Value.InveniamAsync("Carthāgō", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Accūsātīvus),
+                                                await Lēctor.Value.InveniamAsync("esse", Catēgoria.Āctus, Modus.Īnfīnītīvus, Tempus.Praesēns),
+                                         await (await Lēctor.Value.InveniamAsync("dēlēre", Catēgoria.Āctus, Modus.Participālis, Vōx.Passīva, Tempus.Futūrum))
+                                                          ?.Cast<Āctūs>()?.Relātor.Invoke(Genus.Fēminīnum, Numerālis.Singulāris, Casus.Accūsātīvus));
+      Console.WriteLine(await TentāmenVerbōrum.AgōAsync(verba: verba, locūtiō: Prōdūcendum));
+    }
   }
 }

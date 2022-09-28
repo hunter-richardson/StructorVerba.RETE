@@ -65,6 +65,7 @@ namespace Praebeunda
             = () => Numerium switch
                     {
                       Numerium.Adverbium => Catēgoria.Adverbium,
+                      Numerium.Numerus => Catēgoria.Numerus,
                       Numerium.Frāctiōnāle => Catēgoria.Nōmen,
                       _ => Catēgoria.Adiectīvum
                     };

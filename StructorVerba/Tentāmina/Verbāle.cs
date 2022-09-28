@@ -9,7 +9,7 @@ using Ēnumerātiōnēs.Catēgoria;
 namespace Tentāmina
 {
   [TestClass]
-  public sealed partial class TentāmenVerbāle
+  public sealed partial class Verbāle
   {
     private Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
     private Lazy<Lēctor> Numerātor = Numerātor.Faciendum;

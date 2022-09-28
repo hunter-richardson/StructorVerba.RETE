@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks.Task;
 
 using Miscella.Extensions;
+using Ēnumerātiōnēs;
 
 using RomanNumerals.RomanNumeral;
 
@@ -11,6 +12,8 @@ namespace Praebeunda.Simplicia
   [GenerateBuilder]
   public sealed class Numerus : Verbum<Numerus>
   {
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+
     public static readonly Func<int, Task<Numerus>> Generātor
         = async numerus => numerus.IsBetween(Mininum.Item1, Maximum.Item1)
                                   .Choose(Builder.WithMinūtal(numerus).Build(), null);
@@ -18,8 +21,16 @@ namespace Praebeunda.Simplicia
     public static readonly (int, string) Mininum = (1, "I");
     public static readonly (int, string) Maximum = (3999, "MMMCMXCIX");
 
+    public readonly Func<Enum[], Task<Verbum?>> Relātor = async illa =>
+    {
+      const Numerium numerium = illa.FirstOf<Numerium>();
+      return (numerium is Numerium.Numerus)
+                .Choose(this, await Lēctor.Value.InveniamAsync(Scrīptum, Catēgoria.Numerāmen, numerium))
+                                               ?.Cast<Numerāmen>()?.Relātor.Invoke(illa);
+    };
+
     private Numerus([Range(Mininum.Item1, Maximum.Item1)] in int minūtal)
-          : base(minūtal, Ēnumerātiōnēs.Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(minūtal)) { }
+          : base(minūtal, Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(minūtal)) { }
 
     public static Numerus operator +(in Numerus prīmus, in Numerus secundus)
               => new Numerus(minūtal: prīmus.Minūtal + secundus.Minūtal);

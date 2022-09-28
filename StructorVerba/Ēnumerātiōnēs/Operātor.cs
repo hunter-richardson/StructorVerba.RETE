@@ -1,7 +1,7 @@
-using Microsoft.VisualBasic.CompilerServices;
 using System;
 
 using Praebeunda.Simplicia.Numerus;
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttributes;
 
 namespace Ēnumerātiōnēs
 {
@@ -10,37 +10,39 @@ namespace Ēnumerātiōnēs
     Additor, Subtractor, Multiplicātor, Dīvīsor, Mānsor
   }
 
+  [AsyncOverloads]
   public static sealed class Operātōrēs
   {
-    public static string ToString(this Operātor valor) => Enum.GetName<Operātor>(valor).ToLower();
-    public static readonly Func<Operātor, char> Litterator =
-             operātor => operātor switch
-             {
-               Operātor.Additor       => '+',
-               Operātor.Subtractor    => '-',
-               Operātor.Multiplicātor => '*',
-               Operātor.Dīvīsor       => '/',
-               Operātor.Mānsor        => '%',
-             };
+    public static string ToString(this in Operātor valor) => Enum.GetName<Operātor>(valor).ToLower();
 
-    public static readonly Func<Operātor, Func<int, int, int>> Anglicus =
-            operātor => operātor switch
-            {
-              Operātor.Additor       => (prīmus, secundus) => prīmus + secundus,
-              Operātor.Subtractor    => (prīmus, secundus) => prīmus - secundus,
-              Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
-              Operātor.Dīvīsor       => (prīmus, secundus) => prīmus / secundus,
-              Operātor.Mānsor        => (prīmus, secundus) => prīmus % secundus,
-            };
+    public static char Littera(this in Operātor valor)
+              => operātor switch
+                  {
+                    Operātor.Additor => '+',
+                    Operātor.Subtractor => '-',
+                    Operātor.Multiplicātor => '*',
+                    Operātor.Dīvīsor => '/',
+                    Operātor.Mānsor => '%'
+                  };
 
-    public static readonly Func<Operātor, Func<Numerus, Numerus, Numerus>> Anglicus =
-            operātor => operātor switch
-            {
-              Operātor.Additor       => (prīmus, secundus) => prīmus + secundus,
-              Operātor.Subtractor    => (prīmus, secundus) => prīmus - secundus,
-              Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
-              Operātor.Dīvīsor       => (prīmus, secundus) => prīmus / secundus,
-              Operātor.Mānsor        => (prīmus, secundus) => prīmus % secundus,
-            };
+    public static Func<int, int, int?> Anglicus(this in Operātor valor)
+              => operātor switch
+                  {
+                    Operātor.Additor => (prīmus, secundus) => prīmus + secundus,
+                    Operātor.Subtractor => (prīmus, secundus) => prīmus - secundus,
+                    Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+                    Operātor.Dīvīsor => (prīmus, secundus) => prīmus / secundus,
+                    Operātor.Mānsor => (prīmus, secundus) => prīmus % secundus
+                  };
+
+    public static Func<Numerus, Numerus, Numerus?> Rōmānus(this in Operātor valor)
+              => operātor switch
+                  {
+                    Operātor.Additor => (prīmus, secundus) => prīmus + secundus,
+                    Operātor.Subtractor => (prīmus, secundus) => prīmus - secundus,
+                    Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+                    Operātor.Dīvīsor => (prīmus, secundus) => prīmus / secundus,
+                    Operātor.Mānsor => (prīmus, secundus) => prīmus % secundus
+                  };
   }
 }

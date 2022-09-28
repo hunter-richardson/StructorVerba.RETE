@@ -9,7 +9,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttributes;
 namespace Tentāmina
 {
   [AsyncOverloads]
-  public sealed partial class TentāmenVerbī
+  public partial class TentāmenVerbī
   {
     public static sealed void Exsistat(in Verbum? verbum = null,
                                        in string error = string.Empty)
@@ -40,7 +40,7 @@ namespace Tentāmina
       Assert.That.AreEqual(Verbum.Catēgoria, catēgoria, error);
     }
 
-    private readonly Verbum? Verbum { get; }
+    protected readonly Verbum? Verbum { get; }
 
     public TentāmenVerbī(in Verbum? verbum = null)
               => Verbum = verbum;
@@ -60,7 +60,7 @@ namespace Tentāmina
     public sealed void Differātur(in string scrīptum, in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.AreNotEqual(Verbum, scrīptum,
+      Assert.That.AreNotEqual(Verbum.Scrīptum, scrīptum,
                               StringComparison.OrdinalIgnoreCase, error);
     }
 

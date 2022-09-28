@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Miscella.Extensions;
 using Praebeunda.Verbum;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttributes;
@@ -122,70 +123,70 @@ namespace Tentāmina
                                 in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(comparātor.Equals(prōductum, tentandum), error);
+      Assert.That.IsTrue(comparātor.Equals(Prōductum, tentandum), error);
     }
 
     public sealed void Differātur(in Hoc tentandum, in IEqualityComparer<Hoc> comparātor,
                                   in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsFalse(comparātor.Equals(prōductum, tentandum), error);
+      Assert.That.IsFalse(comparātor.Equals(Prōductum, tentandum), error);
     }
 
     public sealed void Intersit(in Tuple<Hoc, Hoc> tentanda, in IComparer<Hoc> comparātor,
                                 in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum.IsBetween(tentanda, comparātor, false), error);
+      Assert.That.IsTrue(Prōductum.IsBetween(tentanda, comparātor, false), error);
     }
 
     public sealed void Extrāsit(in Tuple<Hoc, Hoc> tentanda, in IComparer<Hoc> comparātor,
                                 in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsFalse(prōductum.IsBetween(tentanda, comparātor, false), error);
+      Assert.That.IsFalse(Prōductum.IsBetween(tentanda, comparātor, false), error);
     }
 
     public sealed void Subsit(in Hoc tentandum, in IComparer<Hoc> comparātor,
                               in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(comparātor.Compare(prōductum, tentandum) < 0, error);
+      Assert.That.IsTrue(comparātor.Compare(Prōductum, tentandum) < 0, error);
     }
 
     public sealed void Supersit(in Hoc tentandum, in IComparer<Hoc> comparātor,
                                 in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(comparātor.Compare(prōductum, tentandum) > 0, error);
+      Assert.That.IsTrue(comparātor.Compare(Prōductum, tentandum) > 0, error);
     }
 
     public sealed void IntersitAequāturve(in Tuple<Hoc, Hoc> tendanda, in IComparer<Hoc> comparātor,
                                           in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum.IsBetween(tendanda, comparātor, true), error);
+      Assert.That.IsTrue(Prōductum.IsBetween(tendanda, comparātor, true), error);
     }
 
     public sealed void ExtrāsitAequāturve(in Tuple<Hoc, Hoc> tentanda, in IComparer<Hoc> comparātor,
                                           in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsFalse(prōductum.IsBetween(tentanda, comparātor, true), error);
+      Assert.That.IsFalse(Prōductum.IsBetween(tentanda, comparātor, true), error);
     }
 
     public sealed void SubsitAequāturve(in Hoc tentandum, in IComparer<Hoc> comparātor,
                                         in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(comparātor.Compare(prōductum, tentandum) <= 0, error);
+      Assert.That.IsTrue(comparātor.Compare(Prōductum, tentandum) <= 0, error);
     }
 
     public sealed void SupersitAequāturve(in Hoc tentandum, in IComparer<Hoc> comparātor,
                                           in string error = string.Empty)
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(comparātor.Compare(prōductum, tentandum) >= 0, error);
+      Assert.That.IsTrue(comparātor.Compare(Prōductum, tentandum) >= 0, error);
     }
 
     public sealed void Aequētur(in Hoc tentandum,
@@ -193,7 +194,7 @@ namespace Tentāmina
               where Hoc : IEquatable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.AreEqual(prōductum, tentandum, error);
+      Assert.That.AreEqual(Prōductum, tentandum, error);
     }
 
     public sealed void Differātur(in Hoc tentandum,
@@ -201,7 +202,7 @@ namespace Tentāmina
               where Hoc : IEquatable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.AreNotEqual(prōductum, tentandum, error);
+      Assert.That.AreNotEqual(Prōductum, tentandum, error);
     }
 
     public sealed void Intersit(in Tuple<Hoc, Hoc> tentandum,
@@ -209,7 +210,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum.IsBetween(tentandum, false), error);
+      Assert.That.IsTrue(Prōductum.IsBetween(tentandum, false), error);
     }
 
     public sealed void Extrāsit(in Tuple<Hoc, Hoc> tentandum,
@@ -217,7 +218,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsFalse(prōductum.IsBetween(tentandum, false), error);
+      Assert.That.IsFalse(Prōductum.IsBetween(tentandum, false), error);
     }
 
     public sealed void Subsit(in Hoc tentandum,
@@ -225,7 +226,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum < tentandum, error);
+      Assert.That.IsTrue(Prōductum < tentandum, error);
     }
 
     public sealed void Supersit(in Hoc tentandum,
@@ -233,7 +234,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum > tentandum, error);
+      Assert.That.IsTrue(Prōductum > tentandum, error);
     }
 
     public sealed void IntersitAequāturve(in Tuple<Hoc, Hoc> tentanda,
@@ -241,7 +242,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum.IsBetween(tentanda, true), error);
+      Assert.That.IsTrue(Prōductum.IsBetween(tentanda, true), error);
     }
 
     public sealed void ExtrāsitAequāturve(in Tuple<Hoc, Hoc> tentanda,
@@ -249,7 +250,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsFalse(prōductum.IsBetween(tentanda, true), error);
+      Assert.That.IsFalse(Prōductum.IsBetween(tentanda, true), error);
     }
 
     public sealed void SubsitAequāturve(in Hoc tentandum,
@@ -257,7 +258,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum <= tentandum, error);
+      Assert.That.IsTrue(Prōductum <= tentandum, error);
     }
 
     public sealed void SupersitAequāturve(in Hoc tentandum,
@@ -265,7 +266,7 @@ namespace Tentāmina
               where Hoc : IComparable<Hoc>
     {
       Exsistat(error: error);
-      Assert.That.IsTrue(prōductum >= tentandum, error);
+      Assert.That.IsTrue(Prōductum >= tentandum, error);
     }
   }
 }

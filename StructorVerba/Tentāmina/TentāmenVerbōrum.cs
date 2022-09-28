@@ -1,21 +1,35 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks.Task;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Miscella.Scrīptor;
+using Miscella;
 using Praebeunda.Verbum;
+using Ēnumerātiōnēs.Catēgoria;
 
-using Lombok.NET.MethodGenerators.AsyncAttribute;
+using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 
 namespace Tentāmina
 {
+  [AsyncOverloads]
   public sealed partial class TentāmenVerbōrum
   {
-    [Async] public static Task<Action> Agō(in Enumerable<Verbum?>? verba,
-                                           in string locūtiō, in string nōmen = string.Empty)
-                      => await new TentāmenVerbōrum(verba, locūtiō, nōmen).Tentātor.Invoke();
-
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
     private readonly Lazy<Scrīptor> Scrīptor = Scrīptor.Faciendum;
+
+    public static Action Agō(in Enumerable<Verbum?>? verba,
+                             in string locūtiō, in string nōmen = string.Empty)
+              => () => await new TentāmenVerbōrum(verba, locūtiō, nōmen).Tentātor.Invoke();
+
+    public static Action Vērificem(in Dictionary<string, Catēgoria> verba)
+              => () => verba.ForEach(linea =>
+                                      {
+                                        Assert.That.IsFalse(string.IsNullOrWhiteSpace(linea.Key), "Valor quaestiōnis vacat");
+                                        const string error = $"Quaestiō relicta'st valōribus {linea.Key} et {linea.Value}";
+                                        const IEnumerable<Verbum?>? seriēs = await Lēctor.Value.QuaerōAsync(linea.Key, linea.Value);
+                                        await TentāmenReī.ExsistatAsync(prōductum: seriēs, error: error);
+                                        await TentāmenReī.SupersitAsync(tendandum: 0, prōductum: seriēs.Count(), error: error);
+                                      });
 
     private readonly Task<string[]> Prīmum
               = async () =>
