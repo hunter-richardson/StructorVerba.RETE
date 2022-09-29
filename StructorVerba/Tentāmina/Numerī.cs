@@ -1,6 +1,6 @@
-using System.Buffers;
 using Internal;
 using System;
+using System.Threading.Tasks.Task;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Miscella.Numerātor;
@@ -19,7 +19,7 @@ namespace Tentāmina
     private readonly int XLII_Numerus = 42;
     private readonly string XLII_Scrīptus = "XLII";
 
-    private readonly Action<Operātor, Tuple<int, int>> Āctor = (operātor, anglicī) =>
+    private readonly Task<Action<Operātor, Tuple<int, int>>> Āctor = async (operātor, anglicī) =>
     {
       const int? anglicus = await operātor.AnglicusAsync().Invoke(anglicī.Item1, anglicī.Item2);
       const Tuple<string, string, string, string> errorōrēs = ($"Prōductā {operātor} relicta'st prōductiō numerī {anglicī.Item1}",
@@ -28,11 +28,11 @@ namespace Tentāmina
                                                                $"Prōducta {operātor} relica'st prōductiō numerī");
       const Tuple<Numerus?, Numerus?, Numerus?> rōmānī = (await Numerus.Value.Generātor.Invoke(anglicī.Item1),
                                                           await Numerus.Value.Generātor.Invoke(anglicī.Item2), null);
-      await TentāmenReī.ExsistatAsync(anglicus, errorōrēs.Item4);
-      await TentāmenNumerī.AequēturAsync(anglicī.Item1, prīmus, errorōrēs.Item1);
-      await TentāmenNumerī.AequēturAsync(anglicī.Item2, secundus, errorōrēs.Item2);
+      await Necesse.Quod.ExsistitAsync(anglicus, errorōrēs.Item4);
+      await Necesse.Quod.AequāturAsync(anglicī.Item1, prīmus, errorōrēs.Item1);
+      await Necesse.Quod.AequāturAsync(anglicī.Item2, secundus, errorōrēs.Item2);
       rōmānī.Item3 = await operātor.RōmānusAsync().Invoke(rōmānī.Item1, rōmānī.Item2);
-      await TentāmenNumerī.AequēturAsync(anglicus, rōmānī.Item3, errorōrēs.Item3);
+      await Necesse.Quod.AequāturAsync(anglicus, rōmānī.Item3, errorōrēs.Item3);
       const char littera = operātor.Littera();
       Console.WriteLine($"{anglicī.Item1} = {rōmānī.Item1}");
       Console.WriteLine($"{anglicī.Item2} = {rōmānī.Item2}");
@@ -45,9 +45,8 @@ namespace Tentāmina
     {
       const string error = $"Prōductā conversiōnis relicta'st prōductiō numerī {XLII_Numerus}";
       const Numerus? numerus = Numerus.Value.Generātor.Invoke(XLII_Numerus);
-      const TentāmenNumerī tentāmen = new TentāmenNumerī(numerus: numerus);
-      await tentāmen.AequēturAsync(XLII_Numerus, error);
-      await tentāmen.AequēturAsync(XLII_Scrīptus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(XLII_Numerus, numerus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(XLII_Scrīptus, numerus, error);
       Console.WriteLine($"{numerus.Minūtal} = {numerus.Scrīptum}");
     }
 
@@ -56,9 +55,8 @@ namespace Tentāmina
     {
       const string error = $"Prōductā conversiōnis relicta'st prōductiō numerī {XLII_Scrīptus}";
       const Numerus? numerus = Numerātor.Value.Generātor.Invoke(XLII_Scrīptus);
-      const TentāmenNumerī tentāmen = new TentāmenNumerī(numerus: numerus);
-      await tentāmen.AequēturAsync(XLII_Scrīptus, error);
-      await tentāmen.AequēturAsync(XLII_Numerus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(XLII_Scrīptus, numerus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(XLII_Numerus, numerus, error);
       Console.WriteLine($"{numerus.Scrīptum} = {numerus.Minūtal}");
     }
 
@@ -69,9 +67,8 @@ namespace Tentāmina
       const int arabicus = new Random().Next(Numerus.Minimum.Item1, Numerus.Maximum.Item1);
       const string rōmānus = RomanNumeral.ToRomanNumeral(arabicus);
       const Numerus? numerus = Numerus.Value.Generātor.Invoke(arabicus);
-      const TentāmenNumerī tentāmen = new TentāmenNumerī(numerus: numerus);
-      await tentāmen.AequēturAsync(arabicus, error);
-      await tentāmen.AequēturAsync(rōmānus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(arabicus, numerus, error);
+      await Necesse.Quod.AequāturAsync.AequēturAsync(rōmānus, numerus, error);
       Console.WriteLine($"{numerus.Minūtal} = {numerus.Scrīptum}");
       Console.WriteLine($"{numerus.Scrīptum} = {numerus.Minūtal}");
     }

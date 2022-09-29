@@ -1,5 +1,6 @@
 using Internal;
 using System;
+using System.Threading.Tasks.Task;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Miscella;
@@ -14,15 +15,14 @@ namespace Tentāmina
     private Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
     private Lazy<Lēctor> Numerātor = Numerātor.Faciendum;
 
-    private Task<Catēgoria, Action> Ullum
+    private Func<Catēgoria, Task> Ullum
         = async catēgoria =>
                 {
                   const Verbum? verbum = (catēgoria is Catēgoria.Numerus)
                                             .Choose(await Numerātor.Value.FortisGenerātor.Invoke(),
                                                     await Lēctor.Value.ForsInveniatAsync(catēgoria));
-                  const TentāmenVerbī tentāmen = TentāmenVerbī(verbum: verbum);
-                  await tentāmen.ExsistatAsync(error: $"Prōductum {catēgoria} vacat");
-                  await tentāmen.AequēturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
+                  await Necesse.Quod.ExsistitAsync(verbum: verbum, error: $"Prōductum {catēgoria} vacat");
+                  await Necesse.Quod.AequāturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
                   return Console.WriteLine($"Prōducta {catēgoria}: {verbum}");
                 };
 

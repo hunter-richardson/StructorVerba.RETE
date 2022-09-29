@@ -29,14 +29,16 @@ namespace Tentāmina
     {
       await TentāmenVerbōrum.VērificemAsync(Verba);
 
-      const Verbum?[] verba = Ūtilitātēs.Seriēs(await Lēctor.Value.InveniamAsync("ecce", Catēgoria.Interiectiō),
-                                                await Lēctor.Value.InveniamAsync("lingua", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Nōminātīvus),
-                                                await Lēctor.Value.InveniamAsync("Latīnum", Catēgoria.Adiectīvum, Genus.Fēminīnum, Numerālis.Singulāris, Casus.Nōminātīvus),
-                                                await Lēctor.Value.InveniamAsync("placēre", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
-                                                                                 Tempus.Praesēns, Numerālis.Singulāris, Persōna.Tertia),
-                                                await Lēctor.Value.InveniamAsync("prōdesse", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
-                                                                                 Tempus.Praesēns, Numerālis.Singulāris, Persōna.Tertia, Encliticum.Coniugāns));
-      Console.WriteLine(await TentāmenVerbōrum.AgōAsync(verba: verba, locūtiō: Prōdūcendum));
+      const Verbum? ecce = await Lēctor.Value.InveniamAsync("ecce", Catēgoria.Interiectiō),
+                  lingua = await Lēctor.Value.InveniamAsync("lingua", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Nōminātīvus),
+                  Latīna = await Lēctor.Value.InveniamAsync("Latīnum", Catēgoria.Adiectīvum, Genus.Fēminīnum, Numerālis.Singulāris, Casus.Nōminātīvus),
+                  placet = await Lēctor.Value.InveniamAsync("placēre", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
+                                                            Tempus.Praesēns, Numerālis.Singulāris, Persōna.Tertia),
+              prōdestque = await Lēctor.Value.InveniamAsync("prōdesse", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
+                                                            Tempus.Praesēns, Numerālis.Singulāris, Persōna.Tertia, Encliticum.Coniugāns);
+
+      const Verbum?[] verba = Ūtilitātēs.Seriēs(ecce, lingua, Latīna, placet, prōdestque);
+      Console.WriteLine(await Locūtiōnis.AgōAsync(verba: verba, locūtiō: Prōdūcendum));
     }
   }
 }

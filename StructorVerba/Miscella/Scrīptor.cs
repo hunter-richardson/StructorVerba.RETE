@@ -1,10 +1,11 @@
-using System.Collections.Immutable;
 using System;
-using System.Linq;
 using System.Collections.Generic.LinkedList;
+using System.Collections.Immutable;
+using System.Linq;
 
 using Nūntiī.Nūntius;
 using Officīnae;
+using Praebeunda.Multiplex.Āctus;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
@@ -33,7 +34,10 @@ namespace Miscella
     public readonly Action Purgātor = Scrībendum.Clear;
     public readonly Func<Verbum?, Task<Boolean>> Additor = async verbum =>
     {
-      if (verbum is null)
+      if (Ūtilitātēs.Ulla(verbum is null,
+          verbum?.Catēgoria is Catēgoria.Numerāmen,
+          Ūtilitātēs.Omnia(verbum?.Catēgoria is Catēgoria.Āctus,
+                           verbum?.Cast<Āctus>()?.Modus is Modus.Participālis)))
       {
         return false;
       }

@@ -28,14 +28,16 @@ namespace Tentāmina
     {
       await TentāmenVerbōrum.VērificemAsync(Verba);
 
-      const Verbum?[] verba = Ūtilitātēs.Seriēs(await Lēctor.Value.InveniamAsync("cēterum", Catēgoria.Adverbium),
-                                                await Lēctor.Value.InveniamAsync("cēnsēre", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
-                                                                                 Tempus.Praesēns, Numerālis.Singulāris, Persōna.Prīma),
-                                                await Lēctor.Value.InveniamAsync("Carthāgō", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Accūsātīvus),
-                                                await Lēctor.Value.InveniamAsync("esse", Catēgoria.Āctus, Modus.Īnfīnītīvus, Tempus.Praesēns),
-                                         await (await Lēctor.Value.InveniamAsync("dēlēre", Catēgoria.Āctus, Modus.Participālis, Vōx.Passīva, Tempus.Futūrum))
-                                                          ?.Cast<Āctūs>()?.Relātor.Invoke(Genus.Fēminīnum, Numerālis.Singulāris, Casus.Accūsātīvus));
-      Console.WriteLine(await TentāmenVerbōrum.AgōAsync(verba: verba, locūtiō: Prōdūcendum));
+      const Verbum? cēterum = await Lēctor.Value.InveniamAsync("cēterum", Catēgoria.Adverbium),
+                     cēnseō = await Lēctor.Value.InveniamAsync("cēnsēre", Catēgoria.Āctus, Modus.Indicātīvus, Vōx.Āctīva,
+                                                              Tempus.Praesēns, Numerālis.Singulāris, Persōna.Prīma),
+                Carthāginem = await Lēctor.Value.InveniamAsync("Carthāgō", Catēgoria.Nōmen, Numerālis.Singulāris, Casus.Accūsātīvus),
+                       esse = await Lēctor.Value.InveniamAsync("esse", Catēgoria.Āctus, Modus.Īnfīnītīvus, Tempus.Praesēns),
+            dēlendam = await (await Lēctor.Value.InveniamAsync("dēlēre", Catēgoria.Āctus, Modus.Participālis, Vōx.Passīva, Tempus.Futūrum))
+                                               ?.Cast<Āctūs>()?.Relātor.Invoke(Genus.Fēminīnum, Numerālis.Singulāris, Casus.Accūsātīvus);
+
+      const Verbum?[] verba = Ūtilitātēs.Seriēs(cēterum, cēnseō, Carthāginem, esse, dēlendam);
+      Console.WriteLine(await Locūtiōnis.AgōAsync(verba: verba, locūtiō: Prōdūcendum));
     }
   }
 }
