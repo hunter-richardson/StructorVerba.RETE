@@ -35,7 +35,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                 (Gradus.Superlātīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum,
                 (Gradus.Superlātīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
                 (_, Genus.Neutrum) => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
-                (_, _) => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                (_, _) => ĪnflexorEffectusTertiusNōminibusCumGenitīvōAblātīvōqueVariō.Faciendum,
                 _ => null
               };
   }
