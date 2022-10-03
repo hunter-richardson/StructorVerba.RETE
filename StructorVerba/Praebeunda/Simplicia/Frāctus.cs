@@ -29,7 +29,7 @@ namespace Praebeunda.Simplicia
       (int, int) valōrēs = (frāctus.Numerator, frāctus.Denominator);
       if(valōrēs.Item1 is 1)
       {
-        const Enum[] ista = illa.Concat(new[] { Numerium.Frāctiōnāle });
+        const Enum[] ista = illa.Concat(Numerium.Frāctiōnāle.SingleItemSet());
         return Numerus.Generātor.Invoke(valōrēs.Item2)?.Relātor.Invoke(ista);
       }
       else
