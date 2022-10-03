@@ -14,7 +14,8 @@ namespace Pēnsōrēs.Īnflectenda
   public abstract class PēnsorĪnflectendīs<Hoc, Illud> : Pēnsor<Hoc>
            where Hoc : Īnflectendum<Hoc, Illud> where Illud : Īnflexum<Hoc>
   {
-    // TODO: convert Pensor from Categoria and Versio
+    public static readonly string ColumnaVersiōnis => Pēnsor.NōmenātorColumnae.Invoke(nameof(Versiō));
+
     public readonly Func<string, Task<Enum?>> Versor
               = async versiō => (from valor in Ūtilitātēs.Complānō(ComparātorValōrum,
                                                                    PēnsorAdverbiīs.Versiō.GetValues(),

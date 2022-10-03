@@ -12,6 +12,7 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Catēgoriae
   {
+    public static string Columna() => await Pēnsor.NōmenātorColumnae.Invoke(typeof(Catēgoria).Name);
     public static string ToString(this Catēgoria valor) => Enum.GetName<Catēgoria>(valor).ToLower();
     public static readonly Func<JsonElement, Catēgoria> Dēfīnītor = lēctum =>
              (from valor in Enum.GetValues(Catēgoria)

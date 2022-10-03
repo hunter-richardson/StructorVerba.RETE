@@ -9,6 +9,7 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Facta
   {
+    public static string Columna(this Factum valor) => await Pēnsor.NōmenātorColumnae.Invoke(valor.ToString());
     public static string ToString(this Factum valor) => Enum.GetName<Factum>(valor).ToLower();
   }
 }

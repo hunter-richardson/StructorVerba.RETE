@@ -48,8 +48,8 @@ namespace Praebeunda.Simplicia
     public readonly Enum? Versiō { get; }
 
     public static readonly Func<JsonElement, Lemma> Lēctor = legendum =>
-       new Lemma(Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())),
-                 legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString(),
-                 PēnsorĪnflectendīs.Versor.Invoke(legendum.GetProperty(nameof(Versiō).ToLower())));
+       new Lemma(Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(Ēnumerātiōnēs.Catēgoriae.Columna())),
+                 legendum.GetProperty(Pēnsor.NōmenātorColumnae.Invoke(nameof(Scrīptum))).GetString(),
+                 PēnsorĪnflectendīs.Versor.Invoke(legendum.GetProperty(PēnsorĪnflectendīs.ColumnaVersiōnis).GetString()));
   }
 }

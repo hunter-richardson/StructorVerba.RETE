@@ -1,6 +1,7 @@
 using System;
 
 using Miscella.Extensions;
+using Pēnsōrēs.Pēnsor;
 
 namespace Ēnumerātiōnēs {
   public enum Numerium {
@@ -9,6 +10,7 @@ namespace Ēnumerātiōnēs {
 
   public static sealed class Numeria
   {
+    public static string Columna(this Numerium valor) => await Pēnsor.NōmenātorColumnae.Invoke(valor.ToString());
     public static string ToString(this Numerium valor) => Enum.GetName<Numerium>(valor).ToLower();
   }
 }

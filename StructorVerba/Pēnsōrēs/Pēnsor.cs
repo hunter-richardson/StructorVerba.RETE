@@ -50,6 +50,9 @@ namespace Pēnsōrēs
       return cliēns;
     });
 
+    public static Func<string, Task<string>> NōmenātorColumnae
+        = async columna => await Ūtilitātēs.ApicumAbditor.Invoke(columna.ToLowerInvariant());
+
     private readonly Func<Task<Enumerable<JsonElement>>> Tabulātor = async () =>
     {
       Nūntius.GarriōAsync("Tabulam aperiō");
@@ -75,7 +78,7 @@ namespace Pēnsōrēs
                      in Lazy<Nūntius<Pēnsor<Hoc>>> nūntius,
                      in Func<JsonElement, Task<Hoc>> lēctor)
     {
-      Quaerendī = quaerendī.ToLower();
+      Quaerendī = NōmenātorColumnae.Invoke(quaerendī);
       Nōmen = Nōminātor.Invoke(Tabula);
       Nūntius = nūntius.Value;
       Lēctor = lēctor;
@@ -108,7 +111,7 @@ namespace Pēnsōrēs
 
     public sealed Hoc? Pendam(in int minūtal)
         => (from linea in await Tabulātor.Invoke()
-            from numerus in linea.GetProperty(nameof(minūtal))?.GetInt32()
+            from numerus in linea.GetProperty(NōmenātorColumnae.Invoke(nameof(minūtal)))?.GetInt32()
             where minūtal == numerus
             select await LegamAsync(legendum: linea)).FirstOrDefault();
 
@@ -134,7 +137,7 @@ namespace Pēnsōrēs
 
     public sealed Hoc? ForsPendat(in Catēgoria catēgoria)
         => (from linea in await Tabulātor.Invoke()
-            where string.Equals(catēgoria.ToString(), linea.GetProperty(nameof(catēgoria))?.GetString())
+            where string.Equals(catēgoria.ToString(), linea.GetProperty(NōmenātorColumnae.Invoke(nameof(catēgoria)))?.GetString())
             select await LegamAsync(legendum: linea)).Random();
   }
 }

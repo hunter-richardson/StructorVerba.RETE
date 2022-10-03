@@ -21,7 +21,7 @@ namespace Praebeunda
                         where Hoc : Verbum<Hoc>
   {
     public static readonly Func<JsonElement, Task<Verbum>> LēctorSimplicibus = async legendum
-              => Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower()).GetString()) switch
+              => Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(Ēnumerātiōnēs.Catēgoriae.Columna()).GetString()) switch
               {
                 Catēgoria.Coniūnctiō  => Coniūnctiō.Lēctor.Invoke(legendum),
                 Catēgoria.Interiectiō => Interiectiō.Lēctor.Invoke(legendum),
@@ -30,8 +30,9 @@ namespace Praebeunda
               };
 
     public static readonly Func<JsonElement, Task<Verbum>> Lēctor = async legendum
-              => Builder.Catēgoria(Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(nameof(Catēgoria).ToLower())))
-                        .Scrīptum(legendum.GetProperty(nameof(Scrīptum).ToLower()).GetString().ToLowerInvariant());
+              => Builder.Catēgoria(Ēnumerātiōnēs.Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(Ēnumerātiōnēs.Catēgoriae.Columna()).GetString()))
+                        .Scrīptum(legendum.GetProperty(Pēnsor.NōmenātorColumnae.Invoke(nameof(Scrīptum))).GetString().ToLowerInvariant())
+                        .Build();
 
     public static readonly Func<string, Catēgoria, Task<Adverbium>> Cōnstrūctor
               = async (scrīpum, catēgoria) => Builder.Catēgoria(catēgoria)

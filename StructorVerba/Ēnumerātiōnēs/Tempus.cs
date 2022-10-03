@@ -11,6 +11,7 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Tempora
   {
+    public static string Columna(this Tempus valor) => await Pēnsor.NōmenātorColumnae.Invoke(valor.ToString());
     public static string ToString(this Tempus valor) => Enum.GetName<Tempus>(valor).ToLower().Replace('_', ' ');
   }
 }

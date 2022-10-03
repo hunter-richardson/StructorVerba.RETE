@@ -11,6 +11,7 @@ namespace Ēnumerātiōnēs
 
   public static sealed class Genera
   {
+    public static string Columna(this Genus valor) => await Pēnsor.NōmenātorColumnae.Invoke(valor.ToString());
     public static string ToString(this Genus valor) => Enum.GetName<Genus>(valor).ToLower();
   }
 }
