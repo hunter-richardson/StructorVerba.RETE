@@ -34,7 +34,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                 (Gradus.Superlātīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Lazy,
                 (Gradus.Superlātīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Lazy,
                 (_, Genus.Neutrum) => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō.Lazy,
-                (_, _) => ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō.Lazy,
+                (_, _) => ĪnflexorEffectusTertiusNōminibusCumGenitīvōAblātīvōqueVariō.Lazy,
                 _ => null
               };
   }

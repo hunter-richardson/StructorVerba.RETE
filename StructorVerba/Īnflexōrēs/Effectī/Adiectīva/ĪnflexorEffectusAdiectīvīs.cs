@@ -35,9 +35,11 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                             => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Lazy,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
                                             => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Lazy,
-                                  Versiō.Prōnōminālis => null,
-                                  Versiō.Prōnōminālis_Cum_Litterā_Ē => null,
-                                  Versiō.Prōnōminālis_Sine_Litterā_Ē => null,
+                                  Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Nominātīvō_Genitīvōque_Variō
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumNominātīvōGenitīvōqueVariō.Lazy,
+                                  Versiō.Prōnōminālis => ĪnflexorEffectusPrōnōminālisAdiectīvīs.Lazy,
+                                  Versiō.Prōnōminālis_Cum_Litterā_Ē => ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ.Lazy,
+                                  Versiō.Prōnōminālis_Sine_Litterā_Ē => ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ.Lazy,
                                   _ => new Lazy(null)
                                 };
 

@@ -13,7 +13,9 @@ namespace Pēnsōrēs.Īnflectenda
       Aut_Prīmus_Aut_Secundus_Aut_Tertius, Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē,
       Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē, Aut_Tertius_Aut_Prīmus_Aut_Secundus,
       Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō, Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō,
-      Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō, Prōnōminālis, Prōnōminālis_Cum_Litterā_Ē, Prōnōminālis_Sine_Litterā_Ē,
+      Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō,
+      Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Nominātīvō_Genitīvōque_Variō,
+      Prōnōminālis, Prōnōminālis_Cum_Litterā_Ē, Prōnōminālis_Sine_Litterā_Ē,
       Incomparābilis_Aut_Prīmus_Aut_Secundus, Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus,
       Incomparābilis_Aut_Prīmus_Aut_Secundus_Cum_Litterā_Ē, Incomparābilis_Aut_Prīmus_Aut_Secundus_Sine_Litterā_Ē,
       Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō, Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō,
@@ -49,6 +51,7 @@ namespace Pēnsōrēs.Īnflectenda
                           Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō or
                           Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō or
                           Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō or
+                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Nominātīvō_Genitīvōque_Variō or
                           Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō or
                           Versiō.Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō or
                           Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Ablātīvōque_Variō
