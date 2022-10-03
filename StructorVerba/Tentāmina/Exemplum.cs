@@ -12,7 +12,7 @@ namespace Tentāmina
   [TestClass]
   public sealed partial class Carthāgō
   {
-    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
 
     private readonly Dictionary<string, Catēgoria> Verba = new Dictionary<string, Catēgoria>()
                                                                   {

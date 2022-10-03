@@ -6,16 +6,14 @@ using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusQuārtusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusQuārtusĀctibus> Faciendum = new Lazy(() => Instance);
-
     private ĪnflexorEffectusQuārtusĀctibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusĀctibus>>(),
                (āctus, illa) => (illa.FirstOf<Modus>(), illa.FirstOf<Vōx>(), illa.FirstOf<Tempus>()) switch

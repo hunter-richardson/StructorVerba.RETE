@@ -9,12 +9,10 @@ using RomanNumerals.RomanNumeral;
 
 namespace Nūntiī
 {
-  [Singleton]
+  [Lazy]
   [NoArgsConstructor(Access.Private)]
   internal sealed partial class Temporis : SimpleDateFormatter
   {
-    public Lazy<Temporis> Faciendum = new Lazy(() => Instance);
-
     private readonly IEnumerable<string> Diēs = from diēs in DiēsHebdomadis.GetValues()
                                                 select diēs.ToString();
     private readonly IEnumerable<string> Mēnsae = from mēnsa in Mēnsa.GetValues()

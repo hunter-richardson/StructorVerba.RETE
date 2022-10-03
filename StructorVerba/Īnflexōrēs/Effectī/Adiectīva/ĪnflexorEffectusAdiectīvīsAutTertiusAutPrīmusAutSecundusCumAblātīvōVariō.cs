@@ -8,16 +8,15 @@ using Īnflexōrēs.Effectī.Nōmina;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō
             : ĪnflexorEffectusAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
   {
-    public static readonly Lazy<ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō> Faciendum = new Lazy(() => Instance);
     private ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō()
         : base(new Lazy<Nūntius<ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō>>(),
                (adiectīvum, illa) => (illa.FirstOf<Gradus>(), illa.FirstOf<Genus>(), illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
@@ -31,11 +30,11 @@ namespace Īnflexōrēs.Effectī.Adiectīva
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch
               {
-                (Gradus.Superlātīvus, Genus.Neutrum) => ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum,
-                (Gradus.Superlātīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum,
-                (Gradus.Superlātīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
-                (_, Genus.Neutrum) => ĪnflexorEffectusTertiusNeuterNōminibusCumAblātīvōVariō.Faciendum,
-                (_, _) => ĪnflexorEffectusTertiusNeuterNōminibusCumAblātīvōVariō.Faciendum,
+                (Gradus.Superlātīvus, Genus.Neutrum) => ĪnflexorEffectusSecundusNeuterNōminibus.Lazy,
+                (Gradus.Superlātīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Lazy,
+                (Gradus.Superlātīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Lazy,
+                (_, Genus.Neutrum) => ĪnflexorEffectusTertiusNeuterNōminibusCumAblātīvōVariō.Lazy,
+                (_, _) => ĪnflexorEffectusTertiusNeuterNōminibusCumAblātīvōVariō.Lazy,
                 _ => null
               };
   }

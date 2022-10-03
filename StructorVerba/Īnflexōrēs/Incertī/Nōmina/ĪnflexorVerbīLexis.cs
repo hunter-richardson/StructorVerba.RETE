@@ -7,14 +7,13 @@ using Praebeunda.Īnflectendum.Nōmen;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmen;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīLexis : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīLexis> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīLexis()
         : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīLexis>>(),
                Casus.Nōminātīvus, Casus.Genitīvus, Casus.Accūsātīvus)

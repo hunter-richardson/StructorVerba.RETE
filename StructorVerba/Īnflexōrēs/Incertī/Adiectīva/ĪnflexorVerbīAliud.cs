@@ -5,16 +5,14 @@ using Praebeunda.Multiplex.Adiectīvum;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusPrōnōminālisAdiectīvīs;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīAliud : ĪnflexorIncertus<Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<ĪnflexorVerbīAliud> Faciendum = new Lazy(() => Instance);
-
-    private readonly Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīs> Relātus = ĪnflexorEffectusPrōnōminālisAdiectīvīs.Faciendum;
+    private readonly Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīs> Relātus = ĪnflexorEffectusPrōnōminālisAdiectīvīs.Lazy;
 
     private ĪnfexorVerbīAliud()
         : base(catēgoria: Catēgoria.Adiectīvum, nūntius: new Lazy<Nūntius<ĪnflexorVerbīAliud>>(),

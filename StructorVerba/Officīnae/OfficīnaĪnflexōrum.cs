@@ -9,8 +9,6 @@ using Praebeunda.Interfecta.Īnflexum;
 using Praebeunda.Multiplex;
 using Ēnumerātiōnēs.Catēgoria;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
-
 namespace Officīnae
 {
   public sealed class OfficīnaĪnflexōrum<Hoc> where Hoc : Īnflexum<Hoc>

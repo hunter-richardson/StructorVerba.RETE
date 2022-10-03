@@ -24,10 +24,10 @@ namespace Dictionāria
     public static readonly Func<Catēgora, Task<Lazy<Dictionārium?>>> Lēctor
           = async catēgora => catēgora switch
                               {
-                                Catēgora.Adiectīvum => DictionāriumAdiectīvīs.Faciendum,
-                                Catēgora.Nōmen => DictionāriumNōminibus.Faciendum,
-                                Catēgora.Prōnōmen => DictionāriumPrōnōminibus.Faciendum,
-                                Catēgora.Āctus => DictionāriumĀctibus.Faciendum,
+                                Catēgora.Adiectīvum => DictionāriumAdiectīvīs.Lazy,
+                                Catēgora.Nōmen => DictionāriumNōminibus.Lazy,
+                                Catēgora.Prōnōmen => DictionāriumPrōnōminibus.Lazy,
+                                Catēgora.Āctus => DictionāriumĀctibus.Lazy,
                                 _ => new Lazy(null)
                               };
 

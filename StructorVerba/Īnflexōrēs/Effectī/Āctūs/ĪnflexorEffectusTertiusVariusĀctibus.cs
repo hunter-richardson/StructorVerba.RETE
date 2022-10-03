@@ -6,17 +6,15 @@ using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusVariusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusVariusĀctibus> Faciendum = new Lazy(() => Instance);
-
-    private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
+    private static readonly Lazy<ĪnflexorEffectusTertiusĀctibus> Relātus = ĪnflexorEffectusTertiusĀctibus.Lazy;
 
     private ĪnflexorEffectusTertiusVariusĀctibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusVariusĀctibus>>())
@@ -99,15 +97,15 @@ namespace Īnflexōrēs.Effectī.Āctūs
     }
 
     public sealed string? SubiūnctīvumĀctīvum(in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
-              => await Relātum.SubiūnctīvumĀctīvumAsync(tempus, numerālis, persōna);
+              => await Relātus.Value.SubiūnctīvumĀctīvumAsync(tempus, numerālis, persōna);
 
     public sealed string? Imperātīvum(in Vōx vōx, in Tempus tempus, in Numerālis numerālis)
-              => await Relātum.ImperātīvumAsync(vōx, tempus, numerālis);
+              => await Relātus.Value.ImperātīvumAsync(vōx, tempus, numerālis);
 
     public sealed string? Īnfīnītīvum(in Vōx vōx, in Tempus tempus)
-              => await Relātum.ĪnfīnītīvumAsyc(vōx, tempus);
+              => await Relātus.Value.ĪnfīnītīvumAsyc(vōx, tempus);
 
     public sealed string? Participāle(in Vōx vōx, in Tempus tempus)
-              => await Relātum.ParticipāleAsync(vōx, tempus);
+              => await Relātus.Value.ParticipāleAsync(vōx, tempus);
   }
 }

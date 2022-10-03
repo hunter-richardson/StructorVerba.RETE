@@ -1,26 +1,25 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks.Task;
 
 using Nūntiī.Nūntius;
 using Praebeunda.Simplicia.Numerus;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 using RomanNumerals.RomanNumeral;
 
 namespace Miscella
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class Numerātor
   {
-    public static readonly Lazy<Numerātor> Faciendum = new Lazy(() => Instance);
-
     private readonly Lazy<Nūntius> Nūntius = new Lazy<Nūntius<Numerātor>>();
-    private readonly Func<string, Task<int?>> Lēctor = async verbum =>
+    private readonly Func<string, Task<double?>> Lēctor = async verbum =>
     {
       int? numerus = null;
-      if (!RomanNumeral.TryParse(verbum, out numerus))
+      if (!Numeral.TryParse(verbum, out numerus))
       {
         Int32.TryParse(verbum, out numerus);
       }
@@ -29,12 +28,12 @@ namespace Miscella
     };
 
     public readonly Predicate<string> Numerābile = verbum => await Lēctor.Invoke(verbum) is not null;
-    public readonly Func<Task<Numerus?>> FortisGenerātor = Generātor.Invoke(IEnumerable.Range(Numerus.Mininum.Item1, Numerus.Maximum.Item1).Random());
-    public readonly Func<string, Task<Numerus?>> Generātor = async verbum =>
+    public readonly Func<Task<Numerus?>> FortisGenerātor = Numerus.Generātor.Invoke(Enumerable.Range(Numerus.Mininum.Item1, Numerus.Maximum.Item1).Random());
+    public readonly Func<string, Task<Frāctus?>> Generātor = async verbum =>
     {
-      const int? numerus = await Lēctor.Invoke(verbum);
+      const double? numerus = await Lēctor.Invoke(verbum);
       return (numerus is not null)
-                .Choose(Numerus.Generātor.Invoke(numerus), null);
+                .Choose(Frāctus.Generātor.Invoke(numerus), null);
     };
 
     private Numerātor() => Nūntius.PlūsGarriōAsync("Fīō");

@@ -41,8 +41,8 @@ namespace Praebeunda
     {
       public readonly Speciālitās Speciālitās { get; }
 
-      public Speciāle(in int minūtal, in Ēnumerātiōnēs.Catēgoria catēgoria, in string scrīpum)
-                      : base(minūtal, catēgoria, scrīptum)
+      public Speciāle(in Ēnumerātiōnēs.Catēgoria catēgoria, in string scrīpum)
+                                          : base(catēgoria, scrīptum)
               => Speciālitās = Speciālitātēs.Ipsius(scrīptum);
 
       public virtual override string ToString()
@@ -53,12 +53,11 @@ namespace Praebeunda
     [GenerateBuilder]
     public sealed partial class Numerāmen : Multiplex<Numerāmen>, Īnflexum<Numerāmen>
     {
-      private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
-      private readonly Lazy<Numerātor> Numerātor = Numerātor.Faciendum;
+      private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
+      private readonly Lazy<Numerātor> Numerātor = Numerātor.Lazy;
 
       public static readonly Func<Enum[], string, Task<Numerāmen>> Cōnstrūctor
                 = async (illa, scrīpum) => Builder.Numerium(illa.FirstOf<Numerium>())
-                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Numerāmen))
                                                   .Scrīpum(scrīpum).Build();
 
       private readonly Func<Catēgoria> Classificātor
@@ -81,15 +80,15 @@ namespace Praebeunda
 
       [Required] public readonly Numerium Numerium { get; }
 
-      protected Numerāmen(in int minūtal, in Ēnumerātiōnēs.Numerium numerium, in string scrīpum)
-                          : base(minūtal, in Ēnumerātiōnēs.Catēgoria.Numerāmen, scrīptum)
+      protected Numerāmen(in Ēnumerātiōnēs.Numerium numerium, in string scrīptum)
+                           : base(in Ēnumerātiōnēs.Catēgoria.Numerāmen, scrīptum)
                 => Numerium = numerium;
     }
 
     [GenerateBuilder]
     public sealed partial class Āctus : Multiplex<Āctus>, Īnflexum<Āctus>
     {
-      private readonly Lazy<OfficīnaĪnflexōrum> Adiectīva = OfficīnaĪnflexōrum.Officīnātor.Invoke(Catēgoria.Adiectīvum);
+      private readonly Lazy<OfficīnaĪnflexōrum> Adiectīva = OfficīnaĪnflexōrum.Officīnātor.Invoke(Catēgoria.Āctus);
 
       public static readonly Func<Enum[], string, Task<Āctus>> Cōnstrūctor
                 = async (illa, scrīpum) => Builder.Modus(illa.FirstOf<Modus>())
@@ -97,7 +96,6 @@ namespace Praebeunda
                                                   .Tempus(illa.FirstOf<Tempus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Persōna(illa.FirstOf<Persōna>())
-                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Āctus))
                                                   .Scrīpum(scrīpum).Build();
 
       public readonly Func<Enum[], Task<Adiectīvum?>> Relātor
@@ -110,10 +108,10 @@ namespace Praebeunda
       [Required] public readonly Numerālis Numerālis { get; }
       [Required] public readonly Persōna Persōna { get; }
 
-      private Āctus(in int minūtal, in Ēnumerātiōnēs.Modus modus, in Ēnumerātiōnēs.Vōx vōx,
-                    in Ēnumerātiōnēs.Tempus tempus, in Ēnumerātiōnēs.Numerālis numerālis,
-                    in Ēnumerātiōnēs.Persōna persōna, [StringLength(25, MinimumLength = 2)] in string scrīpum)
-                    : base(minūtal, Ēnumerātiōnēs.Catēgoria.Āctus, scrīptum)
+      private Āctus(in Ēnumerātiōnēs.Modus modus, in Ēnumerātiōnēs.Vōx vōx, in Ēnumerātiōnēs.Tempus tempus,
+                    in Ēnumerātiōnēs.Numerālis numerālis, in Ēnumerātiōnēs.Persōna persōna,
+                    [StringLength(25, MinimumLength = 2)] in string scrīptum)
+                              : base(Ēnumerātiōnēs.Catēgoria.Āctus, scrīptum)
       {
         Modus = modus;
         Vōx = vōx;
@@ -128,14 +126,13 @@ namespace Praebeunda
     {
       public static readonly Func<Enum[], string, Task<Adverbium>> Cōnstrūctor
                 = async (illa, scrīpum) =>  Builder.Gradus(illa.FirstOf<Gradus>())
-                                                   .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Adverbium))
                                                    .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Gradus Gradus { get; }
 
-      private Adverbium(in int minūtal, in Ēnumerātiōnēs.Gradus gradus,
-                        [StringLength(25, MinimumLength = 2)] in string scrīpum)
-                        : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adverbium, scrīptum)
+      private Adverbium(in Ēnumerātiōnēs.Gradus gradus,
+                        [StringLength(25, MinimumLength = 2)] in string scrīptum)
+                              : base(Ēnumerātiōnēs.Catēgoria.Adverbium, scrīptum)
                 => Gradus = gradus;
     }
 
@@ -147,7 +144,6 @@ namespace Praebeunda
                                                   .Genus(illa.FirstOf<Genus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Casus(illa.FirstOf<Casus>())
-                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Adiectīvum))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Gradus Gradus { get; }
@@ -155,9 +151,10 @@ namespace Praebeunda
       [Required] public readonly Ēnumerātiōnēs.Numerālis Numerālis { get; }
       [Required] public readonly Ēnumerātiōnēs.Casus Casus { get; }
 
-      private Adiectīvum(in int minūtal, in Ēnumerātiōnēs.Gradus gradus, in Ēnumerātiōnēs.Genus genus, in Ēnumerātiōnēs.Numerālis numerālis,
-                         in Ēnumerātiōnēs.Casus casus, [StringLength(25, MinimumLength = 2)] in string scrīpum)
-                        : base(minūtal, Ēnumerātiōnēs.Catēgoria.Adiectīvum, scrīptum)
+      private Adiectīvum(in Ēnumerātiōnēs.Gradus gradus, in Ēnumerātiōnēs.Genus genus,
+                         in Ēnumerātiōnēs.Numerālis numerālis, in Ēnumerātiōnēs.Casus casus,
+                         [StringLength(25, MinimumLength = 2)] in string scrīptum)
+                              : base(Ēnumerātiōnēs.Catēgoria.Adiectīvum, scrīptum)
       {
         Gradus = gradus;
         Genus = genus;
@@ -180,16 +177,15 @@ namespace Praebeunda
                 = async (illa, scrīpum) => Builder.Factum(illa.FirstOf<Factum>())
                                                   .Casus(illa.FirstOf<Casus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
-                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Nōmen))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Factum Factum { get; }
       [Required] public readonly Numerālis Numerālis { get; }
       [Required] public readonly Casus Casus { get; }
       [Required]
-      private Nōmen(in int minūtal, in Ēnumerātiōnēs.Factum factum, in Ēnumerātiōnēs.Numerālis numerālis,
-                    in Ēnumerātiōnēs.Casus casus, [StringLength(25, MinimumLength = 2)] in string scrīpum)
-                    : base(minūtal, Ēnumerātiōnēs.Catēgoria.Nōmen, scrīptum)
+      private Nōmen(in Ēnumerātiōnēs.Factum factum, in Ēnumerātiōnēs.Numerālis numerālis, in Ēnumerātiōnēs.Casus casus,
+                    [StringLength(25, MinimumLength = 2)] in string scrīptum)
+                              : base(Ēnumerātiōnēs.Catēgoria.Nōmen, scrīptum)
       {
         Factum = factum;
         Numerālis = numerālis;
@@ -204,15 +200,14 @@ namespace Praebeunda
                 = async (illa, scrīpum) => Builder.Genus(illa.FirstOf<Genus>())
                                                   .Numerālis(illa.FirstOf<Numerālis>())
                                                   .Casus(illa.FirstOf<Casus>())
-                                                  .Minūtal(HashCode.Combine(scrīptum, Ēnumerātiōnēs.Catēgoria.Prōnōmen))
                                                   .Scrīpum(scrīpum).Build();
 
       [Required] public readonly Ēnumerātiōnēs.Genus Genus { get; }
       [Required] public readonly Ēnumerātiōnēs.Numerālis Numerālis { get; }
       [Required] public readonly Ēnumerātiōnēs.Casus Casus { get; }
-      private Prōnōmen(in int minūtal, in Ēnumerātiōnēs.Genus genus, in Ēnumerātiōnēs.Numerālis numerālis,
-                       in Ēnumerātiōnēs.Casus casus, [StringLength(25, MinimumLength = 2)] in string scrīpum)
-                      : base(minūtal, Ēnumerātiōnēs.Catēgoria.Prōnōmen, scrīptum)
+      private Prōnōmen(in Ēnumerātiōnēs.Genus genus, in Ēnumerātiōnēs.Numerālis numerālis, in Ēnumerātiōnēs.Casus casus,
+                       [StringLength(25, MinimumLength = 2)] in string scrīptum)
+                              : base(Ēnumerātiōnēs.Catēgoria.Prōnōmen, scrīptum)
       {
         Genus = genus;
         Numerālis = numerālis;

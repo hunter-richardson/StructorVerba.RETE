@@ -7,26 +7,25 @@ using Īnflexōrēs.Exāctī.ĪnflexorExactusNōminibus;
 using Īnflexōrēs.Incertī;
 using Īnflexōrēs.Incertī.Nōmina;
 
+using Lombok.NET.MethodGenerators.LazyAttribute;
+
 namespace Dictionāria
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class DictionāriumNōminibus : Dictionārium<DictionāriumNōminibus, Multiplex.Nōmen>
   {
-    public static readonly Lazy<DictionāriumNōminibus> Faciendum = new Lazy<DictionāriumNōminibus>(() => Instance);
-
-    protected readonly Lazy<ĪnflexorIncertus> Athōs = ĪnflexorVerbīAthōs.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Balneum = ĪnflexorVerbīBalneum.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Dea = ĪnflexorVerbīDea.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Domus = ĪnflexorVerbīDomus.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Iēsūs = ĪnflexorVerbīIēsūs.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Iūgerum = ĪnflexorVerbīIūgerum.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Lexis = ĪnflexorVerbīLexis.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Rēspūblica = ĪnflexorVerbīRēspublica.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Sapphō = ĪnflexorVerbīSapphō.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Vicis = ĪnflexorVerbīVicis.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Vīs = ĪnflexorVerbīVīs.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Ēthos = ĪnflexorVerbīĒthos.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Īre = ĪnflexorVerbīĪre.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Athōs = ĪnflexorVerbīAthōs.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Balneum = ĪnflexorVerbīBalneum.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Dea = ĪnflexorVerbīDea.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Domus = ĪnflexorVerbīDomus.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Iēsūs = ĪnflexorVerbīIēsūs.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Iūgerum = ĪnflexorVerbīIūgerum.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Lexis = ĪnflexorVerbīLexis.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Rēspūblica = ĪnflexorVerbīRēspublica.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Vicis = ĪnflexorVerbīVicis.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Vīs = ĪnflexorVerbīVīs.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Ēthos = ĪnflexorVerbīĒthos.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Īre = ĪnflexorVerbīĪre.Lazy;
 
     private DictionāriumNōminibus()
         : base(new Lazy<Nūntius<DictionāriumNōminibus>>())

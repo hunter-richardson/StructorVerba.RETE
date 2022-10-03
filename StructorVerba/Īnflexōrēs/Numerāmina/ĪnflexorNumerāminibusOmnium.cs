@@ -6,14 +6,14 @@ using Praebeunda.Multiplex.Numerāmen;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Numerāmina
 {
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorNumerāminibusOmnium : ĪnflexorNumerāminibus<NumerāmenOmnium>
   {
-    public static readonly Lazy<ĪnflexorNumerāminibusOmnium> Faciendum = new Lazy(() => Instance);
     private ĪnflexorNumerāminibusOmnium()
         : base(nūntius: new Lazy<Nūntius<ĪnflexorNumerāminibusOmnium>>(), illa: Numerium.GetValues())
         => Nūntius.PlūsGarriōAsync("Fīō");

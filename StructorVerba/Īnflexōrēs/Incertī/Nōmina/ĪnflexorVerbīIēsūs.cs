@@ -7,15 +7,14 @@ using Praebeunda.Īnflectendum.Nōmen;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmen;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīIēsūs : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīIēsūs> Faciendum = new Lazy(() => Instance);
-    private readonly Lazy<ĪnflexorEffectusQuārtusNōminibus> Relātus = ĪnflexorEffectusQuārtusNōminibus.Faciendum;
+    private readonly Lazy<ĪnflexorEffectusQuārtusNōminibus> Relātus = ĪnflexorEffectusQuārtusNōminibus.Lazy;
     private ĪnflexorVerbīIēsūs()
         : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīIēsūs>>(),
                illa: Casus.GetValues().Except(Casus.Dērēctus))

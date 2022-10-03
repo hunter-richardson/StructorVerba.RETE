@@ -15,8 +15,8 @@ namespace Tentāmina
   [AsyncOverloads]
   public sealed partial class Locūtiōnis
   {
-    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
-    private readonly Lazy<Scrīptor> Scrīptor = Scrīptor.Faciendum;
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
+    private readonly Lazy<Scrīptor> Scrīptor = Scrīptor.Lazy;
 
     public static Task Agō(in Enumerable<Verbum?>? verba,
                              in string locūtiō, in string nōmen = string.Empty)

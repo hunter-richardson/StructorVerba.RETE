@@ -15,7 +15,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorEffectusNōminibusFactīs : ĪnflexorEffectusNōminibus<Īnflectendum.NōmenFactum>
+  public sealed partial class ĪnflexorEffectusNōminibusFactīs : ĪnflexorEffectusNōminibus<Īnflectendum.NōmenFactum>
   {
     private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Prīmus = new Lazy(() => ĪnflexorEffectusNōminibusFactīs("āre", "and"));
     private static readonly Lazy<ĪnflexorEffectusNōminibusFactīs> Secundus = new Lazy(() => ĪnflexorEffectusNōminibusFactīs("ēre", "end"));
@@ -37,7 +37,7 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
     private readonly string SuffixumĪnfīnītīvum { get; }
     private readonly string ĪnfixumGerundīvum { get; }
 
-    protected ĪnflexorEffectusNōminibusFactīs(in string īnfīnītīvum, in string gerundīvum)
+    private ĪnflexorEffectusNōminibusFactīs(in string īnfīnītīvum, in string gerundīvum)
           : base(new Lazy<Nūntius<ĪnflexorEffectusNōminibusFactīs>>(),
                  nameof(Īnflectendum.NōmenFactum.Īnfīnītum),
                  (nōmen, illa) =>  Factum.Supīnum.Equals(illa.FirstOf<Factum>())
@@ -58,9 +58,9 @@ namespace Īnfexōrēs.Effectī.Nōmina.NōminaFacta
       return (illa.FirstOf<Factum>(), illa.FirstOf<Casus>()) switch
       {
         (Factum.Īnfīnītīvum, _) => SuffixumĪnfīnfītīvum,
-        (_, Casus.Genitīvus or Casus.Datīvus) => ĪnfixumGerundīvum.Concat(await ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
-        (Factum.Gerundīvum, _) => ĪnfixumGerundīvum.Concat(await ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
-        (Factum.Supīnum, _) => await ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus),
+        (_, Casus.Genitīvus or Casus.Datīvus) => ĪnfixumGerundīvum.Concat(await ĪnflexorEffectusQuārtusNōminibus.Lazy.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
+        (Factum.Gerundīvum, _) => ĪnfixumGerundīvum.Concat(await ĪnflexorEffectusQuārtusNōminibus.Lazy.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
+        (Factum.Supīnum, _) => await ĪnflexorEffectusSecundusNeuterNōminibus.Lazy.Value.SuffixumAsync(Numerālis.Singulāris, casus),
         _ => null
       };
     }

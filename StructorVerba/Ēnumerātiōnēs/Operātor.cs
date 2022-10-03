@@ -1,6 +1,6 @@
 using System;
 
-using Praebeunda.Simplicia.Numerus;
+using Praebeunda.Simplicia;
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttributes;
 
 namespace Ēnumerātiōnēs
@@ -44,5 +44,23 @@ namespace Ēnumerātiōnēs
                     Operātor.Dīvīsor => (prīmus, secundus) => prīmus / secundus,
                     Operātor.Mānsor => (prīmus, secundus) => prīmus % secundus
                   };
+
+    public static Func<double, double, double> ArabicusFrāctōrum(this in Operātor operātor)
+                => operātor switch
+                    {
+                      Operātor.Additor => (prīmus, secundus) => prīmus + secundus,
+                      Operātor.Subtractor => (prīmus, secundus) => prīmus - secundus,
+                      Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+                      Operātor.Dīvīsor => (prīmus, secundus) => prīmus / secundus
+                    };
+
+    public static Func<Frāctus, Frāctus, Frāctus> RōmānusFrāctōrum(this in Operātor operātor)
+                => operātor switch
+                    {
+                      Operātor.Additor => (prīmus, secundus) => prīmus + secundus,
+                      Operātor.Subtractor => (prīmus, secundus) => prīmus - secundus,
+                      Operātor.Multiplicātor => (prīmus, secundus) => prīmus * secundus,
+                      Operātor.Dīvīsor => (prīmus, secundus) => prīmus / secundus
+                    };
   }
 }

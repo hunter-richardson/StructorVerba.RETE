@@ -6,8 +6,6 @@ using Praebeunda.Simplicia;
 using Pēnsōrēs.PēnsorVerbīs;
 using Ēnumerātiōnēs.Catēgoria;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
-
 namespace Officīnae
 {
   public sealed class OfficīnaPēnsābilium<Hoc> where Hoc : Pēnsābile<Hoc>

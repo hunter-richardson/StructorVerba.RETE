@@ -38,17 +38,17 @@ namespace Īnflexōrēs
             {
               var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen,
                                                  versiō is PēnsorNōminibusFactīs.Versiō)
-                                                     => ĪnflexorEffectusNōminibusFactīs.Faciendum,
+                                                     => ĪnflexorEffectusNōminibusFactīs.Lazy,
               var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Nōmen,
                                                  versiō.ToString().EndsWith("_Singulāris"))
                                                      => ĪnflexorSingulārisNōminibus.Relātor.Invoke(versiō),
               var īnscītum when Ūtilitātēs.Omnia(catēgoria is Ēnumerātiōnēs.Catēgoria.Adiectīvum,
                                                  versiō.ToString().StartsWith("Incomparābilis_"))
                                                      => ĪnflexorIncomparābilisAdiectīvīs.Relātor.Invoke(versiō),
-              (Ēnumerātiōnēs.Catēgoria.Adverbium, _) => ĪnflexorAdverbiīs.Faciendum,
+              (Ēnumerātiōnēs.Catēgoria.Adverbium, _) => ĪnflexorAdverbiīs.Lazy,
               (Ēnumerātiōnēs.Catēgoria.Numerāmen, _) => ĪnflexorNumerāminibus.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Adiectīvum, PēnsorAdiectīvīs.Versiō.Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus)
-                                                     => ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus.Faciendum,
+                                                     => ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus.Lazy,
               (Ēnumerātiōnēs.Catēgoria.Adiectīvum, _) => ĪnflexorEffectusAdiectīvīs.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Āctus, PēnsorĀctibus.Versiō.Prīmus or PēnsorĀctibus.Versiō.Prīmus_Varius or
                                               PēnsorĀctibus.Versiō.Secundus or PēnsorĀctibus.Versiō.Quārtus or
@@ -57,13 +57,13 @@ namespace Īnflexōrēs
                                                      => ĪnflexorEffectusĀctibus.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Āctus, _) => ĪnflexorDēfectusĀctibus.Relātor.Invoke(versiō),
               (Ēnumerātiōnēs.Catēgoria.Nōmen, PēnsorNōminibus.Versiō.Nōmen_Prīmum_Plūrālis)
-                                                     => ĪnflexorPrīmusPlūrālisNōminibus.Faciendum,
+                                                     => ĪnflexorPrīmusPlūrālisNōminibus.Lazy,
               (Ēnumerātiōnēs.Catēgoria.Nōmen, _) => ĪnflexorEffectusNōminibus.Relātor.Invoke(versiō),
               _ => new Lazy(null)
             };
 
-    protected readonly Comparer<Enum[]> ComparātorSeriērum = ComparātorSeriērum.Faciendum.Value;
-    protected readonly Comparer<Enum> ComparātorValōrum = ComparātorValōrum.Faciendum.Value;
+    protected readonly Comparer<Enum[]> ComparātorSeriērum = ComparātorSeriērum.Lazy.Value;
+    protected readonly Comparer<Enum> ComparātorValōrum = ComparātorValōrum.Lazy.Value;
     protected SortedSet<Enum[]> Tabula = new SortedSet<>(ComparātorSeriērum);
     public readonly Func<ISet<Enum[]>> Tabulātor => () => Tabula.ToImmutableSortedSet(Tabula.Comparer);
     private readonly Func<string, Enum[], Task<Hoc>>? Cōnstrūctor = Muliplex.Cōnstrūctor.Invoke(Catēgoria);

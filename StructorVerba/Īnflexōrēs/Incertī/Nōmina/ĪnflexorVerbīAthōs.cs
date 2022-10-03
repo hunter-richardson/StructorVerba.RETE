@@ -5,15 +5,13 @@ using Praebeunda.Multiplex.Nōmen;
 using Praebeunda.Īnflendum.Nōmen;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.MethodGenerators.SingletonAttribute;
+using Lombok.NET.MethodGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīAthōs : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīAthōs> Faciendum = new Lazy(() => Instance);
-
     private ĪnflexorVerbīAthōs()
           : base(catēgoria: Catēgoria.Nōmen,
                  nūntius: new Lazy<Nūntius<ĪnflexorVerbīAthōs>>(),

@@ -5,28 +5,28 @@ using Nūntiī.Nūntius;
 using Praebeunda.Multiplex.Prōnōmen;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribite;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Prōmōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīSē : ĪnflexorIncertus<Multiplex.Prōnōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīSē> Faciendum = new Lazy(() => Instance);
+    private readonly Lazy<ĪnflexorRescrīptus> Relātus
+     = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīTū.Lazy,
+                                             rescrīptor: scrīptum => scrīptum.ReplaceStart("t", "s")));
 
     private ĪnfexorVerbīSē()
           : base(catēgoria: Catēgoria.Prōnōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīSē>>(),
                  illa: Casus.GetValues().Except(Casus.Dērēctus, Casus.Nōminātīvus, Casus.Vocātīvus).ToHashSet())
     {
-      Tabula.ForEach(illa =>
+      Tabula.ForEach(async illa =>
               {
                 const Casus casus = illa.FirstOf<Casus>();
                 const string fōrma = casus switch
                 {
                   Casus.Dērēctus or Casus.Nōminātīvus or Casus.Vocātivus => string.Empty,
-                  Casus.Genitīvus => "suī",
-                  Casus.Datīvus => "sibi",
-                  _ => "sē"
+                  _ => await Relātus.Value.ScrībamAsync(Numerālis.Singulāris, casus)
                 };
                 FōrmamAsync(fōrma, casus);
               });

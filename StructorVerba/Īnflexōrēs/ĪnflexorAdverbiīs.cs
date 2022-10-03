@@ -5,16 +5,14 @@ using Praebeunda.Multiplex.Adverbium;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorAdverbiīs : Īnflexor<Īnflectendum.Adverbium, Multiplex.Adverbium>
   {
-    public static readonly Lazy<ĪnflexorAdverbiīs> Faciendum = new Lazy(() => Instance);
-
     private ĪnflexorAdverbiīs()
         : base(catēgoria: Ēnumerātiōnēs.Catēgoria.Adverbium,
                nūntius: new Lazy<Nūntius<ĪnflexorAdverbiīs>>(),

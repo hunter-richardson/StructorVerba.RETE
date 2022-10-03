@@ -7,14 +7,15 @@ using Praebeunda.Īnflectendum.AdiectvumAutPrīmumAutSecundumAutTertius;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius;
 
+using Lombok.NET.PropertyGenerators.LazyAttribute;
+
 namespace Īnflexōrēs.Incertī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīDuo : ĪnflexorIncertus<Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<ĪnflexorVerbīDuo> Faciendum = new Lazy(() => Instance);
     private readonly Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius> Relātus
-          = ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum;
+                        = ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy;
     private ĪnflexorVerbīDuo()
         : base(catēgoria: Catēgoria.Adiectīvum, nūntius: new Lazy<Nūntius<ĪnflexorVerbīDuo>>(),
                illa: Ūtilitātēs.Combīnō(Genus.GetValues().Except(Gradus.Nūllum).ToHashSet(),

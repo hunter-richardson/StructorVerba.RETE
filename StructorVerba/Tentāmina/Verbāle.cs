@@ -12,15 +12,19 @@ namespace Tentāmina
   [TestClass]
   public sealed partial class Verbāle
   {
-    private Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
-    private Lazy<Lēctor> Numerātor = Numerātor.Faciendum;
+    private Lazy<Lēctor> Lēctor = Lēctor.Lazy;
+    private Lazy<Lēctor> Frāctor = Frāctor.Lazy;
+    private Lazy<Lēctor> Numerātor = Numerātor.Lazy;
 
     private Func<Catēgoria, Task> Ullum
         = async catēgoria =>
                 {
-                  const Verbum? verbum = (catēgoria is Catēgoria.Numerus)
-                                            .Choose(await Numerātor.Value.FortisGenerātor.Invoke(),
-                                                    await Lēctor.Value.ForsInveniatAsync(catēgoria));
+                  const Verbum? verbum = await catēgoria switch
+                                                {
+                                                  Catēgoria.Numerus => Numerātor.Value.FortisGenerātor.Invoke(),
+                                                  Catēgoria.Frāctus => Frāctor.Value.FortisGenerātor.Invoke(),
+                                                  _ => Lēctor.Value.ForsInveniatAsync(catēgoria)
+                                                };
                   await Necesse.Quod.ExsistitAsync(verbum: verbum, error: $"Prōductum {catēgoria} vacat");
                   await Necesse.Quod.AequāturAsync(catēgoria: catēgoria, error: $"Prōductum {catēgoria} vacat exspectātiōne differt");
                   return Console.WriteLine($"Prōducta {catēgoria}: {verbum}");
@@ -34,6 +38,8 @@ namespace Tentāmina
     public void Adverbium() => await Ullum.Invoke(Catēgoria.Adverbium);
     [TestMethod]
     public void Coniūnctiō() => await Ullum.Invoke(Catēgoria.Coniūnctiō);
+    [TestMethod]
+    public void Frāctus() => await Ullum.Invoke(Catēgoria.Frāctus);
     [TestMethod]
     public void Interiectiō() => await Ullum.Invoke(Catēgoria.Interiectiō);
     [TestMethod]

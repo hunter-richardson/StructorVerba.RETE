@@ -22,19 +22,19 @@ namespace Īnflexōrēs.Effectī.Adiectīva
               = async versiō => versiō switch
                                 {
                                   Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius
-                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy,
                                   Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_Ē
-                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusCumLitterāE.Lazy,
                                   Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_Ē
-                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertiusSineLitterāE.Lazy,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus
-                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundus.Lazy,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō
-                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumAblātīvōVariō.Lazy,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō
-                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Lazy,
                                   Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō
-                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Faciendum,
+                                            => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōAblātīvōqueVariō.Lazy,
                                   Versiō.Prōnōminālis => null,
                                   Versiō.Prōnōminālis_Cum_Litterā_Ē => null,
                                   Versiō.Prōnōminālis_Sine_Litterā_Ē => null,
@@ -85,11 +85,10 @@ namespace Īnflexōrēs.Effectī.Adiectīva
       }
       else
       {
-        const ĪnflexorEffectusNōminibus? relātum = (await RelātumAsync(gradus, genus))?.Value;
         if(relātum is not null)
         {
           const string īnfixum = await ĪnfīxumAsync(gradus, genus, numerālis, casus),
-                       suffixum = await relātum.SuffixumAsync(numerālis, casus);
+                       suffixum = await (await RelātumAsync(gradus, genus))?.SuffixumAsync(numerālis, casus);
           return (suffixum is not null).Choose((īnfixum)?.Concat(suffixum), null);
         }
         else

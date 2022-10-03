@@ -6,24 +6,22 @@ using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusPrīmusVariusĀctibus : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusPrīmusVariusĀctibus> Faciendum = new Lazy(() => Instance);
-
-    private static readonly ĪnflexorEffectusPrīmusĀctibus Relātum = ĪnflexorEffectusPrīmusĀctibus.Faciendum.Value;
+    private static readonly Lazy<ĪnflexorEffectusPrīmusĀctibus> Relātus = ĪnflexorEffectusPrīmusĀctibus.Lazy;
 
     private ĪnflexorEffectusPrīmusVariusĀctibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusPrīmusVariusĀctibus>>())
         => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected override sealed string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
-                  => (await Relātum.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))
-                                  ?.ReplaceStart("āv", "u");
+                  => (await Relātus.Value.SuffixumAsync(modus, vōx, tempus, numerālis, persōna))
+                                        ?.ReplaceStart("āv", "u");
   }
 }

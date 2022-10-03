@@ -10,7 +10,7 @@ namespace Tentāmina
   [TestClass]
   public sealed partial class DolōremIpsum
   {
-    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
 
     private readonly Dictionary<string, Catēgoria> Verba = new Dictionary<string, Catēgoria>()
                                                                   {

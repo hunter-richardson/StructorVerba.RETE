@@ -10,25 +10,23 @@ using Īnflexōrēs.Exāctī.ĪnflexorExāctusAdiectīvīs;
 using Īnflexōrēs.Incertī;
 using Īnflexōrēs.Incertī.Adiectīva;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Dictionāria
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class DictionāriumAdiectīvīs : Dictionārium<DictionāriumAdiectīvīs, Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<DictionāriumAdiectīvīs> Faciendum = new Lazy(() => Instance);
-
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Officīnātor.Invoke(null);
     private static readonly Func<string, Task<Lemma?>> Lemmātor
         = async scrīptum => Officīna.Value.FortisInventorCatēgoriae.Invoke(scrīptum, Catēgoria.Adiectīvum);
 
-    protected readonly Lazy<ĪnflexorIncertus> Aliud = ĪnflexorVerbīAliud.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Frūgī = ĪnflexorVerbīFrūgī.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Meum = ĪnflexorVerbīMeum.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Faciendum;
-    protected readonly Lazy<ĪnflexorIncertus> Nēquam = ĪnflexorVerbīNēquam.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Aliud = ĪnflexorVerbīAliud.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Frūgī = ĪnflexorVerbīFrūgī.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Meum = ĪnflexorVerbīMeum.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Nēquam = ĪnflexorVerbīNēquam.Lazy;
     protected readonly Lazy<ĪnflexorConiūnctus> Nōnumdecimum
         = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("nōnum"),
                                                 secundum: await Lemmātor.Invoke("decimum")));
@@ -41,7 +39,7 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorConiūnctus> Quīntumdecimum
         = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("quīntum"),
                                                 secundum: await Lemmātor.Invoke("decimum")));
-    protected readonly Lazy<ĪnflexorIncertus> Satis = ĪnflexorVerbīSatis.Faciendum;
+    protected readonly Lazy<ĪnflexorIncertus> Satis = ĪnflexorVerbīSatis.Lazy;
     protected readonly Lazy<ĪnflexorConiūnctus> Septimumdecimum
         = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("septimum"),
                                                 secundum: await Lemmātor.Invoke("decimum")));

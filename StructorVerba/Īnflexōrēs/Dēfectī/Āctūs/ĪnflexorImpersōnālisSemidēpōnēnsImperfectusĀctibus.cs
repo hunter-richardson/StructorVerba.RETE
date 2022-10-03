@@ -15,11 +15,11 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
   public sealed partial class ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Prīmus
-            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusPrīmusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusPrīmusĀctibus.Lazy));
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Secundus
-            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Lazy));
     private static readonly Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus> Tertius
-            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Lazy));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus?>>> Relātor = async versiō => versiō switch
     {

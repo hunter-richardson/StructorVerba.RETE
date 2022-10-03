@@ -8,22 +8,22 @@ using Praebeunda.Īnflectendum.AdiectvumAutPrīmumAutSecundumAutTertius;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīRēspūblica : ĪnflexorIncertus<Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīRēspūblica> Faciendum = new Lazy(() => Instance);
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Offiīnātor.Invoke(null);
+
     private ĪnflexorVerbīRēspūblica()
         : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīRēspūblica>>(),
                illa: Ūtilitātēs.Combīnō(Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet(),
                                         Casus.GetValues().Except(Casus.Dērēctus).ToHashSet()))
     {
-      const Īnflectendum? rēs = await (await Officīna.Value.Inventor.Invoke("rēs"))?.Relātum.Invoke();
-      const Īnflectendum? pūblicum = await (await Officīna.Value.Inventor.Invoke("pūblicum"))?.Relātum.Invoke();
+      const Īnflectendum? rēs = await (await Officīna.Value.Inventor.Invoke("rēs", Catēgoria.Nōmen))?.Relātum.Invoke();
+      const Īnflectendum? pūblicum = await (await Officīna.Value.Inventor.Invoke("pūblicum", Catēgoria.Adiectīvum))?.Relātum.Invoke();
       Tabula.ForEach(illa =>
       {
         const Numerālis numerālis = illa.FirstOf<Numrālis>();

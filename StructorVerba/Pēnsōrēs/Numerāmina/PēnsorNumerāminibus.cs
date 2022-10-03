@@ -45,20 +45,20 @@ namespace Pēnsōrēs.Numerāmina
               versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
-                               PēnsorNumerāminibusCardinālumSōlōrum.Faciendum,
+                               PēnsorNumerāminibusCardinālumSōlōrum.Lazy,
               Versiō.Cardinālium_Ōrdināliumque =>
-                               PēnsorNumerāminibusCardinālumŌrdināliumque.Faciendum,
+                               PēnsorNumerāminibusCardinālumŌrdināliumque.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum =>
-                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum.Faciendum,
+                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum =>
-                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Faciendum,
+                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum =>
-                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Faciendum,
+                               PēnsorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Lazy,
               Versiō.Omnium_Praeter_Multiplicātīva =>
-                               PēnsorNumerāminibusOmniumPraeterMultiplicātīva.Faciendum,
+                               PēnsorNumerāminibusOmniumPraeterMultiplicātīva.Lazy,
               Versiō.Omnium_Praeter_Frāctiōnēs =>
-                               PēnsorNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
-              Versiō.Omnium => PēnsorNumerāminibusOmnium.Faciendum,
+                               PēnsorNumerāminibusOmniumPraeterFrāctiōnēs.Lazy,
+              Versiō.Omnium => PēnsorNumerāminibusOmnium.Lazy,
               _ => new Lazy(null)
             };
 

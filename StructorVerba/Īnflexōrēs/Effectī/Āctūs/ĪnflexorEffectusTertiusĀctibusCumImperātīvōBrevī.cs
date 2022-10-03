@@ -6,17 +6,15 @@ using Īnflexōrēs.Effectī.Āctūs.ĪnflexōrēsEffectusĀctibus.Versiō;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī : ĪnflexorEffectusĀctibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī> Faciendum = new Lazy(() => Instance);
-
-    private static readonly ĪnflexorEffectusTertiusĀctibus Relātum = ĪnflexorEffectusTertiusĀctibus.Faciendum.Value;
+    private static readonly Lazy<ĪnflexorEffectusTertiusĀctibus> Relātus = ĪnflexorEffectusTertiusĀctibus.Lazy;
 
     private ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī()
         : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī>>())
@@ -27,7 +25,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
               => (vōx, tempus, numerālis) switch
               {
                 (Vōx.Āctīva, Tempus.Praesēns, Numerālis.Singulāris) => string.Empty,
-                _ => await Relātum.ImperātīvumAsync(vōx, tempus, numerālis),
+                _ => await Relātus.Value.ImperātīvumAsync(vōx, tempus, numerālis),
               };
 
     protected virtual string? Suffixum(in Modus modus, in Vōx vōx, in Tempus tempus, in Numerālis numerālis, in Persōna persōna)
@@ -37,7 +35,7 @@ namespace Īnflexōrēs.Effectī.Āctūs
                                           (vōx is Vōx.Āctīva or Vōx.Passīva) &&
                                           (tempus is Tempus.Praesēns or Tempus.Futūrum)
                                               => ImperātīvumAsync(vōx, tempus, numerālis),
-                        _ => Relātum.SuffixumAsync(illa)
+                        _ => Relātus.Value.SuffixumAsync(illa)
                       };
   }
 }

@@ -19,20 +19,20 @@ namespace Īnflexōrēs.Numerāmina
             = async versiō => versiō switch
             {
               Versiō.Cardinālium_Solōrum =>
-                               ĪnflexorNumerāminibusCardinālumSōlōrum.Faciendum,
+                               ĪnflexorNumerāminibusCardinālumSōlōrum.Lazy,
               Versiō.Cardinālium_Ōrdināliumque =>
-                               ĪnflexorNumerāminibusCardinālumŌrdinālumque.Faciendum,
+                               ĪnflexorNumerāminibusCardinālumŌrdinālumque.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum =>
-                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum.Faciendum,
+                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrum.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum =>
-                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Faciendum,
+                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtDistribūtīvōrum.Lazy,
               Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum =>
-                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Faciendum,
+                               ĪnflexorNumerāminibusCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum.Lazy,
               Versiō.Omnium_Praeter_Multiplicātīva =>
-                               ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva.Faciendum,
+                               ĪnflexorNumerāminibusOmniumPraeterMultiplicātīva.Lazy,
               Versiō.Omnium_Praeter_Frāctiōnēs =>
-                               ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs.Faciendum,
-              Versiō.Omnium => ĪnflexorNumerāminibusOmnium.Faciendum,
+                               ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs.Lazy,
+              Versiō.Omnium => ĪnflexorNumerāminibusOmnium.Lazy,
               _ => new Lazy(null)
             };
 

@@ -10,15 +10,13 @@ using Praebeunda.Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Adiectīva;
 
-using Lombok.NET.MethodGenerators.SingletonAttribute;
+using Lombok.NET.MethodGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīMultum : ĪnflexorIncertus<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectivum>
   {
-    public static readonly Lazy<ĪnflexorVerbīMultum> Faciendum = new Lazy(() => Instance);
-
     private ĪnflexorVerbīMultum()
           : base(Catēgoria.Adiectīvum, new Lazy<Nūntius<ĪnflexorVerbīMultum>>(),
                  Ūtilitātēs.Combīnō(Gradus.GetValues().Except(Gradus.Nūllus, Gradus.Comparātīvus).ToHashSet(),
@@ -48,8 +46,8 @@ namespace Īnflexōrēs.Incertī.Adiectīva
                 const Casus casus = illa.FirstOf<Casus>();
                 const Lazy<ĪnflexorEffectusAdiectīvīs> īnflexor = gradus switch
                 {
-                  Gradus.Comparātīvus => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō.Faciendum,
-                  _ => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum,
+                  Gradus.Comparātīvus => ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō.Lazy,
+                  _ => ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy,
                 };
                 const string? fōrma = (gradus, casus) switch
                 {

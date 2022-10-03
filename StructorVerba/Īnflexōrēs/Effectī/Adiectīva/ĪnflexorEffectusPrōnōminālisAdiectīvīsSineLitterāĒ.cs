@@ -8,16 +8,15 @@ using Īnflexōrēs.Effectī.Nōmina;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ
             : ĪnflexorEffectusAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
   {
-    public static readonly Lazy<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ> Faciendum = new Lazy(() => Instance);
     private ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ()
         : base(new Lazy<Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsSineLitterāĒ>>(),
                nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
@@ -29,9 +28,9 @@ namespace Īnflexōrēs.Effectī.Adiectīva
     public sealed Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus)
               => (gradus, genus) switch
                   {
-                    (Gradus.Positīvus, Genus.Neutrum) => ĪnflexorEffectusSecundusNeuterNōminibusSineLitterāĒ.Faciendum,
-                    (Gradus.Positīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum,
-                    (Gradus.Positīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
+                    (Gradus.Positīvus, Genus.Neutrum) => ĪnflexorEffectusSecundusNeuterNōminibusSineLitterāĒ.Lazy,
+                    (Gradus.Positīvus, Genus.Masculīnum) => ĪnflexorEffectusSecundusMasculīnusNōminibus.Lazy,
+                    (Gradus.Positīvus, Genus.Fēminīnum) => ĪnflexorEffectusPrīmusNōminibus.Lazy,
                     _ => null
                   };
 
@@ -48,12 +47,11 @@ namespace Īnflexōrēs.Effectī.Adiectīva
       }
       else
       {
-        const ĪnflexorEffectusNōminibus? relātum = (await RelātumAsync(gradus, genus))?.Value;
         return (numerālis, casus) switch
                 {
                   (Numerālis.Singulāris, Casus.Genitīvus) => "rīus",
                   (Numerālis.Singulāris, Casus.Datīvus) => "rī",
-                  _ => (await relātum?.SuffixumAsync(numerālis, casus))
+                  _ => await (await RelātumAsync(gradus, genus))?.SuffixumAsync(numerālis, casus)
                 };
       }
     }

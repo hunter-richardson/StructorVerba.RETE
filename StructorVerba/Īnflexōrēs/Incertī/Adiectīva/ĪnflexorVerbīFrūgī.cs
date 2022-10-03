@@ -7,13 +7,13 @@ using Praebeunda.Īnflectendum.AdiectvumAutPrīmumAutSecundumAutTertius;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusTertiusNōminibus;
 
+using Lombok.NET.PropertyGenerators.LazyAttribute;
+
 namespace Īnflexōrēs.Incertī.Adiectīva
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīFrūgī : ĪnflexorIncertus<Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<ĪnflexorVerbīFrūgī> Faciendum = new Lazy(() => Instance);
-
     private ĪnflexorVerbīFrūgī()
         : base(catēgoria: Catēgoria.Adiectīvum, nūntius: new Lazy<Nūntius<ĪnflexorVerbīFrūgī>>(),
                illa: Gradus.GetValues().Except(Gradus.Nūllus).ToHashSet())

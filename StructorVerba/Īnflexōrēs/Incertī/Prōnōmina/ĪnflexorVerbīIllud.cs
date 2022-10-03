@@ -7,16 +7,14 @@ using Praebeunda.Multiplex.Prōnōmen;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorPrōnōminālisAdiectīvīs;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Prōnōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīIllud : ĪnflexorIncertus<Multiplex.Prōnōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīIllud> Faciendum = new Lazy(() => Instance);
-
-    private readonly Lazy<ĪnflexorEffectusPrōnōmenâlisAdiectīvīs> Relātus = ĪnflexorEffectusPrōnōminālis.Faciendum;
+    private readonly Lazy<ĪnflexorEffectusPrōnōmenâlisAdiectīvīs> Relātus = ĪnflexorEffectusPrōnōminālis.Lazy;
 
     private ĪnflexorVerbīIllud()
         : base(catēgoria: Catēgoria.Prōnōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīIllud>>(),

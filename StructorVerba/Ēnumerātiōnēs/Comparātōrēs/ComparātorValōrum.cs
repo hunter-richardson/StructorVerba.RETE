@@ -2,15 +2,14 @@ using System;
 using System.Enum;
 using System.Collections.Generic.Comparer;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Ēnumerātiōnēs.Comparātōrēs
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ComparātorValōrum : Comparer<Enum>
   {
-    public static readonly Lazy<ComparātorValōrum> Faciendum = new Lazy<ComparātorValōrum>(() => Instance);
-    public readonly ComparātorClassium Relātum = ComparātorClassium.Faciendum.Value;
+    public readonly ComparātorClassium Relātum = ComparātorClassium.Lazy.Value;
 
     public Boolean Equals(in Type prīma, in Type secunda) => Compare(prīma, secunda).Equals(0);
     public int Compare(in Enum prīma, in Enum secunda)

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks.Task;
 
-using Miscella.Extensions;
+using Miscella;
 using Ēnumerātiōnēs;
 
 using RomanNumerals.RomanNumeral;
@@ -12,14 +12,14 @@ namespace Praebeunda.Simplicia
   [GenerateBuilder]
   public sealed class Numerus : Verbum<Numerus>
   {
-    private readonly Lazy<Lēctor> Lēctor = Lēctor.Faciendum;
+    private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
 
-    public static readonly Func<int, Task<Numerus>> Generātor
+    public static readonly Func<int, Task<Numerus?>> Generātor
         = async numerus => numerus.IsBetween(Mininum.Item1, Maximum.Item1)
-                                  .Choose(Builder.WithMinūtal(numerus).Build(), null);
+                                  .Choose(Builder.WithValor(numerus).Build(), null);
 
     public static readonly (int, string) Mininum = (1, "I");
-    public static readonly (int, string) Maximum = (3999, "MMMCMXCIX");
+    public static readonly (int, string) Maximum = (999999, "|CMXCIX|CMXCIX");
 
     public readonly Func<Enum[], Task<Verbum?>> Relātor = async illa =>
     {
@@ -29,22 +29,25 @@ namespace Praebeunda.Simplicia
                                                ?.Cast<Numerāmen>()?.Relātor.Invoke(illa);
     };
 
-    private Numerus([Range(Mininum.Item1, Maximum.Item1)] in int minūtal)
-          : base(minūtal, Catēgoria.Numerus, RomanNumeral.ToRomanNumeral(minūtal)) { }
+    [Range(Mininum.Item1, Maximum.Item1)]
+    public int Valor { get; }
+
+    private Numerus(in int valor)
+        : base(Catēgoria.Numerus, Numeral.Numeral(valor)) => Valor = valor;
 
     public static Numerus operator +(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(minūtal: prīmus.Minūtal + secundus.Minūtal);
+              => new Numerus(valor: prīmus.Valor + secundus.Valor);
     public static Numerus operator -(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(minūtal: prīmus.Minūtal - secundus.Minūtal);
+              => new Numerus(valor: prīmus.Valor - secundus.Valor);
     public static Numerus operator /(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(minūtal: prīmus.Minūtal / secundus.Minūtal);
+              => new Numerus(valor: prīmus.Valor / secundus.Valor);
     public static Numerus operator *(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(minūtal: prīmus.Minūtal * secundus.Minūtal);
+              => new Numerus(valor: prīmus.Valor * secundus.Valor);
     public static Numerus operator %(in Numerus prīmus, in Numerus secundus)
-              => new Numerus(minūtal: prīmus.Minūtal % secundus.Minūtal);
-    public static Numerus operator ++(in Numerus numerus) => new Numerus(minūtal: ++numerus.Minūtal);
-    public static Numerus operator --(in Numerus numerus) => new Numerus(minūtal: --numerus.Minūtal);
-    public sealed override int CompareTo(Numerus aliud) => Minūtal.CompareTo(aliud.Minūtal);
+              => new Numerus(valor: prīmus.Valor % secundus.Valor);
+    public static Numerus operator ++(in Numerus numerus) => new Numerus(valor: ++numerus.Valor);
+    public static Numerus operator --(in Numerus numerus) => new Numerus(valor: --numerus.Valor);
+    public sealed override int CompareTo(Numerus aliud) => Valor.CompareTo(aliud.Valor);
     public virtual string ToString() => this.ToString().ToUpperInvariant();
   }
 }

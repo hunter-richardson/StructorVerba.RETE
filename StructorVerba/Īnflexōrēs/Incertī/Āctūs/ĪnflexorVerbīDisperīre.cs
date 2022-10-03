@@ -7,16 +7,14 @@ using Nūntiī.Nūntius;
 using Praebeunda.Multiplex.Āctus;
 using Ēnumerātiōnēs;
 
-using Lomok.NET.PropertyGenerators.SingletonAttribute;
+using Lomok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīDisperīre : ĪnflexorIncertus<Multiplex.Āctus>
   {
-    public static readonly Lazy<ĪnflexorVerbīDisperīre> Faciendum = new Lazy(() => Instance);
-
-    private readonly Lazy<ĪnflexorVerbīĪre> Relātus = ĪnflexorVerbīĪre.Faciendum;
+    private readonly Lazy<ĪnflexorVerbīĪre> Relātus = ĪnflexorVerbīĪre.Lazy;
 
     private ĪnflexorVerbīDisperīre()
         : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīDisperīre>>(), Modus.Participālis.SingleItemSet(),

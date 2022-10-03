@@ -7,14 +7,13 @@ using Praebeunda.Īnflectendum.Nōmen;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmen;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīBalneum : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīBalneum> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīIūgerum()
         : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīBalneum>>(),
                illa: Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
@@ -26,8 +25,8 @@ namespace Īnflexōrēs.Incertī.Nōmina
           const Casus casus = illa.FirstOf<Casus>();
           const ĪnflexorEffectusNōminibus? relātum = numerālis switch
           {
-            Numerālis.Singulāris => ĪnflexorEffectusSecunumNeuterNōminibus.Faciendum,
-            numerālis.Plūrālis => ĪnflexorEffectusPrīmusNōminibus.Faciendum,
+            Numerālis.Singulāris => ĪnflexorEffectusSecunumNeuterNōminibus.Lazy,
+            Numerālis.Plūrālis => ĪnflexorEffectusPrīmusNōminibus.Lazy,
             _ => null
           };
           FōrmamAsync("balne".Concat(await relātum?.Value.SuffixumAsync(numerālis, casus)), numerālis, casus);

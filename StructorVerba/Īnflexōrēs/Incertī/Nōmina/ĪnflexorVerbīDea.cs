@@ -6,16 +6,14 @@ using Praebeunda.Īnflendum.Nōmen;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusPrīmusNōminibus;
 
-using Lombok.NET.MethodGenerators.SingletonAttribute;
+using Lombok.NET.MethodGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīDea : ĪnflexorIncertus<Īnflectendum.Nōmen, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīDea> Faciendum = new Lazy(() => Instance);
-
-    private readonly ĪnflexorEffectusPrīmusNōminibus Relātum = ĪnflexorEffectusPrīmusNōminibus.Faciendum.Value;
+    private readonly Lazy<ĪnflexorEffectusPrīmusNōminibus> Relātum = ĪnflexorEffectusPrīmusNōminibus.Lazy;
     private ĪnflexorVerbīDea()
           : base(catēgoria: Catēgoria.Nōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīDea>>(),
                  illa: Ūtilitātēs.Combīnō(Casus.GetValues().Except(Casus.Dērēctus).ToHashSet(),
@@ -25,7 +23,7 @@ namespace Īnflexōrēs.Incertī.Nōmina
                 .ForEach(valor => FōrmamAsync("deābus", valor, Numerālis.Plūrālis));
 
       Tabula.Except(illa => Fōrmae.Keys.Contains(illa))
-            .ForEach(illa => FōrmamAsync(fōrma: "de".Concat(await Relātum.SuffixumAsync(illa: illa), illa: illa)));
+            .ForEach(illa => FōrmamAsync(fōrma: "de".Concat(await Relātum.Value.SuffixumAsync(illa: illa), illa: illa)));
       Nūntius.PlūsGarriōAsync("Fīō");
     }
   }

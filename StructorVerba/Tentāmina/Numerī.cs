@@ -14,7 +14,7 @@ namespace Tentāmina
   [TestClass]
   public sealed partial class Numerī
   {
-    private Lazy<Lēctor> Numerātor = Numerātor.Faciendum;
+    private Lazy<Lēctor> Numerātor = Numerātor.Lazy;
 
     private readonly int XLII_Numerus = 42;
     private readonly string XLII_Scrīptus = "XLII";

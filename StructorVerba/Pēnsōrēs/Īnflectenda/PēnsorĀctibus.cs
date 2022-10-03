@@ -29,7 +29,7 @@ namespace Pēnsōrēs.Īnflectenda
 
     private static Dictionary<Versio, Lazy<PēnsorĀctibus>> Reservātī = new Dictionary<Versio, Lazy<PēnsorĀctibus>>();
 
-    public static Func<Versio, Lazy<PēnsorĀctibus>> Faciendum = valor =>
+    public static Func<Versio, Lazy<PēnsorĀctibus>> Relātor = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {

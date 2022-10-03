@@ -1,10 +1,13 @@
 using System;
+
+using Lombok.NET.PropertyGenerators.LazyAttribute;
+
 namespace Ēnumerātiōnēs.Comparātōrēs
 {
+  [Lazy]
   public sealed class ComparātorSeriērum : Comparer<Enum[]>
   {
-    public static readonly Lazy<ComparātorSeriērum> Faciendum = new Lazy<ComparātorSeriērum>(() => Instance);
-    public readonly ComparātorValōrum Relātum = ComparātorValōrum.Faciendum.Value;
+    public readonly ComparātorValōrum Relātum = ComparātorValōrum.Lazy.Value;
 
     public Boolean Equals(in Enum[] prīma, in Enum[] secunda) => Compare(prīma, secunda).Equals(0);
     public int Compare(in Enum[] prīma, in Enum[] secunda)

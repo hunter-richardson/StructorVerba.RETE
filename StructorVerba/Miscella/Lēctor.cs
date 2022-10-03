@@ -6,22 +6,20 @@ using Dictionāria;
 using Pēnsōrēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.Property.Generators.SingletonAttribute;
+using Lombok.NET.Property.Generators.LazyAttribute;
 
 namespace Miscella
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class Lēctor
   {
-    public static readonly Lazy<Lēctor> Faciendum = new Lazy(() => Instance);
-
     private readonly Lazy<PēnsorVerbīs> Lemmae = PēnsorVerbīs.Relātor.Invoke(true);
     private readonly Lazy<PēnsorVerbīs> Verba = PēnsorVerbīs.Relātor.Invoke(false);
-    private readonly Lazy<Dictionārium> Āctūs = DictionāriumĀctibus.Faciendum;
-    private readonly Lazy<Dictionārium> Adiectīva = DictionāriumAdiectīvīs.Faciendum;
-    private readonly Lazy<Dictionārium> Nōmina = DictionāriumNōminibus.Faciendum;
-    private readonly Lazy<Dictionārium> Prōnōmina = DictionāriumPrōnōminibus.Faciendum;
+    private readonly Lazy<Dictionārium> Āctūs = DictionāriumĀctibus.Lazy;
+    private readonly Lazy<Dictionārium> Adiectīva = DictionāriumAdiectīvīs.Lazy;
+    private readonly Lazy<Dictionārium> Nōmina = DictionāriumNōminibus.Lazy;
+    private readonly Lazy<Dictionārium> Prōnōmina = DictionāriumPrōnōminibus.Lazy;
     private readonly Lazy<Nūntius> Nūntius = new Lazy<Nūntius<Lēctor>>();
 
     private readonly Func<Task<IEnumerable<Verbum>>> Omnia

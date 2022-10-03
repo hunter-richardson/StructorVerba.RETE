@@ -4,14 +4,13 @@ using System.Collections.Generic.Dictionary;
 using Praebeunda;
 using Īnflexōrēs.ĪnflexorNumerāmibus.Versiō;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Pēnsōrēs.Numerāmina
 {
+  [Lazy]
   public sealed class PēnsorNumerāminibusOmniumPraeterMultiplicātīva : PēnsorĪnflectendīs<Īnflectendum.NumerāmenOmniumPraeterMultiplicātīva, Multiplex.Numerāmen>
   {
-    public static readonly Lazy<PēnsorNumerāminibusOmniumPraeterMultiplicātīva> Faciendum = new Lazy(() => Instance);
-
     private PēnsorNumerāminibusOmniumPraeterMultiplicātīva()
           : base(versiō: Versiō.Omnium_Praeter_Multiplicātīva,
                  quaerendī: nameof(Īnflectendum.NumerāmenOmniumPraeterMultiplicātīva.Numerus),

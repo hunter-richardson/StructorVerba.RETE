@@ -8,14 +8,13 @@ using Praebeunda.Īnflectendum.Nōmen;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmen;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīĪre : ĪnflexorIncertus<Īnflectendum.NōmenFactum, Multiplex.Nōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīĪre> Faciendum = new Lazy(() => Instance);
     private ĪnflexorVerbīĪre()
         : base(Catēgoria.Nōmen, new Lazy<Nūntius<ĪnflexorVerbīĪre>>(),
                Ūtilitātēs.Colligō(Factum.Īnfīnītum.SingleItemSet()),
@@ -31,8 +30,8 @@ namespace Īnflexōrēs.Incertī.Nōmina
           const string fōrma = factum switch
           {
             Factum.Īnfīnītīvum => "īre",
-            Factum.Supīnum => "it".Concat(await ĪnflexorEffectusQuārtusNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
-            Factum.Gerundīvum => "eund".Concat(await ĪnflexorEffectusSecundusNeuterNōminibus.Faciendum.Value.SuffixumAsync(Numerālis.Singulāris, casus))
+            Factum.Supīnum => "it".Concat(await ĪnflexorEffectusQuārtusNōminibus.Lazy.Value.SuffixumAsync(Numerālis.Singulāris, casus)),
+            Factum.Gerundīvum => "eund".Concat(await ĪnflexorEffectusSecundusNeuterNōminibus.Lazy.Value.SuffixumAsync(Numerālis.Singulāris, casus))
           };
           FōrmamAsync(fōrma, factum, casus);
         });

@@ -27,7 +27,7 @@ namespace Pēnsōrēs.Nōmina
 
     private static Dictionary<Versio, Lazy<PēnsorNōminibus>> Reservātī = new Dictionary<Versio, Lazy<PēnsorNōminibus>>();
 
-    public static Func<Versio, Lazy<PēnsorNōminibus>> Faciendum = valor =>
+    public static Func<Versio, Lazy<PēnsorNōminibus>> Relātor = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {

@@ -10,14 +10,16 @@ using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina.NōminaGraeca;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Nōmina
 {
+  [Lazy]
   [AsyncOverloads]
   public abstract partial class ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE> Faciendum = new Lazy(() => Instance);
-    private readonly ĪnflexorEffectusSecundusMasculīnusNōminibus Relātus = ĪnflexorEffectusSecundusMasculīnusNōminibus.Faciendum.Value;
+    private readonly Lazy<ĪnflexorEffectusSecundusMasculīnusNōminibus> Relātus
+                        = ĪnflexorEffectusSecundusMasculīnusNōminibus.Lazy;
 
     private ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE()
         : base(new Lazy<Nūntius<ĪnflexorEffectusSecundusVariusNōminibusSineLitterāE>>(),
@@ -29,8 +31,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
         => Nūntius.PlūsGarriōAsync("Fīō");
 
     public sealed string Singulāre(in Casus casus) => (casus is Casus.Nōminātīvus or Casus.Vocātīvus)
-                                                          .Choose(string.Empty, "r".Concat(await Relātus.SingulāreAsync(casus)));
+                                                          .Choose(string.Empty, "r".Concat(await Relātus.Value.SingulāreAsync(casus)));
 
-    public sealed string Plūrāle(in Casus casus) => await Relātus.PlūrāleAsync(casus);
+    public sealed string Plūrāle(in Casus casus) => await Relātus.Value.PlūrāleAsync(casus);
   }
 }

@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fractions" Version="7.1.0" />
     <PackageReference Include="Linq2DynamoDb.AspNet.DataSource" Version="2.4.0" />
     <PackageReference Include="Linq2DynamoDb.DataContext" Version="2.4.0" />
     <PackageReference Include="Linq2DynamoDb.WebApi.OData" Version="2.4.0" />
     <PackageReference Include="log4net" Version="2.0.15" />
-    <PackageReference Include="Lombok.NET" Version="1.1.7" />
+    <PackageReference Include="Lombok.NET" Version="1.2.0" />
     <PackageReference Include="RomanNumeral" Version="2.0.0" />
   </ItemGroup>
 

@@ -187,6 +187,12 @@ namespace Miscella
       return (index > 0).Choose(source.Remove(index, toRemove.Length), source);
     }
 
+    public static string RemoveEnd(this in string source, in string toRemove)
+    {
+      const int index = source.IndexOf(toRemove);
+      return (index > 0).Choose(source.Remove(index), source);
+    }
+
     public static Boolean All(this in IEnumerable<Boolean> enumerable)
                 => enumerable.All(item => item);
 

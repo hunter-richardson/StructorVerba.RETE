@@ -5,17 +5,16 @@ using Miscella;
 using Nūntiī.Nūntius;
 using Ēnumerātiōnēs;
 
-using Lomok.NET.PropertyGenerators.SingletonAttribute;
+using Lomok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Āctūs
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīMālle : ĪnflexorIncertus<Multiplex.Āctus>
   {
-    public static readonly Lazy<ĪnflexorVerbīMālle> Faciendum = new Lazy(() => Instance);
-
-    private readonly Lazy<ĪnflexorRescrīptus> Relātus = new Lazy(() => new ĪnflexorRescrīptus(ĪnflexorVerbīVelle.Faciendum,
-                                                                                              scrīptum => "ma".Concat(scrīptum.Substring(2))));
+    private readonly Lazy<ĪnflexorRescrīptus> Relātus
+     = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīVelle.Lazy,
+                                             rescrīptor: scrīptum => "ma".Concat(scrīptum.Substring(2))));
 
     private ĪnflexorVerbīMālle()
         : base(Catēgoria.Āctus, new Lazy<Nūntius<ĪnflexorVerbīMālle>>(), Modus.Participālis.SingleItemSet(),

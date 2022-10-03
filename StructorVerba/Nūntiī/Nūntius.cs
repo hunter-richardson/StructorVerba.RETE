@@ -33,7 +33,7 @@ namespace Nūntiī
                               };
 
     private readonly RollingFileAppender Praecō { get; }
-    private readonly Temporis Temporis { get => Temporis.Faciendum.Value; }
+    private readonly Lazy<Temporis> Temporis { get => Temporis.Lazy; }
 
     public Nūntius()
     {
@@ -80,7 +80,7 @@ namespace Nūntiī
        where nūntium is Exception
        select nūntium.Cast<Exception>())
             .ForEach(error => await Nūntiō(gradus: Ūtilitātēs.Seriēs(level, Level.Error).Min(), error: error));
-      await Nūntiō(gradus: level, nūntium: string.Join(' ', $"{typeof(Hoc).FullName}: [{Temporis.FormatDate(DateTime.Now)}] <{gradus}>",
+      await Nūntiō(gradus: level, nūntium: string.Join(' ', $"{typeof(Hoc).FullName}: [{Temporis.Value.FormatDate(DateTime.Now)}] <{gradus}>",
                                                             string.Join(' ', from nūntium in nūntia
                                                                               where nūntium is not Exception
                                                                               select nūntium.ToString())));

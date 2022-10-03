@@ -8,16 +8,15 @@ using Praebeunda.Multiplex.Prōnōmen;
 using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorAdiectīvīsAutPrīmusAutSecundusAutTertius;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Prōnōmina
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīId : ĪnflexorIncertus<Multiplex.Prōnōmen>
   {
-    public static readonly Lazy<ĪnflexorVerbīId> Faciendum = new Lazy(() => Instance);
-
-    private readonly Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius> Relātus = ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum;
+    private readonly Lazy<ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius> Relātus
+                        = ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy;
 
     private ĪnflexorVerbīId()
         : base(catēgoria: Catēgoria.Prōnōmen, nūntius: new Lazy<Nūntius<ĪnflexorVerbīId>>(),

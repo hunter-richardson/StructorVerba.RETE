@@ -9,16 +9,14 @@ using Praebeunda.Multiplex.Āctus;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Miscella
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class Scrīptor
   {
-    public static readonly Lazy<Scrīptor> Faciendum = new Lazy(() => Instance);
-
     private readonly Lazy<OfficīnaPēnsābilium> Coniūctiōnēs = OfficīnaPēnsābilium.Officīnātor.Invoke(Catēgoria.Coniūnctiō);
     private readonly Lazy<OfficīnaPēnsābilium> Interiectiōnēs = OfficīnaPēnsābilium.Officīnātor.Invoke(Catēgoria.Interiectiō);
     private readonly Lazy<OfficīnaPēnsābilium> Praepostiōnēs = OfficīnaPēnsābilium.Officīnātor.Invoke(Catēgoria.Praepositiō);

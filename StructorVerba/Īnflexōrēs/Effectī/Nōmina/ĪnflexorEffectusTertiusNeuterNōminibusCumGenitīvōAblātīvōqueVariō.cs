@@ -6,16 +6,15 @@ using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus.Versiō;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō> Faciendum = new Lazy(() => Instance);
-    private readonly ĪnflexorEffectusTertiusNeuterNōminibus Relātum = ĪnflexorEffectusTertiusNeuterNōminibus.Faciendum.Value;
+    private readonly Lazy<ĪnflexorEffectusTertiusNeuterNōminibus> Relātum = ĪnflexorEffectusTertiusNeuterNōminibus.Lazy;
     private ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō()
         : base(new Lazy<Nūntius<ĪnflexorEffectusTertiusNeuterNōminibusCumGenitīvōAblātīvōqueVariō>>(),
                (nōmen, illa) => (illa.FirstOf<Numerālis>(), illa.FirstOf<Casus>()) switch
@@ -27,8 +26,8 @@ namespace Īnflexōrēs.Effectī.Nōmina
 
     public sealed string Singulāre(in Casus casus)
               => (casus is Casus.Ablātīvus or Casus.Locātīvus or Casus.Instrumentālis)
-                        .Choose("ī", await Relātum.SingulāreAsync(casus));
+                        .Choose("ī", await Relātum.Value.SingulāreAsync(casus));
 
-    public sealed string Plūrāle(in Casus casus) => (casus is Casus.Genitīvus).Choose("ium", Relātum.PlūrāleAsync(casus));
+    public sealed string Plūrāle(in Casus casus) => (casus is Casus.Genitīvus).Choose("ium", Relātum.Value.PlūrāleAsync(casus));
   }
 }

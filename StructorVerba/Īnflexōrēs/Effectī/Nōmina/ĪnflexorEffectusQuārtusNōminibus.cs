@@ -6,15 +6,14 @@ using Ēnumerātiōnēs.Casus;
 using Īnflexōrēs.Effectī.Nōmina.ĪnflexorEffectusNōminibus.Versiō;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Effectī.Nōmina
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class ĪnflexorEffectusQuārtusNōminibus : ĪnflexorEffectusNōminibus
   {
-    public static readonly Lazy<ĪnflexorEffectusQuārtusNōminibus> Faciendum = new Lazy(() => Instance);
     private ĪnflexorEffectusQuārtusNōminibus()
         : base(new Lazy<Nūntius<ĪnflexorEffectusQuārtusNōminibus>>(),
                (nōmen, illa) => nōmen.Nōminātīvum.Chop(2))

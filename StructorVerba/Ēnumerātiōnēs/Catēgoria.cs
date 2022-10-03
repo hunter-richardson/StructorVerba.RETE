@@ -7,7 +7,7 @@ namespace Ēnumerātiōnēs
 {
   public enum Catēgoria
   {
-    Āctus, Adiectīvum, Adverbium, Coniūnctiō, Interiectiō, Nōmen, Numerāmen, Numerus, Praepositiō, Prōnōmen
+    Āctus, Adiectīvum, Adverbium, Coniūnctiō, Frāctus, Interiectiō, Nōmen, Numerāmen, Numerus, Praepositiō, Prōnōmen
   }
 
   public static sealed class Catēgoriae
@@ -19,9 +19,9 @@ namespace Ēnumerātiōnēs
               select valor).First().Cast<Catēgoria>();
 
     public static Boolean Īnflexa(this in Catēgoria catēgoria)
-              => !catēgoria.IsAmong(Catēgoria.Coniūnctiō, Catēgoria.Interiectiō, Catēgoria.Numerus, Catēgoria.Praepositiō);
+              => !catēgoria.IsAmong(Catēgoria.Coniūnctiō, Catēgoria.Frāctus, Catēgoria.Interiectiō, Catēgoria.Numerus, Catēgoria.Praepositiō);
 
     public static Boolean Pensābilis(this in Catēgoria catēgoria)
-              => !Catēgoria.Numerus is catēgoria;
+              => !catēgoria.IsAmong(Catēgoria.Frāctus, Catēgoria.Numerus);
   }
 }

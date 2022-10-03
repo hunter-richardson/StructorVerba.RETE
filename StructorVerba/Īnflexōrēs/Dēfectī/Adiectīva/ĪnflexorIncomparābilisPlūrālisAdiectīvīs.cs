@@ -8,7 +8,7 @@ using Īnflexōrēs.Effectī.Adiectīva.ĪnflexorEffectusAdiectīvīsAutPrīmusA
 using Ēnumerātiōnēs;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Dēfectī.Adiectīva
 {
@@ -16,10 +16,9 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
   [AsyncOverloads]
   public abstract class ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus : ĪnflexorDēfectusAdiectīvīs<Īnflectendum.Adiectīva>
   {
-    public static readonly Lazy<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus> Faciendum = new Lazy(() => Instance);
     private ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus()
           : base(nūntius: new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(),
-                 relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum)
+                 relātus: ĪnflexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy)
           => Nūntius.PlūsGarriōAsync("Fīō");
 
     protected sealed Enum[] Referō(in Enum[] illa)

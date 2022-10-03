@@ -6,15 +6,15 @@ using Praebeunda.Multiplex.Adiectīvum;
 using Īnflexōrēs.Effectus.Adiectīva.ĪnflexorAdiectīvīsAutPrīmusAutSecundusAutTertius;
 using Ēnumerātiōnēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Adiectīvīs
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ĪnflexorVerbīMeum : ĪnflexorIncertus<Multiplex.Adiectīvum>
   {
-    public static readonly Lazy<ĪnflexorVerbī> Faciendum = new Lazy(() => Instance);
-    private static readonly Lazy<ĪnfllexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius> Relātus = ĪnfllexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Faciendum;
+    private static readonly Lazy<ĪnfllexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius> Relātus
+                               = ĪnfllexorEffectusAdiectīvīsAutPrīmusAutSecundusAutTertius.Lazy;
     private ĪnflexorVerbīMeum()
         : base(catēgoria: Catēgoria.Adiectīvum, nūntius: new Lazy<Nūntius<ĪnflexorVerbīMeum>>(),
                illa: Ūtilitātēs.Combīnō(Genus.GetValues().Except(Genus.Nūllum).ToHashSet(),

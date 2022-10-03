@@ -15,9 +15,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs.ImpersōnālēsPerfectō
   public sealed partial class ĪnflexorImpersōnālisPerfectōĀctibus : ĪnflexorDēfectusĀctibus
   {
     private static readonly Lazy<ĪnflexorImpersōnālisPerfectōĀctibus> Secundus
-            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusSecundusĀctibus.Lazy));
     private static readonly Lazy<ĪnflexorImpersōnālisPerfectōĀctibus> Tertius
-            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Faciendum));
+            = new Lazy(() => new ĪnflexorImpersōnālisPerfectōĀctibus(relātus: ĪnflexorEffectusTertiusĀctibus.Lazy));
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisPerfectōĀctibus?>>> Relātor
         = async versiō => versiō switch

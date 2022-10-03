@@ -5,15 +5,13 @@ using System.Collections.Generic.Comparer;
 
 using Miscella.Ūtilitātēs;
 
-using Lombok.NET.PropertyGenerators.SingletonAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Ēnumerātiōnēs.Comparātōrēs
 {
-  [Singleton]
+  [Lazy]
   public sealed partial class ComparātorClassium : Comparer<Type>
   {
-    public static readonly Lazy<ComparātorClassium> Faciendum = new Lazy<ComparātorClassium>(() => Instance);
-
     public Boolean Equals(in Type prīma, in Type secunda) => Compare(prīma, secunda).Equals(0);
     public int Compare(in Type prīma, in Type secunda)
           => new StringComparer(StringComparer.InvariantCulture, false)

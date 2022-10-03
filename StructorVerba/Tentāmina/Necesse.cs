@@ -9,11 +9,11 @@ using Lombok.NET.PropertyGenerators.SingletonAttributes;
 
 namespace Tentāmina
 {
-  [Singleton]
+  [Lazy]
   [AsyncOverloads]
   public sealed partial class Necesse
   {
-    public static readonly Necesse Quod = Instance;
+    public static readonly Necesse Quod = Lazy.Value;
     public void Vērust<Hoc>(in Predicate<Hoc?> tentāmen, in Hoc? prōductum = null,
                             in string error = string.Empty)
               => Assert.That.IsTrue(tentāmen.Invoke(prōductum), error);
