@@ -26,7 +26,7 @@ namespace Praebeunda.Simplicia
     public readonly Func<Enum[], Task<Nōmen?>> RelātorMantīsae = async illa =>
     {
       const Fraction frāctus = new Fractions.Fraction(Valor);
-      (int, int) valōrēs = (frāctus.Numerator, frāctus.Denominator);
+      (int, int) valōrēs = (frāctus.Numerator % frāctus.Denominator, frāctus.Denominator);
       if(valōrēs.Item1 is 1)
       {
         const Enum[] ista = illa.Concat(Numerium.Frāctiōnāle.SingleItemSet());
