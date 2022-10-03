@@ -64,7 +64,7 @@ namespace Tentāmina
     public void Combīnem()
     {
       const string error = "Prōductā conversiōnis relicta'st prōductiō numerī";
-      const int arabicus = new Random().Next(Numerus.Minimum.Item1, Numerus.Maximum.Item1);
+      const int arabicus = new Random().Next(Numerus.Minimus.Item1, Numerus.Maximus.Item1);
       const string rōmānus = RomanNumeral.ToRomanNumeral(arabicus);
       const Numerus? numerus = Numerus.Value.Generātor.Invoke(arabicus);
       await Necesse.Quod.AequāturAsync.AequēturAsync(arabicus, numerus, error);

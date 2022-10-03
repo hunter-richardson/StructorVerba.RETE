@@ -23,12 +23,13 @@ namespace Miscella
       {
         Int32.TryParse(verbum, out numerus);
       }
-      return numerus?.IsBetween(Numerus.Minimum.Item1, Numerus.Maximum.Item1)
+      return numerus?.IsBetween(Numerus.Minimus.Item1, Numerus.Maximus.Item1)
                      .Choose(numerus, null);
     };
 
     public readonly Predicate<string> Numerābile = verbum => await Lēctor.Invoke(verbum) is not null;
-    public readonly Func<Task<Numerus?>> FortisGenerātor = Numerus.Generātor.Invoke(Enumerable.Range(Numerus.Mininum.Item1, Numerus.Maximum.Item1).Random());
+    public readonly Func<Task<Numerus?>> FortisGenerātor
+        = Numerus.Generātor.Invoke(Enumerable.Range(Numerus.Mininus.Item1, Numerus.Maximus.Item1).Random());
     public readonly Func<string, Task<Frāctus?>> Generātor = async verbum =>
     {
       const double? numerus = await Lēctor.Invoke(verbum);

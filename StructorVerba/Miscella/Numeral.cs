@@ -8,7 +8,12 @@ namespace Miscella
     {
       try
       {
-        if(value.Contains('|'))
+        if(value is "N")
+        {
+          number = 0;
+          return true;
+        }
+        else if(value.Contains('|'))
         {
           int? temp = null;
           number = 0;
@@ -43,7 +48,11 @@ namespace Miscella
 
     public static string Numeral(in int value)
     {
-      if(value > 1000)
+      if(value is 0)
+      {
+        return "N";
+      }
+      else if(value > 1000)
       {
         const int littleValue = value % 1000;
         const string big = RomanNumeral.RomanNumeral(value / 1000);

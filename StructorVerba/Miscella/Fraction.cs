@@ -14,6 +14,9 @@ namespace Miscella
     public static double Fraction(in int integer, in int numerator, in int denominator = 12)
         => Convert.ToDouble(integer) + Convert.ToDouble(numerator) / Convert.ToDouble(denominator);
 
+    public static double RoundToNearest(in double value, in int denominator = 12)
+        => Math.Round(value * Convert.ToDouble(denominator)) / Convert.ToDouble(denominator);
+
     public static string ToString(this in double value)
         => new Fractions.Fraction(value).ToString("m");
 
@@ -68,7 +71,10 @@ namespace Miscella
     }
 
     public static string Fraction(in double value)
-        => Numeral.Numeral(Convert.ToInt32(Math.Truncate(value)))
-                  .Concat(await MantissaAsync(value % 1));
+    {
+      value = RoundToNearest(value);
+      return Numeral.Numeral(Convert.ToInt32(Math.Truncate(value)))
+                    .Concat(await MantissaAsync(value % 1));
+    }
   }
 }

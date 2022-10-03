@@ -15,11 +15,11 @@ namespace Praebeunda.Simplicia
     private readonly Lazy<Lēctor> Lēctor = Lēctor.Lazy;
 
     public static readonly Func<int, Task<Numerus?>> Generātor
-        = async numerus => numerus.IsBetween(Mininum.Item1, Maximum.Item1)
+        = async numerus => numerus.IsBetween(Mininus.Item1, Maximus.Item1)
                                   .Choose(Builder.WithValor(numerus).Build(), null);
 
-    public static readonly (int, string) Mininum = (1, "I");
-    public static readonly (int, string) Maximum = (999999, "|CMXCIX|CMXCIX");
+    public static readonly (int, string) Mininus = (1, "I");
+    public static readonly (int, string) Maximus = (999999, "|CMXCIX|CMXCIX");
 
     public readonly Func<Enum[], Task<Verbum?>> Relātor = async illa =>
     {
@@ -29,7 +29,7 @@ namespace Praebeunda.Simplicia
                                                ?.Cast<Numerāmen>()?.Relātor.Invoke(illa);
     };
 
-    [Range(Mininum.Item1, Maximum.Item1)]
+    [Range(Mininus.Item1, Maximus.Item1)]
     public int Valor { get; }
 
     private Numerus(in int valor)
