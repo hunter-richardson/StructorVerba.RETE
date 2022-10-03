@@ -21,7 +21,7 @@ namespace Praebeunda.Simplicia
     public static readonly (double, string) Maximus = (999999.0 + await Miscella.Fraction.FractionAsync(0, 11), "|CMXCIX|CMXCIXS×");
 
     public readonly Func<Enum[], Task<Verbum?>> RelātorNumerī
-        = Numerus.Generātor.Invoke((Convert.ToInt32(Math.Truncate(Valor))))?.Relātor;
+        = Numerus.Generātor.Invoke(Convert.ToInt32(Math.Truncate(Valor)))?.Relātor;
 
     public readonly Func<Enum[], Task<Nōmen?>> RelātorMantīsae = async illa =>
     {
