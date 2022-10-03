@@ -40,9 +40,10 @@ namespace Praebeunda.Simplicia
                                 (2, 3) => "bes",
                                 (3, 4) => "dōdrāns",
                                 (5, 6) => "decunx",
-                                (11, 12) => "deunx"
+                                (11, 12) => "deunx",
+                                _ => null
                               };
-        return Lēctor.Value.Inveniam(lemma, Catēgoria.Nōmen);
+        return (lemma is not null).Choose(Lēctor.Value.Inveniam(lemma, Catēgoria.Nōmen), null);
       }
     };
 
