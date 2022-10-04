@@ -25,10 +25,10 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorDēpōnēnsĀctibus?>>> Relātor
               = async versiō => versiō switch
                                 {
-                                  PēnsorĀctibus.Versiō.Prīmus_Dēpōnēns => Prīmus,
-                                  PēnsorĀctibus.Versiō.Secundus_Dēpōnēns => Secundus,
-                                  PēnsorĀctibus.Versiō.Tertius_Dēpōnēns => Tertius,
-                                  PēnsorĀctibus.Versiō.Quārtus_Dēpōnēns => Quārtus,
+                                  PēnsorĀctibus.Versiō.Āctus_Prīmus_Dēpōnēns => Prīmus,
+                                  PēnsorĀctibus.Versiō.Āctus_Secundus_Dēpōnēns => Secundus,
+                                  PēnsorĀctibus.Versiō.Āctus_Tertius_Dēpōnēns => Tertius,
+                                  PēnsorĀctibus.Versiō.Āctus_Quārtus_Dēpōnēns => Quārtus,
                                   _ => new Lazy(null),
                                 };
 

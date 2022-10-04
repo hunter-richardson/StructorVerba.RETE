@@ -23,9 +23,9 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
 
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisSemidēpōnēnsImperfectusĀctibus?>>> Relātor = async versiō => versiō switch
     {
-      PēnsorĀctibus.Versiō.Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus => Prīmus,
-      PēnsorĀctibus.Versiō.Secundus_Impersōnālis_Semidēpōnēns_Imperfectus => Secundus,
-      PēnsorĀctibus.Versiō.Tertius_Impersōnālis_Semidēpōnēns_Imperfectus => Tertius,
+      PēnsorĀctibus.Versiō.Āctus_Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus => Prīmus,
+      PēnsorĀctibus.Versiō.Āctus_Secundus_Impersōnālis_Semidēpōnēns_Imperfectus => Secundus,
+      PēnsorĀctibus.Versiō.Āctus_Tertius_Impersōnālis_Semidēpōnēns_Imperfectus => Tertius,
       _ => new Lazy(null),
     };
 

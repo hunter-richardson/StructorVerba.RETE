@@ -188,19 +188,21 @@ namespace Praebeunda
       public string ToString() => Nominātīvum;
     }
 
-    public sealed class NumerāmenOmnium : Īnflectendum<NumerāmenOmnium, Multiplex.Numerāmen>
+    public sealed class Numerāmen : Īnflectendum<Numerāmen, Multiplex.Numerāmen>
     {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenOmnium>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmnium(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                 cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                 ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                 adverbium: legendum.GetProperty(Numerium.Adverbium.Columna()).GetString(),
-                                                                 multiplicātīvum: legendum.GetProperty(Numerium.Multiplicātīvum.Columna()).GetString(),
-                                                                 distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna()).GetString(),
-                                                                 frāctiōnāle: legendum.GetProperty(Numerium.Frāctiōnāle.Columna()).GetString());
+      public static readonly Func<JsonElement, Enum, Task<Numerāmen>> Lēctor
+                = async (legendum, valor) => new Numerāmen(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
+                                                           cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
+                                                           ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna())?.GetString() ?? string.Empty,
+                                                           adverbium: legendum.GetProperty(Numerium.Adverbium.Columna())?.GetString() ?? string.Empty,
+                                                           multiplicātīvum: legendum.GetProperty(Numerium.Multiplicātīvum.Columna())?.GetString() ?? string.Empty,
+                                                           distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna())?.GetString() ?? string.Empty,
+                                                           frāctiōnāle: legendum.GetProperty(Numerium.Frāctiōnāle.Columna())?.GetString() ?? string.Empty,
+                                                           versiō: valor);
 
-      private NumerāmenOmnium(in string numerus, in string cardināle, in string ōrdināle,
-                              in string adverbium, in string multiplicātīvum, in string distribūtīvum, in string frāctiōnāle)
+      private Numerāmen(in string numerus, in string cardināle, in string ōrdināle,
+                        in string adverbium, in string multiplicātīvum, in string distribūtīvum,
+                        in string frāctiōnāle, in PēnsorNumerāminibus.Versiō versiō)
           : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Omnium)
       {
         Numerus = numerus;
@@ -210,6 +212,7 @@ namespace Praebeunda
         Multiplicātīvum = multiplicātīvum;
         Distribūtīvum = distribūtīvum;
         Frāctiōnāle = frāctiōnāle;
+        Versiō = versiō;
       }
 
       public readonly string Numerus { get; }
@@ -219,187 +222,7 @@ namespace Praebeunda
       public readonly string Multiplicātīvum { get; }
       public readonly string Distribūtīvum { get; }
       public readonly string Frāctiōnāle { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenCardinālumSōlōrum : Īnflectendum<NumerāmenCardinālumSōlōrum, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumSōlōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumSōlōrum(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                            cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString());
-
-      private NumerāmenCardinālumSōlōrum(in string numerus, in string cardināle)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Cardinālium_Sōlōrum)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenCardinālumŌrdinālumque : Īnflectendum<NumerāmenCardinālumŌrdinālumque, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumŌrdinālumque>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumŌrdinālumque(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                 cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                 ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString());
-
-      private NumerāmenCardinālumŌrdinālumque(in string numerus, in string cardināle, in string ōrdināle)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Cardinālium_Ōrdināliumque)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                             cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                             ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                                             adverbium: legendum.GetProperty(Numerium.Adverbium.Columna()).GetString());
-
-      private NumerāmenCardinālumEtŌrdinālumEtAdverbiōrum(in string numerus, in string cardināle,
-                                                          in string ōrdināle, in string adverbium)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-        Adverbium = adverbium;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public readonly string Adverbium { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum
-              : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                                 cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                                 ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                                                 distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna()).GetString());
-
-      private NumerāmenCardinālumEtŌrdinālumEtDistribūtīvōrum(in string numerus, in string cardināle,
-                                                              in string ōrdināle, in string distribūtīvum)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-        Distribūtīvum = distribūtīvum;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public readonly string Distribūtīvum { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum
-              : Īnflectendum<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum>> Lēctor
-                = async (legendum, valor) => new NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                                              cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                                              ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                                                              adverbium: legendum.GetProperty(Numerium.Adverbium.Columna()).GetString(),
-                                                                                                              distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna()).GetString());
-
-      private NumerāmenCardinālumEtŌrdinālumEtAdverbiōrumEtDistribūtīvōrum(in string numerus, in string cardināle,
-                                                                           in string ōrdināle, in string adverbium, in string distribūtīvum)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-        Adverbium = adverbium;
-        Distribūtīvum = distribūtīvum;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public readonly string Adverbium { get; }
-      public readonly string Distribūtīvum { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenOmniumPraeterMultiplicātīva : Īnflectendum<NumerāmenOmniumPraeterMultiplicātīva, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterMultiplicātīva>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmniumPraeterMultiplicātīva(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                      cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                      ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                                      adverbium: legendum.GetProperty(Numerium.Adverbium.Columna()).GetString(),
-                                                                                      distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna()).GetString(),
-                                                                                      frāctiōnāle: legendum.GetProperty(Numerium.Frāctiōnāle.Columna()).GetString());
-
-      private NumerāmenOmniumPraeterMultiplicātīva(in string numerus, in string cardināle, in string ōrdināle,
-                                                   in string adverbium, in string distribūtīvum, in string frāctiōnāle)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Omnium_Praeter_Multiplicātīva)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-        Adverbium = adverbium;
-        Distribūtīvum = distribūtīvum;
-        Frāctiōnāle = frāctiōnāle;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public readonly string Adverbium { get; }
-      public readonly string Distribūtīvum { get; }
-      public readonly string Frāctiōnāle { get; }
-      public string ToString() => Numerus;
-    }
-
-    public sealed class NumerāmenOmniumPraeterFrāctiōnēs : Īnflectendum<NumerāmenOmniumPraeterFrāctiōnēs, Multiplex.Numerāmen>
-    {
-      public static readonly Func<JsonElement, Enum, Task<NumerāmenOmniumPraeterFrāctiōnēs>> Lēctor
-                = async (legendum, valor) => new NumerāmenOmniumPraeterFrāctiōnēs(numerus: legendum.GetProperty(Numerium.Numerus.Columna()).GetString(),
-                                                                                  cardināle: legendum.GetProperty(Numerium.Cardināle.Columna()).GetString(),
-                                                                                  ōrdināle: legendum.GetProperty(Numerium.Ōrdināle.Columna()).GetString(),
-                                                                                  adverbium: legendum.GetProperty(Numerium.Adverbium.Columna()).GetString(),
-                                                                                  multiplicātīvum: legendum.GetProperty(Numerium.Multiplicātīvum.Columna()).GetString(),
-                                                                                  distribūtīvum: legendum.GetProperty(Numerium.Distribūtīvum.Columna()).GetString());
-
-      private NumerāmenOmniumPraeterFrāctiōnēs(in string numerus, in string cardināle, in string ōrdināle,
-                                               in string adverbium, in string multiplicātīvum, in string distribūtīvum)
-          : base(Ēnumerātiōnēs.Catēgoria.Numerāmen, PēnsorNumerāminibus.Versiō.Omnium_Praeter_Frāctiōnēs)
-      {
-        Numerus = numerus;
-        Cardināle = cardināle;
-        Ōrdināle = ōrdināle;
-        Adverbium = adverbium;
-        Multiplicātīvum = multiplicātīvum;
-        Distribūtīvum = distribūtīvum;
-      }
-
-      public readonly string Numerus { get; }
-      public readonly string Cardināle { get; }
-      public readonly string Ōrdināle { get; }
-      public readonly string Adverbium { get; }
-      public readonly string Multiplicātīvum { get; }
-      public readonly string Distribūtīvum { get; }
+      public readonly PēnsorNumerāminibus.Versiō Versiō { get; }
       public string ToString() => Numerus;
     }
   }

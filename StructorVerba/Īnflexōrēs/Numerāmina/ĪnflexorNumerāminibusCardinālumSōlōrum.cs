@@ -12,14 +12,10 @@ namespace Īnflexōrēs.Numerāmina
 {
   [Lazy]
   [AsyncOverloads]
-  public sealed partial class ĪnflexorNumerāminibusCardinālumSōlōrum : ĪnflexorNumerāminibus<NumerāmenCardinālumSōlōrum>
+  public sealed partial class ĪnflexorNumerāminibusCardinālumSōlōrum : ĪnflexorNumerāminibus
   {
     private ĪnflexorNumerāminibusCardinālumSōlōrum()
-        : base(new Lazy<Nūntius<ĪnflexorNumerāminibusCardinālumSōlōrum>>(),
-               Numerium.Numerus, Numerium.Cardināle)
+        : base(Numerium.Numerus, Numerium.Cardināle)
         => Nūntius.PlūsGarriōAsync("Fīō");
-
-    public string Scrībam(in NumerāminibusCardinālumŌrdinālumque numerāmen, in Numerium numerium)
-            => Numerium.Cardināle.Equals(numerium).Choose(numerāmen.Cardināle, numerāmen.Numerus);
   }
 }

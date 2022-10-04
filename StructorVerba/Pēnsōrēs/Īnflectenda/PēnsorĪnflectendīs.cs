@@ -5,7 +5,7 @@ using System.Threading.Tasks.Task;
 
 using Praebeunda;
 using Pēnsōrēs.Nōmina;
-using Pēnsōrēs.Numerāmina;
+using Pēnsōrēs.Īnflectenda;
 using Ēnumerātiōnēs.Catēgoria;
 using Nūntiī.Nūntius;
 

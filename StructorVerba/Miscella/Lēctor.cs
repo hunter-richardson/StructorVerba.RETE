@@ -4,9 +4,12 @@ using System.Linq;
 
 using Dictionāria;
 using Pēnsōrēs;
+using Praebeunda.Verbum;
+using Praebeunda.Simplicia.Lemma;
 
 using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 using Lombok.NET.Property.Generators.LazyAttribute;
+using BuilderGenerator.GenerateBuilderAttribute;
 
 namespace Miscella
 {
@@ -14,6 +17,21 @@ namespace Miscella
   [AsyncOverloads]
   public sealed partial class Lēctor
   {
+    [GenerateBuilder]
+    public sealed partial struct Percōlātūrum
+    {
+      public readonly string Quaerendum { get; }
+      public readonly Catēgoria? Catēgoria { get; }
+      public readonly Enum? Versiō { get; }
+
+      private Percōlātūrum(in Catēgoria? catēgoria, in Enum? versiō, in string quaerendum = string.Empty)
+      {
+        Quaerendum = quaerendum;
+        Catēgoria = catēgoria;
+        Versiō = versiō;
+      }
+    }
+
     private readonly Lazy<PēnsorVerbīs> Lemmae = PēnsorVerbīs.Relātor.Invoke(true);
     private readonly Lazy<PēnsorVerbīs> Verba = PēnsorVerbīs.Relātor.Invoke(false);
     private readonly Lazy<Dictionārium> Āctūs = DictionāriumĀctibus.Lazy;
@@ -47,9 +65,43 @@ namespace Miscella
            where verbum.Catēgoria is catēgoria
            select verbum;
 
+    public IEnumerable<Lemma> Quaerō(in string quaerendum, in Catēgoria catēgoria, in Enum versiō)
+        => from verbum in await QuaerōAsync(quaerendum: quaerendum, catēgoria: catēgoria)
+           where verbum is Lemma
+           from lemma in verbum.Cast<Lemma>()
+           where lemma.Versiō is versiō
+           select lemma;
+
+    public IEnumerable<Lemma> Quaerō(in Catēgoria catēgoria, in Enum versiō)
+        => from verbum in await QuaerōAsync(catēgoria: catēgoria)
+           where verbum is Lemma
+           from lemma in verbum.Cast<Lemma>()
+           where lemma.Catēgoria is catēgoria
+           where lemma.Versiō is versiō
+           select lemma;
+
+    public IEnumerable<Verbum> Quaerō(in Percōlātūrum percōlātūrum)
+    {
+      return (string.IsNullOrWhiteSpace(percōlātūrum.Quaerendum),
+              percōlātūrum.Catēgoria is null,
+              percōlātūrum.Versiō is null) switch
+              {
+                (true, true, _) => Omnia.Invoke(),
+                (false, true, true) => Quaerō(quaerendum: percōlātūrum.Quaerendum),
+                (true, false, true) => Quaerō(catēgoria: percōlātūrum.Catēgoria),
+                (false, false, true) => Quaerō(quaerendum: percōlātūrum.Quaerendum,
+                                               catēgoria: percōlātūrum.Catēgoria),
+                (true, false, false) => Quaerō(catēgoria: percōlātūrum.Catēgoria,
+                                               versiō: percōlātūrum.Versiō),
+                (false, false, false) => Quaerō(quaerendum: percōlātūrum.Quaerendum,
+                                                catēgoria: percōlātūrum.Catēgoria,
+                                                versiō: percōlātūrum.Versiō)
+              };
+    }
+
     public Verbum? Inveniam(in string quaerendum, in Catēgoria catēgoria)
         => (from verbum in await Omnia.Invoke()
-            where verbum.Scrīptum is quaerendum
+            where string.Equals(verbum.Scrīptum, quaerendum, StringComparison.OrdinalIgnoreCase)
             where verbum.Catēgoria is catēgoria
             select verbum).FirstOrDefault();
 

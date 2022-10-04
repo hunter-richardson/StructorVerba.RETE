@@ -12,22 +12,10 @@ namespace Īnflexōrēs.Numerāmina
 {
   [Lazy]
   [AsyncOverloads]
-  public sealed partial class ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs : ĪnflexorNumerāminibus<NumerāmenOmniumPraeterFrāctiōnēs>
+  public sealed partial class ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs : ĪnflexorNumerāminibus
   {
     private ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs()
-        : base(nūntius: new Lazy<Nūntius<ĪnflexorNumerāminibusOmniumPraeterFrāctiōnēs>>(),
-               illa: Numerium.GetValues().Except(Numerium.Frāctiōnāle))
+        : base(illa: Numerium.GetValues().Except(Numerium.Frāctiōnāle))
         => Nūntius.PlūsGarriōAsync("Fīō");
-    public string Scrībam(in NumerāmenOmniumPraeterFrāctiōnēs numerāmen, in Numerium numerium)
-            => numerium switch
-                {
-                  Numerium.Numerus => numerāmen.Numerus,
-                  Numerium.Ōrdināle => numerāmen.Ōrdināle,
-                  Numerium.Cardināle => numerāmen.Cardināle,
-                  Numerium.Adverbium => numerāmen.Adverbium,
-                  Numerium.Multiplicātīvum => numerāmen.Multiplicātīvum,
-                  Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
-                  _ => numerāmen.Numerus
-                };
   }
 }

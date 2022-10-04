@@ -22,8 +22,8 @@ namespace Īnflexōrēs.Dēfectī.Āctūs
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorImpersōnālisĀctibus?>>> Relātor
               = async versiō => versiō switch
                                 {
-                                  PēnsorĀctibus.Versiō.Secundus_Impersōnālis => Secundus,
-                                  PēnsorĀctibus.Versiō.Tertius_Impersōnālis => Tertius,
+                                  PēnsorĀctibus.Versiō.Āctus_Secundus_Impersōnālis => Secundus,
+                                  PēnsorĀctibus.Versiō.Āctus_Tertius_Impersōnālis => Tertius,
                                   _ => new Lazy(null),
                                 };
 

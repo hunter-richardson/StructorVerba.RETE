@@ -28,9 +28,9 @@ namespace Pēnsōrēs.Īnflectenda
       public static string ToString(this in Versiō valor) => Enum.GetName<Versiō>(valor).ToLower();
     }
 
-    private static Dictionary<Versio, Lazy<PēnsorAdiectīvīs>> Reservātī = new Dictionary<Versio, Lazy<PēnsorAdiectīvīs>>();
+    private static Dictionary<Versiō, Lazy<PēnsorAdiectīvīs>> Reservātī = new Dictionary<Versiō, Lazy<PēnsorAdiectīvīs>>();
 
-    public static Func<Versio, Lazy<PēnsorAdiectīvīs>> Relātor = valor =>
+    public static Func<Versiō, Lazy<PēnsorAdiectīvīs>> Relātor = valor =>
     {
       if (Reservātī.ContainsKey(valor))
       {

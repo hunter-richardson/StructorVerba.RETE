@@ -13,7 +13,7 @@ using Lombok.NET.PropertyGenerators.SingletonAttribute;
 namespace Īnflexōrēs.Numerāmina
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorNumerāminibus<Hoc> : Īnflexor<Hoc, Multiplex.Numerāmen>
+  public abstract partial class ĪnflexorNumerāminibus<Hoc> : Īnflexor<Īnflectendum.Numerāmen, Multiplex.Numerāmen>
   {
     public static readonly Func<PēnsorNumerāminibus.Versiō, Task<Lazy<ĪnflexorNumerāminibus>>> Relātor
             = async versiō => versiō switch
@@ -36,11 +36,21 @@ namespace Īnflexōrēs.Numerāmina
               _ => new Lazy(null)
             };
 
-    protected ĪnflexorNumerāminibus(in Lazy<Nūntius<ĪnflexorNumerāminibus<Hoc>>> nūntius,
-                                    in params Numerium illa)
-                   : base(catēgoria: Ēnumerātiōnēs.Catēgoria.Numerāmen, nūntius: nūntius, illa: illa) { }
+    protected ĪnflexorNumerāminibus(in params Numerium illa)
+                   : base(catēgoria: Ēnumerātiōnēs.Catēgoria.Numerāmen,
+                          nūntius: new Lazy<Nūntius<ĪnflexorNumerāminibus<Hoc>>>(),
+                          illa: illa) { }
 
-    public abstract string Scrībam(in Hoc hoc, in Numerium numerium);
-    public string Scrībam(in Hoc hoc, in Enum[] illa) => await ScrībamAsync(hoc, illa.FirstOf<Numerium>());
+    public sealed string Scrībam(in Hoc hoc, in Enum[] illa)
+              => illa.FirstOf<Numerium>() switch
+                  {
+                    Numerium.Ōrdināle => numerāmen.Ōrdināle,
+                    Numerium.Cardināle => numerāmen.Cardināle,
+                    Numerium.Adverbium => numerāmen.Adverbium,
+                    Numerium.Multiplicātīvum => numerāmen.Multiplicātīvum,
+                    Numerium.Distribūtīvum => numerāmen.Distribūtīvum,
+                    Numerium.Frāctiōnāle => numerāmen.Frāctiōnāle,
+                    _ => numerāmen.Numerus
+                  };
   }
 }

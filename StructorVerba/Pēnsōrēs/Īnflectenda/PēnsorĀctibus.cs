@@ -10,16 +10,17 @@ namespace Pēnsōrēs.Īnflectenda
   {
     public enum Versiō
     {
-      Prīmus, Prīmus_Varius, Secundus, Quārtus,
-      Tertius, Tertius_Varius, Tertius_Cum_Imperātīvō_Brevī,
-      Prīmus_Dēpōnēns, Secundus_Dēpōnēns, Tertius_Dēpōnēns, Quārtus_Dēpōnēns,
-      Prīmus_Semidēpōnēns, Secundus_Semidēpōnēns, Tertius_Semidēpōnēns,
-      Secundus_Impersōnālis, Tertius_Impersōnālis,
-      Prīmus_Impersōnālis_Semidēpōnēns, Secundus_Impersōnālis_Semidēpōnēns, Tertius_Impersōnālis_Semidēpōnēns,
-      Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus,
-      Secundus_Impersōnālis_Semidēpōnēns_Imperfectus,
-      Tertius_Impersōnālis_Semidēpōnēns_Imperfectus,
-      Secundus_Impersōnālis_Perfectō, Tertius_Impersōnālis_Perfectō
+      Āctus_Prīmus, Āctus_Prīmus_Varius, Āctus_Secundus, Āctus_Quārtus,
+      Āctus_Tertius, Āctus_Tertius_Varius, Āctus_Tertius_Cum_Imperātīvō_Brevī,
+      Āctus_Prīmus_Dēpōnēns, Āctus_Secundus_Dēpōnēns, Āctus_Tertius_Dēpōnēns, Āctus_Quārtus_Dēpōnēns,
+      Āctus_Prīmus_Semidēpōnēns, Āctus_Secundus_Semidēpōnēns, Āctus_Tertius_Semidēpōnēns,
+      Āctus_Secundus_Impersōnālis, Āctus_Tertius_Impersōnālis,
+      Āctus_Prīmus_Impersōnālis_Semidēpōnēns, Āctus_Secundus_Impersōnālis_Semidēpōnēns,
+      Āctus_Tertius_Impersōnālis_Semidēpōnēns,
+      Āctus_Prīmus_Impersōnālis_Semidēpōnēns_Imperfectus,
+      Āctus_Secundus_Impersōnālis_Semidēpōnēns_Imperfectus,
+      Āctus_Tertius_Impersōnālis_Semidēpōnēns_Imperfectus,
+      Āctus_Secundus_Impersōnālis_Perfectō, Āctus_Tertius_Impersōnālis_Perfectō
     }
 
     public static sealed class Versiōnēs

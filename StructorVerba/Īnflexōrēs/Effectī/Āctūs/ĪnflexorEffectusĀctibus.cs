@@ -20,13 +20,13 @@ namespace Īnflexōrēs.Effectī.Āctūs
     public static readonly Func<PēnsorĀctibus.Versiō, Task<Lazy<ĪnflexorEffectusĀctibus?>>> Relātor
               = async versiō => versiō switch
                                 {
-                                  PēnsorĀctibus.Versiō.Prīmus => ĪnflexorEffectusPrīmusĀctibus.Lazy,
-                                  PēnsorĀctibus.Versiō.Prīmus_Varius => ĪnflexorEffectusPrīmusVariusĀctibus.Lazy,
-                                  PēnsorĀctibus.Versiō.Secundus => ĪnflexorEffectusSecundusĀctibus.Lazy,
-                                  PēnsorĀctibus.Versiō.Tertius => ĪnflexorEffectusTertiusĀctibus.Lazy,
-                                  PēnsorĀctibus.Versiō.Tertius_Varius => ĪnflexorEffectusTertiusVariusĀctibus.Lazy,
-                                  PēnsorĀctibus.Versiō.Tertius_Cum_Imperātīvō_Brevī => ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī.Lazy,
-                                  PēnsorĀctibus.Versiō.Quārtus => ĪnflexorEffectusQuārtusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Prīmus => ĪnflexorEffectusPrīmusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Prīmus_Varius => ĪnflexorEffectusPrīmusVariusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Secundus => ĪnflexorEffectusSecundusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Tertius => ĪnflexorEffectusTertiusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Tertius_Varius => ĪnflexorEffectusTertiusVariusĀctibus.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Tertius_Cum_Imperātīvō_Brevī => ĪnflexorEffectusTertiusĀctibusCumImperātīvōBrevī.Lazy,
+                                  PēnsorĀctibus.Versiō.Āctus_Quārtus => ĪnflexorEffectusQuārtusĀctibus.Lazy,
                                   _ => new Lazy(null)
                                 };
 
