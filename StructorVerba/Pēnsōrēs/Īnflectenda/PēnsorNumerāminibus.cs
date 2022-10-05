@@ -10,8 +10,9 @@ namespace Pēnsōrēs.Numerāmina
   {
     public enum Versiō
     {
-      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum,
-      Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum, Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
+      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Adverbiumque,
+      Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum, Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
+      Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
       Omnium_Praeter_Multiplicātīva, Omnium_Praeter_Frāctiōnēs, Omnium
     }
 
