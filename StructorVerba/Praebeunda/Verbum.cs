@@ -1,11 +1,11 @@
-using System;
+using System.Boolean;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Reflection;
 using System.Text.Json.JsonElement;
 using System.Threading.Tasks.Task;
 
-using Miscella.Ūtilitātēs;
+using Miscella;
 using Praebeunda.Interfecta.Pēnsābile;
 using Praebeunda.Simplicia;
 using Miscella.Ūtilitātēs;
@@ -43,15 +43,22 @@ namespace Praebeunda
     [StringLength(25, MinimumLength = 1)]
     public readonly string Scrīptum { get; }
 
-    public virtual string ToString() => (Catēgoria is Catēgoria.Numerus).Choose(Scrīptum, this.Cast<Numerus>().ToString());
+    public virtual string ToString()
+            => Catēgoria switch
+                {
+                  Catēgoria.Numerus => this.Cast<Numerus>().ToString(),
+                  Catēgoria.Frāctus => this.Cast<Frāctus>().ToString(),
+                  _ => Scrīptum
+                };
 
     public virtual int CompareTo(Verbum aliud)
-              => Ūtilitātēs.Omnia(this is Simplicia.Numerus, aliud is Simplicia.Numerus)
-                           .Choose(this.Cast<Simplicia.Numerus>().CompareTo(aliud.Cast<Simplicia.Numerus>()),
-                                   (from comparātiō in Ūtilitātēs.Seriēs(Scrīptum.CompareTo(aliud.Scrīptum),
-                                                                         Catēgoria.CompareTo(aliud.Catēgoria))
-                                     where comparātiō is not 0
-                                     select comparātiō).FirstOrDefault(0));
+    => (Catēgoria.CompareTo(aliud.Catēgoria) == 0)
+            .Choose(Catēgoria switch
+                    {
+                      (Catēgoria.Numerus) => this.Cast<Numerus>().CompareTo(aliud.Cast<Numerus>()),
+                      (Catēgoria.Frāctus) => this.Cast<Frāctus>().CompareTo(aliud.Cast<Frāctus>()),
+                      _ => string.CompareTo(Scrīptum, aliud.Scrīptum)
+                    }, Catēgoria.CompareTo(aliud.Catēgoria));
 
     public sealed Boolean Equals(Verbum aliud)
               => Ūtilitātēs.Omnia(Catēgoria is aliud.Catēgoria,

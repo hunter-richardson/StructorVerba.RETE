@@ -1,5 +1,5 @@
 using Internal;
-using System;
+using System.Lazy;
 using System.Threading.Tasks.Task;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

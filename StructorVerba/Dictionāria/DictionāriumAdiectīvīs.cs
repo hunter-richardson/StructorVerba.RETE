@@ -19,7 +19,8 @@ namespace Dictionāria
   {
     private static readonly Lazy<OfficīnaPēnsābilium<Lemma>> Officīna = OfficīnaPēnsābilium.Officīnātor.Invoke(null);
     private static readonly Func<string, Task<Lemma?>> Lemmātor
-        = async scrīptum => Officīna.Value.FortisInventorCatēgoriae.Invoke(scrīptum, Catēgoria.Adiectīvum);
+        = async scrīptum => PēnsorVerbīs.Relātor.Invoke(true).Value
+                                        .Pendam(quaerendum: scrīptum, catēgoria: Catēgoria.Adiectīvum);
 
     protected readonly Lazy<ĪnflexorIncertus> Aliud = ĪnflexorVerbīAliud.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Frūgī = ĪnflexorVerbīFrūgī.Lazy;

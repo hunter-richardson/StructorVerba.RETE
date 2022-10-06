@@ -1,5 +1,7 @@
-using System;
-using Miscella.Extensions;
+using System.Enum;
+
+using Pēnsōrēs.Pēnsor;
+
 namespace Ēnumerātiōnēs
 {
   public enum Factum

@@ -1,6 +1,6 @@
-using System;
+using System.Enum;
 
-using Miscella.Extensions;
+using Pēnsōrēs.Pēnsor;
 
 namespace Ēnumerātiōnēs
 {

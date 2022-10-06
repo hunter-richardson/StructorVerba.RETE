@@ -1,7 +1,3 @@
-using System;
-
-using Miscella.Extensions;
-
 namespace Ēnumerātiōnēs
 {
   public enum Encliticum

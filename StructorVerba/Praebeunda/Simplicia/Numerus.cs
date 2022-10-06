@@ -47,7 +47,7 @@ namespace Praebeunda.Simplicia
               => new Numerus(valor: prīmus.Valor % secundus.Valor);
     public static Numerus operator ++(in Numerus numerus) => new Numerus(valor: ++numerus.Valor);
     public static Numerus operator --(in Numerus numerus) => new Numerus(valor: --numerus.Valor);
-    public sealed override int CompareTo(Numerus aliud) => Valor.CompareTo(aliud.Valor);
+    public sealed override int CompareTo(Numerus aliud) => Int32.CompareTo(Valor, aliud.Valor);
     public virtual string ToString() => this.ToString().ToUpperInvariant();
   }
 }

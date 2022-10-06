@@ -4,13 +4,13 @@ using System.Collections.Generic.Dictionary;
 using Praebeunda;
 using Pēnsōrēs.Pēnsor.Tabula;
 
-namespace Pēnsōrēs.Numerāmina
+namespace Pēnsōrēs.Īnflectenda
 {
-  public abstract class PēnsorNumerāminibus : PēnsorĪnflectendīs<Īnflectendum.Numerāmen, Multiplex.Numerāmen>
+  public sealed class PēnsorNumerāminibus : PēnsorĪnflectendīs<Īnflectendum.Numerāmen, Multiplex.Numerāmen>
   {
     public enum Versiō
     {
-      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Adverbiumque,
+      Cardinālium_Solōrum, Cardinālium_Ōrdināliumque, Cardinālium_Adverbiōrumque,
       Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum, Cardinālium_Et_Ōrdinālium_Et_Distribūtīvōrum,
       Cardinālium_Et_Ōrdinālium_Et_Adverbiōrum_Et_Distribūtīvōrum,
       Omnium_Praeter_Multiplicātīva, Omnium_Praeter_Frāctiōnēs, Omnium
@@ -37,9 +37,9 @@ namespace Pēnsōrēs.Numerāmina
       }
     };
 
-    protected PēnsorNumerāminibus(in Versiō versiō)
-                                     : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Numerāmen.Numerus),
-                                            tabula: Tabula.Numerāmina, nūntius: new Lazy<Nūntius<PēnsorNumerāminibus>>(),
-                                            lēctor: Īnflectendum.Numerāmen.Lēctor) { }
+    private PēnsorNumerāminibus(in Versiō versiō)
+                                   : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Numerāmen.Numerus),
+                                          tabula: Tabula.Numerāmina, nūntius: new Lazy<Nūntius<PēnsorNumerāminibus>>(),
+                                          lēctor: Īnflectendum.Numerāmen.Lēctor) { }
   }
 }

@@ -1,10 +1,10 @@
 using Internal;
-using System;
+using System.Lazy;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Miscella;
+using Miscella.Ūtilitātēs;
 using Ēnumerātiōnēs;
 
 namespace Tentāmina

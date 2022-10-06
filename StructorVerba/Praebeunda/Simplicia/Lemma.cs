@@ -7,17 +7,25 @@ using Pēnsōrēs.PēnsorĪnflectendīs;
 using Praebeunda.Īnflectendum;
 using Ēnumerātiōnēs;
 
+using BuilderGenerator.GenerateBuilderAttribute;
 using Lombok.NET.ConstructorGenerators.AllArgsConstructorAttribute;
 
 namespace Praebeunda.Simplicia
 {
+  [GenerateBuilder]
   [AllArgsConstructor(MemberTypes.Property, AccessType.Private)]
   public sealed partial class Lemma : Verbum<Lemma>, Pēnsābile<Lemma>
   {
+    public static readonly Func<JsonElement, Lemma> Lēctor
+              = legendum => Buidler.WithCatēgoria(Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(Ēnumerātiōnēs.Catēgoriae.Columna())))
+                                   .WithScrīptum(legendum.GetProperty(Pēnsor.NōmenātorColumnae.Invoke(nameof(Scrīptum))).GetString())
+                                   .WithValor(PēnsorĪnflectendīs.Versor.Invoke(legendum.GetProperty(PēnsorĪnflectendīs.ColumnaVersiōnis).GetString()))
+                                   .Build();
+
     private readonly Func<Task<PēnsorĪnflectendīs?>> Pēnsor
               = async () => PēnsorĪnflectendīs.Relātor.Invoke(Catēgoria, Versiō).Value;
     private readonly Func<Task<Īnflectendum?>> Relātum
-              = async () => (await Pēnsor.Invoke())?.PēnsorVerbālis.Invoke(Scrīptum);
+              = async () => (await Pēnsor.Invoke())?.Pendam(quaerendum: Scrīptum);
 
     private readonly Func<Task<Verbum?>> Cōnstrūctor
               = async () => await (this.Catēgoria switch
@@ -47,9 +55,13 @@ namespace Praebeunda.Simplicia
 
     public readonly Enum? Versiō { get; }
 
-    public static readonly Func<JsonElement, Lemma> Lēctor = legendum =>
-       new Lemma(Catēgoriae.Dēfīnītor.Invoke(legendum.GetProperty(Ēnumerātiōnēs.Catēgoriae.Columna())),
-                 legendum.GetProperty(Pēnsor.NōmenātorColumnae.Invoke(nameof(Scrīptum))).GetString(),
-                 PēnsorĪnflectendīs.Versor.Invoke(legendum.GetProperty(PēnsorĪnflectendīs.ColumnaVersiōnis).GetString()));
+    public int CompareTo(Verbum aliud)
+        => Catēgoria.Equals(aliud.Catēgoria)
+                    .Choose(string.Equals(Scrīptum, aliud.Scrīptum, StringComparison.Ordinal)
+                                  .Choose((Versiō is null)
+                                              .Choose((aliud.Versiō is null).Choose(0, -1),
+                                                      Versiō.CompareTo(aliud.Versiō)),
+                                          string.CompareTo(Scrīptum, aliud.Scrīptum),
+                            Catēgoria.CompareTo(aliud.Catēgoria)));
   }
 }

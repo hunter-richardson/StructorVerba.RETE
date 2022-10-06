@@ -1,5 +1,4 @@
 using System;
-using System.Enum;
 using System.Collections.Generic.Comparer;
 
 using Lombok.NET.PropertyGenerators.LazyAttribute;

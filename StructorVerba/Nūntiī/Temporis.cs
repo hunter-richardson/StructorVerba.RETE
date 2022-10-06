@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic.IEnumerable;
 
+using Miscella.Numeral;
 using Ēnumerātiōnēs;
 
 using Lombok.NET.ConstructorGenerators.NoArgsConstructorAttribute;
 using Lombok.NET.PropertyGenerators.SingletonAttribute;
-using RomanNumerals.RomanNumeral;
 
 namespace Nūntiī
 {
@@ -13,18 +13,13 @@ namespace Nūntiī
   [NoArgsConstructor(Access.Private)]
   internal sealed partial class Temporis : SimpleDateFormatter
   {
-    private readonly IEnumerable<string> Diēs = from diēs in DiēsHebdomadis.GetValues()
-                                                select diēs.ToString();
-    private readonly IEnumerable<string> Mēnsae = from mēnsa in Mēnsa.GetValues()
-                                                  select mēnsa.ToString();
-
     public string FormatDate(in DateTime tempus)
-              => string.Join(' ', Diēs.ElementAt(tempus.DayOfWeek - 1),
-                                  Mēnsae.ElementAt(tempus.Month - 1),
-                                  RomanNumeral.ToRomanNumeral(tempus.Day), '@',
-                                  string.Join(':', RomanNumeral.ToRomanNumeral(tempus.Hour),
-                                                   RomanNumeral.ToRomanNumeral(tempus.Minute),
-                                                   RomanNumeral.ToRomanNumeral(tempus.Second)),
+              => string.Join(' ', DiēsHebdomadis.GetValues()[tempus.DayOfWeek - 1],
+                                  Mēnsa.GetValues()[tempus.Month - 1],
+                                  Numeral.Numeral(tempus.Day), '@',
+                                  string.Join(':', Numeral.Numeral(tempus.Hour),
+                                                   Numeral.Numeral(tempus.Minute),
+                                                   Numeral.Numeral(tempus.Second)),
                                   TimeZoneInfo.Utc.ToString());
   }
 }

@@ -46,10 +46,6 @@ namespace Nūntiī
       Praecō.ActivateOptions();
     }
 
-    [Async] public sealed void Morior(in Exception error) => Nuntiō(gradus: Level.Fatal, error: error);
-
-    [Async] public sealed void Terreō(in Exception error) => Nuntiō(gradus: Level.Error, error: error);
-
     private sealed async void Nūntiō(in LoggingEvent factum) => await Praecō.DoAppend(factum);
 
     private sealed async void Nūntiō(in Level gradus, in string nūnium)
@@ -86,6 +82,11 @@ namespace Nūntiī
                                                                               select nūntium.ToString())));
     }
 
+    [Async] public sealed void Morior(in Exception error)
+                => Nuntiō(gradus: Level.Fatal, error: error);
+
+    [Async] public sealed void Terreō(in Exception error)
+                => Nuntiō(gradus: Level.Error, error: error);
     [Async] public sealed void Nōtō(in params object nūntia)
                 => await Nūntiō(gradus: Level.Notice, nūntia: nūntia);
     [Async] public sealed void Moneō(in params object nūntia)

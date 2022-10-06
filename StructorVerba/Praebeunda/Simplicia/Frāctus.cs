@@ -65,7 +65,7 @@ namespace Praebeunda.Simplicia
               => new Frāctus(valor: prīmus.Valor % secundus.Valor);
     public static Frāctus operator ++(in Frāctus frāctus) => new Frāctus(valor: ++frāctus.Valor);
     public static Frāctus operator --(in Frāctus frāctus) => new Frāctus(valor: --frāctus.Valor);
-    public sealed override int CompareTo(Frāctus aliud) => Valor.CompareTo(aliud.Valor);
+    public sealed override int CompareTo(Frāctus aliud) => Double.CompareTo(Valor, aliud.Valor);
     public virtual string ToString() => this.ToString().ToUpperInvariant();
   }
 }
