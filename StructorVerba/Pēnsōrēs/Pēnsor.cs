@@ -24,8 +24,7 @@ namespace Pēnsōrēs
   {
     public enum Tabula
     {
-      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Āctūs, Numerāmina,
-      Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia, Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda
+      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Adiectīva, Āctūs, Numerāmina
     }
 
     public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();

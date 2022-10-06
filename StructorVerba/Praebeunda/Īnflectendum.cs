@@ -146,17 +146,17 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed class AdiectīvumAutPrīmumAutSecundumAutTertium : Īnflectendum<AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+    public sealed class Adiectīvum : Īnflectendum<Adiectīvum, Multiplex.Adiectīvum>
     {
-      public static readonly Func<JsonElement, Enum, Task<AdiectīvumAutPrīmumAutSecundumAutTertium>> Lēctor
-                = async (legendum, valor) => new AdiectīvumAutPrīmumAutSecundumAutTertium(positīvum: legendum.GetProperty(Gradus.Positīvum.Columna()).GetString(),
-                                                                                          comparātīvum: legendum.GetProperty(Gradus.Comparātīvum.Columna()).GetString() ?? string.Empty,
-                                                                                          superlātīvum: legendum.GetProperty(Gradus.Superlātīvum.Columna()).GetString() ?? string.Empty,
-                                                                                          versiō: valor);
+      public static readonly Func<JsonElement, Enum, Task<Adiectīvum>> Lēctor
+                = async (legendum, valor) => new Adiectīvum(positīvum: legendum.GetProperty(Gradus.Positīvum.Columna()).GetString(),
+                                                            comparātīvum: legendum.GetProperty(Gradus.Comparātīvum.Columna()).GetString() ?? string.Empty,
+                                                            superlātīvum: legendum.GetProperty(Gradus.Superlātīvum.Columna()).GetString() ?? string.Empty,
+                                                            versiō: valor);
 
-      private AdiectīvumAutPrīmumAutSecundumAutTertium(in string positīvum, in string comparātīvum,
-                                                       in string superlātīvum, in Enum versiō)
-                                            : base(Ēnumerātiōnēs.Catēgoria.Adiectīvum, versiō)
+      private Adiectīvum(in string positīvum, in string comparātīvum,
+                         in string superlātīvum, in Enum versiō)
+              : base(Ēnumerātiōnēs.Catēgoria.Adiectīvum, versiō)
       {
         Positīvum = positīvum;
         Comparātīvum = comparātīvum;
@@ -167,25 +167,6 @@ namespace Praebeunda
       public readonly string Comparātīvum { get; }
       public readonly string Superlātīvum { get; }
       public string ToString() => Positīvum;
-    }
-
-    public sealed class AdiectīvumTertiumAutPrīmumAutSecundum : Īnflectendum<AdiectīvumTertiumAutPrīmumAutSecundum, Multiplex.Adiectīvum>
-    {
-      public static readonly Func<JsonElement, Enum, Task<AdiectīvumTertiumAutPrīmumAutSecundum>> Lēctor
-                = async (legendum, valor) => new AdiectīvumTertiumAutPrīmumAutSecundum(nōminātīvum: legendum.GetProperty(Casus.Nōminātīvum.Columna()).GetString(),
-                                                                                       genitīvum: legendum.GetProperty(Casus.Genitīvum.Columna()).GetString(),
-                                                                                       versiō: valor);
-
-      private AdiectīvumTertiumAutPrīmumAutSecundum(in string nōminātīvum, in string genitīvum, in Enum versiō)
-                                                            : base(Ēnumerātiōnēs.Catēgoria.Adiectīvumm, versiō)
-      {
-        Nōminātīvum = nōminātīvum;
-        Genitīvum = genitīvum;
-      }
-
-      public readonly string Nominātīvum { get; }
-      public readonly string Genitīvum { get; }
-      public string ToString() => Nominātīvum;
     }
 
     public sealed class Numerāmen : Īnflectendum<Numerāmen, Multiplex.Numerāmen>

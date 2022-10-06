@@ -13,8 +13,7 @@ namespace Īnflexōrēs.Effectī.Adiectīva
 {
   [Lazy]
   [AsyncOverloads]
-  public sealed partial class ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumNominātīvōGenitīvōqueVariō
-            : ĪnflexorEffectusAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
+  public sealed partial class ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumNominātīvōGenitīvōqueVariō : ĪnflexorEffectusAdiectīvīs
   {
     private static readonly Lazy<ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō> Relātum
                                = ĪnflexorEffectusAdiectīvīsAutTertiusAutPrīmusAutSecundusCumGenitīvōVariō.Lazy;

@@ -14,7 +14,7 @@ namespace Īnflexōrēs.Dēfectī.Adiectīva
 {
   [Singleton]
   [AsyncOverloads]
-  public abstract class ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus : ĪnflexorDēfectusAdiectīvīs<Īnflectendum.Adiectīva>
+  public abstract class ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus : ĪnflexorDēfectusAdiectīvīs
   {
     private ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus()
           : base(nūntius: new Lazy<Nūntius<ĪnflexorIncomparābilisPlūrālisAdiectīvīsAutPrīmusAutSecundus>>(),

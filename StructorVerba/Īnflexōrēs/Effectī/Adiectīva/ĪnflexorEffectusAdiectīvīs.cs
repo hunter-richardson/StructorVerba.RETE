@@ -6,7 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 using Miscella;
 using Nūntiī.Nūntius;
 using Praebeunda.Multiplex.Adiectīvum;
-using Praebeunda.Īnflectendum.AdiectīvaAutPrīmaAutSecundaAutTertia;
+using Praebeunda.Īnflectendum.Adiectīvum;
 using Pēnsōrēs.Īnflectenda.PēnsorAdiectīvīs.Versiō;
 using Ēnumerātiōnēs;
 using Īnflexōrēs.Effectī.Nōmina;
@@ -16,7 +16,7 @@ using Lombok.NET.MethodGenerators.AsyncOverloadsAttribute;
 namespace Īnflexōrēs.Effectī.Adiectīva
 {
   [AsyncOverloads]
-  public abstract partial class ĪnflexorEffectusAdiectīvīs<Hoc> : ĪnflexorEffectus<Hoc, Multiplex.Adiectīvum>
+  public abstract partial class ĪnflexorEffectusAdiectīvīs : ĪnflexorEffectus<Īnflectendum.Adiectīvum, Multiplex.Adiectīvum>
   {
     public static readonly Func<PēnsorAdiectīvīs.Versiō, Task<Lazy<ĪnflexorEffectusAdiectīvīs?>>> Relātor
               = async versiō => versiō switch
@@ -44,24 +44,27 @@ namespace Īnflexōrēs.Effectī.Adiectīva
                                 };
 
     protected ĪnflexorEffectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
-                                         in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor,
+                                         in string quaerendī, in Func<Īnflectendum.Adiectīvum, Enum[], string> rādīcātor,
                                          in params IEnumerable<Enum[]> illa)
-                                            : base(versiō, nūntius, quaerendī, rādīcātor, illa) { }
+                                            : base(catēgoria: Catēgoria.Adiectīvum, nūntius: nūntius,
+                                                   quaerendī: nameof(Īnflectendum.Adiectīvum.Positīvum),
+                                                   rādīcātor: rādīcātor, illa: illa) { }
 
     protected ĪnflexorEffectusAdiectīvīs(in Lazy<Nūntius<ĪnflexorEffectusAdiectīvīs<Hoc>>> nūntius,
-                                         in string quaerendī, in Func<Hoc, Enum[], string> rādīcātor)
-                                            : this(versiō, nūntius, quaerendī, rādīcātor,
-                                                   Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
-                                                                      Genus.GetValues().Except(default(Genus)).ToHashSet(),
-                                                                      new HashSet<Casus>() { Casus.Nominātīvus, Casus.Genitīvus, Casus.Accusātīvus, Casus.Vocātīvus },
-                                                                      Numerālis.GetValues().Except(default(Numerālis)).ToHashSet()),
-                                                   Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
-                                                                      new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
-                                                                      Numerālis.Plūrālis.SingleItemSet()),
-                                                   Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
-                                                                      Genus.GetValues().Except(default(Genus)).ToHashSet(),
-                                                                      new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
-                                                                      Numerālis.Singulāris.SingleItemSet())) { }
+                                         in string quaerendī, in Func<Īnflectendum.Adiectīvum, Enum[], string> rādīcātor)
+                                            : this(catēgoria: Catēgoria.Adiectīvum, nūntius: nūntius,
+                                                   quaerendī: nameof(Īnflectendum.Adiectīvum.Positīvum), rādīcātor: rādīcātor,
+                                                   illa: Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
+                                                                            Genus.GetValues().Except(default(Genus)).ToHashSet(),
+                                                                            new HashSet<Casus>() { Casus.Nominātīvus, Casus.Genitīvus, Casus.Accusātīvus, Casus.Vocātīvus },
+                                                                            Numerālis.GetValues().Except(default(Numerālis)).ToHashSet()),
+                                                         Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
+                                                                            new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
+                                                                            Numerālis.Plūrālis.SingleItemSet()),
+                                                         Ūtilitātēs.Combīnō(Gradus.GetValues().Except(default(Gradus)).ToHashSet(),
+                                                                            Genus.GetValues().Except(default(Genus)).ToHashSet(),
+                                                                            new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
+                                                                            Numerālis.Singulāris.SingleItemSet())) { }
 
     public abstract Lazy<ĪnflexorEffectusNōminibus>? Relātum(in Gradus gradus, in Genus genus);
 

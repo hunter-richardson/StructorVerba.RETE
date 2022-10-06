@@ -12,7 +12,7 @@ using Lombok.NET.PropertyGenerators.SingletonAttritbue;
 
 namespace Īnflexōrēs.Dēfectī.Adiectīva
 {
-  public abstract class ĪnflexorIncomparābilisAdiectīvīs : ĪnflexorDēfectusAdiectīvīs<Īnflectendum.Adiectīva>
+  public abstract class ĪnflexorIncomparābilisAdiectīvīs : ĪnflexorDēfectusAdiectīvīs
   {
     [AsyncOverloads]
     private static readonly Lazy<ĪnflexorIncomparābilisAdiectīvīs> AutPrīmusAutSecundus

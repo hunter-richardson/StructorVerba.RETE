@@ -14,12 +14,10 @@ namespace Īnflexōrēs.Effectī.Adiectīva
 {
   [Lazy]
   [AsyncOverloads]
-  public sealed partial class ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ
-            : ĪnflexorEffectusAdiectīvīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium>
+  public sealed partial class ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ : ĪnflexorEffectusAdiectīvīs
   {
     private ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ()
         : base(new Lazy<Nūntius<ĪnflexorEffectusPrōnōminālisAdiectīvīsCumLitterāĒ>>(),
-               nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
                (adiectīvum, illa) => (illa.FirstOf<Gradus>() is Gradus.Positīvus)
                                           .Choose(adiectīvum.Positīvum.Chop(2), string.Empty),
                DictionāriumPrōnōminibus.Praegenerātor.Invoke())

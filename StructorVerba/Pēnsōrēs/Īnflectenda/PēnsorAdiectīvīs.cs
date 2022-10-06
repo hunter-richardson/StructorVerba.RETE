@@ -6,7 +6,7 @@ using Pēnsōrēs.Pēnsor.Tabula;
 
 namespace Pēnsōrēs.Īnflectenda
 {
-  public sealed class PēnsorAdiectīvīs : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium, Multiplex.Adiectīvum>
+  public sealed class PēnsorAdiectīvīs : PēnsorĪnflectendīs<Īnflectendum.Adiectīvum, Multiplex.Adiectīvum>
   {
     public enum Versiō
     {
@@ -44,39 +44,10 @@ namespace Pēnsōrēs.Īnflectenda
       }
     };
 
-    private static readonly Func<Versiō, Tabula?> Tabulātor =
-              versiō => versiō switch
-                        {
-                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus or
-                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Variō or
-                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Ablātīvō_Variō or
-                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Genitīvō_Ablātīvōque_Variō or
-                          Versiō.Aut_Tertius_Aut_Prīmus_Aut_Secundus_Cum_Nominātīvō_Genitīvōque_Variō or
-                          Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō or
-                          Versiō.Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō or
-                          Versiō.Incomparābilis_Aut_Tertius_Cum_Genitīvō_Ablātīvōque_Variō
-                                    => Tabula.Adiectīva_Aut_Tertia_Aut_Prīma_Aut_Secunda,
-                          Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius or
-                          Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Cum_Litterā_E or
-                          Versiō.Aut_Prīmus_Aut_Secundus_Aut_Tertius_Sine_Litterā_E or
-                          Versiō.Prōnōminālis or
-                          Versiō.Prōnōminālis_Cum_Litterā_Ē or
-                          Versiō.Prōnōminālis_Sine_Litterā_Ē or
-                          Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus or
-                          Versiō.Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus or
-                          Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus_Cum_Litterā_Ē or
-                          Versiō.Incomparābilis_Aut_Prīmus_Aut_Secundus_Sine_Litterā_Ē or
-                          Versiō.Incomparābilis_Prōnōminālis or
-                          Versiō.Incomparābilis_Prōnōminālis_Cum_Litterā_Ē or
-                          Versiō.Incomparābilis_Prōnōminālis_Sine_Litterā_Ē
-                                    => Tabula.Adiectīva_Aut_Prīma_Aut_Secunda_Aut_Tertia,
-                          _ => null
-                        };
-
     protected PēnsorAdiectīvīs(in Versiō versiō)
-                                  : base(versiō: versiō, quaerendī: nameof(Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Positīvum),
-                                         tabula: Tabulātor.Invoke(versiō), nūntius: new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
-                                         lēctor: Īnflectendum.AdiectīvumAutPrīmumAutSecundumAutTertium.Lēctor)
+                                  : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Adiectīvum.Positīvum),
+                                         tabula: Tabul.Adiectīva, nūntius: new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
+                                         lēctor: Īnflectendum.Adiectīvum.Lēctor)
           => Nūntius.PlūsGarriōAsync("Fīō");
   }
 }
