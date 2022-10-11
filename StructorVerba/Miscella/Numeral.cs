@@ -52,7 +52,7 @@ namespace Miscella
       {
         return "N";
       }
-      else if(value.IsBetween(1000, Numerus.Maximus.Item1, false))
+      else if(value.IsBetween(3999, Numerus.Maximus.Item1, false))
       {
         const int littleValue = value % 1000;
         const string big = RomanNumeral.RomanNumeral(value / 1000);

@@ -11,40 +11,44 @@ namespace Miscella
   [AsyncOverloads]
   public static sealed partial class Fraction
   {
+    private static readonly Dictionary<int, string> Littera = new Dictionary<int, string>()
+                                                                  {
+                                                                    {0, string.Empty},
+                                                                    {1, "·"},
+                                                                    {2, ":"},
+                                                                    {3, "∴"},
+                                                                    {4, "::"},
+                                                                    {5, "×"},
+                                                                    {6, "S"},
+                                                                    {7, "S·"},
+                                                                    {8, "S:"},
+                                                                    {9, "S∴"},
+                                                                    {10, "S::"},
+                                                                    {11, "S×"}
+                                                                  };
+
     public static double Fraction(in int integer, in int numerator, in int denominator = 12)
         => Convert.ToDouble(integer) + Convert.ToDouble(numerator) / Convert.ToDouble(denominator);
 
-    public static double RoundToNearest(in double value, in int denominator = 12)
+    public static double RoundToNearest(this in double value, in int denominator = 12)
         => Math.Round(value * Convert.ToDouble(denominator)) / Convert.ToDouble(denominator);
 
     public static string ToString(this in double value)
         => new Fractions.Fraction(value).ToString("m");
 
     private static string Mantissa(in double value)
-    {
-      int sentinel = Convert.ToInt32(value) * 12;
-      sentinel switch
-      {
-        var x when sentinel.IsBetween((0, 1), false) => string.Empty,
-        var x when sentinel.IsBetween((1, 2), false) => "·",
-        var x when sentinel.IsBetween((2, 3), false) => ":",
-        var x when sentinel.IsBetween((3, 4), false) => "∴",
-        var x when sentinel.IsBetween((4, 5), false) => "::",
-        var x when sentinel.IsBetween((5, 6), false) => "×",
-        _ => "S".Concat(value - 0.5)
-      };
-    }
+        => Littera[Convert.ToInt32(value) * 12] ?? string.Empty;
 
     public static Boolean TryParse(in string numeral, out double number)
     {
       number = 0.0;
-      const string[] characters = new {"·", ":", "∴", "::", "×", "S"};
+      const string[] characters = Littera.Values.ToArray();
       const string integer = new String(from character in numeral
                                         where !characters.Contains(character)
                                         select character),
-                  fraction = new String(from character in numeral
-                                        where characters.Contains(character)
-                                        select character);
+                   fraction = new String(from character in numeral
+                                         where characters.Contains(character)
+                                         select character);
 
       int? temp = null;
       if(Numeral.TryParse(integer, temp))
@@ -52,21 +56,9 @@ namespace Miscella
         number += temp;
       }
 
-      temp = fraction switch
-      {
-        "·" => 1,
-        ":" => 2,
-        "∴" => 3,
-        "::" => 4,
-        "×" => 5,
-        "S" => 6,
-        "S·" => 7,
-        "S:" => 8,
-        "S∴" => 9,
-        "S::" => 10,
-        "S×" => 11
-      };
-
+      temp = (from value in Littera
+              where string.Equals(value.Value, fraction, StringComparison.Ordinal)
+              select value.Key).FirstOrDefault(0);
       number += Convert.ToDouble(temp) / 12;
     }
 

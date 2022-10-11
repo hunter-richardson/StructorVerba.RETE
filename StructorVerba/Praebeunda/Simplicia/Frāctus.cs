@@ -18,7 +18,9 @@ namespace Praebeunda.Simplicia
                                   .Choose(Builder.WithMinūtal(frāctus).Build(), null);
 
     public static readonly (double, string) Mininus = (1.0, "I");
-    public static readonly (double, string) Maximus = (999999.0 + await Miscella.Fraction.FractionAsync(0, 11), "|CMXCIX|CMXCIXS×");
+    public static readonly (double, string) Maximum
+        = (Convert.ToDouble(Numerus.Maximum.Item1) + 11.0 / 12.0,
+           "|MMMCMXCIX|MMMCMXCIXS×");
 
     public readonly Func<Enum[], Task<Verbum?>> RelātorNumerī
         = Numerus.Generātor.Invoke(Convert.ToInt32(Math.Truncate(Valor)))?.Relātor;

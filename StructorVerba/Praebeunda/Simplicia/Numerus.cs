@@ -19,7 +19,7 @@ namespace Praebeunda.Simplicia
                                   .Choose(Builder.WithValor(numerus).Build(), null);
 
     public static readonly (int, string) Mininus = (1, "I");
-    public static readonly (int, string) Maximus = (999999, "|CMXCIX|CMXCIX");
+    public static readonly (int, string) Maximum = (39993999, "|MMMCMXCIX|MMMCMXCIX");
 
     public readonly Func<Enum[], Task<Verbum?>> Relātor = async illa =>
     {
