@@ -45,7 +45,7 @@ namespace Pēnsōrēs.Īnflectenda
     };
 
     private PēnsorĀctibus(in Versiō versiō)
-                             : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Āctus.Īnfīnītīvum),
+                             : base(versiō: versiō, quaerendī: Factum.Īnfīnītīvum.Columna(),
                                     tabula: Tabula.Āctūs, nūntius: new Lazy<Nūntius<PēnsorĀctibus>>(),
                                     lēctor: Īnflectendum.Āctus.Lēctor)
           => Nūntius.PlūsGarriōAsync("Fīō");

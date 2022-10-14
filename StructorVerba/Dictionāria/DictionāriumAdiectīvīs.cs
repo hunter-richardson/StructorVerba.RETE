@@ -28,6 +28,7 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorIncertus> Multum = ĪnflexorVerbīMultum.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Mīlle = ĪnflexorVerbīMīlle.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Nēquam = ĪnflexorVerbīNēquam.Lazy;
+    protected readonly Lazy<ĪnflexorIncertus> Nostrum = ĪnflexorVerbīNostrum.Lazy;
     protected readonly Lazy<ĪnflexorConiūnctus> Nōnumdecimum
         = new Lazy(() => new ĪnflexorConiūnctus(prīmum: await Lemmātor.Invoke("nōnum"),
                                                 secundum: await Lemmātor.Invoke("decimum")));
@@ -58,6 +59,9 @@ namespace Dictionāria
                                               suffīxum: Encliticum.Coniugāns.ToString()));
     protected readonly Lazy<ĪnflexorSuffīxus> Utrumvīs
         = new Lazy(() => new ĪnflexorSuffīxus(lemma: await Lemmātor.Invoke("utrum"), suffīxum: "vīs"));
+    protected readonly Lazy<ĪnflexorRescrīptus> Vestrum
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīNostrum.Lazy,
+                                               rescrīptor: scrīptum => scrīptum.ReplaceFirst("no", "ve")));
 
     private DictionāriumNōminibus()
         : base(new Lazy<Nūntius<DictionāriumAdiectīvīs>>())

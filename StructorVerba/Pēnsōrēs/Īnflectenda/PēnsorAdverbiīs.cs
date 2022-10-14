@@ -15,7 +15,7 @@ namespace Pēnsōrēs.Īnflectenda
     { Exāctum }
 
     protected PēnsorAdverbiīs()
-          : base(versiō: Versiō.Exāctum, quaerendī: nameof(Īnflectendum.Adverbium.Positīvum),
+          : base(versiō: Versiō.Exāctum, quaerendī: Gradus.Positīvum.Columna(),
                  tabula: Tabula.Adverbia, nūntius: new Lazy<Nūntius<PēnsorAdverbiīs>>(),
                  lēctor: Īnflectendum.Adverbium.Lēctor)
           => Nūntius.PlūsGarriōAsync("Fīō");

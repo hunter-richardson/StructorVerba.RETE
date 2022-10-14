@@ -7,7 +7,7 @@ using Nūntiī.Nūntius;
 using Praebeunda.Multiplex.Āctus;
 using Ēnumerātiōnēs;
 
-using Lomok.NET.PropertyGenerators.LazyAttribute;
+using Lombok.NET.PropertyGenerators.LazyAttribute;
 
 namespace Īnflexōrēs.Incertī.Āctūs
 {

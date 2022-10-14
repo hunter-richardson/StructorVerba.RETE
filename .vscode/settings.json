@@ -13,5 +13,10 @@
     ],
     "gitlens.defaultDateFormat": "DD MMMM YYYY @ HH:mm",
     "gitlens.defaultDateShortFormat": "DD MMM YYYY",
-    "gitlens.defaultTimeFormat": "HH:mm"
+    "gitlens.defaultTimeFormat": "HH:mm",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 2,
+    "terminal.integrated.tabs.focusMode": "singleClick",
+    "emmet.triggerExpansionOnTab": true,
+    "editor.stablePeek": true
 }

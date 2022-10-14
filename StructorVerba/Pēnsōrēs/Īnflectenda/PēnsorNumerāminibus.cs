@@ -38,7 +38,7 @@ namespace Pēnsōrēs.Īnflectenda
     };
 
     private PēnsorNumerāminibus(in Versiō versiō)
-                                   : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Numerāmen.Numerus),
+                                   : base(versiō: versiō, quaerendī: Numerium.Numerus.Columna(),
                                           tabula: Tabula.Numerāmina, nūntius: new Lazy<Nūntius<PēnsorNumerāminibus>>(),
                                           lēctor: Īnflectendum.Numerāmen.Lēctor) { }
   }

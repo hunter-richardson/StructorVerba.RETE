@@ -43,7 +43,7 @@ namespace Pēnsōrēs.Nōmina
     };
 
     private PēnsorNōminibusFactīs(in Versiō versiō)
-                                     : base(versiō: versiō, quaerendī: nameof(Īnflectendum.NōmenFactum.Īnfīnītīvum),
+                                     : base(versiō: versiō, quaerendī: Factum.Īnfīnītīvum.Columna(),
                                             tabula: Tabula.Nōmina_Facta, nūntius: new Lazy<Nūntius<PēnsorNōminibusFactīs>>(),
                                             lēctor: Īnflectendum.NōmenFactum.Lēctor)
           => Nūntius.PlūsGarriōAsync("Fīō");

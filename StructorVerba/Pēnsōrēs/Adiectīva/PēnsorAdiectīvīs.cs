@@ -18,8 +18,6 @@ namespace Pēnsōrēs.Īnflectenda
       Prōnōminālis, Prōnōminālis_Cum_Litterā_Ē, Prōnōminālis_Sine_Litterā_Ē,
       Incomparābilis_Aut_Prīmus_Aut_Secundus, Incomparābilis_Plūrālis_Aut_Prīmus_Aut_Secundus,
       Incomparābilis_Aut_Prīmus_Aut_Secundus_Cum_Litterā_Ē, Incomparābilis_Aut_Prīmus_Aut_Secundus_Sine_Litterā_Ē,
-      Incomparābilis_Aut_Tertius_Cum_Genitīvō_Variō, Incomparābilis_Aut_Tertius_Cum_Ablātīvō_Variō,
-      Incomparābilis_Aut_Tertius_Cum_Genitīvō_Ablātīvōque_Variō,
       Incomparābilis_Prōnōminālis, Incomparābilis_Prōnōminālis_Cum_Litterā_Ē, Incomparābilis_Prōnōminālis_Sine_Litterā_Ē
     }
 
@@ -45,8 +43,8 @@ namespace Pēnsōrēs.Īnflectenda
     };
 
     protected PēnsorAdiectīvīs(in Versiō versiō)
-                                  : base(versiō: versiō, quaerendī: nameof(Īnflectendum.Adiectīvum.Positīvum),
-                                         tabula: Tabul.Adiectīva, nūntius: new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
+                                  : base(versiō: versiō, quaerendī: Gradus.Positīvum.Columna(),
+                                         tabula: Tabula.Adiectīva, nūntius: new Lazy<Nūntius<PēnsorAdiectīvīs>>(),
                                          lēctor: Īnflectendum.Adiectīvum.Lēctor)
           => Nūntius.PlūsGarriōAsync("Fīō");
   }

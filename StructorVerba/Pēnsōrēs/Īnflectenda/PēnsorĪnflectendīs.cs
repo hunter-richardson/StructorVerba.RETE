@@ -20,6 +20,7 @@ namespace Pēnsōrēs.Īnflectenda
               = async versiō => (from valor in Ūtilitātēs.Complānō(ComparātorValōrum,
                                                                    PēnsorAdverbiīs.Versiō.GetValues(),
                                                                    PēnsorAdiectīvīs.Versiō.GetValues(),
+                                                                   PēnsorAdiectīvīsIncomparābilibusTertiīs.Versiō.GetValues(),
                                                                    PēnsorNōminibus.Versiō.GetValues(),
                                                                    PēnsorNōminibusFactīs.Versiō.GetValues(),
                                                                    PēnsorNumerāminibus.Versiō.GetValues(),
@@ -27,20 +28,25 @@ namespace Pēnsōrēs.Īnflectenda
                                  where valor.ToString().Equals(versiō, StringComparison.OrdinalIgnoreCase)
                                  select valor).FirstNonNull(null);
     public static readonly Func<Ēnumerātiōnēs.Catēgoria, Enum, Lazy<PēnsorĪnflectendīs?>> Relātor =
-            (catēgoria, versiō) => catēgoria switch
-            {
-              Ēnumerātiōnēs.Catēgoria.Āctus => PēnsorĀctibus.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Adiectīvum => PēnsorAdiectīvīs.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Adverbium => PēnsorAdverbiīs.Lazy,
-              Ēnumerātiōnēs.Catēgoria.Numerāmen => PēnsorNumerāminibus.Relātor.Invoke(versiō),
-              Ēnumerātiōnēs.Catēgoria.Nōmen => valor.GetType() switch
-                                                {
-                                                  typeof(PēnsorNōminibusFactīs.Versiō) => PēnsorNōminibusFactīs.Relātor.Invoke(versiō),
-                                                  typeof(PēnsorNōminibus.Versiō) => PēnsorNōminibus.Relātor.Invoke(versiō),
-                                                  _ => new Lazy(null)
-                                                },
-              _ => new Lazy(null)
-            };
+            catēgoria => catēgoria switch
+                        {
+                          Ēnumerātiōnēs.Catēgoria.Āctus => PēnsorĀctibus.Relātor.Invoke(versiō),
+                          Ēnumerātiōnēs.Catēgoria.Adiectīvum => valor.GetType() switch
+                                                                {
+                                                                  typeof(PēnsorAdiectīvīsIncomparābilibusTertiīs.Versiō) => PēnsorAdiectīvīsIncomparābilibusTertiīs.Relātor.Invoke(versiō),
+                                                                  typeof(PēnsorAdiectīvīs.Versiō) => PēnsorAdiectīvīs.Relātor.Invoke(versiō),
+                                                                  _ => new Lazy(null)
+                                                                },
+                          Ēnumerātiōnēs.Catēgoria.Adverbium => PēnsorAdverbiīs.Lazy,
+                          Ēnumerātiōnēs.Catēgoria.Numerāmen => PēnsorNumerāminibus.Relātor.Invoke(versiō),
+                          Ēnumerātiōnēs.Catēgoria.Nōmen => valor.GetType() switch
+                                                            {
+                                                              typeof(PēnsorNōminibusFactīs.Versiō) => PēnsorNōminibusFactīs.Relātor.Invoke(versiō),
+                                                              typeof(PēnsorNōminibus.Versiō) => PēnsorNōminibus.Relātor.Invoke(versiō),
+                                                              _ => new Lazy(null)
+                                                            },
+                          _ => new Lazy(null)
+                        };
 
     public readonly Enum Versiō { get; }
     protected PēnsorĪnflectendīs(in Enum versiō, in string quaerendī, in Tabula tabula,

@@ -19,7 +19,7 @@ namespace Praebeunda.Simplicia
 
     public static readonly (double, string) Mininus = (1.0, "I");
     public static readonly (double, string) Maximum
-        = (Convert.ToDouble(Numerus.Maximum.Item1) + 11.0 / 12.0,
+        = (Convert.ToDouble(Numerus.Maximum.Item1) + (11.0 / 12.0),
            "|MMMCMXCIX|MMMCMXCIXS×");
 
     public readonly Func<Enum[], Task<Verbum?>> RelātorNumerī

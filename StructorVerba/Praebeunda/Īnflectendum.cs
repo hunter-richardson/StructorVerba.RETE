@@ -76,6 +76,10 @@ namespace Praebeunda
                                                        supīnum: legendum.GetProperty(Factum.Supīnum.Columna()).GetString() ?? string.Empty,
                                                        versiō: valor);
 
+      public static readonly Func<string, string, string, Enum, Task<Āctus>> Cōnstrūctor
+                = async (īnfīnītīvum, perfectum, supīnum, versiō) => this(īnfīnītīvum: īnfīnītīvum, perfectum: perfectum,
+                                                                          supīnum: supīnum, versiō: versiō);
+
       private Func<Enum[], Task<NōmenFactum?>> Nōminātor = async illa => Nōmina.Value.Inventor.Invoke(Supīnum, illa);
 
       private Func<Enum[], Task<Nōmen?>> Āctor
@@ -167,6 +171,25 @@ namespace Praebeunda
       public readonly string Comparātīvum { get; }
       public readonly string Superlātīvum { get; }
       public string ToString() => Positīvum;
+    }
+
+    public sealed class AdiectīvumIncomparābileTertium : Īnflectendum<AdiectīvumIncomparābileTertium, Multiplex.Adiectīvum>
+    {
+      public static readonly Func<JsonElement, Enum, Task<AdiectīvumIncomparābileTertium>> Lēctor
+                = async (legendum, valor) => new AdiectīvumIncomparābileTertium(nōminātīvum: legendum.GetProperty(Casus.Nōminātīvum.Columna()).GetString(),
+                                                                                genitīvum: legendum.GetProperty(Casus.Genitīvum.Columna()).GetString() ?? string.Empty,
+                                                                                versiō: valor);
+
+      private AdiectīvumIncomparābileTertium(in string nōminātīvum, in string genitīvum, in Enum versiō)
+                                  : base(Ēnumerātiōnēs.Catēgoria.Adiectīvum, versiō)
+      {
+        Nōminātīvum = nōminātīvum;
+        Genitīvum = genitīvum;
+      }
+
+      public readonly string Nōminātīvum { get; }
+      public readonly string Genitīvum { get; }
+      public string ToString() => Nōminātīvum;
     }
 
     public sealed class Numerāmen : Īnflectendum<Numerāmen, Multiplex.Numerāmen>

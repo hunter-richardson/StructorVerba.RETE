@@ -24,10 +24,11 @@ namespace Pēnsōrēs
   {
     public enum Tabula
     {
-      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Adiectīva, Āctūs, Numerāmina
+      Lemmae, Verba, Adverbia, Nōmina, Nōmina_Facta, Āctūs,
+      Numerāmina, Adiectīva, Adiectīva_Incomparābilia_Tertia
     }
 
-    public static readonly Func<Tabula, string> Nōminātor = tabula => tabula.ToString().ToLower();
+    public static readonly Func<Tabula, string> Nōminātor = tabula => NōmenātorColumnae.Invoke(tabula.ToString());
 
     public static readonly Lazy<AmazonDynamoDBClient> Cliēns = new Lazy(() =>
     {
@@ -45,7 +46,7 @@ namespace Pēnsōrēs
     });
 
     public static Func<string, Task<string>> NōmenātorColumnae
-        = async columna => await Ūtilitātēs.ApicumAbditor.Invoke(columna.ToLowerInvariant());
+        = async columna => await Ūtilitātēs.ApicumAbditor.Invoke(columna).ToLowerInvariant();
 
     private readonly Func<Task<Enumerable<JsonElement>>> Tabulātor = async () =>
     {
@@ -123,7 +124,7 @@ namespace Pēnsōrēs
             from valor in linea.GetProperty(quaerendī)?.GetString()
             where !string.IsNullOrWhitespace(valor)
             where string.Equals(valor, quaerendum, StringComparison.OrdinalIgnoreCase)
-            where string.Equals(catēgoria.ToString(), linea.GetProperty(nameof(catēgoria))?.GetString())
+            where string.Equals(catēgoria.ToString(), linea.GetProperty(NōmenātorColumnae.Invoke(typeof(Catēgoria).Name))?.GetString())
             select await LegamAsync(legendum: linea)).FirstOrDefault();
 
     public sealed Hoc? ForsPendat()
@@ -131,7 +132,7 @@ namespace Pēnsōrēs
 
     public sealed Hoc? ForsPendat(in Catēgoria catēgoria)
         => (from linea in await Tabulātor.Invoke()
-            where string.Equals(catēgoria.ToString(), linea.GetProperty(NōmenātorColumnae.Invoke(nameof(catēgoria)))?.GetString())
+            where string.Equals(catēgoria.ToString(), linea.GetProperty(NōmenātorColumnae.Invoke(typeof(Catēgoria).Name))?.GetString())
             select await LegamAsync(legendum: linea)).Random();
   }
 }

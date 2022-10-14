@@ -20,7 +20,7 @@ namespace Dictionāria
                                                      new HashSet<Casus>() { Casus.Nōminātīvus, Casus.Accūsātīvus, Casus.Vocātīvus },
                                                      Numerālis.GetValues().Except(Numerālis.Nūllus).ToHashSet()),
                                   Ūtilitātēs.Combīnō(Genus.GetValues().Except(Genus.Nūllum).ToHashSet(),
-                                                     new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Inatrumentālis },
+                                                     new HashSet<Casus>() { Casus.Ablātīvus, Casus.Locātīvus, Casus.Instrumentālis },
                                                      Numerālis.Singulāris.SingleItemSet()),
                                   Ūtilitātēs.Combīnō(Genus.GetValues().Except(Genus.Nūllum).ToHashSet(),
                                                      Casus.Genitīvus.SingleItemSet(),
@@ -32,6 +32,8 @@ namespace Dictionāria
 
     protected readonly Lazy<ĪnflexorPraefīxus> Aliquid
        = new Lazy(() => new ĪnflexorPraefīxus(relātus: ĪnflexorVerbīQuid.Lazy, praefīxum: "ali"));
+    protected readonly Lazy<ĪnflexorCircumfīxus> Aliquodpiam
+       = new Lazy(() => new ĪnflexorCircumfīxus(relātus: Quod, praefīxum: "ali", suffīxum: "piam"));
     protected readonly Lazy<ĪnflexorRescrīptus> Ecquid
        = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīQuid.Lazy,
                                                rescrīptor: scrīptum => scrīptum switch
