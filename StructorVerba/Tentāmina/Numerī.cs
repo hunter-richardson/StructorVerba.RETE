@@ -19,9 +19,9 @@ namespace Tentāmina
     private readonly int XLII_Numerus = 42;
     private readonly string XLII_Scrīptus = "XLII";
 
-    private readonly Task<Action<Operātor, Tuple<int, int>>> Āctor = async (operātor, anglicī) =>
+    private readonly Task<Action<Operātor, (int, int)>> Āctor = async (operātor, anglicī) =>
     {
-      const int? anglicus = await operātor.AnglicusAsync().Invoke(anglicī.Item1, anglicī.Item2);
+      const int? anglicus = await operātor.OperemAsync(anglicī.Item1, anglicī.Item2).Cast<int?>();
       const Tuple<string, string, string, string> errorōrēs = ($"Prōductā {operātor} relicta'st prōductiō numerī {anglicī.Item1}",
                                                                $"Prōductā {operātor} relicta'st prōductiō numerī {anglicī.Item2}",
                                                                $"Prōductā {operātor} relicta'st prōductiō numerī {anglicus}",
@@ -31,7 +31,7 @@ namespace Tentāmina
       await Necesse.Quod.ExsistitAsync(anglicus, errorōrēs.Item4);
       await Necesse.Quod.AequāturAsync(anglicī.Item1, prīmus, errorōrēs.Item1);
       await Necesse.Quod.AequāturAsync(anglicī.Item2, secundus, errorōrēs.Item2);
-      rōmānī.Item3 = await operātor.RōmānusAsync().Invoke(rōmānī.Item1, rōmānī.Item2);
+      rōmānī.Item3 = await operātor.OperemAsync(rōmānī.Item1, rōmānī.Item2).Cast<Numerus?>();
       await Necesse.Quod.AequāturAsync(anglicus, rōmānī.Item3, errorōrēs.Item3);
       const char littera = operātor.Littera();
       Console.WriteLine($"{anglicī.Item1} = {rōmānī.Item1}");

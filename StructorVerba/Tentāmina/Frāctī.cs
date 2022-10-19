@@ -20,9 +20,9 @@ namespace Tentāmina
     private readonly double XLIIS_Frāctus = Fraction.Fraction(42, 9);
     private readonly string XLIIS_Scrīptus = "XLIIS∴";
 
-    private readonly Task<Action<Operātor, Tuple<double, double>>> Āctor = async (operātor, anglicī) =>
+    private readonly Task<Action<Operātor, (double, double)>> Āctor = async (operātor, anglicī) =>
     {
-      const double? anglicus = await operātor.AnglicusFrāctōrumAsync().Invoke(anglicī.Item1, anglicī.Item2);
+      const double? anglicus = await operātor.OperemAsync(anglicī.Item1, anglicī.Item2).Cast<double?>();
       const Tuple<string, string, string, string> errorōrēs = ($"Prōductā {operātor} relicta'st prōductiō numerī {anglicī.Item1}",
                                                                $"Prōductā {operātor} relicta'st prōductiō frāctī {anglicī.Item2.ToString()}",
                                                                $"Prōductā {operātor} relicta'st prōductiō frāctī {anglicus.ToString()}",
@@ -32,7 +32,7 @@ namespace Tentāmina
       await Necesse.Quod.AequāturAsync(anglicī.Item2, secundus, errorōrēs.Item2);
       const Tuple<Numerus?, Numerus?, Numerus?> rōmānī = (await Frāctus.Generātor.Invoke(anglicī.Item1),
                                                           await Frāctus.Generātor.Invoke(anglicī.Item2), null);
-      rōmānī.Item3 = await operātor.RōmānusFrāctōrumAsync().Invoke(rōmānī.Item1, rōmānī.Item2);
+      rōmānī.Item3 = await operātor.OperemAsync(rōmānī.Item1, rōmānī.Item2).Cast<Frāctus?>();
       await Necesse.Quod.AequāturAsync(anglicus, rōmānī.Item3, errorōrēs.Item3);
       const char littera = operātor.Littera();
       Console.WriteLine($"{anglicī.Item1.ToString()} = {rōmānī.Item1}");
