@@ -3,11 +3,9 @@ using System;
 using System.Threading.Tasks.Task;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Miscella.Numerātor;
+using Miscella;
 using Praebeunda.Simplicia.Numerus;
 using Ēnumerātiōnēs.Operātor;
-
-using RomanNumerals.RomanNumeral;
 
 namespace Tentāmina
 {
@@ -65,7 +63,7 @@ namespace Tentāmina
     {
       const string error = "Prōductā conversiōnis relicta'st prōductiō numerī";
       const int arabicus = new Random().Next(Numerus.Minimus.Item1, Numerus.Maximus.Item1);
-      const string rōmānus = RomanNumeral.ToRomanNumeral(arabicus);
+      const string rōmānus = Numeral.ToRomanNumeral(arabicus);
       const Numerus? numerus = Numerus.Value.Generātor.Invoke(arabicus);
       await Necesse.Quod.AequāturAsync.AequēturAsync(arabicus, numerus, error);
       await Necesse.Quod.AequāturAsync.AequēturAsync(rōmānus, numerus, error);
