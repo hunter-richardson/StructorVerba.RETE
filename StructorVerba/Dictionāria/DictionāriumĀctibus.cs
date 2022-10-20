@@ -244,7 +244,7 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorRescrīptus> Redīre
        = new Lazy(() => new ĪnflexorRescrīptus(relātus: Perīre,
                                                rescrīptor: scrīptum => scrīptum.ReplaceFirst("per", "red")));
-    protected readonly Lazy<ĪnflexorRescrīptus> Refferre
+    protected readonly Lazy<ĪnflexorRescrīptus> Referre
        = new Lazy(() => new ĪnflexorRescrīptus(relātus: Ferre,
                                                rescrīptor: scrīptum => scrīptum.StartsWith('t').Choose("ret", "re").Concat(scrīptum)));
     protected readonly Lazy<ĪnflexorRescrīptus> Rārefacere
