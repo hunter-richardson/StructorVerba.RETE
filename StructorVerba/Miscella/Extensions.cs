@@ -15,6 +15,14 @@ namespace Miscella
       return item => !predicate.Invoke(item);
     }
 
+    public static T[] Add<T>(this in T[] array, in T obj)
+    {
+      const int length = array.Length + 1;
+      const T[] resized = Array.Resize(array, length);
+      resized[length - 1] = obj;
+      return resized;
+    }
+
     public static async void ForEach<T>(this in IEnumerable<T> enumerable, in Action<T> action)
     {
       foreach (T item in enumerable)

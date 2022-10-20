@@ -31,23 +31,27 @@ namespace Dictionāria
                                                      Numerālis.Singulāris.SingleItemSet()));
 
     protected readonly Lazy<ĪnflexorPraefīxus> Aliquid
-       = new Lazy(() => new ĪnflexorPraefīxus(relātus: ĪnflexorVerbīQuid.Lazy, praefīxum: "ali"));
-    protected readonly Lazy<ĪnflexorCircumfīxus> Aliquodpiam
-       = new Lazy(() => new ĪnflexorCircumfīxus(relātus: Quod, praefīxum: "ali", suffīxum: "piam"));
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Quid, praefīxum: "ali"));
+    protected readonly Lazy<ĪnflexorPraefīxus> Aliquod
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Quod, praefīxum: "ali"));
+    protected readonly Lazy<ĪnflexorSuffīxus> Aliquodpiam
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Aliquod, suffīxum: "piam"));
     protected readonly Lazy<ĪnflexorRescrīptus> Ecquid
-       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīQuid.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Quid,
                                                rescrīptor: scrīptum => scrīptum switch
                                                                         {
                                                                           "cuius" => "ecculus",
                                                                           _ => "ec".Concat(scrīptum)
                                                                         }));
+    protected readonly Lazy<ĪnflexorCircumfīxus> Ecquod
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Quod, praefīxum: "ec"));
     protected readonly Lazy<ĪnflexorIncertus> Ego = ĪnfexorVerbīEgo.Lazy;
     protected readonly Lazy<ĪnflexorSuffīxus> Egomet
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīEgo.Lazy, suffīxum: "met"));
-    protected readonly Lazy<ĪnflexorIncertus> Hoc = ĪnflexorVerbīHoc.Lazy;
-    protected readonly Lazy<ĪnflexorIncertus> Id = ĪnflexorVerbīId.Lazy;
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Ego, suffīxum: "met"));
+    protected readonly Lazy<ĪnflexorIncertus> Hoc = Hoc;
+    protected readonly Lazy<ĪnflexorIncertus> Id = Id;
     protected readonly Lazy<ĪnflexorRescrīptus> Idem
-       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīQuid.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Quid,
                                                rescrīptor: scrīptum => (scrīptum switch
                                                                         {
                                                                           "id" => "i",
@@ -55,15 +59,15 @@ namespace Dictionāria
                                                                           _ => scrīptum
                                                                         }).Concat("dem")));
     protected readonly Lazy<ĪnflexorRescrīptus> Illoc
-       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīHoc.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Hoc,
                                                rescrīptor: scrīptum => scrīptum.ReplaceFirst("h", "ill")));
     protected readonly Lazy<ĪnflexorIncertus> Illud = ĪnflexorVerbīIllud.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Ipsum = ĪnflexorVerbīIpsum.Lazy;
     protected readonly Lazy<ĪnflexorRescrīptus> Istud
-       = new Lazy(() => new ĪnflexorRescrīptus(ĪnflexorVerbīIllud.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Illud,
                                                rescrīptor: scrīptum => scrīptum.ReplaceFirst("ill", "ist")));
     protected readonly Lazy<ĪnflexorRescrīptus> Quid
-       = new Lazy(() => new ĪnflexorRescrīptus(ĪnflexorVerbīId.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Id,
                                                rescrīptor: scrīptum => scrīptum switch
                                                                         {
                                                                           "ea" or "eae" => "quae",
@@ -72,17 +76,19 @@ namespace Dictionāria
                                                                           _ => scrīptum.ReplaceFirst("e", "qu")
                                                                         }));
     protected readonly Lazy<ĪnflexorSuffīxus> Quidpiam
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīQuid.Lazy, suffīxum: "piam"));
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quid, suffīxum: "piam"));
     protected readonly Lazy<ĪnflexorSuffīxus> Quidquam
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīQuid.Lazy, suffīxum: "quam"));
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quid, suffīxum: "quam"));
     protected readonly Lazy<ĪnflexorSuffīxus> Quidque
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīQuid.Lazy,
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quid,
                                              suffīxum: Encliticum.Coniugāns.ToString()));
     protected readonly Lazy<ĪnflexorRescrīptus> Quidquid
-       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīQuid.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Quid,
                                                rescrīptor: scrīptum => scrīptum.Concat(scrīptum)));
+    protected readonly Lazy<ĪnflexorCircumfīxus> Quidvīs
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Quid, praefīxum: "vīs"));
     protected readonly Lazy<ĪnflexorRescrīptus> Quod
-       = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīQuid.Lazy,
+       = new Lazy(() => new ĪnflexorRescrīptus(relātus: Quid,
                                                rescrīptor: scrīptum => scrīptum switch
                                                                         {
                                                                           "quid" => "quod",
@@ -90,16 +96,19 @@ namespace Dictionāria
                                                                           _ => scrīptum
                                                                         }));
     protected readonly Lazy<ĪnflexorSuffīxus> Quodpiam
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīQuod.Lazy, suffīxum: "piam"));
-    protected readonly Lazy<ĪnflexorIncertus> Sē = ĪnflexorVerbīSē.Lazy;
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quod, suffīxum: "piam"));
+    protected readonly Lazy<ĪnflexorCircumfīxus> Quodvīs
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Quod, praefīxum: "vīs"));
+
+    protected readonly Lazy<ĪnflexorIncertus> Sē = Sē;
     protected readonly Lazy<ĪnflexorSuffīxus> Sēmet
-       = new Lazy(() => new ĪnflexorSuffīxus(relātus: ĪnflexorVerbīSē.Lazy, suffīxum: "met"));
-    protected readonly Lazy<ĪnflexorIncertus> Tū = ĪnflexorVerbīTū.Lazy;
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Sē, suffīxum: "met"));
+    protected readonly Lazy<ĪnflexorIncertus> Tū = Tū;
     protected readonly Lazy<ĪnflexorRescrīptus> Tūte
-        = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīIpsum.Lazy,
+        = new Lazy(() => new ĪnflexorRescrīptus(relātus: Tū,
                                                 rescrīptor: scrīptum => (scrīptum is "tū").Choose("tūte", scrīptum)));
     protected readonly Lazy<ĪnflexorRescrīptus> Tūtemet
-        = new Lazy(() => new ĪnflexorRescrīptus(relātus: ĪnflexorVerbīIpsum.Lazy,
+        = new Lazy(() => new ĪnflexorRescrīptus(relātus: Ipsum,
                                                 rescrīptor: scrīptum => (scrīptum is "tū").Choose("tūtemet", scrīptum.Concat("met"))));
     private DictionāriumPrōnōminibus()
          : base(new Lazy<Nūntius<DictionāriumPrōnōminibus>>())
