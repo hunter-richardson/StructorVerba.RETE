@@ -5,7 +5,7 @@ using Nūntiī.Nuntius;
 using Praebeunda.Multiplex.Nōmen;
 using Praebeunda.Īnflectendum.Nōmen;
 using Ēnumerātiōnēs;
-using Īnflexōrēs.Effectī.Nōmen;
+using Īnflexōrēs.Effectī.Nōmina;
 
 using Lombok.NET.PropertyGenerators.LazyAttribute;
 
