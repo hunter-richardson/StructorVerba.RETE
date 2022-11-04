@@ -22,6 +22,8 @@ namespace Dictionāria
     protected readonly Lazy<ĪnflexorIncertus> Iūgerum = ĪnflexorVerbīIūgerum.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Lexis = ĪnflexorVerbīLexis.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Rēspūblica = ĪnflexorVerbīRēspublica.Lazy;
+    protected readonly Lazy<ĪnflexorPraefīxus> Semidea
+       = new Lazy(() => new ĪnflexorPraefīxus(relātus: Dea, praefīxum: "semi"));
     protected readonly Lazy<ĪnflexorIncertus> Vicis = ĪnflexorVerbīVicis.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Vīs = ĪnflexorVerbīVīs.Lazy;
     protected readonly Lazy<ĪnflexorIncertus> Ēthos = ĪnflexorVerbīĒthos.Lazy;
