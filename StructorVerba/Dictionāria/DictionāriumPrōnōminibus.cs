@@ -75,6 +75,8 @@ namespace Dictionāria
                                                                           "eius" => "cuius",
                                                                           _ => scrīptum.ReplaceFirst("e", "qu")
                                                                         }));
+    protected readonly Lazy<ĪnflexorSuffīxus> Quidnam
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quid, suffīxum: "nam"));
     protected readonly Lazy<ĪnflexorSuffīxus> Quidpiam
        = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quid, suffīxum: "piam"));
     protected readonly Lazy<ĪnflexorSuffīxus> Quidquam
@@ -95,6 +97,8 @@ namespace Dictionāria
                                                                           "quis" => "quī",
                                                                           _ => scrīptum
                                                                         }));
+    protected readonly Lazy<ĪnflexorSuffīxus> Quodpiam
+       = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quod, suffīxum: "nam"));
     protected readonly Lazy<ĪnflexorSuffīxus> Quodpiam
        = new Lazy(() => new ĪnflexorSuffīxus(relātus: Quod, suffīxum: "piam"));
     protected readonly Lazy<ĪnflexorCircumfīxus> Quodvīs
