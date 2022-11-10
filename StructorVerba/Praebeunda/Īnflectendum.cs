@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations.RequiredMAttribute;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Text.Json.JsonElement;
@@ -150,7 +151,8 @@ namespace Praebeunda
       public string ToString() => Īnfīnītīvum;
     }
 
-    public sealed class Adiectīvum : Īnflectendum<Adiectīvum, Multiplex.Adiectīvum>
+		[GenerateBuilder]
+		public sealed class Adiectīvum : Īnflectendum<Adiectīvum, Multiplex.Adiectīvum>
     {
       public static readonly Func<JsonElement, Enum, Task<Adiectīvum>> Lēctor
                 = async (legendum, valor) => new Adiectīvum(positīvum: legendum.GetProperty(Gradus.Positīvum.Columna()).GetString(),
@@ -167,6 +169,7 @@ namespace Praebeunda
         Superlātīvum = superlātīvum;
       }
 
+			[Required]
       public readonly string Positīvum { get; }
       public readonly string Comparātīvum { get; }
       public readonly string Superlātīvum { get; }

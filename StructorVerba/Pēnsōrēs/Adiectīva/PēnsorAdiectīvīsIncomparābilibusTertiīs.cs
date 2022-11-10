@@ -4,7 +4,7 @@ using System.Collections.Generic.Dictionary;
 using Praebeunda;
 using Pēnsōrēs.Pēnsor.Tabula;
 
-namespace Pēnsōrēs.Īnflectenda
+namespace Pēnsōrēs.Adiectīva
 {
   public sealed class PēnsorAdiectīvīsIncomparābilibusTertiīs
       : PēnsorĪnflectendīs<Īnflectendum.AdiectīvumIncomparābileTertium, Multiplex.Adiectīvum>
